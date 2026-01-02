@@ -1,0 +1,181 @@
+{
+  "meta": {
+    "product": "Eleva",
+    "tagline": "Performance evaluations for schools"
+  },
+  "nav": {
+    "features": "Features",
+    "how": "How it works",
+    "security": "Security",
+    "pricing": "Pricing",
+    "faq": "FAQ",
+    "viewPricing": "View pricing",
+    "requestDemo": "Request demo"
+  },
+  "hero": {
+    "titleStart": "Fair, consistent staff reviews",
+    "titleRotating": ["without spreadsheets", "without chaos", "without Excel", "without bias", "without confusion"],
+    "sub": "Eleva helps principals, HR teams, and department heads run evaluation cycles with rubrics, evidence, approvals, and analytics—aligned to your standards.",
+    "ctaPrimary": "Request a demo",
+    "ctaSecondary": "See features",
+    "pill1Title": "Rubrics",
+    "pill1Sub": "By role",
+    "pill2Title": "Evidence",
+    "pill2Sub": "Files & notes",
+    "pill3Title": "Insights",
+    "pill3Sub": "Trends & equity"
+  },
+  "social": {
+    "line": "Designed for schools that need consistency and clarity",
+    "tags": ["Leadership", "HR Teams", "Department Heads", "Special Ed", "Support Staff"]
+  },
+  "features": {
+    "title": "Everything you need for evaluation cycles",
+    "sub": "Build rubrics, collect evidence, manage approvals, and turn outcomes into actionable growth plans.",
+    "cards": [
+      {"title": "Role-based rubrics", "desc": "Create standards per role: teachers, counselors, admins, support. Version and track changes.", "image": "/images/Eleva-IllustArtboard 3.png"},
+      {"title": "Evidence & artifacts", "desc": "Attach lesson plans, observations, PDFs, notes, and meeting summaries to each domain.", "image": "/images/Eleva-IllustArtboard 4.png"},
+      {"title": "Calibration tools", "desc": "Spot rating drift early. Compare distributions by evaluator and department with equity checks.", "image": "/images/Eleva-IllustArtboard 5.png"},
+      {"title": "Goals & growth plans", "desc": "Turn findings into goals with timelines, coaching steps, and progress check-ins.", "image": "/images/Eleva-IllustArtboard 6.png"},
+      {"title": "Approvals & audit", "desc": "Structured workflows for manager review, HR oversight, and final sign-off with full history.", "image": "/images/Eleva-IllustArtboard 7.png"},
+      {"title": "Reports & exports", "desc": "Ready summaries for leadership and compliance—without manual spreadsheet work.", "image": "/images/Eleva-IllustArtboard 8.png"}
+    ]
+  },
+  "how": {
+    "title": "How it works",
+    "sub": "A clean workflow for leaders, evaluators, and employees—built to match school-year cycles.",
+    "steps": [
+      {"title": "1) Configure roles & rubrics", "desc": "Start from templates or import your rubric. Assign evaluators and timelines per area.", "image": "/images/Eleva-IllustArtboard 9.png"},
+      {"title": "2) Collect evidence", "desc": "Observation notes, artifacts, and feedback attach directly to rubric domains.", "image": "/images/Eleva-IllustArtboard 10.png"},
+      {"title": "3) Review & finalize", "desc": "Approvals flow through leadership/HR with calibration checkpoints and an audit trail.", "image": "/images/Eleva-IllustArtboard 11.png"}
+    ],
+    "dashboardTitle": "Cycle dashboard",
+    "dashboardSub": "Track completion, overdue reviews, and upcoming check-ins by role and area.",
+    "rows": [
+      {"k": "Scheduled observations", "v": "48"},
+      {"k": "Completed reviews", "v": "112"},
+      {"k": "Awaiting approval", "v": "17"},
+      {"k": "Overdue check-ins", "v": "6"}
+    ],
+    "nextActionLabel": "Next action",
+    "nextActionTitle": "Send reminder to evaluators",
+    "send": "Send",
+    "preview": "Preview"
+  },
+  "security": {
+    "title": "Security & compliance",
+    "sub": "Keep sensitive staff information protected with strong access controls and auditability.",
+    "cards": [
+      {"title": "Role-based access", "desc": "Separate HR, evaluators, school admins, and staff permissions."},
+      {"title": "Audit trails", "desc": "Track changes, approvals, and view history across cycles."},
+      {"title": "Data retention", "desc": "Set retention rules per policy and export when required."}
+    ],
+    "adminTitle": "Admin controls",
+    "adminSub": "Simple policies for your organization: areas, departments, and evaluators.",
+    "adminRows": [
+      {"label": "SSO / SAML", "value": "Available"},
+      {"label": "MFA enforcement", "value": "Supported"},
+      {"label": "IP allowlists", "value": "Optional"},
+      {"label": "Exports", "value": "CSV / PDF"}
+    ],
+    "note": "Compliant with local data protection regulations."
+  },
+  "pricing": {
+    "title": "Simple, transparent pricing",
+    "sub": "Plans based on staff count. Scale as you grow.",
+    "plans": [
+      {"name": "Starter", "price": "$199", "note": "per month / school", "bullets": ["Up to 100 staff", "Rubrics & cycles", "Evidence & notes", "Basic reporting"], "cta": "Get started"},
+      {"name": "Professional", "price": "$399", "note": "per month", "bullets": ["Unlimited staff", "Approvals & audit trail", "Calibration & equity checks", "Advanced reporting"], "cta": "Talk to sales", "highlight": "Most popular"},
+      {"name": "Enterprise", "price": "Custom", "note": "tailored", "bullets": ["SSO/SAML", "Dedicated onboarding", "Advanced controls", "Custom integrations"], "cta": "Request quote"}
+    ],
+    "procTitle": "Need procurement-friendly terms?",
+    "procSub": "We support annual invoicing and onboarding aligned to school-year calendars."
+  },
+  "faq": {
+    "title": "FAQ",
+    "sub": "Common questions from school leaders and HR teams.",
+    "items": [
+      {"q": "Can we use our existing rubric?", "a": "Yes. Start from templates or bring your rubric structure and scoring bands. You can version by cycle."},
+      {"q": "Does this work for non-teaching staff?", "a": "Absolutely. Build role-based rubrics for counselors, administrators, and support teams."},
+      {"q": "Can principals manage their area while HR oversees everything?", "a": "Yes. Delegate area-level administration while HR maintains policies and oversight."},
+      {"q": "What about coaching and improvement plans?", "a": "Evaluations can produce structured growth plans with goals, action steps, and follow-ups."}
+    ],
+    "finalTitle": "Ready to run your next evaluation cycle with confidence?",
+    "finalSub": "Request a demo and we'll tailor the workflow to your school calendar and rubric.",
+    "viewPricing": "View pricing",
+    "requestDemo": "Request a demo"
+  },
+  "demo": {
+    "title": "Request a personalized demo",
+    "sub": "Book a 30-minute demo and we'll show you how Eleva adapts to your school's calendar and rubrics.",
+    "benefit1Title": "Personalized demo",
+    "benefit1Sub": "We show workflows tailored to your reality",
+    "benefit2Title": "No commitment",
+    "benefit2Sub": "Explore the platform with no obligation",
+    "benefit3Title": "Response in 24h",
+    "benefit3Sub": "Our team will reach out soon",
+    "nameLabel": "Full name",
+    "namePlaceholder": "Your name",
+    "emailLabel": "Email address",
+    "emailPlaceholder": "email@school.edu",
+    "schoolLabel": "School name",
+    "schoolPlaceholder": "Lincoln High School",
+    "roleLabel": "Your role",
+    "rolePlaceholder": "Select your role",
+    "roleDirector": "Principal",
+    "roleHR": "HR Manager",
+    "roleUTP": "Department Head",
+    "roleOther": "Other",
+    "messageLabel": "Message (optional)",
+    "messagePlaceholder": "Tell us about your school or specific questions...",
+    "submit": "Request demo",
+    "submitting": "Sending...",
+    "successTitle": "Request sent!",
+    "successSub": "We'll contact you within 24 hours to schedule your demo.",
+    "privacy": "By submitting, you agree to be contacted about Eleva."
+  },
+  "footer": {
+    "line": "Performance evaluations for schools",
+    "security": "Security",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "funded": "Supported by Ignite"
+  },
+  "mock": {
+    "title": "Evaluation Cycle",
+    "org": "Lincoln School",
+    "cardTitle": "Teacher - Classroom Practice",
+    "status": "In review",
+    "d1": "1) Planning",
+    "d2": "2) Instruction",
+    "d3": "3) Environment",
+    "evidence": "Evidence attached",
+    "files": "4 files",
+    "approval": "Manager approval",
+    "pending": "Pending",
+    "growth": "Growth plan",
+    "ready": "Ready",
+    "equityLabel": "Equity checkpoint",
+    "equityTitle": "Compare ratings by role & evaluator",
+    "equityNote": "No outliers detected",
+    "mockNote": "System preview"
+  },
+  "lang": {
+    "switch": "Language",
+    "en": "English",
+    "es": "Español"
+  },
+  "cookies": {
+    "message": "We use cookies to improve your experience. By continuing to browse, you accept our",
+    "privacyLink": "privacy policy",
+    "essential": "Essential only",
+    "acceptAll": "Accept all"
+  },
+  "legal": {
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "privacyTitle": "Privacy Policy",
+    "termsTitle": "Terms of Service",
+    "lastUpdated": "Last updated"
+  }
+}

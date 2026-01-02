@@ -1,26 +1,247 @@
 @import "tailwindcss";
+@import "flag-icons/css/flag-icons.min.css";
+
+/* Brand colors - centralized for easy updates */
+@theme {
+  --color-brand-50: #f0fdfa;
+  --color-brand-100: #ccfbf1;
+  --color-brand-200: #99f6e4;
+  --color-brand-300: #5eead4;
+  --color-brand-400: #2dd4bf;
+  --color-brand-500: #14b8a6;
+  --color-brand-600: #0d9488;
+  --color-brand-700: #0f766e;
+  --color-brand-800: #115e59;
+  --color-brand-900: #134e4a;
+  --color-brand-950: #042f2e;
+}
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg-primary: #070A12;
+  --bg-secondary: #0f1219;
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --text-muted: rgba(255, 255, 255, 0.5);
+  --border-color: rgba(255, 255, 255, 0.1);
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --card-hover: rgba(255, 255, 255, 0.06);
+  --accent: #14b8a6;
+  color-scheme: dark;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+[data-theme="light"] {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #ffffff;
+  --text-primary: #0f172a;
+  --text-secondary: rgba(15, 23, 42, 0.7);
+  --text-muted: rgba(15, 23, 42, 0.5);
+  --border-color: rgba(15, 23, 42, 0.1);
+  --card-bg: rgba(15, 23, 42, 0.03);
+  --card-hover: rgba(15, 23, 42, 0.06);
+  --accent: #0d9488;
+  color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+html::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: transparent;
+  color: var(--text-primary);
+  overflow-x: hidden;
+}
+
+/* Make sections transparent to show animated background */
+.bg-\[\#070A12\] {
+  background: transparent !important;
+}
+
+[data-theme="light"] .bg-\[\#070A12\] {
+  background: transparent !important;
+}
+
+/* Feature cards for 3D carousel */
+.feature-card-3d {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transition: transform 0.1s ease-out;
+}
+
+/* Smooth pulse animation */
+@keyframes pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.7; }
+}
+
+.animate-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Light theme specific overrides */
+[data-theme="light"] .bg-\[\#070A12\] {
+  background: var(--bg-primary) !important;
+}
+
+[data-theme="light"] .bg-black\/20 {
+  background: rgba(255, 255, 255, 0.4) !important;
+}
+
+[data-theme="light"] .text-white {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="light"] .text-white\/70,
+[data-theme="light"] .text-white\/75 {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="light"] .text-white\/50,
+[data-theme="light"] .text-white\/60 {
+  color: var(--text-muted) !important;
+}
+
+[data-theme="light"] .text-white\/80,
+[data-theme="light"] .text-white\/85,
+[data-theme="light"] .text-white\/90 {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="light"] .border-white\/10,
+[data-theme="light"] .border-white\/12,
+[data-theme="light"] .border-white\/15,
+[data-theme="light"] .border-white\/25 {
+  border-color: var(--border-color) !important;
+}
+
+[data-theme="light"] .bg-white\/3,
+[data-theme="light"] .bg-white\/5,
+[data-theme="light"] .bg-white\/\[0\.03\] {
+  background: var(--card-bg) !important;
+}
+
+[data-theme="light"] .bg-white\/10 {
+  background: var(--card-hover) !important;
+}
+
+[data-theme="light"] .bg-white {
+  background: var(--text-primary) !important;
+}
+
+[data-theme="light"] .text-black {
+  color: var(--bg-primary) !important;
+}
+
+[data-theme="light"] .bg-black\/20 {
+  background: rgba(15, 23, 42, 0.05) !important;
+}
+
+[data-theme="light"] .bg-black\/40,
+[data-theme="light"] .from-black\/40 {
+  background: rgba(15, 23, 42, 0.1) !important;
+}
+
+/* Blur backgrounds in light theme */
+[data-theme="light"] .blur-3xl {
+  filter: blur(64px);
+  opacity: 0.3;
+}
+
+/* Light theme accent adjustments */
+[data-theme="light"] .bg-white\/70 {
+  background: var(--accent) !important;
+}
+
+/* Light carousel cards with dark text */
+[data-theme="light"] .feature-card-3d .bg-gradient-to-b {
+  background: linear-gradient(to bottom, rgba(255,255,255,0.3), rgba(255,255,255,0.6), rgba(255,255,255,0.8)) !important;
+}
+
+[data-theme="light"] .feature-card-3d .bg-white\/\[0\.02\] {
+  background: rgba(255, 255, 255, 0.7) !important;
+  backdrop-filter: blur(20px);
+}
+
+[data-theme="light"] .feature-card-3d .text-white {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .feature-card-3d .text-white\/75 {
+  color: rgba(15, 23, 42, 0.75) !important;
+}
+
+[data-theme="light"] .feature-card-3d .bg-white {
+  background: #0f172a !important;
+}
+
+[data-theme="light"] .feature-card-3d .text-black {
+  color: #ffffff !important;
+}
+
+[data-theme="light"] .feature-card-3d .blur-3xl {
+  opacity: 0.25;
+}
+
+/* Light theme gradient border for cards */
+[data-theme="light"] .feature-card-3d .bg-gradient-to-br {
+  background: linear-gradient(to bottom right, rgba(0,0,0,0.1), rgba(0,0,0,0.02), rgba(0,0,0,0.08)) !important;
+}
+
+[data-theme="light"] .feature-card-3d .bg-black\/40 {
+  background: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Hide dandelion seeds in dark mode, show in light */
+.dandelion-seed {
+  opacity: 0;
+}
+
+[data-theme="light"] .dandelion-seed {
+  opacity: 0.6;
+}
+
+/* Demo form light theme */
+[data-theme="light"] #demo input,
+[data-theme="light"] #demo select,
+[data-theme="light"] #demo textarea {
+  background: rgba(15, 23, 42, 0.05) !important;
+  border-color: rgba(15, 23, 42, 0.15) !important;
+  color: #0f172a !important;
+}
+
+[data-theme="light"] #demo input::placeholder,
+[data-theme="light"] #demo textarea::placeholder {
+  color: rgba(15, 23, 42, 0.4) !important;
+}
+
+[data-theme="light"] #demo select option {
+  background: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+/* Animated underline for rotating text */
+@keyframes underlineSlide {
+  0% { transform: scaleX(0); opacity: 0; }
+  15% { transform: scaleX(1); opacity: 1; }
+  85% { transform: scaleX(1); opacity: 1; }
+  100% { transform: scaleX(0); opacity: 0; }
+}
+
+/* Rotating text colors for light theme */
+[data-theme="light"] .bg-gradient-to-r.from-brand-400.via-cyan-300.to-emerald-300 {
+  background-image: linear-gradient(to right, var(--color-brand-700), #0891b2, #059669) !important;
+}
+
+[data-theme="light"] .bg-gradient-to-r.from-brand-500\/70.via-cyan-400\/50 {
+  background-image: linear-gradient(to right, rgba(13, 148, 136, 0.8), rgba(6, 182, 212, 0.6), transparent) !important;
 }

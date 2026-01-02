@@ -1,0 +1,181 @@
+{
+  "meta": {
+    "product": "Eleva",
+    "tagline": "Evaluaciones de desempeño para colegios"
+  },
+  "nav": {
+    "features": "Funciones",
+    "how": "Cómo funciona",
+    "security": "Seguridad",
+    "pricing": "Precios",
+    "faq": "Preguntas",
+    "viewPricing": "Ver precios",
+    "requestDemo": "Solicitar demo"
+  },
+  "hero": {
+    "titleStart": "Evaluaciones justas y consistentes",
+    "titleRotating": ["sin planillas", "sin caos", "sin Excel", "sin desorden", "sin sesgos"],
+    "sub": "Eleva ayuda a directores, RR.HH. y jefaturas a ejecutar ciclos de evaluación con rúbricas, evidencia, aprobaciones y analítica—alineado a estándares del establecimiento.",
+    "ctaPrimary": "Solicitar demo",
+    "ctaSecondary": "Ver funciones",
+    "pill1Title": "Rúbricas",
+    "pill1Sub": "Por rol",
+    "pill2Title": "Evidencia",
+    "pill2Sub": "Archivos y notas",
+    "pill3Title": "Insights",
+    "pill3Sub": "Tendencias y equidad"
+  },
+  "social": {
+    "line": "Diseñado para colegios que necesitan consistencia y claridad",
+    "tags": ["Directivos", "RR.HH.", "Jefaturas UTP", "PIE", "Asistentes"]
+  },
+  "features": {
+    "title": "Todo lo necesario para ciclos de evaluación",
+    "sub": "Define rúbricas, reúne evidencia, gestiona aprobaciones y convierte resultados en planes de desarrollo.",
+    "cards": [
+      {"title": "Rúbricas por rol", "desc": "Crea estándares por cargo: docentes, orientadores, directivos, asistentes. Versiona y controla cambios.", "image": "/images/Eleva-IllustArtboard 3.png"},
+      {"title": "Evidencia y archivos", "desc": "Adjunta planificaciones, observaciones, PDFs, notas y actas por dominio y puntaje.", "image": "/images/Eleva-IllustArtboard 4.png"},
+      {"title": "Calibración", "desc": "Detecta desviaciones temprano. Compara distribuciones por evaluador y área con chequeos de equidad.", "image": "/images/Eleva-IllustArtboard 5.png"},
+      {"title": "Metas y desarrollo", "desc": "Transforma hallazgos en objetivos con plazos, acciones de acompañamiento y seguimiento.", "image": "/images/Eleva-IllustArtboard 6.png"},
+      {"title": "Aprobaciones", "desc": "Flujos claros para revisión de jefatura, RR.HH. y cierre final con historial completo.", "image": "/images/Eleva-IllustArtboard 7.png"},
+      {"title": "Reportes", "desc": "Resúmenes listos para dirección y cumplimiento—sin consolidación manual en Excel.", "image": "/images/Eleva-IllustArtboard 8.png"}
+    ]
+  },
+  "how": {
+    "title": "Cómo funciona",
+    "sub": "Un flujo simple para líderes, evaluadores y colaboradores—alineado al calendario escolar.",
+    "steps": [
+      {"title": "1) Configura roles y rúbricas", "desc": "Parte con plantillas o importa tu rúbrica. Asigna evaluadores y fechas por área.", "image": "/images/Eleva-IllustArtboard 9.png"},
+      {"title": "2) Reúne evidencia", "desc": "Notas de observación, archivos y feedback quedan vinculados a cada dominio.", "image": "/images/Eleva-IllustArtboard 10.png"},
+      {"title": "3) Revisa y cierra", "desc": "Aprobaciones por liderazgo/RR.HH. con puntos de calibración y trazabilidad.", "image": "/images/Eleva-IllustArtboard 11.png"}
+    ],
+    "dashboardTitle": "Panel del ciclo",
+    "dashboardSub": "Monitorea avance, pendientes y próximos hitos por rol y área.",
+    "rows": [
+      {"k": "Observaciones programadas", "v": "48"},
+      {"k": "Evaluaciones completadas", "v": "112"},
+      {"k": "En espera de aprobación", "v": "17"},
+      {"k": "Seguimientos vencidos", "v": "6"}
+    ],
+    "nextActionLabel": "Siguiente acción",
+    "nextActionTitle": "Enviar recordatorio a evaluadores",
+    "send": "Enviar",
+    "preview": "Vista previa"
+  },
+  "security": {
+    "title": "Seguridad y cumplimiento",
+    "sub": "Protege información sensible con controles de acceso y trazabilidad.",
+    "cards": [
+      {"title": "Acceso por roles", "desc": "Permisos separados para RR.HH., evaluadores, administración y colaboradores."},
+      {"title": "Trazabilidad", "desc": "Registra cambios, aprobaciones e historial por ciclo."},
+      {"title": "Retención de datos", "desc": "Define retención según políticas internas y exporta cuando sea necesario."}
+    ],
+    "adminTitle": "Controles de administración",
+    "adminSub": "Políticas simples para tu organización: áreas, departamentos y evaluadores.",
+    "adminRows": [
+      {"label": "SSO / SAML", "value": "Disponible"},
+      {"label": "Forzar MFA", "value": "Soportado"},
+      {"label": "Listas IP", "value": "Opcional"},
+      {"label": "Exportaciones", "value": "CSV / PDF"}
+    ],
+    "note": "Cumplimiento con normativas locales de protección de datos."
+  },
+  "pricing": {
+    "title": "Precios simples y transparentes",
+    "sub": "Planes según cantidad de colaboradores. Crece cuando lo necesites.",
+    "plans": [
+      {"name": "Starter", "price": "$199", "note": "mensual / colegio", "bullets": ["Hasta 100 colaboradores", "Rúbricas y ciclos", "Evidencia y notas", "Reportes básicos"], "cta": "Comenzar ahora"},
+      {"name": "Profesional", "price": "$399", "note": "mensual", "bullets": ["Colaboradores ilimitados", "Aprobaciones y auditoría", "Calibración y equidad", "Reportes avanzados"], "cta": "Hablar con ventas", "highlight": "Más elegido"},
+      {"name": "Enterprise", "price": "A medida", "note": "según necesidad", "bullets": ["SSO/SAML", "Onboarding dedicado", "Controles avanzados", "Integraciones"], "cta": "Solicitar cotización"}
+    ],
+    "procTitle": "¿Necesitas términos para compra pública?",
+    "procSub": "Ofrecemos facturación anual y onboarding alineado al año escolar."
+  },
+  "faq": {
+    "title": "Preguntas frecuentes",
+    "sub": "Dudas típicas de liderazgo escolar y RR.HH.",
+    "items": [
+      {"q": "¿Podemos usar nuestra rúbrica actual?", "a": "Sí. Puedes partir con plantillas o cargar tu estructura y bandas de puntaje. Se puede versionar por ciclo."},
+      {"q": "¿Sirve para cargos no docentes?", "a": "Totalmente. Define rúbricas por rol para orientadores, directivos, asistentes y equipos de apoyo."},
+      {"q": "¿El director administra su colegio y RR.HH. ve todo?", "a": "Sí. Puedes delegar administración por área mientras RR.HH. mantiene políticas y supervisión general."},
+      {"q": "¿Incluye planes de mejora?", "a": "Las evaluaciones pueden generar planes de desarrollo con objetivos, acciones y seguimientos."}
+    ],
+    "finalTitle": "¿Listo para tu próximo ciclo con confianza?",
+    "finalSub": "Solicita una demo y adaptamos el flujo a tu calendario escolar y rúbrica.",
+    "viewPricing": "Ver precios",
+    "requestDemo": "Solicitar demo"
+  },
+  "demo": {
+    "title": "Solicita una demo personalizada",
+    "sub": "Agenda una demostración de 30 minutos y te mostramos cómo Eleva se adapta al calendario y rúbricas de tu colegio.",
+    "benefit1Title": "Demo personalizada",
+    "benefit1Sub": "Te mostramos flujos adaptados a tu realidad",
+    "benefit2Title": "Sin compromiso",
+    "benefit2Sub": "Explora la plataforma sin obligación",
+    "benefit3Title": "Respuesta en 24h",
+    "benefit3Sub": "Nuestro equipo te contactará pronto",
+    "nameLabel": "Nombre completo",
+    "namePlaceholder": "Tu nombre",
+    "emailLabel": "Correo electrónico",
+    "emailPlaceholder": "correo@colegio.cl",
+    "schoolLabel": "Nombre del colegio",
+    "schoolPlaceholder": "Colegio San José",
+    "roleLabel": "Tu cargo",
+    "rolePlaceholder": "Selecciona tu cargo",
+    "roleDirector": "Director/a",
+    "roleHR": "Encargado/a RR.HH.",
+    "roleUTP": "Jefe/a UTP",
+    "roleOther": "Otro",
+    "messageLabel": "Mensaje (opcional)",
+    "messagePlaceholder": "Cuéntanos sobre tu colegio o dudas específicas...",
+    "submit": "Solicitar demo",
+    "submitting": "Enviando...",
+    "successTitle": "¡Solicitud enviada!",
+    "successSub": "Te contactaremos en las próximas 24 horas para coordinar tu demo.",
+    "privacy": "Al enviar, aceptas que te contactemos sobre Eleva."
+  },
+  "footer": {
+    "line": "Evaluaciones de desempeño para colegios",
+    "security": "Seguridad",
+    "faq": "Preguntas",
+    "contact": "Contacto",
+    "funded": "Apoyado por Ignite"
+  },
+  "mock": {
+    "title": "Ciclo de evaluación",
+    "org": "Colegio San José",
+    "cardTitle": "Docente - Práctica de aula",
+    "status": "En revisión",
+    "d1": "1) Planificación",
+    "d2": "2) Instrucción",
+    "d3": "3) Ambiente",
+    "evidence": "Evidencia adjunta",
+    "files": "4 archivos",
+    "approval": "Aprobación jefatura",
+    "pending": "Pendiente",
+    "growth": "Plan de desarrollo",
+    "ready": "Listo",
+    "equityLabel": "Chequeo de equidad",
+    "equityTitle": "Compara distribución por rol y evaluador",
+    "equityNote": "Sin outliers en este ciclo",
+    "mockNote": "Vista previa del sistema"
+  },
+  "lang": {
+    "switch": "Idioma",
+    "en": "English",
+    "es": "Español"
+  },
+  "cookies": {
+    "message": "Usamos cookies para mejorar tu experiencia. Al continuar navegando, aceptas nuestra",
+    "privacyLink": "política de privacidad",
+    "essential": "Solo esenciales",
+    "acceptAll": "Aceptar todas"
+  },
+  "legal": {
+    "privacy": "Privacidad",
+    "terms": "Términos",
+    "privacyTitle": "Política de Privacidad",
+    "termsTitle": "Términos de Servicio",
+    "lastUpdated": "Última actualización"
+  }
+}
