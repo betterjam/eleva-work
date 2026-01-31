@@ -33,21 +33,21 @@
     "title": "Everything you need for evaluation cycles",
     "sub": "Build rubrics, collect evidence, manage approvals, and turn outcomes into actionable growth plans.",
     "cards": [
-      {"title": "Role-based rubrics", "desc": "Create standards per role: teachers, counselors, admins, support. Version and track changes.", "image": "/images/Eleva-IllustArtboard 3.png"},
-      {"title": "Evidence & artifacts", "desc": "Attach lesson plans, observations, PDFs, notes, and meeting summaries to each domain.", "image": "/images/Eleva-IllustArtboard 4.png"},
-      {"title": "Calibration tools", "desc": "Spot rating drift early. Compare distributions by evaluator and department with equity checks.", "image": "/images/Eleva-IllustArtboard 5.png"},
-      {"title": "Goals & growth plans", "desc": "Turn findings into goals with timelines, coaching steps, and progress check-ins.", "image": "/images/Eleva-IllustArtboard 6.png"},
-      {"title": "Approvals & audit", "desc": "Structured workflows for manager review, HR oversight, and final sign-off with full history.", "image": "/images/Eleva-IllustArtboard 7.png"},
-      {"title": "Reports & exports", "desc": "Ready summaries for leadership and compliance—without manual spreadsheet work.", "image": "/images/Eleva-IllustArtboard 8.png"}
+      {"title": "Role-based rubrics", "desc": "Create standards per role: teachers, counselors, admins, support. Version and track changes.", "image": "/images/Eleva-IllustArtboard-3.png"},
+      {"title": "Evidence & artifacts", "desc": "Attach lesson plans, observations, PDFs, notes, and meeting summaries to each domain.", "image": "/images/Eleva-IllustArtboard-4.png"},
+      {"title": "Calibration tools", "desc": "Spot rating drift early. Compare distributions by evaluator and department with equity checks.", "image": "/images/Eleva-IllustArtboard-5.png"},
+      {"title": "Goals & growth plans", "desc": "Turn findings into goals with timelines, coaching steps, and progress check-ins.", "image": "/images/Eleva-IllustArtboard-6.png"},
+      {"title": "Approvals & audit", "desc": "Structured workflows for manager review, HR oversight, and final sign-off with full history.", "image": "/images/Eleva-IllustArtboard-7.png"},
+      {"title": "Reports & exports", "desc": "Ready summaries for leadership and compliance—without manual spreadsheet work.", "image": "/images/Eleva-IllustArtboard-8.png"}
     ]
   },
   "how": {
     "title": "How it works",
     "sub": "A clean workflow for leaders, evaluators, and employees—built to match school-year cycles.",
     "steps": [
-      {"title": "1) Configure roles & rubrics", "desc": "Start from templates or import your rubric. Assign evaluators and timelines per area.", "image": "/images/Eleva-IllustArtboard 9.png"},
-      {"title": "2) Collect evidence", "desc": "Observation notes, artifacts, and feedback attach directly to rubric domains.", "image": "/images/Eleva-IllustArtboard 10.png"},
-      {"title": "3) Review & finalize", "desc": "Approvals flow through leadership/HR with calibration checkpoints and an audit trail.", "image": "/images/Eleva-IllustArtboard 11.png"}
+      {"title": "1) Configure roles & rubrics", "desc": "Start from templates or import your rubric. Assign evaluators and timelines per area.", "image": "/images/Eleva-IllustArtboard-9.png"},
+      {"title": "2) Collect evidence", "desc": "Observation notes, artifacts, and feedback attach directly to rubric domains.", "image": "/images/Eleva-IllustArtboard-10.png"},
+      {"title": "3) Review & finalize", "desc": "Approvals flow through leadership/HR with calibration checkpoints and an audit trail.", "image": "/images/Eleva-IllustArtboard-11.png"}
     ],
     "dashboardTitle": "Cycle dashboard",
     "dashboardSub": "Track completion, overdue reviews, and upcoming check-ins by role and area.",

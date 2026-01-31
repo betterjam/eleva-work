@@ -33,21 +33,21 @@
     "title": "Todo lo necesario para ciclos de evaluación",
     "sub": "Define rúbricas, reúne evidencia, gestiona aprobaciones y convierte resultados en planes de desarrollo.",
     "cards": [
-      {"title": "Rúbricas por rol", "desc": "Crea estándares por cargo: docentes, orientadores, directivos, asistentes. Versiona y controla cambios.", "image": "/images/Eleva-IllustArtboard 3.png"},
-      {"title": "Evidencia y archivos", "desc": "Adjunta planificaciones, observaciones, PDFs, notas y actas por dominio y puntaje.", "image": "/images/Eleva-IllustArtboard 4.png"},
-      {"title": "Calibración", "desc": "Detecta desviaciones temprano. Compara distribuciones por evaluador y área con chequeos de equidad.", "image": "/images/Eleva-IllustArtboard 5.png"},
-      {"title": "Metas y desarrollo", "desc": "Transforma hallazgos en objetivos con plazos, acciones de acompañamiento y seguimiento.", "image": "/images/Eleva-IllustArtboard 6.png"},
-      {"title": "Aprobaciones", "desc": "Flujos claros para revisión de jefatura, RR.HH. y cierre final con historial completo.", "image": "/images/Eleva-IllustArtboard 7.png"},
-      {"title": "Reportes", "desc": "Resúmenes listos para dirección y cumplimiento—sin consolidación manual en Excel.", "image": "/images/Eleva-IllustArtboard 8.png"}
+      {"title": "Rúbricas por rol", "desc": "Crea estándares por cargo: docentes, orientadores, directivos, asistentes. Versiona y controla cambios.", "image": "/images/Eleva-IllustArtboard-3.png"},
+      {"title": "Evidencia y archivos", "desc": "Adjunta planificaciones, observaciones, PDFs, notas y actas por dominio y puntaje.", "image": "/images/Eleva-IllustArtboard-4.png"},
+      {"title": "Calibración", "desc": "Detecta desviaciones temprano. Compara distribuciones por evaluador y área con chequeos de equidad.", "image": "/images/Eleva-IllustArtboard-5.png"},
+      {"title": "Metas y desarrollo", "desc": "Transforma hallazgos en objetivos con plazos, acciones de acompañamiento y seguimiento.", "image": "/images/Eleva-IllustArtboard-6.png"},
+      {"title": "Aprobaciones", "desc": "Flujos claros para revisión de jefatura, RR.HH. y cierre final con historial completo.", "image": "/images/Eleva-IllustArtboard-7.png"},
+      {"title": "Reportes", "desc": "Resúmenes listos para dirección y cumplimiento—sin consolidación manual en Excel.", "image": "/images/Eleva-IllustArtboard-8.png"}
     ]
   },
   "how": {
     "title": "Cómo funciona",
     "sub": "Un flujo simple para líderes, evaluadores y colaboradores—alineado al calendario escolar.",
     "steps": [
-      {"title": "1) Configura roles y rúbricas", "desc": "Parte con plantillas o importa tu rúbrica. Asigna evaluadores y fechas por área.", "image": "/images/Eleva-IllustArtboard 9.png"},
-      {"title": "2) Reúne evidencia", "desc": "Notas de observación, archivos y feedback quedan vinculados a cada dominio.", "image": "/images/Eleva-IllustArtboard 10.png"},
-      {"title": "3) Revisa y cierra", "desc": "Aprobaciones por liderazgo/RR.HH. con puntos de calibración y trazabilidad.", "image": "/images/Eleva-IllustArtboard 11.png"}
+      {"title": "1) Configura roles y rúbricas", "desc": "Parte con plantillas o importa tu rúbrica. Asigna evaluadores y fechas por área.", "image": "/images/Eleva-IllustArtboard-9.png"},
+      {"title": "2) Reúne evidencia", "desc": "Notas de observación, archivos y feedback quedan vinculados a cada dominio.", "image": "/images/Eleva-IllustArtboard-10.png"},
+      {"title": "3) Revisa y cierra", "desc": "Aprobaciones por liderazgo/RR.HH. con puntos de calibración y trazabilidad.", "image": "/images/Eleva-IllustArtboard-11.png"}
     ],
     "dashboardTitle": "Panel del ciclo",
     "dashboardSub": "Monitorea avance, pendientes y próximos hitos por rol y área.",

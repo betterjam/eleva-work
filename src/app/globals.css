@@ -245,3 +245,54 @@ body {
 [data-theme="light"] .bg-gradient-to-r.from-brand-500\/70.via-cyan-400\/50 {
   background-image: linear-gradient(to right, rgba(13, 148, 136, 0.8), rgba(6, 182, 212, 0.6), transparent) !important;
 }
+
+/* Cookie Banner - Dark theme (default) */
+.cookie-banner {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.cookie-text {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.cookie-link {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.cookie-link:hover {
+  color: #ffffff;
+}
+
+.cookie-btn-secondary {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.cookie-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Cookie Banner - Light theme */
+[data-theme="light"] .cookie-banner {
+  background: #ffffff;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .cookie-text {
+  color: #475569;
+}
+
+[data-theme="light"] .cookie-link {
+  color: #1e293b;
+}
+
+[data-theme="light"] .cookie-link:hover {
+  color: #0f172a;
+}
+
+[data-theme="light"] .cookie-btn-secondary {
+  color: #475569;
+}
+
+[data-theme="light"] .cookie-btn-secondary:hover {
+  background: #f1f5f9;
+}

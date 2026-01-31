@@ -1,8 +1,20 @@
-import { useTranslations } from 'next-intl';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
+import { routing } from '@/i18n/routing';
 
-export default function TermsPage() {
-  const t = useTranslations('legal');
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
+type Props = {
+  params: Promise<{ locale: string }>;
+};
+
+export default async function TermsPage({ params }: Props) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
+  const t = await getTranslations('legal');
 
   return (
     <div className="min-h-screen bg-[#070A12]">

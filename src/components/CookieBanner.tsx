@@ -30,12 +30,12 @@ export default function CookieBanner() {
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6">
-      <div className="mx-auto max-w-4xl rounded-2xl border border-white/10 bg-black/90 backdrop-blur-xl p-4 md:p-6 shadow-2xl">
+      <div className="cookie-banner mx-auto max-w-4xl rounded-2xl backdrop-blur-xl p-4 md:p-6 shadow-2xl">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div className="flex-1">
-            <p className="text-sm text-white/80">
+            <p className="cookie-text text-sm">
               {t('message')}{' '}
-              <Link href="/privacy" className="underline hover:text-white">
+              <Link href="/privacy" className="cookie-link underline">
                 {t('privacyLink')}
               </Link>
             </p>
@@ -43,7 +43,7 @@ export default function CookieBanner() {
           <div className="flex flex-col gap-2 sm:flex-row">
             <button
               onClick={acceptEssential}
-              className="rounded-xl border border-white/15 px-4 py-2 text-sm text-white/80 transition hover:bg-white/10"
+              className="cookie-btn-secondary rounded-xl px-4 py-2 text-sm transition"
             >
               {t('essential')}
             </button>
