@@ -1,0 +1,993 @@
+{
+  "meta": {
+    "title": "Eleva · Plataforma en detalle",
+    "description": "Cómo funciona Eleva, módulo por módulo: el organigrama y el catálogo de cargos, la pauta que la IA arma desde un banco curado de preguntas, el ciclo 360° con sus ponderaciones y etapas, el logro por dominio y la normativa chilena a la que todo se alinea."
+  },
+  "common": {
+    "section": "§",
+    "logoAlt": "Eleva",
+    "skipToContent": "Ir al contenido",
+    "whatsappMessage": "Hola! Me interesa saber más sobre Eleva"
+  },
+  "header": {
+    "nav": [
+      {
+        "id": "system",
+        "num": "01",
+        "label": "Sistema"
+      },
+      {
+        "id": "estructura",
+        "num": "02",
+        "label": "Estructura"
+      },
+      {
+        "id": "pauta",
+        "num": "03",
+        "label": "Pauta"
+      },
+      {
+        "id": "proceso",
+        "num": "04",
+        "label": "Proceso"
+      },
+      {
+        "id": "resultados",
+        "num": "05",
+        "label": "Resultados"
+      },
+      {
+        "id": "ia",
+        "num": "06",
+        "label": "IA"
+      },
+      {
+        "id": "normativa",
+        "num": "07",
+        "label": "Normativa"
+      }
+    ],
+    "cta": "Solicitar demo",
+    "menuOpen": "Abrir menú",
+    "menuClose": "Cerrar menú",
+    "theme": {
+      "label": "Tema",
+      "dark": "Oscuro",
+      "light": "Claro"
+    },
+    "locale": {
+      "label": "Idioma",
+      "es": "ES",
+      "en": "EN"
+    },
+    "counter": {
+      "intro": "Plataforma",
+      "system": "El sistema",
+      "estructura": "Estructura",
+      "pauta": "Pauta",
+      "proceso": "Proceso",
+      "resultados": "Resultados",
+      "ia": "IA",
+      "normativa": "Normativa"
+    },
+    "progressLabel": "Avance de lectura",
+    "home": "Inicio"
+  },
+  "intro": {
+    "eyebrow": "Plataforma · En detalle",
+    "title": "Cómo funciona Eleva, pieza por pieza.",
+    "lead": "Esta página recorre el sistema completo, módulo por módulo, con las pantallas reales del producto. Parte en el organigrama y el catálogo de cargos, pasa por la pauta que la IA arma desde un banco curado de preguntas y termina en la normativa chilena a la que todo se alinea.",
+    "back": "← Volver al inicio",
+    "cta": "Solicitar demo",
+    "indexLabel": "En esta página",
+    "index": [
+      {
+        "id": "system",
+        "num": "01",
+        "label": "Sistema"
+      },
+      {
+        "id": "estructura",
+        "num": "02",
+        "label": "Estructura"
+      },
+      {
+        "id": "pauta",
+        "num": "03",
+        "label": "Pauta"
+      },
+      {
+        "id": "proceso",
+        "num": "04",
+        "label": "Proceso"
+      },
+      {
+        "id": "resultados",
+        "num": "05",
+        "label": "Resultados"
+      },
+      {
+        "id": "ia",
+        "num": "06",
+        "label": "IA"
+      },
+      {
+        "id": "normativa",
+        "num": "07",
+        "label": "Normativa"
+      }
+    ]
+  },
+  "system": {
+    "code": "§01",
+    "runningHead": "Cómo se conectan las piezas",
+    "title": "Un sistema, no un formulario.",
+    "lead": "Organigrama, catálogo de cargos, banco de preguntas, pautas por cargo, perspectivas ponderadas, etapas y resultados: cada pieza alimenta la siguiente.",
+    "progress": "{current} / 04",
+    "index": [
+      {
+        "num": "01",
+        "label": "Estructura",
+        "sentence": "El organigrama del colegio se apoya en un catálogo de cargos con cobertura completa."
+      },
+      {
+        "num": "02",
+        "label": "Perspectivas",
+        "sentence": "Cuatro perspectivas 360° con ponderaciones que suman 100."
+      },
+      {
+        "num": "03",
+        "label": "Pauta",
+        "sentence": "Desde un banco curado de preguntas, la pauta completa de cada cargo."
+      },
+      {
+        "num": "04",
+        "label": "Proceso y resultado",
+        "sentence": "Seis etapas y un logro por dominio."
+      }
+    ],
+    "diagram": {
+      "nodes": [
+        {
+          "name": "Sostenedor",
+          "code": "SOST"
+        },
+        {
+          "name": "Director",
+          "code": "DIR"
+        },
+        {
+          "name": "Asistente de Aula Básica",
+          "code": "ASIST_AULA_BAS"
+        }
+      ],
+      "catalogTitle": "Catálogo · cobertura completa",
+      "catalogNote": "Todos los cargos del colegio",
+      "perspectives": [
+        {
+          "label": "A Jefatura",
+          "weight": "25 %"
+        },
+        {
+          "label": "Autoevaluación",
+          "weight": "25 %"
+        },
+        {
+          "label": "De Jefatura",
+          "weight": "25 %"
+        },
+        {
+          "label": "Pares a Pares",
+          "weight": "25 %"
+        }
+      ],
+      "ringCenter": "100 %",
+      "ringLabel": "Ponderación",
+      "bank": "Banco · curado",
+      "rubric": "Pauta · Director · DIR",
+      "rubricLine": "Completa para el cargo",
+      "rubricNote": "Normativa · ejemplo",
+      "criteria": [
+        "Dimensión",
+        "Perspectiva",
+        "Prioridad",
+        "Normativa"
+      ],
+      "stages": [
+        "En Preparación",
+        "Iniciada",
+        "En Feedback",
+        "Feedback Respondido",
+        "Finalizada",
+        "Cerrada"
+      ],
+      "logroLabel": "Logro",
+      "logroValue": "3.83",
+      "logroUnit": "/5",
+      "exampleTag": "Ejemplo"
+    },
+    "plates": [
+      {
+        "fig": "FIG. 1.1",
+        "caption": "Organigrama · 2026 · Sostenedor (SOST) · vista Actual",
+        "alt": "Editor de organigrama de Eleva con el nodo Sostenedor, el selector de año y las vistas Actual y Propuesto."
+      },
+      {
+        "fig": "FIG. 1.2",
+        "caption": "Pesos por perspectiva · Total 100 / 100",
+        "alt": "Paso del asistente: cuatro perspectivas con 25 % cada una y un gráfico que suma 100 %."
+      },
+      {
+        "fig": "FIG. 1.3",
+        "caption": "Pauta generada · Director · DIR · Ejemplo",
+        "alt": "Pauta evaluativa generada para Director: preguntas agrupadas por marco y área, cada una con su dimensión, perspectivas, prioridad y leyes."
+      },
+      {
+        "fig": "FIG. 1.4",
+        "caption": "Evaluación · 32 de 32 respondidas · Logro 3.83 /5",
+        "alt": "Cabecera de una evaluación finalizada: progreso 32 de 32 respondidas y logro 3.83 sobre 5."
+      }
+    ]
+  },
+  "estructura": {
+    "code": "§02",
+    "runningHead": "Organigrama · Catálogo de cargos · Match con IA",
+    "title": "Todos los cargos del colegio, modelados como corresponde.",
+    "lead": "No sólo docentes: directivos, asistentes de la educación, PIE, administrativos, directorio y sostenedor. Un catálogo de cargos con cobertura completa, cada uno con nombre, alias, variante de género y relaciones de reporte y evaluación.",
+    "blocks": [
+      {
+        "id": "organigrama",
+        "index": "2.1",
+        "label": "Organigrama",
+        "title": "El organigrama del colegio, por año.",
+        "body": "Un árbol de cargos por año, con vista Actual y vista Propuesto desde el catálogo. Cada nodo muestra la persona que ocupa el cargo. El árbol señala los cargos huérfanos (1 huérfano en el ejemplo). «Revisar jerarquía» revisa la estructura y «Mejorar árbol con IA» propone cómo ordenarla. Tú decides qué aplicar.",
+        "rows": [
+          {
+            "key": "Año",
+            "value": "2026"
+          },
+          {
+            "key": "Vistas",
+            "value": "Actual · Propuesto (catálogo)"
+          },
+          {
+            "key": "Acciones",
+            "value": "Revisar jerarquía · Mejorar árbol con IA"
+          },
+          {
+            "key": "Control",
+            "value": "1 huérfano detectado · ejemplo"
+          }
+        ]
+      },
+      {
+        "id": "catalogo",
+        "index": "2.2",
+        "label": "Catálogo de cargos",
+        "title": "Cobertura completa, con los nombres correctos.",
+        "body": "Cada cargo del catálogo tiene código, familia, alias, nombre en español chileno e inglés y variantes de género. Declara a quién reporta y a quién evalúa. Incluye a los asistentes de la educación: asistente de aula, asistente de furgón escolar, servicios generales, recepcionista, prevencionista de riesgos. Se exporta e importa en JSON y se aplica a un colegio.",
+        "rows": [
+          {
+            "key": "Cobertura",
+            "value": "Todos los cargos del colegio"
+          },
+          {
+            "key": "Código",
+            "value": "DIR · Dirección Ejecutiva"
+          },
+          {
+            "key": "Alias",
+            "value": "Director = Rector = Principal = Head of School"
+          },
+          {
+            "key": "Género",
+            "value": "Director · Directora · Director-Directora"
+          },
+          {
+            "key": "Reporta a",
+            "value": "Sostenedor"
+          },
+          {
+            "key": "Evalúa a",
+            "value": "Coordinador PIE · Encargado de Convivencia Escolar · Encargado CRA / Biblioteca · …"
+          },
+          {
+            "key": "Acciones",
+            "value": "Exportar JSON · Importar JSON · Aplicar a colegio"
+          }
+        ],
+        "example": {
+          "label": "Descripción del cargo · Director",
+          "text": "Máxima autoridad ejecutiva del establecimiento. Lidera la gestión pedagógica, administrativa y de convivencia, asegurando el cumplimiento del Proyecto Educativo Institucional y de la normativa vigente. Rinde cuentas al Sostenedor y representa al colegio ante la comunidad."
+        }
+      },
+      {
+        "id": "match",
+        "index": "2.3",
+        "label": "Match de cargos con IA",
+        "title": "Tu organigrama, sobre el catálogo.",
+        "body": "Para cada cargo del colegio sin asignar, la IA recomienda plantillas del catálogo con un porcentaje de confianza y explica por qué. Tú eliges una opción con «Elegir», o describes qué falta y recibes una nueva propuesta.",
+        "rows": [
+          {
+            "key": "Cargo del colegio",
+            "value": "Asistente de Aula Básica"
+          },
+          {
+            "key": "Recomendación",
+            "value": "Asistente de Aula Básica · ASIST_AULA_BAS · 99 % · ejemplo"
+          },
+          {
+            "key": "Razonamiento",
+            "value": "Nombre y descripción idénticos a ASIST_AULA_BAS. Hijo del Profesor Jefe Básica, coherente como apoyo directo en aula de ese ciclo."
+          },
+          {
+            "key": "Dimensiones",
+            "value": "Comunicación · Manejo de Aula · Inclusión y Diversidad · Trato con Alumnos · …"
+          },
+          {
+            "key": "Marcos y normativas",
+            "value": "Decreto 170/2010 (PIE) · Ley 21.545 (TEA) · Ley 20.845 (Inclusión Escolar) · …"
+          }
+        ],
+        "barsLabel": "Opciones de match · confianza",
+        "bars": [
+          {
+            "label": "Asistente de Aula Básica",
+            "code": "ASIST_AULA_BAS",
+            "pct": 99
+          },
+          {
+            "label": "Ayudante de Docencia",
+            "code": "",
+            "pct": 40
+          },
+          {
+            "label": "Co-Teacher Ed. Básica",
+            "code": "",
+            "pct": 30
+          },
+          {
+            "label": "Técnico Asistente PIE",
+            "code": "",
+            "pct": 10
+          }
+        ]
+      }
+    ],
+    "plates": [
+      {
+        "fig": "FIG. 2.1",
+        "caption": "Organigrama · Sostenedor (SOST) · 2026 · vista Actual",
+        "alt": "Editor de organigrama: Sostenedor, Miembro del Directorio y cargos de servicios generales, con acciones Detalles, Mover y Quitar."
+      },
+      {
+        "fig": "FIG. 2.2",
+        "caption": "Catálogo Eleva · Director · DIR · Dirección Ejecutiva",
+        "alt": "Catálogo de cargos: nodo Director con alias Rector, Principal y Head of School, y panel de detalle con variantes de género y relaciones."
+      },
+      {
+        "fig": "FIG. 2.3",
+        "caption": "Recomendación de plantilla · Asistente de Aula Básica · 99 % · Elegir",
+        "alt": "Match de cargos con IA: cuatro opciones con porcentaje de confianza y el detalle de la plantilla con sus dimensiones, marcos y normativas."
+      }
+    ]
+  },
+  "pauta": {
+    "code": "§03",
+    "runningHead": "Banco curado · Pauta generada",
+    "title": "Del banco curado a la pauta completa de cada cargo.",
+    "lead": "El banco es curado: preguntas creadas por psicólogos y expertos en evaluación, alineadas a la normativa chilena. Cada una declara su área, su dimensión, desde qué perspectivas del 360° puede responderse, su prioridad, su peso y la ley que la respalda. La IA selecciona por dimensión, perspectiva, prioridad y normativa y arma la pauta completa del cargo; tú la revisas antes de usarla.",
+    "bank": {
+      "label": "Banco de preguntas · curado",
+      "sub": "Preguntas creadas por psicólogos y expertos en evaluación · alineadas a la normativa chilena",
+      "rows": [
+        {
+          "key": "Tipo",
+          "value": "Likert"
+        },
+        {
+          "key": "Prioridad",
+          "value": "0 Obligatoria · 1 · 2"
+        },
+        {
+          "key": "Peso",
+          "value": "1.5"
+        },
+        {
+          "key": "Perspectivas",
+          "value": "Par · Subordinado→Jefe · Jefe→Subordinado · Auto"
+        },
+        {
+          "key": "Colecciones",
+          "value": "MINEDUC — Bundle Docente General · Eleva — Eje Transversal · Eleva — 360° Base · Eleva — Autoevaluación"
+        }
+      ],
+      "plate": {
+        "fig": "FIG. 3.1",
+        "caption": "Banco de preguntas · preguntas curadas agrupadas por área y dimensión · detalle de Q_COLAB_RED_06",
+        "alt": "Catálogo Eleva, banco de preguntas: tabla con código, texto, área, dimensión, perspectivas y prioridad, y panel de detalle de la pregunta Q_COLAB_RED_06 con sus perspectivas 360°, colecciones y normativa."
+      }
+    },
+    "stage": {
+      "srSummary": "Ejemplo del armado: de las preguntas del banco curado, la IA selecciona las que corresponden al cargo Director por dimensión, perspectiva, prioridad y normativa, y arma su pauta evaluativa con las dimensiones del cargo, las normativas y marcos que evalúa y cada pregunta con las leyes que la respaldan.",
+      "bankLabel": "Banco de preguntas",
+      "bankMeta": "curado · trazado a la normativa chilena",
+      "ledgerHead": {
+        "code": "Código",
+        "text": "Texto",
+        "dimension": "Dimensión",
+        "perspectives": "Perspectivas",
+        "priority": "Prio",
+        "laws": "Normativa"
+      },
+      "selectionLabel": "Selección",
+      "criteria": [
+        "Dimensión",
+        "Perspectiva",
+        "Prioridad",
+        "Normativa"
+      ],
+      "selectedTag": "→ Pauta Director",
+      "note": "Prioridad 0 = obligatoria · peso de ejemplo 1.5 · tipo Likert.",
+      "slips": [
+        {
+          "code": "Q_COLAB_RED_06",
+          "text": "Cumple los compromisos pactados con el equipo",
+          "dimension": "Trabajo en Equipo",
+          "perspectives": [
+            "Par",
+            "Subordinado",
+            "Jefatura",
+            "Auto"
+          ],
+          "priority": "P0",
+          "laws": [
+            "BP Eleva 360°"
+          ],
+          "selected": false
+        },
+        {
+          "code": "Q_COLAB_RED_08",
+          "text": "Conoce, difunde y vela por el cumplimiento del Reglamento de Convivencia Escolar y los protocolos internos",
+          "dimension": "Convivencia Escolar",
+          "perspectives": [
+            "Par",
+            "Subordinado",
+            "Jefatura",
+            "Auto"
+          ],
+          "priority": "P0",
+          "laws": [],
+          "selected": false
+        },
+        {
+          "code": "DIR · 1",
+          "text": "Mantiene un trato respetuoso con toda la comunidad escolar (pares, estudiantes, apoderados y proveedores)",
+          "dimension": "Trato con Pares",
+          "perspectives": [
+            "Subordinado",
+            "Jefatura",
+            "Par",
+            "Auto"
+          ],
+          "priority": "P0",
+          "laws": [
+            "Ley 21.643",
+            "BP Eleva 360°",
+            "Ley 20.536",
+            "Ley 21.430"
+          ],
+          "selected": true
+        },
+        {
+          "code": "Q_COLAB_RED_38",
+          "text": "Reporta inmediatamente a la jefatura cualquier indicador de maltrato o abuso de menores observado en estudiantes",
+          "dimension": "Trato con Alumnos",
+          "perspectives": [
+            "Par",
+            "Subordinado",
+            "Jefatura",
+            "Auto"
+          ],
+          "priority": "P0",
+          "laws": [],
+          "selected": false
+        },
+        {
+          "code": "DIR · 2",
+          "text": "Trata a niños, niñas y adolescentes con respeto y cuidado en cualquier situación y espacio del colegio.",
+          "dimension": "General / Todos los trabajadores",
+          "perspectives": [
+            "Jefatura",
+            "Par",
+            "Auto",
+            "Subordinado"
+          ],
+          "priority": "P0",
+          "laws": [
+            "BP Eleva 360°",
+            "Ley 21.430",
+            "Ley 21.013"
+          ],
+          "selected": true
+        },
+        {
+          "code": "DIR · 3",
+          "text": "Actúa en coherencia con los valores y sellos del Proyecto Educativo Institucional en su trabajo diario.",
+          "dimension": "General / Todos los trabajadores",
+          "perspectives": [
+            "Subordinado",
+            "Par",
+            "Jefatura",
+            "Auto"
+          ],
+          "priority": "P0",
+          "laws": [
+            "Código del Trabajo",
+            "BP Eleva 360°"
+          ],
+          "selected": true
+        }
+      ],
+      "frame": {
+        "label": "Pauta evaluativa · Director · DIR",
+        "meta": "Ejemplo · preguntas agrupadas por marco y área",
+        "slotLabel": "Pregunta",
+        "dimensionsLabel": "Dimensiones del cargo",
+        "dimensions": [
+          "Administración y Finanzas",
+          "Adquisiciones y Logística",
+          "Comunicación",
+          "Cuidado del Entorno",
+          "Cumplimiento Normativo",
+          "General / Todos los trabajadores",
+          "Gestión de Equipos",
+          "Liderazgo",
+          "Planificación",
+          "Trato con Apoderados",
+          "Trato con Pares"
+        ],
+        "normsLabel": "Normativas y marcos que esta pauta evalúa",
+        "norms": [
+          "Buenas Prácticas 360° Eleva",
+          "Decreto 67/2018",
+          "Ley 20.536 — Violencia Escolar",
+          "Ley 20.903 — Carrera Docente",
+          "MBDLE 2015",
+          "Código del Trabajo",
+          "Ley 16.744 — Accidentes",
+          "Ley 19.628 — Vida Privada",
+          "Ley 21.063 — Seguro SANNA",
+          "Ley 21.643 — Ley Karin",
+          "Ley 21.719 — Datos Personales",
+          "Ley 21.013 — Maltrato a Menores",
+          "Ley 21.430 — Niñez",
+          "Protocolo de Denuncias"
+        ]
+      }
+    },
+    "rubricPlate": {
+      "fig": "FIG. 3.2",
+      "caption": "Pauta evaluativa generada · Director · DIR · preguntas agrupadas por marco y área",
+      "alt": "Pauta evaluativa generada por Eleva para Director: preguntas agrupadas por marco y área, con dimensión, perspectivas, prioridad y las leyes que respaldan cada pregunta."
+    },
+    "close": "Pautas por cargo en minutos, no en meses.",
+    "closeSub": "Revisable antes de usarla."
+  },
+  "proceso": {
+    "code": "§04",
+    "runningHead": "Ponderaciones · Etapas",
+    "title": "Un 360° real, con un flujo de seis etapas.",
+    "lead": "Las ponderaciones las define el colegio. Las etapas se configuran de forma central para todos los colegios de un sostenedor y cada colegio puede ajustarlas.",
+    "weights": {
+      "index": "4.1",
+      "label": "¿Cuánto pesa cada perspectiva?",
+      "sub": "Definen el cálculo final. Deben sumar exactamente 100.",
+      "perspectives": [
+        {
+          "label": "A Jefatura",
+          "desc": "El equipo evalúa a su jefatura",
+          "weight": "25 %"
+        },
+        {
+          "label": "Autoevaluación",
+          "desc": "Cada persona evalúa su propio desempeño",
+          "weight": "25 %"
+        },
+        {
+          "label": "De Jefatura",
+          "desc": "La jefatura evalúa a su equipo",
+          "weight": "25 %"
+        },
+        {
+          "label": "Pares a Pares",
+          "desc": "Entre colegas",
+          "weight": "25 %"
+        }
+      ],
+      "center": "100 %",
+      "total": "Total 100 / 100",
+      "simulate": "Simular tipos faltantes",
+      "plate": {
+        "fig": "FIG. 4.1",
+        "caption": "Pesos por perspectiva · 25 · 25 · 25 · 25 · Total 100 / 100",
+        "alt": "Paso del asistente ¿Cuánto pesa cada perspectiva?: A Jefatura, Autoevaluación, De Jefatura y Pares a Pares con 25 % cada una y un gráfico circular al 100 %."
+      }
+    },
+    "stages": {
+      "index": "4.2",
+      "label": "Etapas del proceso",
+      "alwaysOn": "Siempre activa",
+      "configurable": "Configurable",
+      "items": [
+        {
+          "num": "0",
+          "name": "En Preparación",
+          "desc": "Evaluación creada, aún no iniciada",
+          "always": true
+        },
+        {
+          "num": "1",
+          "name": "Iniciada",
+          "desc": "El evaluador responde la pauta",
+          "always": true
+        },
+        {
+          "num": "2",
+          "name": "En Feedback",
+          "desc": "El evaluador envía la evaluación al evaluado para retroalimentación",
+          "always": false
+        },
+        {
+          "num": "3",
+          "name": "Feedback Respondido",
+          "desc": "El evaluado respondió la retroalimentación",
+          "always": false
+        },
+        {
+          "num": "4",
+          "name": "Finalizada",
+          "desc": "Evaluación finalizada; sus resultados cuentan en los reportes",
+          "always": true
+        },
+        {
+          "num": "5",
+          "name": "Cerrada",
+          "desc": "Cierre definitivo; sólo un administrador puede reabrirla",
+          "always": false
+        }
+      ],
+      "central": "Configuración central: define qué etapas del flujo están disponibles por defecto para todos los colegios, según el tipo de perspectiva. Cada colegio puede sobrescribir esta configuración en su propia página de etapas.",
+      "freeze": "Los cambios aplican a los procesos nuevos: cada proceso congela su flujo al generarse, así que los procesos históricos conservan la configuración con la que fueron creados.",
+      "plate": {
+        "fig": "FIG. 4.2",
+        "caption": "Etapas por defecto por perspectiva · Configuración central · Jefe-Subordinado",
+        "alt": "Configuración central de etapas: seis etapas de 0 a 5, con Siempre activa en tres de ellas y un interruptor en las demás."
+      }
+    }
+  },
+  "resultados": {
+    "code": "§05",
+    "runningHead": "Respondiendo una evaluación",
+    "title": "Logro por dominio, y qué mejorar.",
+    "lead": "Cada evaluación se responde en una escala Likert de 1 a 5. El logro se calcula por dominio según su ponderación, y cada dominio recibe una sugerencia de mejora. Las evaluaciones finalizadas cuentan en los reportes.",
+    "logro": {
+      "label": "Logro",
+      "value": "3.83",
+      "unit": "/5",
+      "note": "ejemplo"
+    },
+    "progreso": {
+      "label": "Progreso",
+      "value": "32 / 32",
+      "note": "respondidas · 100 %"
+    },
+    "escala": {
+      "label": "Escala",
+      "items": [
+        {
+          "num": "1",
+          "name": "Nunca"
+        },
+        {
+          "num": "2",
+          "name": "Casi Nunca"
+        },
+        {
+          "num": "3",
+          "name": "A Veces"
+        },
+        {
+          "num": "4",
+          "name": "Casi Siempre"
+        },
+        {
+          "num": "5",
+          "name": "Siempre"
+        }
+      ]
+    },
+    "dominio": {
+      "label": "Dominios · Ponderación 7.84 %",
+      "value": "Comunicación interpersonal"
+    },
+    "sugerencia": {
+      "label": "Sugerencia de mejora · por dominio",
+      "text": "Después de responder, cada dominio recibe una sugerencia de mejora escrita a partir de las respuestas. Es un punto de partida para la retroalimentación, no un veredicto."
+    },
+    "plate": {
+      "fig": "FIG. 5.1",
+      "caption": "Evaluación · Autoevaluación · Asistente de Furgón Escolar · 32 de 32 · Logro 3.83 /5 · Ejemplo",
+      "alt": "Evaluación finalizada en Eleva: progreso 32 de 32 respondidas, logro 3.83 sobre 5, dominios y preguntas con escala Likert de 1 a 5."
+    }
+  },
+  "ia": {
+    "code": "§06",
+    "runningHead": "Tres intervenciones, una regla",
+    "title": "La IA propone. El colegio decide.",
+    "lead": "La IA interviene en tres puntos concretos del sistema. En los tres, la última palabra es tuya.",
+    "header": {
+      "num": "#",
+      "intervention": "Intervención",
+      "proposes": "La IA propone",
+      "decides": "Tú decides"
+    },
+    "rows": [
+      {
+        "num": "01",
+        "name": "Match de cargos",
+        "proposes": "Para cada cargo de tu organigrama sin asignar, recomienda plantillas del catálogo con un porcentaje de confianza y explica su razonamiento: «Nombre y descripción idénticos a ASIST_AULA_BAS. Hijo del Profesor Jefe Básica, coherente como apoyo directo en aula de ese ciclo.» Si el árbol no calza, propone cómo mejorarlo.",
+        "decides": "Eliges una opción con «Elegir», o describes qué falta o qué buscas y recibes una nueva propuesta."
+      },
+      {
+        "num": "02",
+        "name": "Pauta generada",
+        "proposes": "Arma la pauta evaluativa de un cargo desde el banco curado de preguntas, seleccionando por dimensión, perspectiva, prioridad y normativa. El resultado es la pauta completa del cargo, con sus dimensiones y las normativas y marcos que evalúa.",
+        "decides": "Revisas la pauta, agrupada por marco y área, antes de usarla en un proceso."
+      },
+      {
+        "num": "03",
+        "name": "Sugerencia de mejora",
+        "proposes": "Después de responder, propone una sugerencia de mejora por dominio.",
+        "decides": "La retroalimentación sigue siendo entre personas: la sugerencia es un punto de partida, no un resultado."
+      }
+    ],
+    "barsLabel": "Opciones de match · confianza · ejemplo",
+    "bars": [
+      {
+        "label": "Asistente de Aula Básica",
+        "code": "ASIST_AULA_BAS",
+        "pct": 99
+      },
+      {
+        "label": "Ayudante de Docencia",
+        "code": "",
+        "pct": 40
+      },
+      {
+        "label": "Co-Teacher Ed. Básica",
+        "code": "",
+        "pct": 30
+      },
+      {
+        "label": "Técnico Asistente PIE",
+        "code": "",
+        "pct": 10
+      }
+    ],
+    "quoteStart": "La IA propondrá la mejor solución; ",
+    "quoteEmphasis": "tú tienes la última palabra.",
+    "quoteSource": "Texto del producto · Match de cargos",
+    "never": "La IA no evalúa, no decide resultados y no redacta normativa.",
+    "plate": {
+      "fig": "FIG. 6.1",
+      "caption": "Recomendación de plantilla · Asistente de Aula Básica · 99 % · Elegir · Ejemplo",
+      "alt": "Opciones de match: Asistente de Aula Básica 99 %, Ayudante de Docencia 40 %, Co-Teacher Ed. Básica 30 %, Técnico Asistente PIE 10 %, con botón Elegir y el razonamiento de la IA."
+    }
+  },
+  "normativa": {
+    "code": "§07",
+    "runningHead": "Cada pregunta, trazada a la ley",
+    "title": "Cada pregunta, trazada a la normativa chilena.",
+    "lead": "La pauta de cada cargo lista la normativa nacional y los marcos profesionales con que se alinea; la de Director y la de Asistente de Aula Básica no citan las mismas leyes. Cada pregunta lleva sus leyes como etiquetas: Ley Karin, Carrera Docente, MBDLE, Protección de Datos Personales 2024, Convivencia Escolar. El resultado son evaluaciones consistentes y defendibles.",
+    "issuersLabel": "Pauta de Director · quién emite cada norma",
+    "issuers": [
+      {
+        "key": "MINEDUC",
+        "value": "Evaluación y promoción, violencia escolar, carrera docente, dirección y liderazgo escolar"
+      },
+      {
+        "key": "Normativa Laboral",
+        "value": "Código del Trabajo, accidentes, vida privada, seguro SANNA, Ley Karin, datos personales"
+      },
+      {
+        "key": "Protección a la Niñez",
+        "value": "Maltrato relevante a menores y garantías integrales de la niñez"
+      },
+      {
+        "key": "Superintendencia de Educación",
+        "value": "Protocolo de denuncias"
+      },
+      {
+        "key": "Buenas Prácticas Eleva",
+        "value": "Buenas prácticas de evaluación 360°"
+      }
+    ],
+    "question": {
+      "label": "Pregunta 1 · Pauta de Director",
+      "num": "1",
+      "text": "Mantiene un trato respetuoso con toda la comunidad escolar (pares, estudiantes, apoderados y proveedores)",
+      "chips": [
+        "Trato con Pares",
+        "P0 Obligatoria",
+        "Subordinado",
+        "Jefatura",
+        "Par",
+        "Auto"
+      ],
+      "traceLabel": "Trazado: pregunta 1 → 4 normativas",
+      "matchTag": "→ Preg. 1",
+      "matchSr": "Vinculada a la pregunta 1"
+    },
+    "groups": [
+      {
+        "issuer": "Buenas Prácticas Eleva",
+        "items": [
+          {
+            "ref": "Eleva",
+            "name": "Buenas Prácticas de Evaluación 360°",
+            "matched": true
+          }
+        ]
+      },
+      {
+        "issuer": "MINEDUC",
+        "items": [
+          {
+            "ref": "Decreto 67/2018",
+            "name": "Evaluación, Calificación y Promoción",
+            "matched": false
+          },
+          {
+            "ref": "Ley 20.536",
+            "name": "Violencia Escolar",
+            "matched": true
+          },
+          {
+            "ref": "Ley 20.903",
+            "name": "Carrera Docente",
+            "matched": false
+          },
+          {
+            "ref": "MBDLE 2015",
+            "name": "Marco para la Buena Dirección y Liderazgo Escolar",
+            "matched": false
+          }
+        ]
+      },
+      {
+        "issuer": "Normativa Laboral",
+        "items": [
+          {
+            "ref": "Código del Trabajo",
+            "name": "Dirección del Trabajo",
+            "matched": false
+          },
+          {
+            "ref": "Ley 16.744",
+            "name": "Accidentes del Trabajo y Enfermedades Profesionales",
+            "matched": false
+          },
+          {
+            "ref": "Ley 19.628",
+            "name": "Protección de la Vida Privada",
+            "matched": false
+          },
+          {
+            "ref": "Ley 21.063",
+            "name": "Seguro SANNA",
+            "matched": false
+          },
+          {
+            "ref": "Ley 21.643",
+            "name": "Ley Karin",
+            "matched": true
+          },
+          {
+            "ref": "Ley 21.719",
+            "name": "Protección de Datos Personales (2024)",
+            "matched": false
+          }
+        ]
+      },
+      {
+        "issuer": "Protección a la Niñez",
+        "items": [
+          {
+            "ref": "Ley 21.013",
+            "name": "Tipifica Maltrato Relevante a Menores",
+            "matched": false
+          },
+          {
+            "ref": "Ley 21.430",
+            "name": "Garantías y Protección Integral de la Niñez",
+            "matched": true
+          }
+        ]
+      },
+      {
+        "issuer": "Superintendencia de Educación",
+        "items": [
+          {
+            "ref": "Supereduc",
+            "name": "Protocolo de Denuncias",
+            "matched": false
+          }
+        ]
+      }
+    ],
+    "footnote": "Vistos también en la pauta de Asistente de Aula Básica: Decreto 170/2010 — Programa de Integración Escolar (PIE) · Ley 20.609 — No Discriminación (Ley Zamudio) · Ley 20.845 — Inclusión Escolar · Ley 21.545 — Ley TEA.",
+    "plate": {
+      "fig": "FIG. 7.1",
+      "caption": "Normativas y marcos que esta pauta evalúa · Director",
+      "alt": "Lista de las normativas y marcos que evalúa la pauta de Director, agrupadas por MINEDUC, Normativa Laboral, Protección a la Niñez y Superintendencia de Educación."
+    }
+  },
+  "cierre": {
+    "label": "Siguiente paso",
+    "title": "¿Quieres verlo con tu organigrama?",
+    "lead": "Te mostramos cómo Eleva arma la pauta de un cargo real de tu colegio, con sus dimensiones, sus perspectivas ponderadas y la normativa que evalúa.",
+    "cta": "Solicitar demo",
+    "back": "Volver al inicio"
+  },
+  "footer": {
+    "description": "Evaluación de desempeño 360° para colegios y sostenedores en Chile.",
+    "product": {
+      "label": "Producto",
+      "links": [
+        {
+          "id": "system",
+          "label": "Sistema"
+        },
+        {
+          "id": "estructura",
+          "label": "Estructura"
+        },
+        {
+          "id": "pauta",
+          "label": "Pauta"
+        },
+        {
+          "id": "proceso",
+          "label": "Proceso"
+        },
+        {
+          "id": "resultados",
+          "label": "Resultados"
+        },
+        {
+          "id": "ia",
+          "label": "IA"
+        },
+        {
+          "id": "normativa",
+          "label": "Normativa"
+        }
+      ]
+    },
+    "legal": {
+      "label": "Legal",
+      "privacy": "Política de privacidad",
+      "terms": "Términos y condiciones"
+    },
+    "contact": {
+      "label": "Contacto",
+      "whatsapp": "WhatsApp +56 9 7959 1791",
+      "supportedBy": "Apoyado por Ignite",
+      "startupChileAlt": "Startup Chile"
+    },
+    "copyright": "© Eleva · Santiago",
+    "backToTop": "Volver arriba ↑",
+    "home": "← Inicio"
+  }
+}

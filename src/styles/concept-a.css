@@ -1,0 +1,2265 @@
+/* =====================================================================
+   Concept A — "Plano Maestro"
+   One technical sheet: 12-column drafting grid, 1px hairlines, plates with
+   crop marks and FIG. captions, mono codes, teal used only as "wet ink".
+   EVERY selector is scoped under [data-concept="a"]. Nothing leaks.
+   Dark-first (drafting table); light = "blueprint on white", designed
+   positively (same hairline geometry, deeper teal, cool drafting paper).
+   ===================================================================== */
+
+/* ---------- 1. Tokens: dark (default) ---------- */
+[data-concept="a"] {
+  --paper: #0b0f14;
+  --paper-2: #10161c;
+  --paper-3: #161e26;
+  --ink: #ecf1f3;
+  --ink-2: #a6b1ba;
+  --ink-3: #7a8791; /* 5.2:1 on paper */
+  --line: #202b34;
+  --line-2: #34434e;
+  --accent-c: #2dd4bf;
+  --accent-c2: #14b8a6;
+  --accent-ink: #04201d;
+  --accent-soft: rgba(45, 212, 191, 0.1);
+
+  /* concept-only tokens */
+  --a-grid-opacity: 0.35;
+  --a-plate-ring: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+  --a-plate-shadow: none;
+  --a-header-bg: rgba(11, 15, 20, 0.96);
+  --a-likert-fill: rgba(236, 241, 243, 0.08);
+  /* the only logo export is navy on transparent: invert → light blue mark, teal stays teal */
+  --a-logo-filter: invert(1) hue-rotate(180deg);
+  --a-ease-reveal: cubic-bezier(0.2, 0, 0.1, 1);
+  --a-ease-snap: cubic-bezier(0.7, 0, 0.2, 1);
+  --a-ease-settle: cubic-bezier(0.16, 1, 0.3, 1);
+
+  color-scheme: dark;
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* ---------- 2. Tokens: light ---------- */
+[data-theme="light"] [data-concept="a"],
+[data-theme="light"][data-concept="a"] {
+  --paper: #f4f6f5;
+  --paper-2: #ffffff;
+  --paper-3: #e9edec;
+  --ink: #0f1719;
+  --ink-2: #4a565c;
+  --ink-3: #5f6b72; /* 5.05:1 on paper */
+  --line: #d3dad9;
+  --line-2: #b3bdbc;
+  --accent-c: #0f766e; /* white on it 5.47:1; as text on paper 5.04:1 */
+  --accent-c2: #115e59;
+  --accent-ink: #ffffff;
+  --accent-soft: rgba(15, 118, 110, 0.08);
+
+  --a-grid-opacity: 0.5;
+  --a-plate-ring: none;
+  --a-plate-shadow: 0 4px 24px rgba(15, 23, 25, 0.06);
+  --a-header-bg: rgba(244, 246, 245, 0.96);
+  --a-likert-fill: rgba(15, 23, 25, 0.06);
+  --a-logo-filter: none;
+
+  color-scheme: light;
+}
+
+/* html-level: ConceptRoot mirrors data-concept on <html> after mount */
+html[data-concept="a"] {
+  background: var(--paper);
+}
+html[data-concept="a"] body {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+/* ---------- 3. Base / selection / focus ---------- */
+[data-concept="a"] ::selection {
+  background: var(--accent-c);
+  color: var(--accent-ink);
+}
+[data-concept="a"] :focus-visible {
+  outline: 2px solid var(--accent-c);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+@layer base {
+  [data-concept="a"] a {
+    color: inherit;
+    text-decoration: none;
+  }
+  [data-concept="a"] button {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+  }
+}
+[data-concept="a"] img {
+  display: block;
+  max-width: 100%;
+}
+[data-concept="a"] svg text {
+  font-family: var(--font-mono), ui-monospace, monospace;
+}
+[data-concept="a"] * {
+  box-sizing: border-box;
+}
+
+/* ---------- 4. Typography ---------- */
+[data-concept="a"] .a-h1 {
+  font-family: var(--font-display), ui-sans-serif, sans-serif;
+  font-weight: 600;
+  font-size: clamp(36px, 6.2vw, 92px);
+  line-height: 0.96;
+  letter-spacing: -0.035em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+[data-concept="a"] .a-h2 {
+  font-family: var(--font-display), ui-sans-serif, sans-serif;
+  font-weight: 500;
+  font-size: clamp(30px, 3.6vw, 52px);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+[data-concept="a"] .a-h3 {
+  font-family: var(--font-display), ui-sans-serif, sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+[data-concept="a"] .a-h4 {
+  font-family: var(--font-display), ui-sans-serif, sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+[data-concept="a"] .a-num {
+  font-family: var(--font-display), ui-sans-serif, sans-serif;
+  font-weight: 500;
+  font-size: clamp(48px, 5vw, 72px);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+[data-concept="a"] .a-num-lg {
+  font-family: var(--font-display), ui-sans-serif, sans-serif;
+  font-weight: 500;
+  font-size: clamp(64px, 7vw, 96px);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+[data-concept="a"] .a-num-md {
+  font-family: var(--font-display), ui-sans-serif, sans-serif;
+  font-weight: 500;
+  font-size: 56px;
+  line-height: 1;
+  letter-spacing: -0.035em;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+[data-concept="a"] .a-lead {
+  font-family: var(--font-body), ui-sans-serif, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  max-width: 52ch;
+}
+[data-concept="a"] .a-body {
+  font-family: var(--font-body), ui-sans-serif, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+@media (min-width: 1024px) {
+  [data-concept="a"] .a-body {
+    font-size: 17px;
+  }
+}
+[data-concept="a"] .a-body-sm {
+  font-family: var(--font-body), ui-sans-serif, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+[data-concept="a"] .a-label {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 1.4;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+[data-concept="a"] .a-label-2 {
+  /* mono label that carries a fact → ink-2 for contrast */
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 1.4;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+[data-concept="a"] .a-code {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink-2);
+}
+[data-concept="a"] .a-quote {
+  font-family: var(--font-display), ui-sans-serif, sans-serif;
+  font-weight: 500;
+  font-size: clamp(28px, 3vw, 40px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+[data-concept="a"] .a-running {
+  /* running head: Geist sentence case, quiet */
+  font-family: var(--font-body), ui-sans-serif, sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  color: var(--ink-3);
+}
+
+/* ---------- 5. Layout: container, grid, rules ---------- */
+[data-concept="a"] .a-container {
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+@media (min-width: 768px) {
+  [data-concept="a"] .a-container {
+    padding-inline: 40px;
+  }
+}
+[data-concept="a"] .a-cols {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  column-gap: 16px;
+}
+@media (min-width: 768px) {
+  [data-concept="a"] .a-cols {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: 24px;
+  }
+}
+
+/* The drafting grid: FIXED, outside SmoothScroll, behind everything.
+   Vertical lines are invariant under vertical translation, and a fixed
+   layer never repaints on scroll → no shimmer, no moiré. Only ≥1280px. */
+[data-concept="a"] .a-grid {
+  display: none;
+}
+@media (min-width: 1280px) {
+  [data-concept="a"] .a-grid {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: var(--a-grid-opacity);
+  }
+  [data-concept="a"] .a-grid > .a-container {
+    height: 100%;
+  }
+  [data-concept="a"] .a-grid .a-cols {
+    height: 100%;
+  }
+  [data-concept="a"] .a-grid .a-cols > i {
+    display: block;
+    height: 100%;
+    border-left: 1px solid var(--line);
+    transform: scaleY(0);
+    transform-origin: 50% 0;
+  }
+  [data-concept="a"] .a-grid .a-cols > i:last-child {
+    border-right: 1px solid var(--line);
+  }
+}
+/* Anything that must sit above the fixed grid */
+[data-concept="a"] #smooth-wrapper {
+  position: relative;
+  z-index: 1;
+}
+/* Sections that carry their own hairline family mask the grid out. */
+[data-concept="a"] .a-sheet {
+  background: var(--paper);
+}
+
+/* Section rule: full-grid hairline + code at left + running head at right */
+[data-concept="a"] .a-section {
+  position: relative;
+  padding-block: 72px;
+}
+@media (min-width: 768px) {
+  [data-concept="a"] .a-section {
+    padding-block: 104px;
+  }
+}
+[data-concept="a"] .a-rule {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 12px;
+  margin-bottom: 48px;
+}
+@media (min-width: 768px) {
+  [data-concept="a"] .a-rule {
+    margin-bottom: 72px;
+  }
+}
+/* the hairline is its own element so the Section Director can draw it (scaleX 0 → 1) */
+[data-concept="a"] .a-rule .a-rule-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--line);
+  transform-origin: 0 50%;
+}
+/* parked initial state (SSR is complete, no flash); the director removes the attribute
+   when it takes the rule over; reduced motion / no-JS lift it in CSS (section 15) */
+[data-concept="a"] .a-rule[data-rule-pending] .a-rule-line {
+  transform: scaleX(0);
+}
+[data-concept="a"] .a-rule[data-rule-pending] .a-rule-code {
+  clip-path: inset(0 100% 0 0);
+}
+[data-concept="a"] .a-rule[data-rule-pending] .a-running {
+  clip-path: inset(0 0 0 100%);
+}
+[data-concept="a"] .a-rule .a-rule-code {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--ink-2);
+}
+/* ---------- 6. Buttons, chips, toggles ---------- */
+[data-concept="a"] .a-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 40px;
+  padding-inline: 18px;
+  border-radius: 2px;
+  font-family: var(--font-body), ui-sans-serif, sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  white-space: nowrap;
+  transition:
+    background-color 0.2s var(--a-ease-snap),
+    border-color 0.2s var(--a-ease-snap),
+    color 0.2s var(--a-ease-snap);
+}
+[data-concept="a"] .a-btn-primary {
+  background: var(--accent-c);
+  color: var(--accent-ink);
+  border: 1px solid var(--accent-c);
+}
+[data-concept="a"] .a-btn-primary:hover {
+  background: var(--accent-c2);
+  border-color: var(--accent-c2);
+}
+[data-concept="a"] .a-btn-outline {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line-2);
+}
+[data-concept="a"] .a-btn-outline:hover {
+  border-color: var(--ink);
+}
+[data-concept="a"] .a-btn-sm {
+  height: 36px;
+  padding-inline: 14px;
+  font-size: 13px;
+}
+[data-concept="a"] .a-btn[disabled] {
+  opacity: 0.6;
+  cursor: default;
+}
+
+[data-concept="a"] .a-chip {
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+  padding-inline: 8px;
+  border: 1px solid var(--line-2);
+  border-radius: 2px;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+
+/* Two-state mono switch in a hairline box: DARK | LIGHT, ES | EN */
+[data-concept="a"] .a-switch {
+  display: inline-flex;
+  align-items: stretch;
+  height: 28px;
+  border: 1px solid var(--line-2);
+  border-radius: 2px;
+  overflow: hidden;
+}
+[data-concept="a"] .a-switch > * {
+  display: inline-flex;
+  align-items: center;
+  padding-inline: 9px;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  transition:
+    color 0.2s var(--a-ease-snap),
+    background-color 0.2s var(--a-ease-snap);
+}
+[data-concept="a"] .a-switch > * + * {
+  border-left: 1px solid var(--line-2);
+}
+[data-concept="a"] .a-switch > .is-on {
+  color: var(--ink);
+  background: var(--paper-3);
+}
+[data-concept="a"] .a-switch > button:focus-visible {
+  outline-offset: -2px;
+}
+@media (pointer: coarse) {
+  [data-concept="a"] .a-switch {
+    height: 36px;
+  }
+}
+
+/* Index square (mono digit in a 2px-radius hairline square) */
+[data-concept="a"] .a-index {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--line-2);
+  border-radius: 2px;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 12px;
+  color: var(--ink-2);
+  transition:
+    background-color 0.25s var(--a-ease-snap),
+    color 0.25s var(--a-ease-snap),
+    border-color 0.25s var(--a-ease-snap);
+}
+[data-concept="a"] .a-index.is-lit,
+[data-concept="a"] .is-lit > .a-index {
+  background: var(--accent-c);
+  border-color: var(--accent-c);
+  color: var(--accent-ink);
+}
+
+/* ---------- 7. Header ---------- */
+[data-concept="a"] .a-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 60;
+  height: 56px;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  transition:
+    background-color 0.3s var(--a-ease-snap),
+    backdrop-filter 0.3s;
+}
+[data-concept="a"] .a-header.is-scrolled {
+  background: var(--a-header-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+[data-concept="a"] .a-header .a-hdr-rule {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  background: var(--line-2);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+}
+[data-concept="a"] .a-progress {
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 2px;
+  width: 100%;
+  background: var(--accent-c);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+}
+[data-concept="a"] .a-nav-link {
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  padding-block: 4px;
+  font-family: var(--font-body), ui-sans-serif, sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  color: var(--ink-2);
+  clip-path: inset(0 0 0 100%);
+  transition: color 0.2s var(--a-ease-snap);
+}
+[data-concept="a"] .a-nav-link > .a-nav-num {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--ink-3);
+}
+[data-concept="a"] .a-nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--accent-c);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform 0.3s var(--a-ease-snap);
+}
+[data-concept="a"] .a-nav-link:hover {
+  color: var(--ink);
+}
+[data-concept="a"] .a-nav-link:hover::after,
+[data-concept="a"] .a-nav-link.is-active::after {
+  transform: scaleX(1);
+}
+[data-concept="a"] .a-nav-link.is-active {
+  color: var(--ink);
+}
+/* Section counter: masked line flip */
+[data-concept="a"] .a-counter {
+  position: relative;
+  height: 16px;
+  overflow: hidden;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  line-height: 16px;
+  white-space: nowrap;
+}
+[data-concept="a"] .a-counter > span {
+  display: block;
+}
+[data-concept="a"] .a-counter > .a-counter-code {
+  color: var(--ink-3);
+  margin-right: 6px;
+}
+
+/* Mobile menu sheet */
+[data-concept="a"] .a-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 59;
+  background: var(--paper);
+  padding-top: 56px;
+  clip-path: inset(0 0 100% 0);
+  display: flex;
+  flex-direction: column;
+}
+[data-concept="a"] .a-menu[data-open="true"] {
+  clip-path: inset(0);
+}
+[data-concept="a"] .a-menu-row {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-display), ui-sans-serif, sans-serif;
+  font-weight: 500;
+  font-size: 26px;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+[data-concept="a"] .a-menu-row > .a-nav-num {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--ink-3);
+}
+[data-concept="a"] .a-burger {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  width: 44px;
+  height: 44px;
+  margin-right: -8px;
+}
+[data-concept="a"] .a-burger > i {
+  display: block;
+  height: 1px;
+  width: 20px;
+  margin-inline: auto;
+  background: var(--ink);
+  transition: transform 0.3s var(--a-ease-snap);
+}
+[data-concept="a"] .a-burger[aria-expanded="true"] > i:first-child {
+  transform: translateY(3.5px) rotate(45deg);
+}
+[data-concept="a"] .a-burger[aria-expanded="true"] > i:last-child {
+  transform: translateY(-3.5px) rotate(-45deg);
+}
+
+/* ---------- 8. Plates (screenshot frames) ---------- */
+[data-concept="a"] .a-plate {
+  position: relative;
+  border: 1px solid var(--line-2);
+  background: var(--paper-2);
+  box-shadow: var(--a-plate-shadow);
+}
+/* crop marks: four 8px L-shapes drawn with two pseudo-elements per corner pair */
+[data-concept="a"] .a-plate::before,
+[data-concept="a"] .a-plate::after,
+[data-concept="a"] .a-plate > .a-crop-marks::before,
+[data-concept="a"] .a-plate > .a-crop-marks::after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  pointer-events: none;
+  border-color: var(--line-2);
+  border-style: solid;
+  border-width: 0;
+}
+[data-concept="a"] .a-plate::before {
+  top: -9px;
+  left: -9px;
+  border-top-width: 1px;
+  border-left-width: 1px;
+}
+[data-concept="a"] .a-plate::after {
+  top: -9px;
+  right: -9px;
+  border-top-width: 1px;
+  border-right-width: 1px;
+}
+[data-concept="a"] .a-plate > .a-crop-marks::before {
+  bottom: -9px;
+  left: -9px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+}
+[data-concept="a"] .a-plate > .a-crop-marks::after {
+  bottom: -9px;
+  right: -9px;
+  border-bottom-width: 1px;
+  border-right-width: 1px;
+}
+/* the image window (native light UI on both themes) */
+[data-concept="a"] .a-plate-window {
+  position: relative;
+  overflow: hidden;
+  background: #ffffff; /* the screenshots are white UI; never tint them */
+  box-shadow: var(--a-plate-ring);
+}
+[data-concept="a"] .a-plate-window > img,
+[data-concept="a"] .a-plate-window > span > img {
+  display: block;
+}
+/* region crop: the builder sets --crop-w/h (region size) and --crop-x/y
+   (region origin) in NATURAL pixels plus --img-w (natural width) */
+[data-concept="a"] .a-crop {
+  position: absolute;
+  left: calc(-1 * var(--crop-x) / var(--crop-w) * 100%);
+  top: calc(-1 * var(--crop-y) / var(--crop-h) * 100%);
+  width: calc(var(--img-w) / var(--crop-w) * 100%);
+  height: auto;
+  max-width: none;
+}
+/* caption bar */
+[data-concept="a"] .a-plate-caption {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 28px;
+  padding: 6px 10px;
+  border-top: 1px solid var(--line-2);
+  background: var(--paper-2);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  line-height: 1.3;
+}
+[data-concept="a"] .a-plate-caption > .a-fig {
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+[data-concept="a"] .a-plate-caption > .a-fig::after {
+  content: " —";
+}
+
+/* ---------- 9. Tables, ledgers, key/value ---------- */
+[data-concept="a"] .a-kv {
+  width: 100%;
+  border-collapse: collapse;
+  border-top: 1px solid var(--line);
+}
+[data-concept="a"] .a-kv tr {
+  border-bottom: 1px solid var(--line);
+}
+[data-concept="a"] .a-kv th {
+  width: 34%;
+  padding: 10px 12px 10px 0;
+  text-align: left;
+  vertical-align: top;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+[data-concept="a"] .a-kv td {
+  padding: 10px 0;
+  vertical-align: top;
+  font-family: var(--font-body), ui-sans-serif, sans-serif;
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--ink);
+}
+[data-concept="a"] .a-kv td .a-code {
+  color: var(--ink);
+}
+
+[data-concept="a"] .a-ledger {
+  border-top: 1px solid var(--line-2);
+  background: var(--paper);
+}
+[data-concept="a"] .a-ledger-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  padding-block: 20px;
+  border-bottom: 1px solid var(--line);
+}
+@media (min-width: 768px) {
+  [data-concept="a"] .a-ledger-row {
+    grid-template-columns: 1fr 3fr 4fr 4fr;
+    column-gap: 24px;
+    padding-block: 28px;
+  }
+}
+[data-concept="a"] .a-ledger-head {
+  padding-block: 10px;
+  border-bottom: 1px solid var(--line-2);
+}
+[data-concept="a"] .a-ledger-head > * {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+/* Confidence bars (typographic) */
+[data-concept="a"] .a-bar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 48px;
+  align-items: center;
+  gap: 12px;
+  padding-block: 6px;
+}
+[data-concept="a"] .a-bar-label {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--ink-2);
+  margin-bottom: 4px;
+}
+[data-concept="a"] .a-bar-track {
+  position: relative;
+  height: 1px;
+  background: var(--line);
+}
+[data-concept="a"] .a-bar-fill {
+  position: absolute;
+  left: 0;
+  top: -0.5px;
+  height: 2px;
+  width: 100%;
+  background: var(--line-2);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+}
+[data-concept="a"] .a-bar.is-top .a-bar-fill {
+  background: var(--accent-c);
+}
+[data-concept="a"] .a-bar-pct {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 12px;
+  text-align: right;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Criteria ladder box */
+[data-concept="a"] .a-crit {
+  display: inline-flex;
+  align-items: center;
+  height: 28px;
+  padding-inline: 10px;
+  border: 1px solid var(--line-2);
+  border-radius: 2px;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  transition:
+    border-color 0.3s var(--a-ease-snap),
+    color 0.3s var(--a-ease-snap);
+}
+
+/* Normativa ledger rows */
+[data-concept="a"] .a-law {
+  display: grid;
+  grid-template-columns: 128px 1fr auto;
+  gap: 16px;
+  align-items: baseline;
+  padding: 9px 0 9px 12px;
+  border-bottom: 1px solid var(--line);
+  border-left: 2px solid transparent;
+  transition:
+    border-color 0.25s var(--a-ease-snap),
+    color 0.25s var(--a-ease-snap);
+}
+@media (max-width: 767.98px) {
+  [data-concept="a"] .a-law {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+}
+[data-concept="a"] .a-law > .a-law-ref {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 12px;
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+[data-concept="a"] .a-law > .a-law-name {
+  font-family: var(--font-body), ui-sans-serif, sans-serif;
+  font-size: 15px;
+  color: var(--ink-2);
+}
+[data-concept="a"] .a-law > .a-law-tag {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  white-space: nowrap;
+  transition: color 0.25s var(--a-ease-snap);
+}
+[data-concept="a"] .a-trace {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+[data-concept="a"] .a-trace path {
+  fill: none;
+  stroke: var(--accent-c);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+/* Likert strip (neutral: nothing selected) */
+[data-concept="a"] .a-likert {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+}
+[data-concept="a"] .a-likert-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-start;
+}
+[data-concept="a"] .a-likert-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 40px;
+  aspect-ratio: 1 / 1;
+  border: 1px solid var(--line-2);
+  border-radius: 2px;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 13px;
+  color: var(--ink);
+  background: transparent;
+}
+[data-concept="a"] .a-likert-name {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+/* Stage rows (Proceso 4.2) */
+[data-concept="a"] .a-stage {
+  display: grid;
+  grid-template-columns: 28px 1fr auto;
+  column-gap: 16px;
+  align-items: start;
+  padding-block: 16px;
+  border-bottom: 1px solid var(--line);
+}
+[data-concept="a"] .a-stage .a-h4 {
+  color: var(--ink-2);
+  transition: color 0.25s var(--a-ease-snap);
+}
+[data-concept="a"] .a-stage.is-lit .a-h4 {
+  color: var(--ink);
+}
+[data-concept="a"] .a-stage-state {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  white-space: nowrap;
+  padding-top: 6px;
+}
+[data-concept="a"] .a-rail {
+  position: absolute;
+  left: 13.5px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--accent-c);
+  transform: scaleY(0);
+  transform-origin: 50% 0;
+}
+
+/* ---------- 10. Diagram strokes (system SVG + donut + rings) ---------- */
+[data-concept="a"] .a-draw {
+  fill: none;
+  stroke: var(--line-2);
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+  stroke-linecap: butt;
+  stroke-linejoin: miter;
+}
+[data-concept="a"] .a-draw-thin {
+  fill: none;
+  stroke: var(--line-2);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+[data-concept="a"] .a-svg-label {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  fill: var(--ink-2);
+}
+[data-concept="a"] .a-svg-code {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 13px;
+  fill: var(--ink-3);
+}
+[data-concept="a"] .a-svg-num {
+  font-family: var(--font-display), ui-sans-serif, sans-serif;
+  font-weight: 500;
+  font-size: 44px;
+  letter-spacing: -0.03em;
+  fill: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+[data-concept="a"] .a-svg-tag {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  fill: var(--ink-3);
+}
+/* Until JS has measured path lengths and set dash values, keep strokes
+   hidden so the first paint does not flash the finished drawing. */
+[data-concept="a"] .a-svg-pending .a-draw,
+[data-concept="a"] .a-svg-pending text[clip-path],
+[data-concept="a"] .a-svg-pending .a-donut-leader {
+  visibility: hidden;
+}
+/* System stage: plate slots sit over the SVG in viewBox percentages */
+[data-concept="a"] .a-sys-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1200 / 640;
+  max-height: 78vh;
+  margin-inline: auto;
+}
+[data-concept="a"] .a-sys-stage > svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+[data-concept="a"] .a-sys-slot {
+  position: absolute;
+}
+[data-concept="a"] .a-sys-slot .a-plate-caption {
+  min-height: 22px;
+  padding: 3px 6px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+
+/* ---------- 14. Footer ---------- */
+[data-concept="a"] .a-footer {
+  border-top: 1px solid var(--line-2);
+  padding-block: 56px 32px;
+}
+[data-concept="a"] .a-footer-link {
+  font-family: var(--font-body), ui-sans-serif, sans-serif;
+  font-size: 14px;
+  color: var(--ink-2);
+  position: relative;
+  padding-block: 4px;
+}
+[data-concept="a"] .a-footer-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 1px;
+  background: var(--accent-c);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform 0.3s var(--a-ease-snap);
+}
+[data-concept="a"] .a-footer-link:hover::after {
+  transform: scaleX(1);
+}
+[data-concept="a"] .a-dark-plate img { height: 24px; width: auto; }
+[data-concept="a"] .a-dark-plate {
+  /* the remote Startup Chile logo is white: always a dark plate */
+  display: inline-flex;
+  align-items: center;
+  height: 40px;
+  padding-inline: 10px;
+  background: #0b0f14;
+  border: 1px solid var(--line-2);
+}
+
+/* ---------- 15. Initial hidden states for reveal targets ----------
+   SSR HTML is complete (SEO / no-JS via the <noscript> block in layout);
+   GSAP animates these to their final state. Reduced motion → final state. */
+[data-concept="a"] .rv-fade {
+  /* opacity, not visibility: a hidden control stays in the tab order and reveals on focus */
+  opacity: 0;
+}
+[data-concept="a"] .rv-wipe {
+  clip-path: inset(0 100% 0 0);
+}
+[data-concept="a"] .rv-wipe-up {
+  clip-path: inset(100% 0 0 0);
+}
+[data-concept="a"] .rv-wipe-down {
+  clip-path: inset(0 0 100% 0);
+}
+[data-concept="a"] .rv-wipe-left {
+  clip-path: inset(0 0 0 100%);
+}
+[data-concept="a"] .rv-rule-x {
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+}
+[data-concept="a"] .rv-rule-y {
+  transform: scaleY(0);
+  transform-origin: 50% 0;
+}
+[data-concept="a"] .rv-lines {
+  /* SplitText target: parent hidden until split, lines masked */
+  visibility: hidden;
+}
+[data-concept="a"] .rv-mask {
+  /* single-element mask: child moves yPercent 110 → 0.
+     `clip`, not `hidden`: no scroll container, so focusing a link parked below the
+     mask cannot scroll the mask itself out of alignment. */
+  overflow: clip;
+}
+[data-concept="a"] .rv-mask > * {
+  display: block;
+  transform: translateY(110%);
+}
+/* once the child is back at 0 the mask stops clipping (focus rings, hover underlines) */
+[data-concept="a"] .rv-mask.is-revealed {
+  overflow: visible;
+}
+/* hairlines drawn by section choreography (header, intro, resultados, drafting grid) */
+[data-concept="a"] .a-res-hr {
+  transform: scaleX(0);
+}
+/* SplitText masks (the "-mask" clone GSAP wraps each line/word in): room for accents/descenders */
+[data-concept="a"] .split-line-mask,
+[data-concept="a"] .split-word-mask {
+  padding-block: 0.12em;
+  margin-block: -0.12em;
+}
+[data-concept="a"] .a-noscript-visible .rv-fade {
+  opacity: 1;
+}
+[data-concept="a"] .a-noscript-visible .rv-lines {
+  visibility: visible;
+}
+[data-concept="a"] .a-noscript-visible .rv-wipe,
+[data-concept="a"] .a-noscript-visible .rv-wipe-up,
+[data-concept="a"] .a-noscript-visible .rv-wipe-down,
+[data-concept="a"] .a-noscript-visible .rv-wipe-left {
+  clip-path: none;
+}
+[data-concept="a"] .a-noscript-visible .rv-rule-x,
+[data-concept="a"] .a-noscript-visible .rv-rule-y,
+[data-concept="a"] .a-noscript-visible .rv-mask > * {
+  transform: none;
+}
+[data-concept="a"] .a-noscript-visible .a-rule[data-rule-pending] .a-rule-line {
+  transform: none;
+}
+[data-concept="a"] .a-noscript-visible .a-rule[data-rule-pending] .a-rule-code,
+[data-concept="a"] .a-noscript-visible .a-rule[data-rule-pending] .a-running {
+  clip-path: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-concept="a"] .a-rule[data-rule-pending] .a-rule-line {
+    transform: none;
+  }
+  [data-concept="a"] .a-rule[data-rule-pending] .a-rule-code,
+  [data-concept="a"] .a-rule[data-rule-pending] .a-running {
+    clip-path: none;
+  }
+  [data-concept="a"] .rv-fade {
+    opacity: 1;
+  }
+  [data-concept="a"] .rv-lines {
+    visibility: visible;
+  }
+  [data-concept="a"] .rv-wipe,
+  [data-concept="a"] .rv-wipe-up,
+  [data-concept="a"] .rv-wipe-down,
+  [data-concept="a"] .rv-wipe-left {
+    clip-path: none;
+  }
+  [data-concept="a"] .rv-rule-x,
+  [data-concept="a"] .rv-rule-y,
+  [data-concept="a"] .rv-mask > *,
+  [data-concept="a"] .a-bar-fill,
+  [data-concept="a"] .a-rail {
+    transform: none;
+  }
+  [data-concept="a"] .a-svg-pending .a-draw,
+  [data-concept="a"] .a-svg-pending text[clip-path],
+  [data-concept="a"] .a-svg-pending .a-donut-leader {
+    visibility: visible;
+  }
+  [data-concept="a"] .a-hdr-rule,
+  [data-concept="a"] .a-grid .a-cols > i {
+    transform: none;
+  }
+  [data-concept="a"] .a-nav-link {
+    clip-path: none;
+  }
+  [data-concept="a"] .rv-mask {
+    overflow: visible;
+  }
+  [data-concept="a"] .a-progress {
+    transition: none;
+  }
+  [data-concept="a"] * {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---------- 16. Small utilities ---------- */
+[data-concept="a"] .a-tabular {
+  font-variant-numeric: tabular-nums;
+}
+[data-concept="a"] .a-link {
+  position: relative;
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--line-2);
+  text-underline-offset: 3px;
+}
+[data-concept="a"] .a-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  background: var(--accent-c);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform 0.3s var(--a-ease-snap);
+}
+[data-concept="a"] .a-link:hover::after {
+  transform: scaleX(1);
+}
+[data-concept="a"] .a-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+[data-concept="a"] a.a-sr-only:focus-visible {
+  position: fixed;
+  top: 64px;
+  left: 20px;
+  z-index: 61;
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 8px 12px;
+  clip: auto;
+  overflow: visible;
+  background: var(--paper-2);
+  color: var(--ink);
+  border: 1px solid var(--line-2);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+}
+
+/* =====================================================================
+   17. Builder additions — classes used by src/components/concepts/a/*.
+   Scrubbed timelines toggle DATA attributes (a GSAP set() on an attribute
+   scrubs both ways); once-only effects toggle .is-* classes. Both spellings
+   are styled. Still every selector is scoped under [data-concept="a"].
+   ===================================================================== */
+
+/* --- state aliases --- */
+[data-concept="a"] .a-draw[data-wet="true"] { stroke: var(--accent-c); }
+[data-concept="a"] .a-node { fill: var(--paper); }
+[data-concept="a"] .a-node[data-fill="wet"] { fill: var(--accent-c); }
+[data-concept="a"] .a-node[data-fill="dry"] { fill: var(--line-2); }
+[data-concept="a"] .a-svg-tag[data-lit="true"],
+[data-concept="a"] .a-svg-label[data-lit="true"] { fill: var(--accent-c); }
+[data-concept="a"] .a-svg-label-sm { font-size: 12px; letter-spacing: 0.03em; }
+[data-concept="a"] .a-svg-label-md { font-size: 15px; letter-spacing: 0.06em; }
+[data-concept="a"] .a-svg-code-sm { font-size: 12px; }
+[data-concept="a"] .a-donut .a-svg-label-sm { font-size: 13px; }
+[data-concept="a"] .a-svg-num-md { font-size: 30px; }
+[data-concept="a"] .a-crit[data-lit="true"] { border-color: var(--accent-c); color: var(--ink); }
+[data-concept="a"] .a-likert-box[data-filled="true"] { background: var(--a-likert-fill); }
+[data-concept="a"] .a-law[data-on="true"] { border-left-color: var(--accent-c); }
+[data-concept="a"] .a-law[data-on="true"] > .a-law-name,
+[data-concept="a"] .a-law[data-on="true"] > .a-law-ref { color: var(--ink); }
+[data-concept="a"] .a-law[data-on="true"] > .a-law-tag { color: var(--accent-c); }
+[data-concept="a"] .a-donut-arc { stroke-width: 18; vector-effect: none; stroke-linecap: butt; }
+[data-concept="a"] .a-donut-track { stroke: var(--line); stroke-width: 18; vector-effect: none; fill: none; }
+[data-concept="a"] .a-donut-arc[data-tone="1"] { stroke: var(--ink); }
+[data-concept="a"] .a-donut-arc[data-tone="2"] { stroke: var(--ink-2); }
+[data-concept="a"] .a-donut-arc[data-tone="3"] { stroke: var(--line-2); }
+[data-concept="a"] .a-donut-arc[data-tone="4"] { stroke: var(--ink-3); }
+[data-concept="a"] .a-label[data-accent="true"] { color: var(--accent-c); }
+
+/* --- key/value list: grid rows so the bottom rule can be drawn --- */
+[data-concept="a"] .a-kv2 { margin: 0; border-top: 1px solid var(--line); }
+[data-concept="a"] .a-kv2-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(96px, 34%) 1fr;
+  column-gap: 12px;
+  padding: 10px 0;
+}
+[data-concept="a"] .a-kv2-row > dt {
+  margin: 0;
+  padding-top: 3px;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+[data-concept="a"] .a-kv2-row > dd {
+  margin: 0;
+  font-family: var(--font-body), ui-sans-serif, sans-serif;
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--ink);
+}
+[data-concept="a"] .a-kv2-rule {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--line);
+  transform-origin: 0 50%;
+}
+[data-concept="a"] .a-kv2-row.is-total { border-top: 1px solid var(--line-2); margin-top: 4px; }
+[data-concept="a"] .a-kv2-row.is-total > dt { color: var(--ink-2); }
+[data-concept="a"] .a-kv2-row > dd.a-num-md { font-size: 40px; line-height: 1; }
+[data-concept="a"] .a-kv2-row > dd.a-num-md + .a-kv2-rule { bottom: 0; }
+
+/* --- plates: crop vars live on the figure (inherited); optional mobile crop --- */
+[data-concept="a"] .a-plate[data-region="true"] .a-plate-window { aspect-ratio: var(--ratio); }
+@media (max-width: 767.98px) {
+  [data-concept="a"] .a-plate[data-mregion="true"] .a-plate-window { aspect-ratio: var(--ratio-m); }
+  [data-concept="a"] .a-plate[data-mregion="true"] .a-crop {
+    --crop-x: var(--crop-x-m);
+    --crop-y: var(--crop-y-m);
+    --crop-w: var(--crop-w-m);
+    --crop-h: var(--crop-h-m);
+  }
+}
+[data-concept="a"] .a-plate-full { width: 100%; height: auto; }
+[data-concept="a"] .a-plate-window img { user-select: none; -webkit-user-drag: none; }
+[data-concept="a"] .a-plate-caption > span:last-child { overflow: hidden; text-overflow: ellipsis; }
+
+/* --- header --- */
+[data-concept="a"] .a-hdr-inner { display: flex; align-items: center; height: 56px; gap: 20px; }
+[data-concept="a"] .a-hdr-logo { display: inline-flex; align-items: center; height: 36px; }
+[data-concept="a"] .a-hdr-nav { display: none; min-width: 0; }
+[data-concept="a"] .a-hdr-right { display: none; }
+[data-concept="a"] .a-hdr-burger { margin-left: auto; }
+@media (min-width: 1280px) {
+  [data-concept="a"] .a-hdr-nav { display: flex; align-items: baseline; gap: 16px; margin-inline: auto; }
+  [data-concept="a"] .a-hdr-right { display: flex; align-items: center; gap: 10px; }
+  [data-concept="a"] .a-hdr-burger { display: none; }
+}
+[data-concept="a"] .a-counter { display: none; }
+@media (min-width: 1440px) {
+  [data-concept="a"] .a-hdr-nav { gap: 22px; }
+  [data-concept="a"] .a-counter { display: block; width: 164px; }
+}
+[data-concept="a"] .a-hdr-logo img,
+[data-concept="a"] .a-footer-col > img { filter: var(--a-logo-filter); }
+[data-concept="a"] .a-counter-line > .a-counter-code { color: var(--ink-3); margin-right: 6px; }
+[data-concept="a"] .a-menu { visibility: hidden; }
+[data-concept="a"] .a-menu[data-open="true"] { visibility: visible; }
+[data-concept="a"] .a-menu-body { flex: 1; overflow-y: auto; }
+[data-concept="a"] .a-menu-row { width: 100%; text-align: left; }
+[data-concept="a"] .a-menu-row > .rv-mask { display: block; }
+[data-concept="a"] .a-menu-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding: 20px;
+  border-top: 1px solid var(--line);
+}
+[data-concept="a"] .a-menu-foot > .a-btn { margin-left: auto; }
+
+/* --- system sheet --- */
+[data-concept="a"] .a-sys-desk { display: none; }
+[data-concept="a"] .a-sys-mobile { display: block; }
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  [data-concept="a"] .a-sys-desk { display: block; }
+  [data-concept="a"] .a-sys-mobile { display: none; }
+}
+[data-concept="a"] .a-sys-pin { height: 100vh; display: flex; align-items: center; padding-top: 56px; }
+[data-concept="a"] .a-sys-pin > .a-container { width: 100%; }
+[data-concept="a"] .a-sys-pin .a-cols { align-items: center; }
+[data-concept="a"] .a-sys-side .a-rule { margin-bottom: 24px; }
+[data-concept="a"] .a-sys-side .a-h2 { font-size: clamp(26px, 2.3vw, 36px); }
+[data-concept="a"] .a-sys-side .a-body { margin-top: 16px; font-size: 15px; }
+[data-concept="a"] .a-sys-stage { width: min(100%, calc(78vh * 1.875)); max-height: none; }
+[data-concept="a"] .a-sys-index { margin-top: 32px; display: flex; flex-direction: column; gap: 2px; }
+[data-concept="a"] .a-sys-index-row {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  padding: 6px 0 6px 12px;
+  border-left: 2px solid transparent;
+  font-family: var(--font-body), ui-sans-serif, sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--ink-3);
+  transition: color 0.25s var(--a-ease-snap), border-color 0.25s var(--a-ease-snap);
+}
+[data-concept="a"] .a-sys-index-row > .a-nav-num {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--ink-3);
+}
+[data-concept="a"] .a-sys-index-row[data-active="true"] { border-left-color: var(--accent-c); color: var(--ink); }
+[data-concept="a"] .a-sys-readout { margin-top: 20px; padding-left: 14px; overflow: hidden; }
+[data-concept="a"] .a-sys-readout > span { display: block; }
+[data-concept="a"] .a-sys-fig { border-top: 1px solid var(--line); padding-block: 32px; margin: 0; }
+[data-concept="a"] .a-sys-fig > svg { width: 100%; max-width: 420px; height: auto; margin-block: 20px; display: block; }
+[data-concept="a"] .a-sys-fig .a-body-sm { margin-top: 8px; }
+
+/* --- estructura --- */
+[data-concept="a"] .a-estr { row-gap: 40px; }
+[data-concept="a"] .a-estr > * { grid-column: 1 / -1; }
+[data-concept="a"] .a-plate-col { display: none; }
+[data-concept="a"] .a-estr-block { padding-block: 8px; }
+@media (min-width: 1024px) {
+  [data-concept="a"] .a-estr { row-gap: 0; }
+  [data-concept="a"] .a-estr-block { grid-column: 1 / 6; padding-block: 48px; }
+  /* reduced motion: each plate sits beside its block instead of the pinned stack */
+  [data-concept="a"] .a-estr-mplate { grid-column: 7 / 13; align-self: start; padding-block: 48px; }
+}
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  [data-concept="a"] .a-estr-block { min-height: 80vh; }
+  [data-concept="a"] .a-estr-mplate { display: none; }
+  [data-concept="a"] .a-plate-col { display: block; grid-column: 6 / 13; grid-row: 1 / 4; align-self: start; }
+}
+[data-concept="a"] .a-plate-stack { position: relative; }
+[data-concept="a"] .a-plate-stack > .a-plate + .a-plate { position: absolute; inset: 0; }
+[data-concept="a"] .a-spec-kv { margin-top: 24px; }
+[data-concept="a"] .a-spec-quote { margin: 28px 0 0; }
+[data-concept="a"] .a-spec-quote > .a-body { margin-top: 8px; }
+[data-concept="a"] .a-bars { margin-top: 24px; }
+[data-concept="a"] .a-bars > .a-label { margin-bottom: 8px; }
+
+/* --- proceso --- */
+[data-concept="a"] .a-proc-col > .a-label { margin-bottom: 8px; }
+/* The wrap is a size container so the centre type scales with the ring (hole = 202 of
+   the 640-unit viewBox ≈ 31.6cqw with callouts; ≈ 83cqw cropped). */
+[data-concept="a"] .a-donut-wrap { position: relative; max-width: 560px; margin-block: 24px; container-type: inline-size; }
+[data-concept="a"] .a-donut { width: 100%; height: auto; display: block; }
+[data-concept="a"] .a-donut-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  white-space: nowrap;
+}
+[data-concept="a"] .a-donut-center .a-num-md { font-size: clamp(18px, 9cqw, 56px); }
+[data-concept="a"] .a-donut-center .a-label { font-size: clamp(8px, 2cqw, 11px); letter-spacing: 0.06em; }
+@media (max-width: 1023.98px) {
+  /* Callouts hidden: crop the artboard to the ring (outer Ø 238 + 3 units each side = 244
+     of 640 → scale 2.623) with pure CSS so SSR and client agree and the ring is not tiny. */
+  [data-concept="a"] .a-donut-callouts { display: none; }
+  [data-concept="a"] .a-donut-wrap { max-width: 280px; aspect-ratio: 1 / 1; overflow: hidden; }
+  [data-concept="a"] .a-donut { width: 262.3%; max-width: none; margin-left: -81.15%; margin-top: -23.76%; }
+  [data-concept="a"] .a-donut-center .a-num-md { font-size: clamp(24px, 14cqw, 48px); }
+  [data-concept="a"] .a-donut-center .a-label { font-size: clamp(9px, 3.5cqw, 11px); }
+}
+[data-concept="a"] .a-donut-leader { fill: none; stroke: var(--ink-2); stroke-width: 1; vector-effect: non-scaling-stroke; }
+[data-concept="a"] .a-proc-simulate { display: block; margin: 16px 0 0; }
+[data-concept="a"] .a-proc-col > .a-plate { margin-top: 32px; }
+[data-concept="a"] .a-stages { position: relative; margin-top: 8px; }
+[data-concept="a"] .a-stage > .a-index { position: relative; z-index: 1; background: var(--paper); }
+[data-concept="a"] .a-stage[data-lit="true"] > .a-index { background: var(--accent-c); border-color: var(--accent-c); color: var(--accent-ink); }
+[data-concept="a"] .a-stage[data-lit="true"] .a-h4 { color: var(--ink); }
+[data-concept="a"] .a-stage .a-body-sm { margin-top: 4px; }
+[data-concept="a"] .a-proc-notes { margin-top: 24px; display: flex; flex-direction: column; gap: 12px; }
+
+/* --- resultados --- */
+[data-concept="a"] .a-res-col { display: flex; flex-direction: column; }
+[data-concept="a"] .a-res-hr { height: 1px; background: var(--line); margin-block: 22px; transform-origin: 0 50%; }
+[data-concept="a"] .a-res-logro { display: flex; align-items: center; gap: 16px; margin-top: 6px; }
+[data-concept="a"] .a-res-logro > .a-num-lg { display: inline-flex; }
+[data-concept="a"] .a-res-logro .rv-mask { display: inline-block; }
+[data-concept="a"] .a-mini-ring { width: 44px; height: 44px; flex: none; }
+[data-concept="a"] .a-res-block > .a-label + * { margin-top: 6px; }
+[data-concept="a"] .a-res-block > .a-label:last-child { margin-top: 6px; }
+[data-concept="a"] .a-res-block > .a-likert { margin-top: 12px; }
+[data-concept="a"] .a-res-grid-m {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+[data-concept="a"] .a-res-grid-m > div { padding: 16px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+
+/* --- ia --- */
+[data-concept="a"] .a-ia-ledger { margin-top: 8px; }
+[data-concept="a"] .a-ledger-cell-decides { border-left: 1px solid var(--line-2); padding-left: 24px; }
+@media (max-width: 767.98px) {
+  [data-concept="a"] .a-ledger-cell-decides { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); padding-top: 12px; }
+  [data-concept="a"] .a-ledger-head { display: none; }
+  [data-concept="a"] .a-ledger-m-label { display: block; margin-bottom: 6px; }
+}
+@media (min-width: 768px) {
+  [data-concept="a"] .a-ledger-m-label { display: none; }
+}
+[data-concept="a"] .a-ledger-row > .a-code { padding-top: 4px; }
+[data-concept="a"] .a-ledger-row .a-bars { margin-top: 20px; }
+[data-concept="a"] .a-ia-never { margin-top: 16px; }
+[data-concept="a"] .a-ia-quote-block { margin-top: 72px; }
+[data-concept="a"] .a-ia-quote-block > .a-quote { margin: 0; }
+[data-concept="a"] .a-ia-quote-block > .a-label { margin-top: 20px; }
+[data-concept="a"] .a-quote-em { position: relative; display: inline; }
+[data-concept="a"] .a-quote-em > i { position: absolute; left: 0; right: 0; bottom: -0.04em; height: 2px; background: var(--accent-c); transform: scaleX(0); transform-origin: 0 50%; }
+
+/* --- normativa --- */
+/* The title and the lead moved out of this column into the full-width [data-hold] block
+   above the spread (a hold pins a full-width block), so the issuer label heads it. */
+[data-concept="a"] .a-norm-side > .a-label { margin-bottom: 8px; }
+[data-concept="a"] .a-norm-side > .a-plate { margin-top: 40px; max-width: 300px; }
+[data-concept="a"] .a-norm-main { position: relative; }
+[data-concept="a"] .a-question-row {
+  border-top: 1px solid var(--line-2);
+  border-bottom: 1px solid var(--line-2);
+  padding: 16px 0;
+  margin-top: 8px;
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  column-gap: 12px;
+  row-gap: 10px;
+}
+[data-concept="a"] .a-question-row > p { margin: 0; font-family: var(--font-body), ui-sans-serif, sans-serif; font-size: 18px; line-height: 1.4; color: var(--ink); }
+[data-concept="a"] .a-question-row > .a-chips { grid-column: 2; display: flex; flex-wrap: wrap; gap: 6px; }
+[data-concept="a"] .a-norm-trace { margin: 12px 0 24px; }
+[data-concept="a"] .a-norm-group > .a-label { margin: 20px 0 6px; }
+[data-concept="a"] .a-norm-foot { margin-top: 20px; }
+
+/* --- footer --- */
+[data-concept="a"] .a-footer { border-top: 0; }
+[data-concept="a"] .a-footer-rule { height: 1px; background: var(--line-2); transform-origin: 0 50%; margin-bottom: 48px; }
+[data-concept="a"] .a-footer-grid { row-gap: 40px; }
+[data-concept="a"] .a-footer-col { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+[data-concept="a"] .a-footer-col > .a-label { margin-bottom: 4px; }
+[data-concept="a"] .a-footer-col > .a-body-sm { margin: 0; max-width: 32ch; }
+[data-concept="a"] .a-footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 56px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+/* --- 17b. late builder additions --- */
+/* The figures column is full width until 1024px (two-up grid), a 4-col column from lg. */
+@media (min-width: 1024px) {
+  [data-concept="a"] .a-res-grid-m { display: contents; }
+}
+@media (max-width: 1023.98px) {
+  [data-concept="a"] .a-res-grid-m > .a-res-hr { display: none; }
+  [data-concept="a"] .a-res-grid-m > .a-res-block { display: flex; flex-direction: column; }
+  [data-concept="a"] .a-res-logro { flex-wrap: wrap; gap: 8px 12px; }
+}
+@media (max-width: 767.98px) {
+  [data-concept="a"] .a-res-logro > .a-num-lg { font-size: 40px; }
+  [data-concept="a"] .a-res-block .a-num { font-size: 36px; }
+}
+@media (max-width: 479.98px) {
+  [data-concept="a"] .a-res-grid-m { grid-template-columns: 1fr; }
+}
+/* pull-quote emphasis: gradient underline that sweeps across line wraps */
+[data-concept="a"] .a-quote-em {
+  background-image: linear-gradient(var(--accent-c), var(--accent-c));
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+  background-position: 0 100%;
+}
+[data-concept="a"] .a-btn { overflow: hidden; }
+/* issuer index: name + one-line descriptor (no tallies) */
+[data-concept="a"] .a-norm-issuers .a-kv2-row > dd { font-size: 14px; line-height: 1.5; color: var(--ink-2); }
+[data-concept="a"] .a-sys-mobile .a-h2 { text-wrap: balance; }
+@media (prefers-reduced-motion: reduce) {
+  [data-concept="a"] .a-quote-em { background-size: 100% 2px; }
+  [data-concept="a"] .a-res-hr { transform: none !important; }
+}
+
+/* =====================================================================
+   18. §03 Pauta builder — src/components/concepts/a/PautaBuilderA.tsx
+   Prefix a-pb-. A ledger of six question slips beside an assembling rubric
+   frame. Pinned assembly only on wide AND tall viewports (≥1024 × ≥760,
+   motion allowed): bank 5 cols · gutter 1 col (rule + criteria ladder) ·
+   frame 6 cols. Stacked everywhere else. Motion start states are gated on
+   (prefers-reduced-motion: no-preference); the layout's <noscript> CSS lifts
+   them when scripts are off. Still every selector is scoped.
+   ===================================================================== */
+
+/* --- intro spread: FIG. 3.1 + the bank's facts --- */
+[data-concept="a"] .a-pb-intro { row-gap: 32px; align-items: start; }
+[data-concept="a"] .a-pb-intro > .a-plate { grid-column: 1 / -1; }
+[data-concept="a"] .a-pb-intro-side { grid-column: 1 / -1; }
+[data-concept="a"] .a-pb-intro-side > .a-code { margin: 4px 0 16px; }
+@media (min-width: 1024px) {
+  [data-concept="a"] .a-pb-intro > .a-plate { grid-column: 1 / span 8; }
+  [data-concept="a"] .a-pb-intro-side { grid-column: 9 / span 4; }
+}
+
+/* --- stage grid --- */
+[data-concept="a"] .a-pb-stage {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: 24px;
+  row-gap: 40px;
+  align-items: start;
+  margin-top: 56px;
+  padding-block: 40px;
+}
+@media (max-width: 767.98px) {
+  [data-concept="a"] .a-pb-stage { column-gap: 16px; }
+}
+[data-concept="a"] .a-pb-bank,
+[data-concept="a"] .a-pb-gutter-stack,
+[data-concept="a"] .a-pb-rubric,
+[data-concept="a"] .a-pb-mplate,
+[data-concept="a"] .a-pb-claim { grid-column: 1 / -1; position: relative; }
+[data-concept="a"] .a-pb-bank { z-index: 2; }
+[data-concept="a"] .a-pb-gutter { display: none; }
+[data-concept="a"] .a-pb-pin-only { display: none; }
+
+/* --- the closing claim: the section's promise, at display scale --- */
+/* 36rem keeps the measure short wherever the claim runs full-bleed (stacked, reduced
+   motion, no script); it is wider than the pinned bank column, so the column always wins. */
+[data-concept="a"] .a-pb-claim { max-width: 36rem; }
+[data-concept="a"] .a-pb-claim-line { margin: 0; }
+[data-concept="a"] .a-pb-claim-rule { display: block; height: 1px; margin: 20px 0 14px; background: var(--line); }
+[data-concept="a"] .a-pb-claim-sub { margin: 0; }
+
+/* --- ledger --- */
+[data-concept="a"] .a-pb-label-meta { color: var(--ink-3); }
+[data-concept="a"] .a-pb-ledger-head { margin-top: 8px; }
+[data-concept="a"] .a-pb-ledger { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 6px; }
+[data-concept="a"] .a-pb-slip { position: relative; min-height: 64px; }
+[data-concept="a"] .a-pb-ghost { position: absolute; inset: 0; border: 1px dashed var(--line-2); border-radius: 2px; opacity: 0; }
+[data-concept="a"] .a-pb-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: 12px;
+  row-gap: 3px;
+  padding: 8px 12px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-left: 2px solid var(--line-2);
+  border-radius: 2px;
+  overflow: hidden;
+  will-change: transform;
+}
+/* The selected card's frame turns accent through a scrubbed --on (live tokens; a
+   tweened colour would bake the theme's literal). */
+[data-concept="a"] .a-pb-card.is-selected {
+  --on: 0;
+  border-color: color-mix(in srgb, var(--accent-c) calc(var(--on) * 100%), var(--line));
+  border-left-color: var(--accent-c);
+}
+[data-concept="a"] .a-pb-text {
+  grid-column: 1;
+  margin: 0;
+  font-family: var(--font-body), ui-sans-serif, sans-serif;
+  font-size: 13px;
+  line-height: 1.3;
+  color: var(--ink);
+}
+[data-concept="a"] .a-pb-code {
+  grid-column: 2;
+  grid-row: 1;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+[data-concept="a"] .a-pb-meta {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 8px;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 10px;
+  line-height: 14px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+/* Law chips: a wrapping flex row with a gap. The stamp is a --hit colour pulse plus
+   scale ≤ 1.06 about `left center`, so a chip never reaches its neighbour or the text. */
+[data-concept="a"] .a-pb-laws {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 10px;
+  min-height: 18px;
+  margin-top: 1px;
+}
+[data-concept="a"] .a-pb-law {
+  --hit: 0;
+  display: inline-block;
+  max-width: 100%;
+  height: 18px;
+  padding-inline: 6px;
+  border: 1px solid color-mix(in srgb, var(--accent-c) calc(var(--hit) * 100%), var(--line-2));
+  border-radius: 2px;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 10px;
+  line-height: 16px;
+  letter-spacing: 0.04em;
+  color: color-mix(in srgb, var(--accent-c) calc(var(--hit) * 100%), var(--ink-2));
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transform-origin: left center;
+}
+[data-concept="a"] .a-pb-tag {
+  display: inline-block;
+  height: 18px;
+  padding-inline: 6px;
+  border: 1px solid var(--accent-c);
+  border-radius: 2px;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 10px;
+  line-height: 16px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent-c);
+  white-space: nowrap;
+}
+/* The questions left in the bank de-emphasise by colour, never by opacity, so the 10px meta,
+   code and law chips keep ≥ 4.5:1 in both themes (ink-2 on paper: 8.8:1 dark / 6.97:1 light).
+   --dim is tweened by the pinned timeline; the stacked layout sets it through .is-remaining. */
+[data-concept="a"] .a-pb-card { --dim: 0; }
+[data-concept="a"] .a-pb-slip.is-remaining .a-pb-card { --dim: 1; }
+[data-concept="a"] .a-pb-slip[data-selected="false"] .a-pb-card {
+  border-left-color: color-mix(in srgb, var(--line) calc(var(--dim) * 100%), var(--line-2));
+}
+[data-concept="a"] .a-pb-slip[data-selected="false"] .a-pb-text {
+  color: color-mix(in srgb, var(--ink-2) calc(var(--dim) * 100%), var(--ink));
+}
+[data-concept="a"] .a-pb-note { margin-top: 12px; }
+
+/* --- the criteria ladder: along the gutter rule (pinned) or above the frame (stacked) --- */
+[data-concept="a"] .a-pb-gutter-rule {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--line);
+  transform-origin: 50% 0;
+}
+[data-concept="a"] .a-pb-ladder { display: flex; align-items: center; gap: 8px; }
+[data-concept="a"] .a-pb-ladder-h { flex-wrap: wrap; margin-top: 12px; }
+[data-concept="a"] .a-pb-ladder-h .a-pb-link {
+  display: block;
+  flex: 1 1 16px;
+  min-width: 16px;
+  height: 1px;
+  background: var(--line-2);
+  transform-origin: 0 50%;
+}
+[data-concept="a"] .a-pb-ladder-v {
+  position: absolute;
+  left: 50%;
+  top: 44%;
+  transform: translate(-50%, -50%);
+  flex-direction: column;
+}
+[data-concept="a"] .a-pb-ladder-v .a-crit {
+  writing-mode: vertical-rl;
+  height: auto;
+  width: 28px;
+  padding: 12px 0;
+  background: var(--paper);
+}
+[data-concept="a"] .a-pb-ladder-v .a-pb-link {
+  display: block;
+  flex: 0 0 28px;
+  width: 1px;
+  height: 28px;
+  background: var(--line-2);
+  transform-origin: 50% 0;
+}
+
+/* --- the frame: a plate in the making (A's crop marks; the caption bar once the cover lands) --- */
+[data-concept="a"] .a-pb-plate {
+  position: relative;
+  border: 1px solid var(--line-2);
+  background: var(--paper-2);
+  box-shadow: var(--a-plate-shadow);
+}
+[data-concept="a"] .a-pb-plate::before,
+[data-concept="a"] .a-pb-plate::after,
+[data-concept="a"] .a-pb-plate > .a-pb-marks::before,
+[data-concept="a"] .a-pb-plate > .a-pb-marks::after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  pointer-events: none;
+  border-color: var(--line-2);
+  border-style: solid;
+  border-width: 0;
+}
+[data-concept="a"] .a-pb-plate::before { top: -9px; left: -9px; border-top-width: 1px; border-left-width: 1px; }
+[data-concept="a"] .a-pb-plate::after { top: -9px; right: -9px; border-top-width: 1px; border-right-width: 1px; }
+[data-concept="a"] .a-pb-plate > .a-pb-marks::before { bottom: -9px; left: -9px; border-bottom-width: 1px; border-left-width: 1px; }
+[data-concept="a"] .a-pb-plate > .a-pb-marks::after { bottom: -9px; right: -9px; border-bottom-width: 1px; border-right-width: 1px; }
+[data-concept="a"] .a-pb-frame { position: relative; padding: 16px; overflow: hidden; background: var(--paper-2); }
+[data-concept="a"] .a-pb-frame-head > p { margin: 0; }
+[data-concept="a"] .a-pb-frame-head > .a-code { margin-top: 2px; }
+[data-concept="a"] .a-pb-frame-label { margin: 14px 0 0; }
+[data-concept="a"] .a-pb-slots { gap: 6px; margin-top: 12px; }
+[data-concept="a"] .a-pb-slot { position: relative; height: 92px; border: 1px dashed var(--line-2); border-radius: 2px; }
+[data-concept="a"] .a-pb-slot-label {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+[data-concept="a"] .a-pb-slot-fill { position: absolute; inset: -1px; border: 1px solid var(--line-2); border-radius: 2px; opacity: 0; pointer-events: none; }
+[data-concept="a"] .a-pb-dims { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; overflow-x: clip; }
+[data-concept="a"] .a-pb-dim { max-width: 100%; }
+[data-concept="a"] .a-pb-norms { columns: 2; column-gap: 16px; margin: 8px 0 0; padding: 0; list-style: none; }
+[data-concept="a"] .a-pb-norms > li {
+  overflow: hidden;
+  break-inside: avoid;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 10.5px;
+  line-height: 17px;
+  letter-spacing: 0.02em;
+  color: var(--ink-2);
+}
+[data-concept="a"] .a-pb-norms > li > span { display: block; }
+/* The cover: the real rubric's question column, placed with A's crop vars inside a box
+   that fills the frame by height (portrait frame) or by width (wide frame). */
+[data-concept="a"] .a-pb-cover { position: absolute; inset: 0; overflow: hidden; background: #ffffff; }
+[data-concept="a"] .a-pb-cover-crop { position: absolute; top: 0; left: 0; height: 100%; min-width: 100%; aspect-ratio: var(--ratio); overflow: hidden; }
+[data-concept="a"] .a-pb-caption { margin: 0; }
+@media (max-width: 767.98px) {
+  [data-concept="a"] .a-pb-norms { columns: 1; }
+  [data-concept="a"] .a-pb-dim { white-space: normal; height: auto; min-height: 22px; padding-block: 2px; line-height: 1.3; text-align: left; }
+  [data-concept="a"] .a-pb-law { white-space: normal; height: auto; min-height: 18px; line-height: 1.4; }
+}
+/* Compact spacing when the pinned frame's static content would not fit its fixed height
+   (class added by the component after measuring; re-checked on every frame resize). */
+[data-concept="a"] .a-pb-frame.is-tight { padding: 12px 16px; }
+[data-concept="a"] .a-pb-frame.is-tight .a-pb-frame-label { margin-top: 8px; }
+[data-concept="a"] .a-pb-frame.is-tight .a-pb-slots { margin-top: 8px; gap: 4px; }
+[data-concept="a"] .a-pb-frame.is-tight .a-pb-dims { gap: 4px; margin-top: 6px; }
+[data-concept="a"] .a-pb-frame.is-tight .a-pb-dim { height: 20px; font-size: 10px; padding-inline: 6px; }
+[data-concept="a"] .a-pb-frame.is-tight .a-pb-norms { margin-top: 6px; column-gap: 12px; }
+[data-concept="a"] .a-pb-frame.is-tight .a-pb-norms > li { font-size: 10px; line-height: 15px; }
+/* Second tier, when .is-tight still overflows (the shortest pinned viewports, 1024 × 760). */
+[data-concept="a"] .a-pb-frame.is-tighter { padding: 10px 14px; }
+[data-concept="a"] .a-pb-frame.is-tighter .a-pb-frame-label { margin-top: 6px; }
+[data-concept="a"] .a-pb-frame.is-tighter .a-pb-dims { gap: 3px; margin-top: 4px; }
+[data-concept="a"] .a-pb-frame.is-tighter .a-pb-dim { height: 18px; font-size: 9.5px; padding-inline: 5px; }
+[data-concept="a"] .a-pb-frame.is-tighter .a-pb-norms { margin-top: 4px; column-gap: 10px; }
+[data-concept="a"] .a-pb-frame.is-tighter .a-pb-norms > li { font-size: 9.5px; line-height: 13px; }
+
+/* --- pinned geometry: wide AND tall --- */
+@media (min-width: 1024px) and (min-height: 760px) {
+  [data-concept="a"] .a-pb-stage { height: 100vh; min-height: 0; margin-top: 40px; padding: 80px 0 0; row-gap: 0; }
+  [data-concept="a"] .a-pb-bank { grid-column: 1 / span 5; }
+  [data-concept="a"] .a-pb-gutter { display: block; grid-column: 6 / span 1; align-self: stretch; position: relative; z-index: 1; pointer-events: none; }
+  [data-concept="a"] .a-pb-gutter-stack { display: none; }
+  [data-concept="a"] .a-pb-rubric { grid-column: 7 / span 6; }
+  [data-concept="a"] .a-pb-mplate { display: none; }
+  [data-concept="a"] .a-pb-pin-only { display: block; }
+  [data-concept="a"] .a-pb-slots.a-pb-pin-only { display: grid; }
+  [data-concept="a"] .a-pb-caption.a-pb-pin-only { display: flex; }
+  /* stage padding-top (80) + caption (≈30) + breathing room. Published as a custom property
+     because the claim centres itself against the frame's band, not against the 100vh stage. */
+  [data-concept="a"] .a-pb-stage { --a-pb-frame-h: clamp(560px, calc(100vh - 136px), 720px); }
+  [data-concept="a"] .a-pb-frame { height: var(--a-pb-frame-h); }
+  [data-concept="a"] .a-pb-slip { height: 92px; min-height: 0; }
+  [data-concept="a"] .a-pb-card { position: absolute; inset: 0; padding: 7px 12px; }
+  [data-concept="a"] .a-pb-text { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  /* The card must fit the 92px slip: meta and law chips stay on one row each and ellipsise
+     instead of wrapping (7 + 34 + 3 + 14 + 3 + 1 + 18 + 7 = 87px). Separators and the priority
+     never shrink; the chips shrink from their own width (they already clip with an ellipsis). */
+  [data-concept="a"] .a-pb-meta { flex-wrap: nowrap; white-space: nowrap; overflow: hidden; }
+  [data-concept="a"] .a-pb-meta > span { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+  [data-concept="a"] .a-pb-meta > span[aria-hidden],
+  [data-concept="a"] .a-pb-meta > span:last-child { flex: 0 0 auto; }
+  [data-concept="a"] .a-pb-laws { flex-wrap: nowrap; }
+  [data-concept="a"] .a-pb-law { flex: 0 1 auto; }
+  /* The bank's three mono lines stay single lines (a five-column bank at 1024px is ≈380px
+     wide; a wrapped label, ledger head or note would push the sixth slip below the viewport). */
+  [data-concept="a"] .a-pb-bank > .a-label,
+  [data-concept="a"] .a-pb-ledger-head,
+  [data-concept="a"] .a-pb-note { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  /* Stage tier (class added by the component when the bank column would still end below the
+     pinned viewport): slips and slots shorten together so the measured travel stays slot-exact.
+     Card: 5 + 34 (two text lines) + 3 + 14 + 3 + 1 + 18 + 5 = 83px ≤ 84px. */
+  [data-concept="a"] .a-pb-stage.is-tight .a-pb-ledger { margin-top: 8px; gap: 4px; }
+  [data-concept="a"] .a-pb-stage.is-tight .a-pb-slip,
+  [data-concept="a"] .a-pb-stage.is-tight .a-pb-slot { height: 84px; }
+  [data-concept="a"] .a-pb-stage.is-tight .a-pb-slots { gap: 4px; }
+  [data-concept="a"] .a-pb-stage.is-tight .a-pb-card { padding: 5px 12px; }
+  [data-concept="a"] .a-pb-stage.is-tight .a-pb-note { margin-top: 8px; }
+}
+
+/* The claim takes the ledger's own cell ONLY where the pinned timeline hands the column
+   over to it (wide AND tall AND motion). It is invisible until ~0.93 (its `rv-*` start
+   states), so it must not swallow clicks on the ledger underneath: the timeline sets
+   pointer-events when it lands. Everywhere else the claim stays in flow, below the plate. */
+@media (min-width: 1024px) and (min-height: 760px) and (prefers-reduced-motion: no-preference) {
+  /* The claim is otherwise the only stage child with a DEFINITE row, so auto-placement pushes
+     every auto-row sibling past it: the cursor advances until it overlaps no occupied cell, so
+     the bank lands in row 2 and carries the gutter and the rubric with it. The claim would then
+     displace the whole builder instead of overlaying the ledger — and `bankOverflows()` would
+     read `bank.offsetTop` as padding-top + a full frame band, pinning `.is-tight` on for good.
+     Pinning the three siblings to row 1 keeps all four in the same row. Motion-gated on purpose:
+     under reduced motion (and with no script, where the layout's <noscript> block resets the
+     claim to `grid-row: auto`) no child has a definite row, so the claim auto-places last, in
+     its own row below the plate, exactly as the rules beneath this block expect. */
+  [data-concept="a"] .a-pb-bank,
+  [data-concept="a"] .a-pb-gutter,
+  [data-concept="a"] .a-pb-rubric { grid-row: 1; }
+  [data-concept="a"] .a-pb-claim {
+    grid-column: 1 / span 5;
+    grid-row: 1;
+    align-self: start;
+    /* The ledger's cell is a full 100vh row, but the frame opposite is capped at 720px and
+       sits at the top of it. Taking the frame's band and centring inside it keeps the claim
+       level with the plate on tall screens instead of drifting below it. */
+    height: var(--a-pb-frame-h);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 3;
+    pointer-events: none;
+  }
+  /* never let the flex box shrink the hairline to nothing or clip a line of the claim */
+  [data-concept="a"] .a-pb-claim > * { flex: 0 0 auto; }
+}
+/* Wide and tall but NOT pinned (reduced motion): the stage is a static full-height spread,
+   so it grows by one row and the claim closes it with the ledger still in place.
+   The <noscript> block in the platform layout does the same for the no-script case. */
+@media (min-width: 1024px) and (min-height: 760px) and (prefers-reduced-motion: reduce) {
+  [data-concept="a"] .a-pb-stage { height: auto; padding-bottom: 40px; row-gap: 56px; }
+}
+
+/* --- motion start states (SSR is complete; reduced motion never sees them) --- */
+@media (min-width: 1024px) and (min-height: 760px) and (prefers-reduced-motion: no-preference) {
+  [data-concept="a"] .a-pb-frame-head,
+  [data-concept="a"] .a-pb-frame-label,
+  [data-concept="a"] .a-pb-slot,
+  [data-concept="a"] .a-pb-caption { visibility: hidden; opacity: 0; }
+  [data-concept="a"] .a-pb-gutter-rule,
+  [data-concept="a"] .a-pb-ladder-v .a-pb-link { transform: scaleY(0); }
+  /* the "→ Pauta Director" tag is read, not seen, while the cards travel (with reduced motion
+     the cards never travel, so the tag stays the visible cue for the selected questions) */
+  [data-concept="a"] .a-pb-tag { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; flex: 0 0 auto; }
+}
+@media (max-width: 1023.98px) and (prefers-reduced-motion: no-preference), (min-width: 1024px) and (max-height: 759.98px) and (prefers-reduced-motion: no-preference) {
+  [data-concept="a"] .a-pb-card { clip-path: inset(0 100% 0 0); }
+  [data-concept="a"] .a-pb-ladder-h .a-pb-link { transform: scaleX(0); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  [data-concept="a"] .a-pb-dim { clip-path: inset(0 100% 0 0); }
+  [data-concept="a"] .a-pb-norms > li > span { transform: translateY(110%); }
+  [data-concept="a"] .a-pb-cover { clip-path: inset(0 0 100% 0); }
+}
+/* Reduced motion: the finished frame (cover on, slots off, ladder lit). */
+@media (prefers-reduced-motion: reduce) {
+  [data-concept="a"] .a-pb-slots.a-pb-pin-only { display: none; }
+  [data-concept="a"] .a-pb-ladder .a-crit { border-color: var(--accent-c); color: var(--ink); }
+}
+
+/* =====================================================================
+   19. Section Director debug overlay — ?director=1
+   src/components/concepts/a/director/DirectorDebug.tsx. Fixed, outside
+   <SmoothScroll>; mono list of sections (mode · transition) with a live
+   progress bar per beat. Scoped like everything else.
+   ===================================================================== */
+[data-concept="a"] .a-dir-debug {
+  position: fixed;
+  right: 12px;
+  bottom: 12px;
+  z-index: 70;
+  width: 320px;
+  max-height: calc(100vh - 24px);
+  overflow: auto;
+  padding: 10px 12px 12px;
+  background: var(--paper);
+  border: 1px solid var(--line-2);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 10px;
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+[data-concept="a"] .a-dir-title {
+  margin: 0 0 6px;
+  color: var(--ink);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+[data-concept="a"] .a-dir-sec {
+  border-top: 1px solid var(--line);
+  padding-top: 4px;
+  margin-top: 4px;
+}
+[data-concept="a"] .a-dir-sec-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 0;
+  color: var(--ink);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+[data-concept="a"] .a-dir-sec[data-pinned="true"] .a-dir-sec-head {
+  color: var(--accent-c);
+}
+[data-concept="a"] .a-dir-beat {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 72px 34px;
+  gap: 8px;
+  align-items: center;
+}
+[data-concept="a"] .a-dir-id {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+[data-concept="a"] .a-dir-bar {
+  position: relative;
+  display: block;
+  height: 4px;
+  background: var(--line);
+  overflow: hidden;
+}
+[data-concept="a"] .a-dir-bar > i {
+  position: absolute;
+  inset: 0;
+  background: var(--accent-c);
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+}
+[data-concept="a"] .a-dir-beat[data-locked="true"] .a-dir-bar > i {
+  background: var(--ink-3);
+}
+[data-concept="a"] .a-dir-beat[data-held="true"] .a-dir-bar {
+  outline: 1px solid var(--accent-c);
+}
+[data-concept="a"] .a-dir-beat[data-mode="self"] .a-dir-bar,
+[data-concept="a"] .a-dir-beat[data-mode="self"] .a-dir-val {
+  opacity: 0.4;
+}
+[data-concept="a"] .a-dir-val {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* =====================================================================
+   20. Page intro (IntroA) and closing CTA (CierreA) — /platform.
+   The landing at `/` owns the hero, the pricing, the FAQ and the demo
+   form; this page opens on a compact cover with the §01…§07 index and
+   closes on a hairline-framed block that links back to the landing.
+   Every selector stays scoped under [data-concept="a"].
+   ===================================================================== */
+
+/* --- intro: the cover (no plate bleed, no stats strip) --- */
+[data-concept="a"] .a-intro {
+  padding-top: 108px;
+  padding-bottom: 32px;
+}
+@media (min-width: 768px) {
+  [data-concept="a"] .a-intro {
+    padding-top: 136px;
+    padding-bottom: 48px;
+  }
+}
+[data-concept="a"] .a-intro-eyebrow { display: block; }
+[data-concept="a"] .a-intro-h1 { margin: 20px 0 0; }
+[data-concept="a"] .a-intro-lead { margin: 24px 0 0; max-width: 58ch; }
+[data-concept="a"] .a-intro-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 24px;
+  margin-top: 32px;
+}
+[data-concept="a"] .a-intro-back {
+  font-family: var(--font-body), ui-sans-serif, sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--ink-2);
+}
+[data-concept="a"] .a-intro-back:hover { color: var(--ink); }
+
+/* the §01…§07 contents bar under a drawn hairline */
+[data-concept="a"] .a-intro-index {
+  position: relative;
+  margin-top: 52px;
+  padding-top: 20px;
+}
+@media (min-width: 768px) {
+  [data-concept="a"] .a-intro-index { margin-top: 72px; }
+}
+[data-concept="a"] .a-intro-hr {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+  background: var(--line);
+  transform-origin: 0 50%;
+}
+[data-concept="a"] .a-intro-index-label { display: block; margin-bottom: 12px; }
+[data-concept="a"] .a-intro-index-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 28px;
+}
+[data-concept="a"] .a-intro-index-link {
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  padding-block: 4px;
+  font-family: var(--font-body), ui-sans-serif, sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--ink-2);
+  transition: color 0.2s var(--a-ease-snap);
+}
+[data-concept="a"] .a-intro-index-link > .a-intro-index-num {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--ink-3);
+}
+[data-concept="a"] .a-intro-index-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--accent-c);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform 0.3s var(--a-ease-snap);
+}
+[data-concept="a"] .a-intro-index-link:hover { color: var(--ink); }
+[data-concept="a"] .a-intro-index-link:hover::after { transform: scaleX(1); }
+
+/* --- cierre: the closing block (hairline frame + drawn accent rule) --- */
+[data-concept="a"] .a-cierre-box {
+  position: relative;
+  border: 1px solid var(--line-2);
+  background: var(--paper);
+  padding: 36px 24px 32px;
+}
+@media (min-width: 768px) {
+  [data-concept="a"] .a-cierre-box { padding: 56px 48px 48px; }
+}
+[data-concept="a"] .a-cierre-top {
+  position: absolute;
+  left: -1px;
+  right: -1px;
+  top: -1px;
+  height: 2px;
+  background: var(--accent-c);
+  transform-origin: 0 50%;
+}
+[data-concept="a"] .a-cierre-label { display: block; }
+[data-concept="a"] .a-cierre-title { margin: 16px 0 0; max-width: 22ch; }
+[data-concept="a"] .a-cierre-lead { margin: 20px 0 0; }
+[data-concept="a"] .a-cierre-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+/* --- header / menu: the link back to the landing --- */
+[data-concept="a"] .a-hdr-home {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  padding-block: 4px;
+  white-space: nowrap;
+  transition: color 0.2s var(--a-ease-snap);
+}
+[data-concept="a"] .a-hdr-home::before {
+  content: "←";
+  margin-right: 6px;
+}
+[data-concept="a"] .a-hdr-home:hover { color: var(--ink); }
+/* in the mobile sheet it takes its own row above the switches and the CTA */
+[data-concept="a"] .a-menu-home { flex: 1 0 100%; }
+
+/* =====================================================================
+   21. Section Director: hold blocks
+   A `hold` section (sections.ts) pins its [data-hold] intro under the fixed
+   header while the beats inside it are scrubbed across the pin distance, so
+   the page waits for the reveal. The block needs no look of its own — it is
+   the section's own title + lead — but it must be a plain full-width block:
+   ScrollTrigger wraps it in a .pin-spacer, and a spacer that inherited a grid
+   placement or a margin would move the block when the pin engages.
+   Under 768px and with reduced motion the director never builds the pin.
+   ===================================================================== */
+[data-concept="a"] [data-hold] {
+  display: block;
+  width: 100%;
+  margin: 0;
+}

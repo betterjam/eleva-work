@@ -43,7 +43,12 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  /* Every in-page link travels through `goTo()` (src/lib/scrollNav.ts), which tweens the
+     scroll position with GSAP so the pinned sections play their reveals on the way. Native
+     smooth scrolling animates the same property underneath that tween, so ScrollToPlugin
+     reads back a position it did not set and `autoKill` cancels the travel after ~150ms
+     (the page then never moves). GSAP owns the smoothness here; the browser must not. */
+  scroll-behavior: auto;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE/Edge */
 }
@@ -71,11 +76,15 @@ body {
   background: transparent !important;
 }
 
-/* Feature cards for 3D carousel */
+/* Feature cards for 3D carousel.
+   No `transition: transform` here: the pinned carousel writes transform (and
+   clip-path) to these elements with gsap.set on every scroll frame, and a CSS
+   transition would re-interpolate each of those writes over 100ms - the cards
+   would lag the scrub and desync from the pair wrapper's blur, which is in no
+   transition list at all. */
 .feature-card-3d {
   transform-style: preserve-3d;
   backface-visibility: hidden;
-  transition: transform 0.1s ease-out;
 }
 
 /* Smooth pulse animation */
@@ -296,3 +305,151 @@ body {
 [data-theme="light"] .cookie-btn-secondary:hover {
   background: #f1f5f9;
 }
+
+/* Programmatic scrolling (src/lib/scrollNav.ts) ----------------------------
+   The module still stamps this class while a travel tween runs, so page code can
+   tell a programmatic scroll from a user one. Scroll behaviour itself is 'auto'
+   globally (see the `html` rule): the class must never re-enable native smoothing. */
+html.is-programmatic-scroll {
+  scroll-behavior: auto;
+}
+
+/* Scroll cues (src/components/ScrollCue.tsx) */
+@keyframes scrollCueBobY {
+  0%, 100% { transform: translateY(-2px); }
+  50% { transform: translateY(3px); }
+}
+
+@keyframes scrollCueBobX {
+  0%, 100% { transform: translateX(-2px); }
+  50% { transform: translateX(3px); }
+}
+
+.scroll-cue-icon {
+  animation: scrollCueBobY 1.8s ease-in-out infinite;
+}
+
+.scroll-cue--up .scroll-cue-icon {
+  animation-direction: reverse;
+}
+
+.scroll-cue--next .scroll-cue-icon {
+  animation-name: scrollCueBobX;
+}
+
+/* The light overrides above rewrite the base .text-white/.bg-white/.border-white
+   utilities with !important, which beats Tailwind's non-important :hover rules -
+   so the cue's hover and focus states are restated here for the light theme. */
+[data-theme="light"] .scroll-cue:hover {
+  color: var(--text-primary) !important;
+  background: var(--card-hover) !important;
+  border-color: var(--accent) !important;
+}
+
+[data-theme="light"] .scroll-cue:focus-visible {
+  outline-color: var(--text-primary);
+}
+
+/* Landing reveals (src/components/Hero.tsx) --------------------------------
+   The hero headline and sub are split into masked lines by SplitText, which
+   wraps every line in an `overflow: clip` box sized exactly to the line. That
+   box would shave descenders (g, p, j) once a line has landed, so each wrapper
+   gets a little clip room underneath and takes it straight back out of the
+   layout with a matching negative margin. Only the wrappers are affected -
+   `linesClass: 'hero-line'` makes SplitText name them `hero-line-mask`. */
+.hero-line-mask {
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .scroll-cue-icon { animation: none; }
+}
+
+/* The cookie banner is fixed to the bottom of the viewport and is ~200px tall
+   on a phone, which would sit right on top of the footer links and the
+   "back to top" cue. Reserve the room only while the banner is mounted, so no
+   dead space is left behind once consent is given. */
+@media (max-width: 767px) {
+  body:has(.cookie-banner) .footer-inner {
+    padding-bottom: 14rem;
+  }
+}
+
+/* =====================================================================
+   Concept token bridge (v2 redesign concepts under /concepts/*)
+   Semantic colors resolve to CSS variables so they flip with data-theme.
+   Each concept defines the variable VALUES in its own stylesheet under
+   [data-concept="a"] / [data-concept="b"] (dark) and the light overrides.
+   Usage in JSX: text-ink, bg-paper, border-line, text-accent, font-display…
+   ===================================================================== */
+@theme inline {
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-paper-3: var(--paper-3);
+  --color-line: var(--line);
+  --color-line-2: var(--line-2);
+  --color-accent: var(--accent-c);
+  --color-accent-2: var(--accent-c2);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+}
+
+/* Fallback values so the tokens are never undefined (concepts override these). */
+:root {
+  --ink: #f4f7fb;
+  --ink-2: rgba(244, 247, 251, 0.72);
+  --ink-3: rgba(244, 247, 251, 0.48);
+  --paper: #070a12;
+  --paper-2: #0d111a;
+  --paper-3: #131826;
+  --line: rgba(244, 247, 251, 0.12);
+  --line-2: rgba(244, 247, 251, 0.22);
+  --accent-c: #14b8a6;
+  --accent-c2: #2dd4bf;
+  --accent-ink: #041412;
+  --accent-soft: rgba(20, 184, 166, 0.14);
+}
+
+[data-theme="light"] {
+  --ink: #0b1220;
+  --ink-2: rgba(11, 18, 32, 0.72);
+  --ink-3: rgba(11, 18, 32, 0.5);
+  --paper: #f7f9fb;
+  --paper-2: #ffffff;
+  --paper-3: #eef2f6;
+  --line: rgba(11, 18, 32, 0.12);
+  --line-2: rgba(11, 18, 32, 0.22);
+  --accent-c: #0d9488;
+  --accent-c2: #14b8a6;
+  --accent-ink: #ffffff;
+  --accent-soft: rgba(13, 148, 136, 0.12);
+}
+
+/* html-level rules while a concept page is mounted (ConceptRoot mirrors the attribute) */
+html[data-concept] {
+  scroll-behavior: auto; /* native smooth scrolling fights ScrollSmoother */
+  background: var(--paper);
+}
+
+html[data-concept] body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body, ui-sans-serif, system-ui, sans-serif);
+}
+
+.concept-root {
+  min-height: 100vh;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+/* Legacy light-mode overrides above target .text-white etc. with !important.
+   Concept pages avoid those utilities entirely and use the semantic tokens. */

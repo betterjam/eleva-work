@@ -1,119 +1,271 @@
 {
   "meta": {
     "product": "Eleva",
-    "tagline": "Evaluaciones de desempeño para colegios"
+    "tagline": "Evaluación de desempeño para colegios en Chile",
+    "description": "Eleva arma la pauta evaluativa de cada cargo del colegio desde un banco curado por psicólogos y expertos en evaluación, alineado a la normativa chilena, y corre el ciclo 360° con las ponderaciones, las etapas y el logro por dominio que tu colegio necesita."
   },
   "nav": {
-    "features": "Funciones",
+    "features": "Módulos",
     "how": "Cómo funciona",
     "security": "Seguridad",
     "pricing": "Precios",
     "faq": "Preguntas",
+    "platform": "Plataforma",
     "viewPricing": "Ver precios",
-    "requestDemo": "Solicitar demo"
+    "requestDemo": "Solicitar demo",
+    "menu": "Menú",
+    "toggleTheme": "Cambiar tema",
+    "toggleLanguage": "Cambiar idioma"
+  },
+  "cues": {
+    "keepScrolling": "Sigue bajando",
+    "keepScrollingTo": "Sigue bajando a {section}",
+    "next": "Siguiente",
+    "nextTo": "Siguiente: {section}",
+    "backToTop": "Volver arriba"
   },
   "hero": {
-    "titleStart": "Evaluaciones justas y consistentes",
-    "titleRotating": ["sin planillas", "sin caos", "sin Excel", "sin desorden", "sin sesgos"],
-    "sub": "Eleva ayuda a directores, RR.HH. y jefaturas a ejecutar ciclos de evaluación con rúbricas, evidencia, aprobaciones y analítica—alineado a estándares del establecimiento.",
+    "titleStart": "Evaluación 360° para cada cargo del colegio",
+    "titleRotating": [
+      "sin planillas",
+      "sin partir de cero",
+      "con la ley chilena",
+      "con IA que propone",
+      "con 360° ponderado"
+    ],
+    "sub": "Eleva arma la pauta evaluativa de cada cargo desde un banco de preguntas curado por psicólogos y expertos en evaluación, alineado a la normativa chilena; corre el ciclo 360° con las ponderaciones y etapas que tú defines, y devuelve el logro por dominio con sugerencias de mejora. La IA propone; tu colegio decide.",
     "ctaPrimary": "Solicitar demo",
-    "ctaSecondary": "Ver funciones",
-    "pill1Title": "Rúbricas",
-    "pill1Sub": "Por rol",
-    "pill2Title": "Evidencia",
-    "pill2Sub": "Archivos y notas",
-    "pill3Title": "Insights",
-    "pill3Sub": "Tendencias y equidad"
+    "ctaSecondary": "Ver los módulos",
+    "ctaDetail": "Conoce la plataforma en detalle",
+    "pill1Title": "Pauta por cargo",
+    "pill1Sub": "La IA la propone, tú la apruebas",
+    "pill2Title": "360° ponderado",
+    "pill2Sub": "Jefatura, auto, pares y hacia arriba",
+    "pill3Title": "Logro por dominio",
+    "pill3Sub": "Con sugerencias de mejora"
   },
   "social": {
-    "line": "Diseñado para colegios que necesitan consistencia y claridad",
-    "tags": ["Directivos", "RR.HH.", "Jefaturas UTP", "PIE", "Asistentes"]
+    "line": "Pensado para quienes responden por el desempeño de todo el colegio",
+    "tags": [
+      "Sostenedores",
+      "Directores",
+      "RR.HH.",
+      "Jefaturas UTP",
+      "Convivencia",
+      "PIE"
+    ]
   },
   "features": {
-    "title": "Todo lo necesario para ciclos de evaluación",
-    "sub": "Define rúbricas, reúne evidencia, gestiona aprobaciones y convierte resultados en planes de desarrollo.",
+    "title": "El ciclo completo, módulo por módulo",
+    "sub": "Del organigrama a la pauta, del 360° ponderado al logro por dominio: cada pieza del producto, con la normativa chilena adentro.",
+    "ctaTitle": "¿Lo vemos con tu organigrama?",
+    "ctaDesc": "Te mostramos el ciclo completo con los cargos reales de tu colegio.",
+    "detailCta": "Ver la plataforma en detalle",
     "cards": [
-      {"title": "Rúbricas por rol", "desc": "Crea estándares por cargo: docentes, orientadores, directivos, asistentes. Versiona y controla cambios.", "image": "/images/Eleva-IllustArtboard-3.png"},
-      {"title": "Evidencia y archivos", "desc": "Adjunta planificaciones, observaciones, PDFs, notas y actas por dominio y puntaje.", "image": "/images/Eleva-IllustArtboard-4.png"},
-      {"title": "Calibración", "desc": "Detecta desviaciones temprano. Compara distribuciones por evaluador y área con chequeos de equidad.", "image": "/images/Eleva-IllustArtboard-5.png"},
-      {"title": "Metas y desarrollo", "desc": "Transforma hallazgos en objetivos con plazos, acciones de acompañamiento y seguimiento.", "image": "/images/Eleva-IllustArtboard-6.png"},
-      {"title": "Aprobaciones", "desc": "Flujos claros para revisión de jefatura, RR.HH. y cierre final con historial completo.", "image": "/images/Eleva-IllustArtboard-7.png"},
-      {"title": "Reportes", "desc": "Resúmenes listos para dirección y cumplimiento—sin consolidación manual en Excel.", "image": "/images/Eleva-IllustArtboard-8.png"}
+      {
+        "title": "Organigrama y cargos",
+        "desc": "Arma el árbol del colegio y calza cada cargo con un catálogo de cobertura completa.",
+        "image": "/images/Eleva-IllustArtboard-3.png"
+      },
+      {
+        "title": "Pauta generada con IA",
+        "desc": "La IA elige las preguntas de cada cargo y arma la pauta. Tú la revisas.",
+        "image": "/images/Eleva-IllustArtboard-4.png"
+      },
+      {
+        "title": "Banco curado de preguntas",
+        "desc": "Preguntas creadas por psicólogos y expertos en evaluación, agrupadas por área y dimensión.",
+        "image": "/images/Eleva-IllustArtboard-5.png"
+      },
+      {
+        "title": "360° con cuatro perspectivas",
+        "desc": "Autoevaluación, jefatura, colaborador y pares, con las ponderaciones que defines.",
+        "image": "/images/Eleva-IllustArtboard-6.png"
+      },
+      {
+        "title": "Seis etapas de proceso",
+        "desc": "De en preparación a cerrada. Cada proceso congela su flujo al generarse.",
+        "image": "/images/Eleva-IllustArtboard-7.png"
+      },
+      {
+        "title": "Logro por dominio",
+        "desc": "Las respuestas Likert 1–5 se convierten en logro por dominio, con una sugerencia de mejora.",
+        "image": "/images/Eleva-IllustArtboard-8.png"
+      }
     ]
   },
   "how": {
     "title": "Cómo funciona",
-    "sub": "Un flujo simple para líderes, evaluadores y colaboradores—alineado al calendario escolar.",
+    "sub": "Tres pasos: la estructura, la pauta y el ciclo. En cada uno, la última palabra es del colegio.",
     "steps": [
-      {"title": "1) Configura roles y rúbricas", "desc": "Parte con plantillas o importa tu rúbrica. Asigna evaluadores y fechas por área.", "image": "/images/Eleva-IllustArtboard-9.png"},
-      {"title": "2) Reúne evidencia", "desc": "Notas de observación, archivos y feedback quedan vinculados a cada dominio.", "image": "/images/Eleva-IllustArtboard-10.png"},
-      {"title": "3) Revisa y cierra", "desc": "Aprobaciones por liderazgo/RR.HH. con puntos de calibración y trazabilidad.", "image": "/images/Eleva-IllustArtboard-11.png"}
+      {
+        "title": "Configura organigrama y cargos",
+        "desc": "Carga la estructura del colegio y calza cada puesto con el catálogo. La IA propone el cargo y explica su razonamiento; tú confirmas o eliges otro.",
+        "image": "/images/Eleva-IllustArtboard-9.png"
+      },
+      {
+        "title": "La IA arma la pauta, tú la revisas",
+        "desc": "Cada cargo recibe su pauta evaluativa con preguntas curadas, agrupadas por marco y área y trazadas a la normativa chilena. Ajusta lo que quieras antes de publicar.",
+        "image": "/images/Eleva-IllustArtboard-10.png"
+      },
+      {
+        "title": "Corre el ciclo 360° y lee los resultados",
+        "desc": "Define ponderaciones y etapas, lanza el proceso y recibe el logro por dominio con sugerencias de mejora para cada persona evaluada.",
+        "image": "/images/Eleva-IllustArtboard-11.png"
+      }
     ],
-    "dashboardTitle": "Panel del ciclo",
-    "dashboardSub": "Monitorea avance, pendientes y próximos hitos por rol y área.",
+    "dashboardTitle": "Panel del proceso",
+    "dashboardSub": "Avance del ciclo por cargo, perspectiva y etapa.",
     "rows": [
-      {"k": "Observaciones programadas", "v": "48"},
-      {"k": "Evaluaciones completadas", "v": "112"},
-      {"k": "En espera de aprobación", "v": "17"},
-      {"k": "Seguimientos vencidos", "v": "6"}
+      {
+        "k": "Etapa actual",
+        "v": "En feedback"
+      },
+      {
+        "k": "Respuestas",
+        "v": "32 de 32"
+      },
+      {
+        "k": "Logro",
+        "v": "3,83 /5"
+      },
+      {
+        "k": "Ponderación jefatura",
+        "v": "25 %"
+      }
     ],
     "nextActionLabel": "Siguiente acción",
-    "nextActionTitle": "Enviar recordatorio a evaluadores",
+    "nextActionTitle": "Enviar la evaluación a retroalimentación",
     "send": "Enviar",
     "preview": "Vista previa"
   },
   "security": {
     "title": "Seguridad y cumplimiento",
-    "sub": "Protege información sensible con controles de acceso y trazabilidad.",
+    "sub": "Son datos de personas: acceso controlado y trazabilidad en cada proceso.",
     "cards": [
-      {"title": "Acceso por roles", "desc": "Permisos separados para RR.HH., evaluadores, administración y colaboradores."},
-      {"title": "Trazabilidad", "desc": "Registra cambios, aprobaciones e historial por ciclo."},
-      {"title": "Retención de datos", "desc": "Define retención según políticas internas y exporta cuando sea necesario."}
+      {
+        "title": "Acceso por roles",
+        "desc": "Permisos separados para sostenedor, dirección, RR.HH., evaluadores y evaluados."
+      },
+      {
+        "title": "Trazabilidad",
+        "desc": "Registro de cambios, aprobaciones e historial por proceso de evaluación."
+      },
+      {
+        "title": "Retención de datos",
+        "desc": "Define la retención según tus políticas internas y exporta cuando lo necesites."
+      }
     ],
     "adminTitle": "Controles de administración",
-    "adminSub": "Políticas simples para tu organización: áreas, departamentos y evaluadores.",
+    "adminSub": "Configuración central para el sostenedor, ajustable por cada colegio.",
     "adminRows": [
-      {"label": "SSO / SAML", "value": "Disponible"},
-      {"label": "Forzar MFA", "value": "Soportado"},
-      {"label": "Listas IP", "value": "Opcional"},
-      {"label": "Exportaciones", "value": "CSV / PDF"}
+      {
+        "label": "SSO / SAML",
+        "value": "Disponible"
+      },
+      {
+        "label": "Forzar MFA",
+        "value": "Soportado"
+      },
+      {
+        "label": "Listas IP",
+        "value": "Opcional"
+      },
+      {
+        "label": "Exportaciones",
+        "value": "CSV / PDF"
+      }
     ],
-    "note": "Cumplimiento con normativas locales de protección de datos."
+    "note": "Cumplimiento con la normativa local de protección de datos personales."
   },
   "pricing": {
     "title": "Precios simples y transparentes",
-    "sub": "Planes según cantidad de colaboradores. Crece cuando lo necesites.",
+    "sub": "Planes por colegio. Valores referenciales que confirmamos contigo en la demo.",
     "plans": [
-      {"name": "Starter", "price": "$199", "note": "mensual / colegio", "bullets": ["Hasta 100 colaboradores", "Rúbricas y ciclos", "Evidencia y notas", "Reportes básicos"], "cta": "Comenzar ahora"},
-      {"name": "Profesional", "price": "$399", "note": "mensual", "bullets": ["Colaboradores ilimitados", "Aprobaciones y auditoría", "Calibración y equidad", "Reportes avanzados"], "cta": "Hablar con ventas", "highlight": "Más elegido"},
-      {"name": "Enterprise", "price": "A medida", "note": "según necesidad", "bullets": ["SSO/SAML", "Onboarding dedicado", "Controles avanzados", "Integraciones"], "cta": "Solicitar cotización"}
+      {
+        "name": "Starter",
+        "price": "$199",
+        "note": "mensual / colegio",
+        "bullets": [
+          "Organigrama y catálogo de cargos",
+          "Pauta generada por cargo",
+          "Ciclo 360° con cuatro perspectivas",
+          "Logro por dominio"
+        ],
+        "cta": "Comenzar ahora"
+      },
+      {
+        "name": "Profesional",
+        "price": "$399",
+        "note": "mensual / colegio",
+        "bullets": [
+          "Todo lo del plan Starter",
+          "Ponderaciones y etapas configurables",
+          "Sugerencias de mejora por dominio",
+          "Exportaciones CSV / PDF"
+        ],
+        "cta": "Hablar con nosotros",
+        "highlight": "Más elegido"
+      },
+      {
+        "name": "Enterprise",
+        "price": "A medida",
+        "note": "según necesidad",
+        "bullets": [
+          "Varios colegios con configuración central",
+          "SSO / SAML",
+          "Onboarding dedicado",
+          "Controles avanzados"
+        ],
+        "cta": "Solicitar cotización"
+      }
     ],
     "procTitle": "¿Necesitas términos para compra pública?",
-    "procSub": "Ofrecemos facturación anual y onboarding alineado al año escolar."
+    "procSub": "Facturación anual y puesta en marcha alineada al año escolar."
   },
   "faq": {
     "title": "Preguntas frecuentes",
-    "sub": "Dudas típicas de liderazgo escolar y RR.HH.",
+    "sub": "Lo que más nos preguntan sostenedores, directores y equipos de RR.HH.",
     "items": [
-      {"q": "¿Podemos usar nuestra rúbrica actual?", "a": "Sí. Puedes partir con plantillas o cargar tu estructura y bandas de puntaje. Se puede versionar por ciclo."},
-      {"q": "¿Sirve para cargos no docentes?", "a": "Totalmente. Define rúbricas por rol para orientadores, directivos, asistentes y equipos de apoyo."},
-      {"q": "¿El director administra su colegio y RR.HH. ve todo?", "a": "Sí. Puedes delegar administración por área mientras RR.HH. mantiene políticas y supervisión general."},
-      {"q": "¿Incluye planes de mejora?", "a": "Las evaluaciones pueden generar planes de desarrollo con objetivos, acciones y seguimientos."}
+      {
+        "q": "¿Sirve para asistentes de la educación?",
+        "a": "Sí. Eleva evalúa todos los cargos del colegio: docentes, directivos, asistentes de la educación, PIE, administrativos y dirección. El catálogo tiene cobertura completa, con nombre, alias y variantes de género para cada cargo."
+      },
+      {
+        "q": "¿Podemos ajustar la pauta que propone la IA?",
+        "a": "La pauta que genera la IA es una propuesta, no una imposición: revisas las preguntas, ajustas dimensiones y ponderaciones, y la apruebas antes de lanzar el proceso. Cada proceso congela su configuración al generarse, así que los históricos quedan intactos."
+      },
+      {
+        "q": "¿Qué hace la IA y qué decide el colegio?",
+        "a": "La IA propone a qué cargo del catálogo corresponde cada puesto de tu organigrama y explica por qué, arma la pauta evaluativa desde el banco curado y sugiere mejoras por dominio al cerrar. Las decisiones —el cargo, la pauta, las ponderaciones y el resultado— son siempre del colegio."
+      },
+      {
+        "q": "¿Cómo se alinea con la normativa chilena?",
+        "a": "Cada pregunta del banco declara la normativa y los marcos que evalúa: Ley 21.643 (Ley Karin), Ley 20.903 de Carrera Docente, el Marco para la Buena Dirección y Liderazgo Escolar, Ley 21.719 de Protección de Datos Personales, Ley 20.536 sobre Violencia Escolar y las leyes de protección a la niñez, entre otras. La pauta de cada cargo muestra a qué marcos se alinea."
+      },
+      {
+        "q": "¿Qué perspectivas y etapas tiene el 360°?",
+        "a": "Cuatro perspectivas: autoevaluación, de jefatura a colaborador, de colaborador a jefatura y entre pares, con las ponderaciones que defines (deben sumar 100). Y seis etapas: en preparación, iniciada, en feedback, feedback respondido, finalizada y cerrada."
+      },
+      {
+        "q": "¿Funciona para un sostenedor con varios colegios?",
+        "a": "Sí. La configuración central define las etapas y los valores por defecto para toda la red, y cada colegio puede sobrescribirlos en su propia página de etapas."
+      }
     ],
-    "finalTitle": "¿Listo para tu próximo ciclo con confianza?",
-    "finalSub": "Solicita una demo y adaptamos el flujo a tu calendario escolar y rúbrica.",
+    "finalTitle": "¿Listo para tu próximo ciclo de evaluación?",
+    "finalSub": "Solicita una demo y armamos la pauta de un cargo real de tu colegio.",
     "viewPricing": "Ver precios",
     "requestDemo": "Solicitar demo"
   },
   "demo": {
-    "title": "Solicita una demo personalizada",
-    "sub": "Agenda una demostración de 30 minutos y te mostramos cómo Eleva se adapta al calendario y rúbricas de tu colegio.",
-    "benefit1Title": "Demo personalizada",
-    "benefit1Sub": "Te mostramos flujos adaptados a tu realidad",
+    "title": "Agenda una demo con los cargos de tu colegio",
+    "sub": "En 30 minutos armamos la pauta de un cargo real, definimos las ponderaciones del 360° y recorremos el ciclo completo hasta el logro por dominio.",
+    "benefit1Title": "Demo con tus cargos",
+    "benefit1Sub": "Usamos tu organigrama, no un ejemplo genérico",
     "benefit2Title": "Sin compromiso",
-    "benefit2Sub": "Explora la plataforma sin obligación",
-    "benefit3Title": "Respuesta en 24h",
-    "benefit3Sub": "Nuestro equipo te contactará pronto",
+    "benefit2Sub": "Conoce la plataforma sin obligación",
+    "benefit3Title": "Respuesta en 24 horas",
+    "benefit3Sub": "Te contactamos para coordinar la hora",
     "nameLabel": "Nombre completo",
     "namePlaceholder": "Tu nombre",
     "emailLabel": "Correo electrónico",
@@ -127,38 +279,42 @@
     "roleUTP": "Jefe/a UTP",
     "roleOther": "Otro",
     "messageLabel": "Mensaje (opcional)",
-    "messagePlaceholder": "Cuéntanos sobre tu colegio o dudas específicas...",
+    "messagePlaceholder": "Cuéntanos de tu colegio o del cargo que quieres evaluar primero...",
     "submit": "Solicitar demo",
     "submitting": "Enviando...",
     "successTitle": "¡Solicitud enviada!",
-    "successSub": "Te contactaremos en las próximas 24 horas para coordinar tu demo.",
+    "successSub": "Te contactamos dentro de 24 horas para coordinar la demo.",
     "privacy": "Al enviar, aceptas que te contactemos sobre Eleva."
   },
   "footer": {
-    "line": "Evaluaciones de desempeño para colegios",
+    "line": "Evaluación 360° para cada cargo del colegio",
+    "platform": "Plataforma",
     "security": "Seguridad",
     "faq": "Preguntas",
     "contact": "Contacto",
     "funded": "Apoyado por Ignite"
   },
   "mock": {
-    "title": "Ciclo de evaluación",
-    "org": "Colegio San José",
-    "cardTitle": "Docente - Práctica de aula",
-    "status": "En revisión",
-    "d1": "1) Planificación",
-    "d2": "2) Instrucción",
-    "d3": "3) Ambiente",
-    "evidence": "Evidencia adjunta",
-    "files": "4 archivos",
-    "approval": "Aprobación jefatura",
-    "pending": "Pendiente",
-    "growth": "Plan de desarrollo",
-    "ready": "Listo",
-    "equityLabel": "Chequeo de equidad",
-    "equityTitle": "Compara distribución por rol y evaluador",
-    "equityNote": "Sin outliers en este ciclo",
-    "mockNote": "Vista previa del sistema"
+    "title": "Pauta evaluativa",
+    "org": "Colegio Ejemplo",
+    "cardTitle": "Director · DIR",
+    "status": "En feedback",
+    "d1": "Liderazgo",
+    "d2": "Convivencia escolar",
+    "d3": "Cumplimiento normativo",
+    "v1": "4,1",
+    "v2": "3,8",
+    "v3": "3,6",
+    "evidence": "Perspectivas 360°",
+    "files": "4 ponderadas",
+    "approval": "Ponderación jefatura",
+    "pending": "25 %",
+    "growth": "Sugerencia de mejora",
+    "ready": "Por dominio",
+    "equityLabel": "Resultado del ciclo",
+    "equityTitle": "Logro 3,83 /5",
+    "equityNote": "32 de 32 respondidas · escala Likert 1–5",
+    "mockNote": "Vista de ejemplo del producto"
   },
   "lang": {
     "switch": "Idioma",

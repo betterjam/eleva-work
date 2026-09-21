@@ -7,13 +7,27 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
+// Only a language-neutral fallback title lives here. The description used to
+// be a hardcoded Spanish sentence describing a different product, and it
+// shadowed meta.description for every locale; each page under `[locale]` now
+// exports its own generateMetadata with the translated strings instead.
 export const metadata: Metadata = {
-  title: "Eleva | Evaluación de Desempeño Escolar",
-  description: "Plataforma integral para crear cuestionarios, escalas de evaluación y generar reportes automatizados para instituciones educativas en Chile.",
+  title: 'Eleva',
 };
 
+// This is the only layout that renders <html>, and it sits above the [locale]
+// segment, so it cannot read the locale at build time. The script below (which
+// already runs synchronously in <head>, before the body is parsed) reads it off
+// the path instead, so /en and /en/platform declare English to screen readers,
+// browser translation and hyphenation rather than inheriting the `es` default.
 const themeScript = `
   (function() {
+    try {
+      var locale = (location.pathname.split('/')[1] || '').toLowerCase();
+      if (locale === 'en' || locale === 'es') {
+        document.documentElement.lang = locale;
+      }
+    } catch (e) {}
     try {
       var stored = localStorage.getItem('theme');
       if (stored) {

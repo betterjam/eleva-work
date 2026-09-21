@@ -6,13 +6,33 @@ import Footer from '@/components/Footer';
 import AnimatedBackground from '@/components/AnimatedBackground';
 import CookieBanner from '@/components/CookieBanner';
 import WhatsAppButton from '@/components/WhatsAppButton';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
+
+type Props = {
+  params: Promise<{ locale: string }>;
+};
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-export default function Home() {
+// The landing's <meta name="description"> comes from here, not from the root
+// layout: only this route knows the locale, so only here can meta.description
+// be the translated one.
+export async function generateMetadata({ params }: Props) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'meta' });
+  return {
+    title: `${t('product')} | ${t('tagline')}`,
+    description: t('description'),
+  };
+}
+
+export default async function Home({ params }: Props) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
   return (
     <main className="min-h-screen">
       <AnimatedBackground />

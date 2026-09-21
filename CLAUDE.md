@@ -140,3 +140,28 @@ Check `formData.get('website')` - if filled, it's a bot.
 - Theme flash is prevented by inline script in `<head>` (see layout.tsx)
 - WhatsApp number: 56979591791
 - Cookie consent stored in localStorage as `cookie-consent`
+
+## Redesign concepts (2026-09)
+
+Two full redesign concepts live next to the current page so they can be compared before one is
+promoted. The live page at `/` is untouched.
+
+| Concept | Route | Code | Copy namespace |
+|---------|-------|------|----------------|
+| A · "Plano Maestro" (technical blueprint) | `/concepts/a` (`/en/concepts/a`) | `src/app/[locale]/concepts/a`, `src/components/concepts/a`, `src/styles/concept-a.css` | `messages/concept-a/{es,en}.json` → `useTranslations('conceptA')` |
+| B · "Memoria Anual" (editorial) | `/concepts/b` (`/en/concepts/b`) | `.../concepts/b`, `src/styles/concept-b.css` | `messages/concept-b/{es,en}.json` → `useTranslations('conceptB')` |
+
+- Shared foundation: `src/components/concepts/shared/` — `gsapSetup.ts` (registers ScrollTrigger,
+  ScrollSmoother, SplitText, CustomEase; eases `reveal` / `snap` / `settle`), `SmoothScroll.tsx`
+  (ScrollSmoother wrapper + `useSmoothScroll().scrollTo`), `hooks.ts` (theme / locale / media
+  queries), `ConceptRoot.tsx`, `ConceptSwitcher.tsx` (review-only pill, delete when a concept ships).
+- Fixed elements (headers, floating buttons) go OUTSIDE `<SmoothScroll>`; anchors use `scrollTo`.
+- Semantic theme tokens in `globals.css` (`@theme inline`): `text-ink`, `text-ink-2`, `bg-paper`,
+  `bg-paper-2`, `border-line`, `text-accent`, `bg-accent`, `text-accent-ink`, `font-display`,
+  `font-body`, `font-mono`. Each concept stylesheet sets the values under `[data-concept="x"]`.
+- Do NOT use `text-white*`, `bg-white*`, `border-white*`, `bg-black/20|40`, `blur-3xl`, `text-black`
+  or `id="demo"` in concept code: legacy light-mode overrides in `globals.css` hijack them.
+- Product screenshots used by both concepts: `public/images/app/*.png`.
+- Placeholders still to confirm with the business: pricing, SSO/MFA/retention claims, testimonial.
+- To promote a concept: render its page from `src/app/[locale]/page.tsx`, delete the other concept
+  and the switcher, merge its messages into `messages/{es,en}.json`.

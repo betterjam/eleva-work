@@ -1,0 +1,993 @@
+{
+  "meta": {
+    "title": "Eleva · The platform in detail",
+    "description": "How Eleva works, module by module: the org chart and the role catalog, the rubric the AI assembles from a curated question bank, the 360° cycle with its weightings and stages, achievement by domain, and the Chilean regulation everything is aligned to."
+  },
+  "common": {
+    "section": "§",
+    "logoAlt": "Eleva",
+    "skipToContent": "Skip to content",
+    "whatsappMessage": "Hola! Me interesa saber más sobre Eleva"
+  },
+  "header": {
+    "nav": [
+      {
+        "id": "system",
+        "num": "01",
+        "label": "System"
+      },
+      {
+        "id": "estructura",
+        "num": "02",
+        "label": "Structure"
+      },
+      {
+        "id": "pauta",
+        "num": "03",
+        "label": "Rubric"
+      },
+      {
+        "id": "proceso",
+        "num": "04",
+        "label": "Process"
+      },
+      {
+        "id": "resultados",
+        "num": "05",
+        "label": "Results"
+      },
+      {
+        "id": "ia",
+        "num": "06",
+        "label": "AI"
+      },
+      {
+        "id": "normativa",
+        "num": "07",
+        "label": "Regulation"
+      }
+    ],
+    "cta": "Request a demo",
+    "menuOpen": "Open menu",
+    "menuClose": "Close menu",
+    "theme": {
+      "label": "Theme",
+      "dark": "Dark",
+      "light": "Light"
+    },
+    "locale": {
+      "label": "Language",
+      "es": "ES",
+      "en": "EN"
+    },
+    "counter": {
+      "intro": "Platform",
+      "system": "The system",
+      "estructura": "Structure",
+      "pauta": "Rubric",
+      "proceso": "Process",
+      "resultados": "Results",
+      "ia": "AI",
+      "normativa": "Regulation"
+    },
+    "progressLabel": "Reading progress",
+    "home": "Home"
+  },
+  "intro": {
+    "eyebrow": "Platform · In detail",
+    "title": "How Eleva works, piece by piece.",
+    "lead": "This page walks through the whole system, module by module, with the real product screens. It starts at the org chart and the role catalog, goes through the rubric the AI assembles from a curated question bank, and ends at the Chilean regulation everything is aligned to.",
+    "back": "← Back to the home page",
+    "cta": "Request a demo",
+    "indexLabel": "On this page",
+    "index": [
+      {
+        "id": "system",
+        "num": "01",
+        "label": "System"
+      },
+      {
+        "id": "estructura",
+        "num": "02",
+        "label": "Structure"
+      },
+      {
+        "id": "pauta",
+        "num": "03",
+        "label": "Rubric"
+      },
+      {
+        "id": "proceso",
+        "num": "04",
+        "label": "Process"
+      },
+      {
+        "id": "resultados",
+        "num": "05",
+        "label": "Results"
+      },
+      {
+        "id": "ia",
+        "num": "06",
+        "label": "AI"
+      },
+      {
+        "id": "normativa",
+        "num": "07",
+        "label": "Regulation"
+      }
+    ]
+  },
+  "system": {
+    "code": "§01",
+    "runningHead": "How the pieces connect",
+    "title": "A system, not a form.",
+    "lead": "Org chart, role catalog, question bank, rubrics per role, weighted perspectives, stages and results: each piece feeds the next.",
+    "progress": "{current} / 04",
+    "index": [
+      {
+        "num": "01",
+        "label": "Structure",
+        "sentence": "The school's org chart rests on a role catalog with complete coverage."
+      },
+      {
+        "num": "02",
+        "label": "Perspectives",
+        "sentence": "Four 360° perspectives with weightings that add up to 100."
+      },
+      {
+        "num": "03",
+        "label": "Rubric",
+        "sentence": "From a curated question bank, the complete rubric for each role."
+      },
+      {
+        "num": "04",
+        "label": "Process and result",
+        "sentence": "Six stages and an achievement score per domain."
+      }
+    ],
+    "diagram": {
+      "nodes": [
+        {
+          "name": "School owner",
+          "code": "SOST"
+        },
+        {
+          "name": "Director",
+          "code": "DIR"
+        },
+        {
+          "name": "Asistente de Aula Básica",
+          "code": "ASIST_AULA_BAS"
+        }
+      ],
+      "catalogTitle": "Catalog · complete coverage",
+      "catalogNote": "Every role in the school",
+      "perspectives": [
+        {
+          "label": "Upward",
+          "weight": "25 %"
+        },
+        {
+          "label": "Self-assessment",
+          "weight": "25 %"
+        },
+        {
+          "label": "Manager",
+          "weight": "25 %"
+        },
+        {
+          "label": "Peer to peer",
+          "weight": "25 %"
+        }
+      ],
+      "ringCenter": "100 %",
+      "ringLabel": "Weighting",
+      "bank": "Bank · curated",
+      "rubric": "Rubric · Director · DIR",
+      "rubricLine": "Complete for the role",
+      "rubricNote": "Regulation · example",
+      "criteria": [
+        "Dimension",
+        "Perspective",
+        "Priority",
+        "Regulation"
+      ],
+      "stages": [
+        "In Preparation",
+        "Started",
+        "In Feedback",
+        "Feedback Answered",
+        "Finalized",
+        "Closed"
+      ],
+      "logroLabel": "Achievement",
+      "logroValue": "3.83",
+      "logroUnit": "/5",
+      "exampleTag": "Example"
+    },
+    "plates": [
+      {
+        "fig": "FIG. 1.1",
+        "caption": "Org chart · 2026 · Sostenedor (SOST) · Current view",
+        "alt": "Eleva org chart editor with the school owner node, the year selector and the Current and Proposed views."
+      },
+      {
+        "fig": "FIG. 1.2",
+        "caption": "Perspective weights · Total 100 / 100",
+        "alt": "Wizard step: four perspectives at 25 % each and a chart adding up to 100 %."
+      },
+      {
+        "fig": "FIG. 1.3",
+        "caption": "Generated rubric · Director · DIR · Example",
+        "alt": "Generated evaluation rubric for Director: questions grouped by framework and area, each with its dimension, perspectives, priority and laws."
+      },
+      {
+        "fig": "FIG. 1.4",
+        "caption": "Evaluation · 32 of 32 answered · Achievement 3.83 /5",
+        "alt": "Header of a finalized evaluation: progress 32 of 32 answered and achievement 3.83 out of 5."
+      }
+    ]
+  },
+  "estructura": {
+    "code": "§02",
+    "runningHead": "Org chart · Role catalog · AI match",
+    "title": "Every role in the school, modeled properly.",
+    "lead": "Not only teachers: leadership, education assistants, special-needs (PIE) staff, administrative staff, the board and the school owner. A role catalog with complete coverage, each role with a name, aliases, gender variants and reporting and evaluation relationships.",
+    "blocks": [
+      {
+        "id": "organigrama",
+        "index": "2.1",
+        "label": "Org chart",
+        "title": "The school's org chart, by year.",
+        "body": "A tree of roles per year, with a Current view and a Proposed view from the catalog. Each node shows the person holding the role. The tree flags orphan roles (1 orphan in the example). \"Review hierarchy\" checks the structure and \"Improve tree with AI\" proposes how to order it. You decide what to apply.",
+        "rows": [
+          {
+            "key": "Year",
+            "value": "2026"
+          },
+          {
+            "key": "Views",
+            "value": "Current · Proposed (catalog)"
+          },
+          {
+            "key": "Actions",
+            "value": "Review hierarchy · Improve tree with AI"
+          },
+          {
+            "key": "Check",
+            "value": "1 orphan detected · example"
+          }
+        ]
+      },
+      {
+        "id": "catalogo",
+        "index": "2.2",
+        "label": "Role catalog",
+        "title": "Complete coverage, with the right names.",
+        "body": "Each catalog role has a code, a family, aliases, names in Chilean Spanish and English, and gender variants. It declares who it reports to and whom it evaluates. It includes education assistants: classroom assistant, school-bus assistant, general services, receptionist, risk-prevention officer. It exports and imports as JSON and is applied to a school.",
+        "rows": [
+          {
+            "key": "Coverage",
+            "value": "Every role in the school"
+          },
+          {
+            "key": "Code",
+            "value": "DIR · Executive Leadership"
+          },
+          {
+            "key": "Aliases",
+            "value": "Director = Rector = Principal = Head of School"
+          },
+          {
+            "key": "Gender",
+            "value": "Director · Directora · Director-Directora"
+          },
+          {
+            "key": "Reports to",
+            "value": "School owner"
+          },
+          {
+            "key": "Evaluates",
+            "value": "PIE Coordinator · School Coexistence Officer · Library / CRA Officer · …"
+          },
+          {
+            "key": "Actions",
+            "value": "Export JSON · Import JSON · Apply to school"
+          }
+        ],
+        "example": {
+          "label": "Role description · Director",
+          "text": "Highest executive authority of the school. Leads pedagogical, administrative and coexistence management, ensuring compliance with the Institutional Educational Project and current regulation. Reports to the school owner and represents the school before the community."
+        }
+      },
+      {
+        "id": "match",
+        "index": "2.3",
+        "label": "AI role match",
+        "title": "Your org chart, on the catalog.",
+        "body": "For each unassigned role in the school, the AI recommends catalog templates with a confidence percentage and explains why. You pick an option with \"Choose\", or describe what is missing and receive a new proposal.",
+        "rows": [
+          {
+            "key": "School role",
+            "value": "Asistente de Aula Básica (primary classroom assistant)"
+          },
+          {
+            "key": "Recommendation",
+            "value": "Asistente de Aula Básica · ASIST_AULA_BAS · 99 % · example"
+          },
+          {
+            "key": "Reasoning",
+            "value": "Name and description identical to ASIST_AULA_BAS. Child of the Primary Homeroom Teacher, consistent as direct classroom support for that cycle."
+          },
+          {
+            "key": "Dimensions",
+            "value": "Communication · Classroom Management · Inclusion and Diversity · Dealing with Students · …"
+          },
+          {
+            "key": "Frameworks and regulations",
+            "value": "Decreto 170/2010 (PIE) · Ley 21.545 (Autism Law) · Ley 20.845 (School Inclusion) · …"
+          }
+        ],
+        "barsLabel": "Match options · confidence",
+        "bars": [
+          {
+            "label": "Asistente de Aula Básica",
+            "code": "ASIST_AULA_BAS",
+            "pct": 99
+          },
+          {
+            "label": "Teaching Assistant",
+            "code": "",
+            "pct": 40
+          },
+          {
+            "label": "Co-Teacher, Primary",
+            "code": "",
+            "pct": 30
+          },
+          {
+            "label": "PIE Assistant Technician",
+            "code": "",
+            "pct": 10
+          }
+        ]
+      }
+    ],
+    "plates": [
+      {
+        "fig": "FIG. 2.1",
+        "caption": "Org chart · Sostenedor (SOST) · 2026 · Current view",
+        "alt": "Org chart editor: school owner, board member and general-services roles, with Details, Move and Remove actions."
+      },
+      {
+        "fig": "FIG. 2.2",
+        "caption": "Eleva catalog · Director · DIR · Executive Leadership",
+        "alt": "Role catalog: Director node with aliases Rector, Principal and Head of School, and a detail panel with gender variants and relationships."
+      },
+      {
+        "fig": "FIG. 2.3",
+        "caption": "Template recommendation · Asistente de Aula Básica · 99 % · Choose",
+        "alt": "AI role match: four options with a confidence percentage and the template detail with its dimensions, frameworks and regulations."
+      }
+    ]
+  },
+  "pauta": {
+    "code": "§03",
+    "runningHead": "Curated bank · Generated rubric",
+    "title": "From the curated bank to a complete rubric for every role.",
+    "lead": "The bank is curated: questions written by psychologists and evaluation experts, aligned to Chilean regulation. Each one declares its area, its dimension, which 360° perspectives can answer it, its priority, its weight and the law behind it. The AI selects by dimension, perspective, priority and regulation and assembles the role's complete rubric; you review it before using it.",
+    "bank": {
+      "label": "Question bank · curated",
+      "sub": "Questions written by psychologists and evaluation experts · aligned to Chilean regulation",
+      "rows": [
+        {
+          "key": "Type",
+          "value": "Likert"
+        },
+        {
+          "key": "Priority",
+          "value": "0 Mandatory · 1 · 2"
+        },
+        {
+          "key": "Weight",
+          "value": "1.5"
+        },
+        {
+          "key": "Perspectives",
+          "value": "Peer · Upward · Manager · Self"
+        },
+        {
+          "key": "Collections",
+          "value": "MINEDUC — Bundle Docente General · Eleva — Eje Transversal · Eleva — 360° Base · Eleva — Autoevaluación"
+        }
+      ],
+      "plate": {
+        "fig": "FIG. 3.1",
+        "caption": "Question bank · curated questions grouped by area and dimension · detail of Q_COLAB_RED_06",
+        "alt": "Eleva catalog, question bank: table with code, text, area, dimension, perspectives and priority, and a detail panel for question Q_COLAB_RED_06 with its 360° perspectives, collections and regulation."
+      }
+    },
+    "stage": {
+      "srSummary": "Assembly example: from the curated bank, the AI selects the questions that apply to the Director role by dimension, perspective, priority and regulation, and assembles its evaluation rubric with the role's dimensions, the regulations and frameworks it evaluates and each question with the laws behind it.",
+      "bankLabel": "Question bank",
+      "bankMeta": "curated · traced to Chilean regulation",
+      "ledgerHead": {
+        "code": "Code",
+        "text": "Text",
+        "dimension": "Dimension",
+        "perspectives": "Perspectives",
+        "priority": "Prio",
+        "laws": "Regulation"
+      },
+      "selectionLabel": "Selection",
+      "criteria": [
+        "Dimension",
+        "Perspective",
+        "Priority",
+        "Regulation"
+      ],
+      "selectedTag": "→ Director rubric",
+      "note": "Priority 0 = mandatory · example weight 1.5 · Likert type.",
+      "slips": [
+        {
+          "code": "Q_COLAB_RED_06",
+          "text": "Meets the commitments agreed with the team",
+          "dimension": "Teamwork",
+          "perspectives": [
+            "Peer",
+            "Upward",
+            "Manager",
+            "Self"
+          ],
+          "priority": "P0",
+          "laws": [
+            "Eleva 360° GP"
+          ],
+          "selected": false
+        },
+        {
+          "code": "Q_COLAB_RED_08",
+          "text": "Knows, disseminates and ensures compliance with the School Coexistence Regulations and internal protocols",
+          "dimension": "School Coexistence",
+          "perspectives": [
+            "Peer",
+            "Upward",
+            "Manager",
+            "Self"
+          ],
+          "priority": "P0",
+          "laws": [],
+          "selected": false
+        },
+        {
+          "code": "DIR · 1",
+          "text": "Maintains respectful treatment of the whole school community (peers, students, parents and suppliers)",
+          "dimension": "Dealing with Peers",
+          "perspectives": [
+            "Upward",
+            "Manager",
+            "Peer",
+            "Self"
+          ],
+          "priority": "P0",
+          "laws": [
+            "Law 21.643",
+            "Eleva 360° GP",
+            "Law 20.536",
+            "Law 21.430"
+          ],
+          "selected": true
+        },
+        {
+          "code": "Q_COLAB_RED_38",
+          "text": "Immediately reports to management any indicator of abuse or mistreatment of minors observed in students",
+          "dimension": "Dealing with Students",
+          "perspectives": [
+            "Peer",
+            "Upward",
+            "Manager",
+            "Self"
+          ],
+          "priority": "P0",
+          "laws": [],
+          "selected": false
+        },
+        {
+          "code": "DIR · 2",
+          "text": "Treats children and adolescents with respect and care in every situation and space of the school.",
+          "dimension": "General / All staff",
+          "perspectives": [
+            "Manager",
+            "Peer",
+            "Self",
+            "Upward"
+          ],
+          "priority": "P0",
+          "laws": [
+            "Eleva 360° GP",
+            "Law 21.430",
+            "Law 21.013"
+          ],
+          "selected": true
+        },
+        {
+          "code": "DIR · 3",
+          "text": "Acts in line with the values and hallmarks of the Institutional Educational Project in daily work.",
+          "dimension": "General / All staff",
+          "perspectives": [
+            "Upward",
+            "Peer",
+            "Manager",
+            "Self"
+          ],
+          "priority": "P0",
+          "laws": [
+            "Labor Code",
+            "Eleva 360° GP"
+          ],
+          "selected": true
+        }
+      ],
+      "frame": {
+        "label": "Evaluation rubric · Director · DIR",
+        "meta": "Example · questions grouped by framework and area",
+        "slotLabel": "Question",
+        "dimensionsLabel": "Role dimensions",
+        "dimensions": [
+          "Administration and Finance",
+          "Procurement and Logistics",
+          "Communication",
+          "Care of the Environment",
+          "Regulatory Compliance",
+          "General / All staff",
+          "Team Management",
+          "Leadership",
+          "Planning",
+          "Dealing with Parents",
+          "Dealing with Peers"
+        ],
+        "normsLabel": "Regulations and frameworks this rubric evaluates",
+        "norms": [
+          "Eleva 360° Good Practices",
+          "Decree 67/2018",
+          "Law 20.536 — School Violence",
+          "Law 20.903 — Teaching Career",
+          "MBDLE 2015",
+          "Labor Code",
+          "Law 16.744 — Work Accidents",
+          "Law 19.628 — Privacy",
+          "Law 21.063 — SANNA Insurance",
+          "Law 21.643 — Ley Karin",
+          "Law 21.719 — Personal Data",
+          "Law 21.013 — Child Mistreatment",
+          "Law 21.430 — Child Protection",
+          "Complaints Protocol"
+        ]
+      }
+    },
+    "rubricPlate": {
+      "fig": "FIG. 3.2",
+      "caption": "Generated evaluation rubric · Director · DIR · questions grouped by framework and area",
+      "alt": "Evaluation rubric generated by Eleva for Director: questions grouped by framework and area, with dimension, perspectives, priority and the laws backing each question."
+    },
+    "close": "Rubrics per role in minutes, not months.",
+    "closeSub": "Reviewable before you use it."
+  },
+  "proceso": {
+    "code": "§04",
+    "runningHead": "Weightings · Stages",
+    "title": "A real 360°, with a six-stage flow.",
+    "lead": "The school defines the weightings. Stages are configured centrally for every school of a school owner, and each school can adjust them.",
+    "weights": {
+      "index": "4.1",
+      "label": "How much does each perspective weigh?",
+      "sub": "They define the final calculation. They must add up to exactly 100.",
+      "perspectives": [
+        {
+          "label": "Upward",
+          "desc": "The team evaluates its manager",
+          "weight": "25 %"
+        },
+        {
+          "label": "Self-assessment",
+          "desc": "Each person evaluates their own performance",
+          "weight": "25 %"
+        },
+        {
+          "label": "Manager",
+          "desc": "The manager evaluates the team",
+          "weight": "25 %"
+        },
+        {
+          "label": "Peer to peer",
+          "desc": "Among colleagues",
+          "weight": "25 %"
+        }
+      ],
+      "center": "100 %",
+      "total": "Total 100 / 100",
+      "simulate": "Simulate missing types",
+      "plate": {
+        "fig": "FIG. 4.1",
+        "caption": "Perspective weights · 25 · 25 · 25 · 25 · Total 100 / 100",
+        "alt": "Wizard step, how much does each perspective weigh: Upward, Self-assessment, Manager and Peer to peer at 25 % each and a donut chart at 100 %."
+      }
+    },
+    "stages": {
+      "index": "4.2",
+      "label": "Process stages",
+      "alwaysOn": "Always active",
+      "configurable": "Configurable",
+      "items": [
+        {
+          "num": "0",
+          "name": "In Preparation",
+          "desc": "Evaluation created, not yet started",
+          "always": true
+        },
+        {
+          "num": "1",
+          "name": "Started",
+          "desc": "The evaluator answers the rubric",
+          "always": true
+        },
+        {
+          "num": "2",
+          "name": "In Feedback",
+          "desc": "The evaluator sends the evaluation to the evaluee for feedback",
+          "always": false
+        },
+        {
+          "num": "3",
+          "name": "Feedback Answered",
+          "desc": "The evaluee answered the feedback",
+          "always": false
+        },
+        {
+          "num": "4",
+          "name": "Finalized",
+          "desc": "Evaluation finalized; its results count in reports",
+          "always": true
+        },
+        {
+          "num": "5",
+          "name": "Closed",
+          "desc": "Definitive closure; only an administrator can reopen it",
+          "always": false
+        }
+      ],
+      "central": "Central configuration: defines which stages of the flow are available by default for all schools, by perspective type. Each school can override this configuration on its own stages page.",
+      "freeze": "Changes apply to new processes: each process freezes its flow when generated, so historical processes keep the configuration they were created with.",
+      "plate": {
+        "fig": "FIG. 4.2",
+        "caption": "Default stages per perspective · Central configuration · Manager-Subordinate",
+        "alt": "Central stage configuration: six stages from 0 to 5, three marked Always active and a toggle on the others."
+      }
+    }
+  },
+  "resultados": {
+    "code": "§05",
+    "runningHead": "Answering an evaluation",
+    "title": "Achievement per domain, and what to improve.",
+    "lead": "Each evaluation is answered on a 1-to-5 Likert scale. Achievement is calculated per domain according to its weighting, and each domain receives an improvement suggestion. Finalized evaluations count in reports.",
+    "logro": {
+      "label": "Achievement",
+      "value": "3.83",
+      "unit": "/5",
+      "note": "example"
+    },
+    "progreso": {
+      "label": "Progress",
+      "value": "32 / 32",
+      "note": "answered · 100 %"
+    },
+    "escala": {
+      "label": "Scale",
+      "items": [
+        {
+          "num": "1",
+          "name": "Never"
+        },
+        {
+          "num": "2",
+          "name": "Almost never"
+        },
+        {
+          "num": "3",
+          "name": "Sometimes"
+        },
+        {
+          "num": "4",
+          "name": "Almost always"
+        },
+        {
+          "num": "5",
+          "name": "Always"
+        }
+      ]
+    },
+    "dominio": {
+      "label": "Domains · Weighting 7.84 %",
+      "value": "Interpersonal communication"
+    },
+    "sugerencia": {
+      "label": "Improvement suggestion · per domain",
+      "text": "After answering, each domain receives an improvement suggestion written from the answers. It is a starting point for feedback, not a verdict."
+    },
+    "plate": {
+      "fig": "FIG. 5.1",
+      "caption": "Evaluation · Self-assessment · School-bus assistant · 32 of 32 · Achievement 3.83 /5 · Example",
+      "alt": "Finalized evaluation in Eleva: progress 32 of 32 answered, achievement 3.83 out of 5, domains and questions with a 1-to-5 Likert scale."
+    }
+  },
+  "ia": {
+    "code": "§06",
+    "runningHead": "Three interventions, one rule",
+    "title": "The AI proposes. The school decides.",
+    "lead": "The AI steps in at three concrete points of the system. In all three, the last word is yours.",
+    "header": {
+      "num": "#",
+      "intervention": "Intervention",
+      "proposes": "The AI proposes",
+      "decides": "You decide"
+    },
+    "rows": [
+      {
+        "num": "01",
+        "name": "Role match",
+        "proposes": "For each unassigned role in your org chart, it recommends catalog templates with a confidence percentage and explains its reasoning: \"Name and description identical to ASIST_AULA_BAS. Child of the Primary Homeroom Teacher, consistent as direct classroom support for that cycle.\" If the tree does not fit, it proposes how to improve it.",
+        "decides": "You pick an option with \"Choose\", or describe what is missing or what you are looking for and receive a new proposal."
+      },
+      {
+        "num": "02",
+        "name": "Generated rubric",
+        "proposes": "It assembles a role's evaluation rubric from the curated question bank, selecting by dimension, perspective, priority and regulation. The result is the role's complete rubric, with its dimensions and the regulations and frameworks it evaluates.",
+        "decides": "You review the rubric, grouped by framework and area, before using it in a process."
+      },
+      {
+        "num": "03",
+        "name": "Improvement suggestion",
+        "proposes": "After answering, it proposes one improvement suggestion per domain.",
+        "decides": "Feedback stays between people: the suggestion is a starting point, not a result."
+      }
+    ],
+    "barsLabel": "Match options · confidence · example",
+    "bars": [
+      {
+        "label": "Asistente de Aula Básica",
+        "code": "ASIST_AULA_BAS",
+        "pct": 99
+      },
+      {
+        "label": "Teaching Assistant",
+        "code": "",
+        "pct": 40
+      },
+      {
+        "label": "Co-Teacher, Primary",
+        "code": "",
+        "pct": 30
+      },
+      {
+        "label": "PIE Assistant Technician",
+        "code": "",
+        "pct": 10
+      }
+    ],
+    "quoteStart": "The AI will propose the best solution; ",
+    "quoteEmphasis": "you have the last word.",
+    "quoteSource": "Product text · Role match",
+    "never": "The AI does not evaluate, does not decide results and does not write regulation.",
+    "plate": {
+      "fig": "FIG. 6.1",
+      "caption": "Template recommendation · Asistente de Aula Básica · 99 % · Choose · Example",
+      "alt": "Match options: Asistente de Aula Básica 99 %, Teaching Assistant 40 %, Co-Teacher Primary 30 %, PIE Assistant Technician 10 %, with a Choose button and the AI's reasoning."
+    }
+  },
+  "normativa": {
+    "code": "§07",
+    "runningHead": "Every question, traced to the law",
+    "title": "Every question, traced to Chilean regulation.",
+    "lead": "Each role's rubric lists the national regulation and professional frameworks it aligns with; the Director rubric and the Asistente de Aula Básica rubric do not cite the same laws. Each question carries its laws as tags: Ley Karin, Carrera Docente, MBDLE, Personal Data Protection 2024, School Coexistence. The result is consistent, defensible evaluations.",
+    "issuersLabel": "Director rubric · who issues each rule",
+    "issuers": [
+      {
+        "key": "MINEDUC",
+        "value": "Assessment and promotion, school violence, teaching career, school leadership and management"
+      },
+      {
+        "key": "Labor regulation",
+        "value": "Labor Code, work accidents, private life, SANNA insurance, Ley Karin, personal data"
+      },
+      {
+        "key": "Child protection",
+        "value": "Relevant mistreatment of minors and comprehensive protection of children"
+      },
+      {
+        "key": "Superintendence of Education",
+        "value": "Complaints protocol"
+      },
+      {
+        "key": "Eleva good practice",
+        "value": "Good practice in 360° evaluation"
+      }
+    ],
+    "question": {
+      "label": "Question 1 · Director rubric",
+      "num": "1",
+      "text": "Maintains respectful treatment of the whole school community (peers, students, parents and suppliers)",
+      "chips": [
+        "Treatment of Peers",
+        "P0 Mandatory",
+        "Upward",
+        "Manager",
+        "Peer",
+        "Self"
+      ],
+      "traceLabel": "Trace: question 1 → 4 regulations",
+      "matchTag": "→ Q1",
+      "matchSr": "Linked to question 1"
+    },
+    "groups": [
+      {
+        "issuer": "Eleva good practice",
+        "items": [
+          {
+            "ref": "Eleva",
+            "name": "Good Practice in 360° Evaluation",
+            "matched": true
+          }
+        ]
+      },
+      {
+        "issuer": "MINEDUC",
+        "items": [
+          {
+            "ref": "Decreto 67/2018",
+            "name": "Assessment, Grading and Promotion",
+            "matched": false
+          },
+          {
+            "ref": "Ley 20.536",
+            "name": "School Violence",
+            "matched": true
+          },
+          {
+            "ref": "Ley 20.903",
+            "name": "Teaching Career",
+            "matched": false
+          },
+          {
+            "ref": "MBDLE 2015",
+            "name": "Framework for Good School Leadership and Management",
+            "matched": false
+          }
+        ]
+      },
+      {
+        "issuer": "Labor regulation",
+        "items": [
+          {
+            "ref": "Código del Trabajo",
+            "name": "Labor Directorate",
+            "matched": false
+          },
+          {
+            "ref": "Ley 16.744",
+            "name": "Work Accidents and Occupational Diseases",
+            "matched": false
+          },
+          {
+            "ref": "Ley 19.628",
+            "name": "Protection of Private Life",
+            "matched": false
+          },
+          {
+            "ref": "Ley 21.063",
+            "name": "SANNA Insurance",
+            "matched": false
+          },
+          {
+            "ref": "Ley 21.643",
+            "name": "Ley Karin",
+            "matched": true
+          },
+          {
+            "ref": "Ley 21.719",
+            "name": "Personal Data Protection (2024)",
+            "matched": false
+          }
+        ]
+      },
+      {
+        "issuer": "Child protection",
+        "items": [
+          {
+            "ref": "Ley 21.013",
+            "name": "Defines Relevant Mistreatment of Minors",
+            "matched": false
+          },
+          {
+            "ref": "Ley 21.430",
+            "name": "Guarantees and Comprehensive Protection of Children",
+            "matched": true
+          }
+        ]
+      },
+      {
+        "issuer": "Superintendence of Education",
+        "items": [
+          {
+            "ref": "Supereduc",
+            "name": "Complaints Protocol",
+            "matched": false
+          }
+        ]
+      }
+    ],
+    "footnote": "Also seen in the Asistente de Aula Básica rubric: Decreto 170/2010 — School Integration Program (PIE) · Ley 20.609 — Non-Discrimination (Ley Zamudio) · Ley 20.845 — School Inclusion · Ley 21.545 — Autism Law (Ley TEA).",
+    "plate": {
+      "fig": "FIG. 7.1",
+      "caption": "Regulations and frameworks this rubric evaluates · Director",
+      "alt": "List of the regulations and frameworks evaluated by the Director rubric, grouped by MINEDUC, labor regulation, child protection and the Superintendence of Education."
+    }
+  },
+  "cierre": {
+    "label": "Next step",
+    "title": "Want to see it with your own org chart?",
+    "lead": "We will show you how Eleva assembles the rubric for a real role in your school, with its dimensions, its weighted perspectives and the regulation it evaluates.",
+    "cta": "Request a demo",
+    "back": "Back to the home page"
+  },
+  "footer": {
+    "description": "360° performance evaluation for schools and school owners in Chile.",
+    "product": {
+      "label": "Product",
+      "links": [
+        {
+          "id": "system",
+          "label": "System"
+        },
+        {
+          "id": "estructura",
+          "label": "Structure"
+        },
+        {
+          "id": "pauta",
+          "label": "Rubric"
+        },
+        {
+          "id": "proceso",
+          "label": "Process"
+        },
+        {
+          "id": "resultados",
+          "label": "Results"
+        },
+        {
+          "id": "ia",
+          "label": "AI"
+        },
+        {
+          "id": "normativa",
+          "label": "Regulation"
+        }
+      ]
+    },
+    "legal": {
+      "label": "Legal",
+      "privacy": "Privacy policy",
+      "terms": "Terms and conditions"
+    },
+    "contact": {
+      "label": "Contact",
+      "whatsapp": "WhatsApp +56 9 7959 1791",
+      "supportedBy": "Supported by Ignite",
+      "startupChileAlt": "Startup Chile"
+    },
+    "copyright": "© Eleva · Santiago",
+    "backToTop": "Back to top ↑",
+    "home": "← Home"
+  }
+}

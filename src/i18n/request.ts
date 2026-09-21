@@ -8,8 +8,19 @@ export default getRequestConfig(async ({ requestLocale }) => {
     locale = routing.defaultLocale;
   }
 
+  // Base site copy + one namespace per redesign concept (messages/concept-*/).
+  const [base, conceptA, conceptB] = await Promise.all([
+    import(`../../messages/${locale}.json`),
+    import(`../../messages/concept-a/${locale}.json`),
+    import(`../../messages/concept-b/${locale}.json`),
+  ]);
+
   return {
     locale,
-    messages: (await import(`../../messages/${locale}.json`)).default
+    messages: {
+      ...base.default,
+      conceptA: conceptA.default,
+      conceptB: conceptB.default,
+    },
   };
 });

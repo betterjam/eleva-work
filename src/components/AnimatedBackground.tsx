@@ -1,12 +1,16 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { onActiveSection, prefersReducedMotion } from '@/lib/scrollNav';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Fixed seed positions to avoid hydration mismatch
+// Fixed seed positions and sizes: the markup is fully deterministic, so the
+// seeds render on the server too and need no mount flag. Their resting opacity
+// is owned by globals.css (0 in dark, 0.6 in light) - nothing here writes an
+// inline opacity, which would beat both of those rules.
 const seedPositions = [
   { left: 15, top: 25 }, { left: 45, top: 60 }, { left: 75, top: 15 },
   { left: 25, top: 80 }, { left: 85, top: 45 }, { left: 10, top: 50 },
@@ -19,11 +23,6 @@ const seedSizes = [5, 6, 4, 7, 5, 6, 4, 8, 5, 6, 7, 4, 5, 6, 8];
 
 export default function AnimatedBackground() {
   const bgRef = useRef<HTMLDivElement>(null);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   useEffect(() => {
     const bg = bgRef.current;
@@ -52,8 +51,6 @@ export default function AnimatedBackground() {
       demo: { c1: '#f0fdfa', c2: '#5eead4', c3: '#ccfbf1' },      // Soft teal
     };
 
-    const sections = ['hero', 'features', 'how', 'security', 'pricing', 'faq', 'demo'];
-
     const getColors = (section: string) => {
       const isDark = !document.documentElement.hasAttribute('data-theme') ||
                      document.documentElement.getAttribute('data-theme') === 'dark';
@@ -61,137 +58,139 @@ export default function AnimatedBackground() {
       return palette[section as keyof typeof palette] || palette.hero;
     };
 
-    // Set initial colors
-    const initialColors = getColors('hero');
-    gsap.set(bg, {
-      '--gradient-c1': initialColors.c1,
-      '--gradient-c2': initialColors.c2,
-      '--gradient-c3': initialColors.c3,
-    });
+    // Whatever painted the background last, so a theme flip can repaint the
+    // same section instantly instead of guessing it back out of the DOM.
+    let currentSection = 'hero';
 
-    // Create scroll triggers for each section
+    const applyPalette = (section: string, instant = false) => {
+      currentSection = section;
+      const colors = getColors(section);
+      if (instant) {
+        gsap.killTweensOf(bg);
+        gsap.set(bg, {
+          '--gradient-c1': colors.c1,
+          '--gradient-c2': colors.c2,
+          '--gradient-c3': colors.c3,
+        });
+        return;
+      }
+      gsap.to(bg, {
+        '--gradient-c1': colors.c1,
+        '--gradient-c2': colors.c2,
+        '--gradient-c3': colors.c3,
+        duration: 1.2,
+        ease: 'power2.inOut',
+      });
+    };
+
+    // Set initial colors
+    applyPalette('hero', true);
+
+    // Only sections that really sit in the document flow get a ScrollTrigger.
+    // #how, #security, #pricing and #faq live inside the pinned Features
+    // column, which GSAP translates: ScrollTrigger would measure them at their
+    // natural offsets and fire thousands of pixels away from where they appear.
+    // The stage publishes those instead (setActiveSection in lib/scrollNav).
     const triggers: ScrollTrigger[] = [];
 
-    sections.forEach((section) => {
+    ['hero', 'features', 'demo'].forEach((section) => {
       const element = document.getElementById(section) ||
                       (section === 'hero' ? document.querySelector('section') : null);
 
       if (element) {
-        const trigger = ScrollTrigger.create({
-          trigger: element,
-          start: 'top 60%',
-          end: 'bottom 40%',
-          onEnter: () => {
-            const colors = getColors(section);
-            gsap.to(bg, {
-              '--gradient-c1': colors.c1,
-              '--gradient-c2': colors.c2,
-              '--gradient-c3': colors.c3,
-              duration: 1.2,
-              ease: 'power2.inOut',
-            });
-          },
-          onEnterBack: () => {
-            const colors = getColors(section);
-            gsap.to(bg, {
-              '--gradient-c1': colors.c1,
-              '--gradient-c2': colors.c2,
-              '--gradient-c3': colors.c3,
-              duration: 1.2,
-              ease: 'power2.inOut',
-            });
-          },
-        });
-        triggers.push(trigger);
+        triggers.push(
+          ScrollTrigger.create({
+            trigger: element,
+            start: 'top 60%',
+            end: 'bottom 40%',
+            onEnter: () => applyPalette(section),
+            onEnterBack: () => applyPalette(section),
+          }),
+        );
       }
     });
 
-    // Animate floating orbs
+    // The pinned stage tells us which of its inner blocks is on screen.
+    const unsubscribe = onActiveSection((id) => {
+      if (id in darkSections) applyPalette(id);
+    });
+
+    // The palette ScrollTriggers above are a colour change, not motion, so they
+    // stay whatever the reader's setting is. Everything below moves forever, so
+    // it only runs when reduced motion is not requested; the orbs and the seeds
+    // then simply rest where the layout put them.
     const orbs = bg.querySelectorAll('.gradient-orb');
-    orbs.forEach((orb, i) => {
-      gsap.to(orb, {
-        x: `random(-80, 80)`,
-        y: `random(-40, 40)`,
-        scale: `random(0.9, 1.1)`,
-        duration: `random(20, 30)`,
-        ease: 'sine.inOut',
-        repeat: -1,
-        yoyo: true,
-        delay: i * 3,
-      });
-    });
-
-    // Animate dandelion seeds - gentle floating like real seeds
     const seeds = bg.querySelectorAll('.dandelion-seed');
-    seeds.forEach((seed, i) => {
-      // Random starting position
-      gsap.set(seed, {
-        x: Math.random() * window.innerWidth,
-        y: Math.random() * window.innerHeight,
+
+    if (!prefersReducedMotion()) {
+      // Animate floating orbs
+      orbs.forEach((orb, i) => {
+        gsap.to(orb, {
+          x: `random(-80, 80)`,
+          y: `random(-40, 40)`,
+          scale: `random(0.9, 1.1)`,
+          duration: `random(20, 30)`,
+          ease: 'sine.inOut',
+          repeat: -1,
+          yoyo: true,
+          delay: i * 3,
+        });
       });
 
-      // Floating animation - like dandelion seeds in the wind
-      const duration = 15 + Math.random() * 20;
-      const xDrift = -200 - Math.random() * 300; // Drift left
-      const yDrift = -100 + Math.random() * 200; // Slight up/down
+      // Animate dandelion seeds - gentle floating like real seeds
+      seeds.forEach((seed, i) => {
+        // Random starting position
+        gsap.set(seed, {
+          x: Math.random() * window.innerWidth,
+          y: Math.random() * window.innerHeight,
+        });
 
-      gsap.to(seed, {
-        x: `+=${xDrift}`,
-        y: `+=${yDrift}`,
-        opacity: 0,
-        duration: duration,
-        ease: 'none',
-        delay: i * 2,
-        repeat: -1,
-        onRepeat: () => {
-          // Reset to right side when animation repeats
-          gsap.set(seed, {
-            x: window.innerWidth + 50,
-            y: Math.random() * window.innerHeight,
-            opacity: 0.5,
-          });
-        },
+        // Floating animation - like dandelion seeds in the wind
+        const duration = 15 + Math.random() * 20;
+        const xDrift = -200 - Math.random() * 300; // Drift left
+        const yDrift = -100 + Math.random() * 200; // Slight up/down
+
+        // No opacity here: globals.css owns the seeds' resting opacity (0 in
+        // dark, 0.6 in light), and an inline value would beat both of those
+        // rules and keep the seeds visible in dark mode for good.
+        gsap.to(seed, {
+          x: `+=${xDrift}`,
+          y: `+=${yDrift}`,
+          duration: duration,
+          ease: 'none',
+          delay: i * 2,
+          repeat: -1,
+          onRepeat: () => {
+            // Reset to right side when animation repeats
+            gsap.set(seed, {
+              x: window.innerWidth + 50,
+              y: Math.random() * window.innerHeight,
+            });
+          },
+        });
+
+        // Add gentle wobble
+        gsap.to(seed, {
+          y: `+=20`,
+          duration: 2 + Math.random() * 2,
+          ease: 'sine.inOut',
+          repeat: -1,
+          yoyo: true,
+          delay: Math.random() * 2,
+        });
       });
+    }
 
-      // Add gentle wobble
-      gsap.to(seed, {
-        y: `+=20`,
-        duration: 2 + Math.random() * 2,
-        ease: 'sine.inOut',
-        repeat: -1,
-        yoyo: true,
-        delay: Math.random() * 2,
-      });
-    });
-
-    // Watch for theme changes - INSTANT transition
+    // Watch for theme changes - INSTANT transition, repainting whatever section
+    // is already showing (no DOM guesswork: the pinned blocks would lie).
     const observer = new MutationObserver(() => {
-      // Get current section based on scroll position
-      let currentSection = 'hero';
-      sections.forEach((section) => {
-        const element = document.getElementById(section) ||
-                        (section === 'hero' ? document.querySelector('section') : null);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top < window.innerHeight * 0.6 && rect.bottom > window.innerHeight * 0.4) {
-            currentSection = section;
-          }
-        }
-      });
-
-      const colors = getColors(currentSection);
-      // Kill any ongoing animations and set instantly
-      gsap.killTweensOf(bg);
-      gsap.set(bg, {
-        '--gradient-c1': colors.c1,
-        '--gradient-c2': colors.c2,
-        '--gradient-c3': colors.c3,
-      });
+      applyPalette(currentSection, true);
     });
 
     observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
     return () => {
+      unsubscribe();
       triggers.forEach(t => t.kill());
       gsap.killTweensOf(bg);
       orbs.forEach(orb => gsap.killTweensOf(orb));
@@ -228,24 +227,21 @@ export default function AnimatedBackground() {
       />
 
       {/* Dandelion seeds - floating particles for light theme */}
-      {mounted && (
-        <div className="dandelion-container absolute inset-0 pointer-events-none overflow-hidden">
-          {seedPositions.map((pos, i) => (
-            <div
-              key={i}
-              className="dandelion-seed absolute rounded-full"
-              style={{
-                left: `${pos.left}%`,
-                top: `${pos.top}%`,
-                width: `${seedSizes[i]}px`,
-                height: `${seedSizes[i]}px`,
-                background: 'radial-gradient(circle, var(--gradient-c2) 0%, transparent 70%)',
-                opacity: 0.4,
-              }}
-            />
-          ))}
-        </div>
-      )}
+      <div className="dandelion-container absolute inset-0 pointer-events-none overflow-hidden">
+        {seedPositions.map((pos, i) => (
+          <div
+            key={i}
+            className="dandelion-seed absolute rounded-full"
+            style={{
+              left: `${pos.left}%`,
+              top: `${pos.top}%`,
+              width: `${seedSizes[i]}px`,
+              height: `${seedSizes[i]}px`,
+              background: 'radial-gradient(circle, var(--gradient-c2) 0%, transparent 70%)',
+            }}
+          />
+        ))}
+      </div>
     </div>
   );
 }
