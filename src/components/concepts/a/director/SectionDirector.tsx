@@ -10,6 +10,7 @@ import {
   EXIT,
   HOLD_DWELL,
   HOLD_MIN_WIDTH,
+  HOLD_TOP,
   MIN_WINDOW,
   RULE_SPANS,
   SCRUB,
@@ -551,9 +552,9 @@ export class DirectorEngine {
       s.effective = 'flow';
       return;
     }
-    const room = window.innerHeight - headerHeight();
+    const room = window.innerHeight - headerHeight() - HOLD_TOP;
     if (holdEl.offsetHeight > room) {
-      warn(`[data-hold] of "${s.spec.id}" is ${holdEl.offsetHeight}px tall, more than the ${room}px under the header; flowing`);
+      warn(`[data-hold] of "${s.spec.id}" is ${holdEl.offsetHeight}px tall, more than the ${room}px under the header and its gap; flowing`);
       s.effective = 'flow';
       return;
     }
@@ -593,7 +594,7 @@ export class DirectorEngine {
       anticipatePin: 1,
       scrub: SCRUB,
       animation: s.holdDriver,
-      start: () => `top ${headerHeight()}`,
+      start: () => `top ${headerHeight() + HOLD_TOP}`,
       end: () => `+=${Math.round(toPx(s.spec.holdDistance))}`,
     });
   }

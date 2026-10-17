@@ -1,0 +1,96 @@
+/* eleva 360° brand tokens (Ocean palette, brand manual version 2, October 2026)
+   Drop-in CSS custom properties for the website. Light values sit on :root; dark values
+   apply with the OS dark setting unless the page sets data-theme="light", and always
+   when the page sets data-theme="dark" on <html>.
+   Fonts load from Google Fonts: see head.html in this folder. */
+
+:root {
+  /* surfaces and lines */
+  --surface: #f5f8f9;          /* page background */
+  --surface-raised: #ffffff;   /* cards, panels, report pages */
+  --surface-sunken: #ebf1f3;   /* wells, table headers, quoted comments */
+  --line: #d6e0e5;             /* hairlines and dividers */
+  --line-strong: #748b98;      /* borders that must be seen: inputs, checkboxes (3.3:1+) */
+
+  /* text and actions */
+  --ink: #0b3a5c;              /* headings and body text (10.4:1+ on every surface) */
+  --ink-muted: #45606f;        /* secondary text, captions, labels (5.8:1+) */
+  --accent: #037972;           /* links and small accent text (4.6:1+). NOT the logo aqua */
+  --accent-fill: #037972;      /* primary button background */
+  --on-accent: #ffffff;        /* text and icons on accent-fill (5.3:1) */
+  --focus-ring: #037972;       /* 2px outline, 2px offset */
+
+  /* brand colours: logo and graphics only, never for small text */
+  --brand-ocean: #0b3a5c;      /* deep ocean: wordmark, dark grounds */
+  --brand-aqua: #1ba39a;       /* "360°", left figure; 3.1:1 on white, so graphics or text 24px+ only */
+  --brand-lavender: #9fa8e6;   /* right figure; graphics only */
+  --brand-peach: #f2a98b;      /* bottom figure, the one warm note; graphics only */
+  --brand-mist: #a7d1d4;       /* support tint for backgrounds and illustration */
+  --brand-aqua-light: #4fd1c5; /* aqua on deep ocean and dark grounds */
+
+  /* 360° report charts: one colour per perspective, always in this order */
+  --persp-self: #05629c;
+  --persp-manager: #0aa198;
+  --persp-peers: #818adb;
+  --persp-team: #cf7853;
+  --rating-1: #9cb3de; --rating-2: #7894cc; --rating-3: #4f6ead; --rating-4: #375596; --rating-5: #233f78;
+  --on-rating-low: #082c47;    /* score text on rating-1 and rating-2 */
+  --on-rating-high: #ffffff;   /* score text on rating-3 to rating-5 */
+  --gap-blind-bg: #fbe9dc; --gap-blind-ink: #8a4316;    /* "Blind spot" chip */
+  --gap-hidden-bg: #dcefed; --gap-hidden-ink: #0b5d56;  /* "Hidden strength" chip */
+  --chart-grid: #e1e9ed; --chart-axis: #adbcc6;
+
+  /* type */
+  --font-display: "Lexend", "Segoe UI", Arial, sans-serif;               /* headings, labels, numbers: 500 and 600 */
+  --font-text: "Atkinson Hyperlegible", Calibri, Arial, sans-serif;      /* reading text, tables, forms: 400 and 700 */
+  --text-display: 600 48px/54px var(--font-display);
+  --text-h1: 600 36px/44px var(--font-display);
+  --text-h2: 600 28px/36px var(--font-display);
+  --text-h3: 500 20px/28px var(--font-display);
+  --text-label: 500 12px/16px var(--font-display);                       /* capitals, letter-spacing 0.12em */
+  --text-figure: 600 40px/44px var(--font-display);                      /* big scores, tabular figures */
+  --text-body-lg: 400 18px/28px var(--font-text);
+  --text-body: 400 16px/24px var(--font-text);
+  --text-small: 400 14px/20px var(--font-text);
+  --text-caption: 400 12px/16px var(--font-text);
+
+  /* shape, space, depth, motion */
+  --radius-sm: 4px;            /* inputs, small tags */
+  --radius-md: 10px;           /* cards, panels, buttons */
+  --radius-lg: 20px;           /* feature panels, covers */
+  --radius-full: 9999px;       /* chips, dots, avatars, pills */
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
+  --space-6: 24px; --space-8: 32px; --space-12: 48px; --space-16: 64px;
+  --shadow-raised: 0 1px 2px rgba(11, 58, 92, 0.06), 0 8px 24px rgba(11, 58, 92, 0.08);   /* floating layers only */
+  --rise-angle: 16deg;         /* the angle of the bars in e, e and a; the only diagonal */
+  --motion: 180ms ease-out;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --surface: #071c2a; --surface-raised: #0d283a; --surface-sunken: #051520;
+    --line: #1f4157; --line-strong: #567d94;
+    --ink: #e6eff4; --ink-muted: #a0b7c4;
+    --accent: #4fd1c5; --accent-fill: #4fd1c5; --on-accent: #071c2a; --focus-ring: #4fd1c5;
+    --persp-self: #1168a3; --persp-manager: #01978f; --persp-peers: #848dde; --persp-team: #ae5a35;
+    --rating-1: #2b4c7e; --rating-2: #3d63a0; --rating-3: #5f85c2; --rating-4: #82a1d6; --rating-5: #b0c6ea;
+    --on-rating-low: #e6eff4; --on-rating-high: #071c2a;
+    --gap-blind-bg: #3a2616; --gap-blind-ink: #f3b88e; --gap-hidden-bg: #0f3330; --gap-hidden-ink: #7fd3c8;
+    --chart-grid: #183a4f; --chart-axis: #3b6178;
+    --shadow-raised: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.35);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --surface: #071c2a; --surface-raised: #0d283a; --surface-sunken: #051520;
+  --line: #1f4157; --line-strong: #567d94;
+  --ink: #e6eff4; --ink-muted: #a0b7c4;
+  --accent: #4fd1c5; --accent-fill: #4fd1c5; --on-accent: #071c2a; --focus-ring: #4fd1c5;
+  --persp-self: #1168a3; --persp-manager: #01978f; --persp-peers: #848dde; --persp-team: #ae5a35;
+  --rating-1: #2b4c7e; --rating-2: #3d63a0; --rating-3: #5f85c2; --rating-4: #82a1d6; --rating-5: #b0c6ea;
+  --on-rating-low: #e6eff4; --on-rating-high: #071c2a;
+  --gap-blind-bg: #3a2616; --gap-blind-ink: #f3b88e; --gap-hidden-bg: #0f3330; --gap-hidden-ink: #7fd3c8;
+  --chart-grid: #183a4f; --chart-axis: #3b6178;
+  --shadow-raised: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.35);
+  color-scheme: dark;
+}

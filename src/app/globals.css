@@ -1,45 +1,57 @@
 @import "tailwindcss";
 @import "flag-icons/css/flag-icons.min.css";
 
-/* Brand colors - centralized for easy updates */
-@theme {
-  --color-brand-50: #f0fdfa;
-  --color-brand-100: #ccfbf1;
-  --color-brand-200: #99f6e4;
-  --color-brand-300: #5eead4;
-  --color-brand-400: #2dd4bf;
-  --color-brand-500: #14b8a6;
-  --color-brand-600: #0d9488;
-  --color-brand-700: #0f766e;
-  --color-brand-800: #115e59;
-  --color-brand-900: #134e4a;
-  --color-brand-950: #042f2e;
+/* eleva 360° brand. The tokens themselves (colours, type, radii, spacing, light and
+   dark values) come from /brand/web/eleva-tokens.css, linked from the root layout.
+   The components speak the brand-* scale, so that scale resolves to the tokens here:
+   every bg-brand-600 / text-brand-400 flips with the theme and never carries the old
+   teal. Radii follow the brand too: 10px for buttons and cards, 20px for feature panels. */
+@theme inline {
+  --color-brand-300: var(--brand-aqua-light);
+  --color-brand-400: var(--accent);
+  --color-brand-500: var(--accent);
+  --color-brand-600: var(--accent-fill);
+  --color-brand-700: var(--accent-fill);
+  --color-on-accent: var(--on-accent);
+  --color-pure-white: #ffffff;
+  --color-brand-ocean: var(--brand-ocean);
+  --color-brand-aqua: var(--brand-aqua);
+  --color-brand-aqua-light: var(--brand-aqua-light);
+  --color-brand-lavender: var(--brand-lavender);
+  --color-brand-peach: var(--brand-peach);
+  --color-brand-mist: var(--brand-mist);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-sunken: var(--surface-sunken);
+  --color-ink-muted: var(--ink-muted);
+  --color-line-strong: var(--line-strong);
+  --radius-md: 10px;
+  --radius-lg: 20px;
+  --radius-xl: 10px;
+  --radius-2xl: 10px;
+  --radius-3xl: 20px;
 }
 
+/* Legacy aliases a few rules still read, plus tints for hover states. All resolve to
+   the brand tokens, which carry their own light and dark values. */
 :root {
-  --bg-primary: #070A12;
-  --bg-secondary: #0f1219;
-  --text-primary: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --text-muted: rgba(255, 255, 255, 0.5);
-  --border-color: rgba(255, 255, 255, 0.1);
-  --card-bg: rgba(255, 255, 255, 0.03);
-  --card-hover: rgba(255, 255, 255, 0.06);
-  --accent: #14b8a6;
-  color-scheme: dark;
+  --bg-primary: var(--surface);
+  --bg-secondary: var(--surface-raised);
+  --text-primary: var(--ink);
+  --text-secondary: var(--ink-muted);
+  --text-muted: var(--ink-muted);
+  --border-color: var(--line);
+  --card-bg: var(--surface-raised);
+  --card-hover: var(--tint-2);
+  --tint-1: color-mix(in srgb, var(--ink) 6%, transparent);
+  --tint-2: color-mix(in srgb, var(--ink) 10%, transparent);
+  --tint-3: color-mix(in srgb, var(--ink) 16%, transparent);
+  --font-body: var(--font-text);
+  color-scheme: light;
 }
 
-[data-theme="light"] {
-  --bg-primary: #f8fafc;
-  --bg-secondary: #ffffff;
-  --text-primary: #0f172a;
-  --text-secondary: rgba(15, 23, 42, 0.7);
-  --text-muted: rgba(15, 23, 42, 0.5);
-  --border-color: rgba(15, 23, 42, 0.1);
-  --card-bg: rgba(15, 23, 42, 0.03);
-  --card-hover: rgba(15, 23, 42, 0.06);
-  --accent: #0d9488;
-  color-scheme: light;
+:root[data-theme="dark"] {
+  color-scheme: dark;
 }
 
 html {
@@ -63,8 +75,25 @@ html::-webkit-scrollbar {
 
 body {
   background: transparent;
-  color: var(--text-primary);
+  color: var(--ink);
+  font-family: var(--font-text);
   overflow-x: hidden;
+}
+
+/* Brand type: Lexend for headings, labels, buttons and navigation; Atkinson
+   Hyperlegible for reading text. Keyboard focus is the brand ring everywhere. */
+h1, h2, h3, h4, button, [data-hero-cta], .header-cta, header a, footer a, .font-display {
+  font-family: var(--font-display);
+}
+
+.uppercase {
+  font-family: var(--font-display);
+  font-weight: 500;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
 }
 
 /* Make sections transparent to show animated background */
@@ -97,145 +126,286 @@ body {
   animation: pulse 2s ease-in-out infinite;
 }
 
-/* Light theme specific overrides */
-[data-theme="light"] .bg-\[\#070A12\] {
-  background: var(--bg-primary) !important;
+/* The components still speak the dark-first utility vocabulary they were written in
+   (text-white, bg-white/5, border-white/10 ...). Each of those is re-expressed here with
+   the brand tokens, which carry their own light and dark values, so one mapping serves
+   both themes and the old white-on-black palette never reaches the page. */
+.text-white,
+.text-white\/80,
+.text-white\/85,
+.text-white\/90 {
+  color: var(--ink) !important;
 }
 
-[data-theme="light"] .bg-black\/20 {
-  background: rgba(255, 255, 255, 0.4) !important;
+.text-white\/50,
+.text-white\/60,
+.text-white\/70,
+.text-white\/75 {
+  color: var(--ink-muted) !important;
 }
 
-[data-theme="light"] .text-white {
-  color: var(--text-primary) !important;
+.text-white\/20 {
+  color: var(--line-strong) !important;
 }
 
-[data-theme="light"] .text-white\/70,
-[data-theme="light"] .text-white\/75 {
-  color: var(--text-secondary) !important;
+.text-black {
+  color: var(--surface) !important;
 }
 
-[data-theme="light"] .text-white\/50,
-[data-theme="light"] .text-white\/60 {
-  color: var(--text-muted) !important;
+.hover\:text-white:hover {
+  color: var(--accent) !important;
 }
 
-[data-theme="light"] .text-white\/80,
-[data-theme="light"] .text-white\/85,
-[data-theme="light"] .text-white\/90 {
-  color: var(--text-secondary) !important;
+.border-white\/10,
+.border-white\/12,
+.border-white\/15 {
+  border-color: var(--line) !important;
 }
 
-[data-theme="light"] .border-white\/10,
-[data-theme="light"] .border-white\/12,
-[data-theme="light"] .border-white\/15,
-[data-theme="light"] .border-white\/25 {
-  border-color: var(--border-color) !important;
+.border-white\/25,
+.hover\:border-white\/25:hover,
+.focus\:border-white\/25:focus {
+  border-color: var(--line-strong) !important;
 }
 
-[data-theme="light"] .bg-white\/3,
-[data-theme="light"] .bg-white\/5,
-[data-theme="light"] .bg-white\/\[0\.03\] {
-  background: var(--card-bg) !important;
+.bg-white\/3,
+.bg-white\/5,
+.bg-white\/\[0\.02\],
+.bg-white\/\[0\.03\] {
+  background: var(--surface-raised) !important;
 }
 
-[data-theme="light"] .bg-white\/10 {
-  background: var(--card-hover) !important;
+.bg-white\/10,
+.hover\:bg-white\/10:hover,
+.hover\:bg-white\/5:hover,
+.focus\:bg-white\/10:focus {
+  background: var(--tint-2) !important;
 }
 
-[data-theme="light"] .bg-white {
-  background: var(--text-primary) !important;
+.bg-white {
+  background: var(--ink) !important;
 }
 
-[data-theme="light"] .text-black {
-  color: var(--bg-primary) !important;
-}
-
-[data-theme="light"] .bg-black\/20 {
-  background: rgba(15, 23, 42, 0.05) !important;
-}
-
-[data-theme="light"] .bg-black\/40,
-[data-theme="light"] .from-black\/40 {
-  background: rgba(15, 23, 42, 0.1) !important;
-}
-
-/* Blur backgrounds in light theme */
-[data-theme="light"] .blur-3xl {
-  filter: blur(64px);
-  opacity: 0.3;
-}
-
-/* Light theme accent adjustments */
-[data-theme="light"] .bg-white\/70 {
+.bg-white\/70 {
   background: var(--accent) !important;
 }
 
-/* Light carousel cards with dark text */
-[data-theme="light"] .feature-card-3d .bg-gradient-to-b {
-  background: linear-gradient(to bottom, rgba(255,255,255,0.3), rgba(255,255,255,0.6), rgba(255,255,255,0.8)) !important;
+/* Translucent header once scrolled; wells elsewhere. */
+.bg-black\/20 {
+  background: color-mix(in srgb, var(--surface) 84%, transparent) !important;
 }
 
-[data-theme="light"] .feature-card-3d .bg-white\/\[0\.02\] {
-  background: rgba(255, 255, 255, 0.7) !important;
-  backdrop-filter: blur(20px);
+.bg-black\/40 {
+  background: var(--surface-sunken) !important;
 }
 
-[data-theme="light"] .feature-card-3d .text-white {
-  color: #0f172a !important;
+[data-theme="light"] .bg-\[\#070A12\] {
+  background: var(--surface) !important;
 }
 
-[data-theme="light"] .feature-card-3d .text-white\/75 {
-  color: rgba(15, 23, 42, 0.75) !important;
+.placeholder-white\/40::placeholder {
+  color: var(--ink-muted) !important;
 }
 
-[data-theme="light"] .feature-card-3d .bg-white {
-  background: #0f172a !important;
+/* Primary buttons: the brand hover is a touch of brightness, not a second colour. */
+.hover\:bg-brand-700:hover {
+  filter: brightness(1.08);
 }
 
-[data-theme="light"] .feature-card-3d .text-black {
-  color: #ffffff !important;
+/* Soft background blobs stay soft on both grounds. */
+.blur-3xl {
+  opacity: 0.35;
 }
 
-[data-theme="light"] .feature-card-3d .blur-3xl {
-  opacity: 0.25;
+/* Brand logo files: the colour logo on light grounds, the reverse logo on dark.
+   The root always carries data-theme (see the theme script in the root layout);
+   the media query covers the instant before it is set. */
+.logo-dark {
+  display: none !important; /* !important: scoped img rules (concept pages) outrank a lone class */
 }
 
-/* Light theme gradient border for cards */
-[data-theme="light"] .feature-card-3d .bg-gradient-to-br {
-  background: linear-gradient(to bottom right, rgba(0,0,0,0.1), rgba(0,0,0,0.02), rgba(0,0,0,0.08)) !important;
+:root[data-theme="dark"] .logo-light {
+  display: none !important;
 }
 
-[data-theme="light"] .feature-card-3d .bg-black\/40 {
-  background: rgba(255, 255, 255, 0.6) !important;
+:root[data-theme="dark"] .logo-dark {
+  display: block !important;
 }
 
-/* Hide dandelion seeds in dark mode, show in light */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .logo-light {
+    display: none !important;
+  }
+
+  :root:not([data-theme="light"]) .logo-dark {
+    display: block !important;
+  }
+}
+
+/* =====================================================================
+   Navy palette, the default (the root layout stamps html[data-palette="navy"];
+   ?palette=ocean shows the handoff's aqua palette, ?palette=navy returns).
+   It touches the LIGHT theme only: header and hero become one deep-ocean band
+   with ivory buttons, everything below keeps the light surface with navy
+   buttons, and the accent is navy instead of aqua. The dark theme is the
+   handoff's own (deep-ocean surfaces, aqua actions) and is left untouched.
+   ===================================================================== */
+html[data-palette="navy"][data-theme="light"] {
+  --accent: #0b3a5c;
+  --accent-fill: #0b3a5c;
+  --on-accent: #ffffff;
+  --focus-ring: #0b3a5c;
+}
+
+html[data-palette="navy"][data-theme="light"] header[data-over="hero"],
+html[data-palette="navy"][data-theme="light"] #hero {
+  --surface: #0b3a5c;
+  --surface-raised: #12476c;
+  --surface-sunken: #08304d;
+  --line: #2a5f86;
+  --line-strong: #6a98bd;
+  --ink: #eef4f8;
+  --ink-muted: #c5d6e3;
+  --accent: #b7bfee;
+  --accent-fill: #f7f8f5;
+  --on-accent: #0b3a5c;
+  --focus-ring: #f7f8f5;
+}
+
+/* While it is over the hero the header is part of the band: solid navy at the
+   top, the same navy slightly translucent (with the blur it already has) once the
+   page has scrolled. Past the hero (data-over="page") it is the page's own light
+   header again. */
+html[data-palette="navy"][data-theme="light"] header[data-over="hero"] {
+  background: var(--surface) !important;
+}
+
+html[data-palette="navy"][data-theme="light"] header[data-over="hero"].bg-black\/20 {
+  background: color-mix(in srgb, var(--surface) 92%, transparent) !important;
+}
+
+/* The band-to-page switch is a cut, not a crossfade: it fires the moment the hero's
+   edge passes under the header, so a cut reads as the band scrolling away, while a
+   300ms blend lags behind a fast travel and flashes. During programmatic travel
+   (scrollNav stamps html.is-programmatic-scroll) the header's text and logo
+   transitions are muted too, so nothing inside it trails the cut. */
+header.sticky[data-over] {
+  transition: none;
+}
+
+html.is-programmatic-scroll header * {
+  transition: none !important;
+}
+
+/* Inside the band the reverse logo is the right file. */
+html[data-palette="navy"][data-theme="light"] header[data-over="hero"] .logo-light,
+html[data-palette="navy"][data-theme="light"] #hero .logo-light {
+  display: none !important;
+}
+
+html[data-palette="navy"][data-theme="light"] header[data-over="hero"] .logo-dark,
+html[data-palette="navy"][data-theme="light"] #hero .logo-dark {
+  display: block !important;
+}
+
+/* The school crest keeps its white plate on the band. */
+html[data-palette="navy"][data-theme="light"] #hero .testimonial-logo {
+  background: #ffffff;
+  padding: 6px;
+}
+
+/* Rotating headline and its underline on the band: lavender to ivory, no aqua. */
+html[data-palette="navy"][data-theme="light"] .bg-gradient-to-r.from-brand-aqua.via-brand-aqua-light.to-brand-lavender {
+  background-image: linear-gradient(to right, #9fa8e6, #c5cdf0, #f7f8f5) !important;
+}
+
+html[data-palette="navy"][data-theme="light"] .bg-gradient-to-r.from-brand-aqua\/70.via-brand-lavender\/50 {
+  background-image: linear-gradient(to right, rgba(159, 168, 230, 0.8), rgba(197, 205, 240, 0.5), transparent) !important;
+}
+
+/* On the light theme the floating WhatsApp button goes navy instead of WhatsApp green. */
+html[data-palette="navy"][data-theme="light"] .bg-\[\#25D366\] {
+  background: var(--accent-fill) !important;
+  box-shadow: 0 8px 24px rgba(11, 58, 92, 0.3) !important;
+}
+
+html[data-palette="navy"][data-theme="light"] .bg-\[\#25D366\] .text-pure-white {
+  color: var(--on-accent) !important;
+}
+
+/* Feature cards (carousel and mobile grid). One surface class, themed here,
+   instead of overriding each utility inside .feature-card-3d one by one. */
+.feature-card {
+  background: var(--surface-raised);
+  border: 1px solid var(--line);
+  transition: border-color var(--motion);
+}
+
+.feature-card:hover {
+  border-color: var(--accent);
+}
+
+/* "Cómo funciona" schematic: the dotted connectors drift along their path. */
+.how-flow {
+  stroke-dasharray: 4 6;
+  animation: how-flow 1.4s linear infinite;
+}
+
+@keyframes how-flow {
+  to { stroke-dashoffset: -20; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .how-flow { animation: none; }
+}
+
+/* The testimonial's school crest is full colour: a white plate keeps it legible on
+   dark backgrounds, and the plate goes away on paper. */
+.testimonial-logo {
+  background: #ffffff;
+}
+
+[data-theme="light"] .testimonial-logo {
+  background: transparent;
+  padding: 0;
+}
+
+/* The dandelion seeds belonged to the previous brand; the background keeps its
+   colour washes but the seeds stay hidden in both themes. */
 .dandelion-seed {
   opacity: 0;
 }
 
-[data-theme="light"] .dandelion-seed {
-  opacity: 0.6;
+/* Demo form fields: sunken wells with a visible border, 4px corners, brand focus. */
+#demo input,
+#demo select,
+#demo textarea {
+  background: var(--surface-sunken) !important;
+  border-color: var(--line-strong) !important;
+  border-radius: var(--radius-sm) !important;
+  color: var(--ink) !important;
 }
 
-/* Demo form light theme */
-[data-theme="light"] #demo input,
-[data-theme="light"] #demo select,
-[data-theme="light"] #demo textarea {
-  background: rgba(15, 23, 42, 0.05) !important;
-  border-color: rgba(15, 23, 42, 0.15) !important;
-  color: #0f172a !important;
+#demo input:focus,
+#demo select:focus,
+#demo textarea:focus {
+  border-color: var(--accent) !important;
 }
 
-[data-theme="light"] #demo input::placeholder,
-[data-theme="light"] #demo textarea::placeholder {
-  color: rgba(15, 23, 42, 0.4) !important;
+#demo input::placeholder,
+#demo textarea::placeholder {
+  color: var(--ink-muted) !important;
 }
 
-[data-theme="light"] #demo select option {
-  background: #f8fafc !important;
-  color: #0f172a !important;
+#demo select option {
+  background: var(--surface-raised) !important;
+  color: var(--ink) !important;
+}
+
+/* Start-Up Chile only publishes its mark in white: invert it on light paper. */
+[data-theme="light"] .startup-chile-logo {
+  filter: invert(1);
+  opacity: 0.75;
 }
 
 /* Animated underline for rotating text */
@@ -246,64 +416,42 @@ body {
   100% { transform: scaleX(0); opacity: 0; }
 }
 
-/* Rotating text colors for light theme */
-[data-theme="light"] .bg-gradient-to-r.from-brand-400.via-cyan-300.to-emerald-300 {
-  background-image: linear-gradient(to right, var(--color-brand-700), #0891b2, #059669) !important;
+/* Rotating headline: brand graphics colours, allowed at display size (48px+).
+   On paper the gradient runs deep ocean to aqua instead of the dark-ground mix. */
+[data-theme="light"] .bg-gradient-to-r.from-brand-aqua.via-brand-aqua-light.to-brand-lavender {
+  background-image: linear-gradient(to right, var(--brand-ocean), var(--accent), var(--brand-aqua)) !important;
 }
 
-[data-theme="light"] .bg-gradient-to-r.from-brand-500\/70.via-cyan-400\/50 {
-  background-image: linear-gradient(to right, rgba(13, 148, 136, 0.8), rgba(6, 182, 212, 0.6), transparent) !important;
+[data-theme="light"] .bg-gradient-to-r.from-brand-aqua\/70.via-brand-lavender\/50 {
+  background-image: linear-gradient(to right, var(--accent), var(--brand-aqua), transparent) !important;
 }
 
-/* Cookie Banner - Dark theme (default) */
+/* Cookie banner: a floating layer, so it is the one card that carries a shadow. */
 .cookie-banner {
-  background: rgba(0, 0, 0, 0.9);
+  background: var(--surface-raised);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-raised);
 }
 
 .cookie-text {
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--ink-muted);
 }
 
 .cookie-link {
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--accent);
 }
 
 .cookie-link:hover {
-  color: #ffffff;
+  color: var(--ink);
 }
 
 .cookie-btn-secondary {
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--ink-muted);
 }
 
 .cookie-btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-/* Cookie Banner - Light theme */
-[data-theme="light"] .cookie-banner {
-  background: #ffffff;
-  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
-}
-
-[data-theme="light"] .cookie-text {
-  color: #475569;
-}
-
-[data-theme="light"] .cookie-link {
-  color: #1e293b;
-}
-
-[data-theme="light"] .cookie-link:hover {
-  color: #0f172a;
-}
-
-[data-theme="light"] .cookie-btn-secondary {
-  color: #475569;
-}
-
-[data-theme="light"] .cookie-btn-secondary:hover {
-  background: #f1f5f9;
+  background: var(--tint-2);
+  color: var(--ink);
 }
 
 /* Programmatic scrolling (src/lib/scrollNav.ts) ----------------------------
@@ -337,17 +485,43 @@ html.is-programmatic-scroll {
   animation-name: scrollCueBobX;
 }
 
-/* The light overrides above rewrite the base .text-white/.bg-white/.border-white
+/* Floating variant: the dot inside the mouse outline keeps travelling down. */
+@keyframes scrollCueDot {
+  0% { transform: translateY(0); opacity: 0; }
+  25% { opacity: 1; }
+  75% { opacity: 1; }
+  100% { transform: translateY(16px); opacity: 0; }
+}
+
+.scroll-cue-dot {
+  animation: scrollCueDot 1.6s ease-in-out infinite;
+}
+
+.scroll-cue--float .scroll-cue-mouse {
+  opacity: 0.85;
+  transition: opacity var(--motion);
+}
+
+.scroll-cue--float:hover .scroll-cue-mouse {
+  opacity: 1;
+}
+
+/* The token mapping above rewrites the base .text-white/.bg-white/.border-white
    utilities with !important, which beats Tailwind's non-important :hover rules -
-   so the cue's hover and focus states are restated here for the light theme. */
-[data-theme="light"] .scroll-cue:hover {
-  color: var(--text-primary) !important;
-  background: var(--card-hover) !important;
+   so the cue's hover and focus states are restated here. */
+.scroll-cue:hover {
+  color: var(--ink) !important;
+  background: var(--tint-2) !important;
   border-color: var(--accent) !important;
 }
 
-[data-theme="light"] .scroll-cue:focus-visible {
-  outline-color: var(--text-primary);
+.scroll-cue--float:hover {
+  background: transparent !important;
+  border-color: transparent !important;
+}
+
+.scroll-cue:focus-visible {
+  outline-color: var(--focus-ring);
 }
 
 /* Landing reveals (src/components/Hero.tsx) --------------------------------
@@ -365,6 +539,15 @@ html.is-programmatic-scroll {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .scroll-cue-icon { animation: none; }
+  .scroll-cue-dot { animation: none; transform: translateY(8px); }
+}
+
+/* One floating thing at the bottom at a time: while the cookie banner is mounted
+   the cue stays hidden (lifting it would put it on the hero's pills) and it fades
+   in once consent is given. */
+body:has(.cookie-banner) .floating-cue {
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* The cookie banner is fixed to the bottom of the viewport and is ~200px tall
@@ -402,35 +585,20 @@ html.is-programmatic-scroll {
   --font-mono: var(--font-mono);
 }
 
-/* Fallback values so the tokens are never undefined (concepts override these). */
+/* Fallbacks for the concept-only names (concepts override these on their root). The
+   names shared with the brand tokens (--ink, --line, --font-display) come from the
+   brand sheet and are not redefined here. */
 :root {
-  --ink: #f4f7fb;
-  --ink-2: rgba(244, 247, 251, 0.72);
-  --ink-3: rgba(244, 247, 251, 0.48);
-  --paper: #070a12;
-  --paper-2: #0d111a;
-  --paper-3: #131826;
-  --line: rgba(244, 247, 251, 0.12);
-  --line-2: rgba(244, 247, 251, 0.22);
-  --accent-c: #14b8a6;
-  --accent-c2: #2dd4bf;
-  --accent-ink: #041412;
-  --accent-soft: rgba(20, 184, 166, 0.14);
-}
-
-[data-theme="light"] {
-  --ink: #0b1220;
-  --ink-2: rgba(11, 18, 32, 0.72);
-  --ink-3: rgba(11, 18, 32, 0.5);
-  --paper: #f7f9fb;
-  --paper-2: #ffffff;
-  --paper-3: #eef2f6;
-  --line: rgba(11, 18, 32, 0.12);
-  --line-2: rgba(11, 18, 32, 0.22);
-  --accent-c: #0d9488;
-  --accent-c2: #14b8a6;
-  --accent-ink: #ffffff;
-  --accent-soft: rgba(13, 148, 136, 0.12);
+  --ink-2: var(--ink-muted);
+  --ink-3: var(--ink-muted);
+  --paper: var(--surface);
+  --paper-2: var(--surface-raised);
+  --paper-3: var(--surface-sunken);
+  --line-2: var(--line-strong);
+  --accent-c: var(--accent);
+  --accent-c2: var(--brand-aqua);
+  --accent-ink: var(--on-accent);
+  --accent-soft: color-mix(in srgb, var(--accent) 14%, transparent);
 }
 
 /* html-level rules while a concept page is mounted (ConceptRoot mirrors the attribute) */

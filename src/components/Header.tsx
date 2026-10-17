@@ -21,12 +21,26 @@ export default function Header() {
   // (switching locale replaces the route and remounts the whole tree).
   const pendingScrollRef = useRef<number | undefined>(undefined);
 
+  // Over the hero the header is part of the hero's band (navy in the light
+  // theme, see globals.css); once the hero has scrolled past it goes back to
+  // the page's own header colours. Pages without a hero are "page" throughout.
+  const [overHero, setOverHero] = useState(true);
+
   useEffect(() => {
+    const header = document.querySelector('header');
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
+      const hero = document.getElementById('hero');
+      const headerHeight = header ? header.getBoundingClientRect().height : 0;
+      setOverHero(!!hero && hero.getBoundingClientRect().bottom > headerHeight);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
   }, []);
 
   useEffect(() => {
@@ -85,12 +99,12 @@ export default function Header() {
     { id: 'features', label: t('nav.features') },
     { id: 'how', label: t('nav.how') },
     { id: 'security', label: t('nav.security') },
-    { id: 'pricing', label: t('nav.pricing') },
     { id: 'faq', label: t('nav.faq') },
   ];
 
   return (
     <header
+      data-over={overHero ? 'hero' : 'page'}
       className={`sticky top-0 z-50 border-b border-white/10 transition-all duration-300 ${
         isScrolled ? 'bg-black/20 backdrop-blur-xl' : 'bg-transparent backdrop-blur-sm'
       }`}
@@ -98,13 +112,21 @@ export default function Header() {
       {/* Desktop Header */}
       <div className="mx-auto hidden max-w-6xl items-center justify-between px-5 py-4 md:flex">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
+        {/* 40px tall keeps the horizontal logo at its 140px minimum width. */}
+        <Link href="/" className="flex items-center gap-2" aria-label="eleva 360°">
           <Image
-            src="/images/eleva-logo-blue.png"
-            alt="Eleva"
-            width={140}
-            height={44}
-            className="h-11 w-auto"
+            src="/brand/logo/eleva-360-horizontal-color.svg"
+            alt="eleva 360°"
+            width={1303}
+            height={370}
+            className="logo-light h-10 w-auto"
+          />
+          <Image
+            src="/brand/logo/eleva-360-horizontal-reverse.svg"
+            alt=""
+            width={1303}
+            height={370}
+            className="logo-dark h-10 w-auto"
           />
         </Link>
 
@@ -155,16 +177,9 @@ export default function Header() {
             <span className={`fi fi-${locale === 'es' ? 'gb' : 'es'} text-lg rounded-sm`} />
           </button>
           <a
-            href="#pricing"
-            onClick={navClick('pricing')}
-            className="rounded-2xl border border-white/15 px-4 py-2 text-sm text-white/85 transition hover:bg-white/10"
-          >
-            {t('nav.viewPricing')}
-          </a>
-          <a
             href="#demo"
             onClick={navClick('demo')}
-            className="header-cta rounded-2xl bg-brand-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-brand-700"
+            className="header-cta rounded-2xl bg-brand-600 px-4 py-2 text-sm font-medium text-on-accent transition hover:bg-brand-700"
           >
             {t('nav.requestDemo')}
           </a>
@@ -208,13 +223,21 @@ export default function Header() {
         </div>
 
         {/* Center: Logo */}
-        <Link href="/" className="absolute left-1/2 -translate-x-1/2">
+        {/* Phones get the compact logo (no "360°"); 32px tall is 113px wide. */}
+        <Link href="/" className="absolute left-1/2 -translate-x-1/2" aria-label="eleva 360°">
           <Image
-            src="/images/eleva-logo-blue.png"
-            alt="Eleva"
-            width={100}
-            height={32}
-            className="h-8 w-auto"
+            src="/brand/logo/eleva-360-compact-color.svg"
+            alt="eleva 360°"
+            width={1303}
+            height={370}
+            className="logo-light h-8 w-auto"
+          />
+          <Image
+            src="/brand/logo/eleva-360-compact-reverse.svg"
+            alt=""
+            width={1303}
+            height={370}
+            className="logo-dark h-8 w-auto"
           />
         </Link>
 
@@ -258,15 +281,8 @@ export default function Header() {
           </nav>
           <div className="mt-3 flex flex-col gap-2">
             <a
-              href="#pricing"
-              className="rounded-xl border border-white/15 px-4 py-3 text-center text-sm text-white/85 transition hover:bg-white/10"
-              onClick={closeMenuAndGo('pricing')}
-            >
-              {t('nav.viewPricing')}
-            </a>
-            <a
               href="#demo"
-              className="header-cta rounded-xl bg-brand-600 px-4 py-3 text-center text-sm font-medium text-white transition hover:bg-brand-700"
+              className="header-cta rounded-xl bg-brand-600 px-4 py-3 text-center text-sm font-medium text-on-accent transition hover:bg-brand-700"
               onClick={closeMenuAndGo('demo')}
             >
               {t('nav.requestDemo')}

@@ -6,6 +6,7 @@ import Footer from '@/components/Footer';
 import AnimatedBackground from '@/components/AnimatedBackground';
 import CookieBanner from '@/components/CookieBanner';
 import WhatsAppButton from '@/components/WhatsAppButton';
+import FloatingCue from '@/components/FloatingCue';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 
@@ -42,6 +43,7 @@ export default async function Home({ params }: Props) {
       <DemoForm />
       <Footer />
       <CookieBanner />
+      <FloatingCue />
       <WhatsAppButton
         phoneNumber="56979591791"
         message="Hola! Me interesa saber más sobre Eleva"

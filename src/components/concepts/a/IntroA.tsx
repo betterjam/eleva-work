@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useLocale, useTranslations } from 'next-intl';
 import { gsap, SplitText } from '@/components/concepts/shared/gsapSetup';
 import { splitLines } from './splitLines';
@@ -44,6 +45,7 @@ export default function IntroA() {
         const title = section.querySelector<HTMLElement>('.a-intro-h1');
         const lead = section.querySelector<HTMLElement>('.a-intro-lead');
         const actions = section.querySelector<HTMLElement>('.a-intro-actions');
+        const art = section.querySelector<HTMLElement>('.a-intro-art');
         const indexLabel = section.querySelector<HTMLElement>('.a-intro-index-label');
         const rows = section.querySelectorAll<HTMLElement>('.a-intro-index-item');
         const hr = section.querySelector<HTMLElement>('.a-intro-hr');
@@ -67,6 +69,14 @@ export default function IntroA() {
             { opacity: 0, scale: 0.96 },
             { opacity: 1, scale: 1, duration: 0.5, ease: 'settle' },
             0.8
+          );
+        }
+        if (art) {
+          tl.fromTo(
+            art,
+            { opacity: 0, y: 28, scale: 0.97 },
+            { opacity: 1, y: 0, scale: 1, duration: 1.1, ease: 'settle' },
+            0.35
           );
         }
         if (hr) tl.fromTo(hr, { scaleX: 0 }, { scaleX: 1, duration: 0.9, ease: 'reveal' }, 0.85);
@@ -104,7 +114,7 @@ export default function IntroA() {
     <section id="intro" data-section="intro" ref={ref} className="a-section a-intro" data-rv-manual>
       <div className="a-container">
         <div className="a-cols">
-          <div className="col-span-4 md:col-span-9">
+          <div className="col-span-4 md:col-span-8">
             <p className="a-label a-intro-eyebrow rv-wipe">{t('intro.eyebrow')}</p>
             <h1 className="a-h1 a-intro-h1 rv-lines">{t('intro.title')}</h1>
             <p className="a-lead a-intro-lead rv-lines">{t('intro.lead')}</p>
@@ -117,6 +127,19 @@ export default function IntroA() {
                 {t('intro.cta')}
               </Link>
             </div>
+          </div>
+          {/* The brand's flying pair beside the opening copy (desktop only; on
+              phones the intro stays a tight column of text). */}
+          <div className="col-span-4 md:col-span-4 md:self-center">
+            <Image
+              src="/images/illustrations/artboard-3.webp"
+              alt={t('intro.artAlt')}
+              width={960}
+              height={593}
+              sizes="(min-width: 768px) 34vw, 100vw"
+              priority
+              className="a-intro-art rv-fade"
+            />
           </div>
         </div>
 

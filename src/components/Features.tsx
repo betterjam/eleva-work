@@ -9,10 +9,12 @@ import NextLink from 'next/link';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ScrollCue from '@/components/ScrollCue';
+import HowIllustration from '@/components/HowIllustration';
 import {
   navClick,
   prefersReducedMotion,
   registerAnchor,
+  setCue,
   setActiveSection,
   unregisterAnchor,
 } from '@/lib/scrollNav';
@@ -49,18 +51,6 @@ const revealTo: Record<RevealKind, gsap.TweenVars> = {
 
 const kindOf = (el: HTMLElement): RevealKind => (el.dataset.fx as RevealKind) || 'card';
 
-/**
- * A scrubbed reveal must never un-reveal itself when the reader scrolls back:
- * once its window is behind us the animation is snapped to its end and the
- * trigger stops listening (the tween stays alive, so gsap.context can still
- * revert it on unmount).
- */
-function lockAtEnd(self: ScrollTrigger) {
-  self.getTween()?.kill();
-  self.animation?.progress(1);
-  self.disable(false, true);
-}
-
 export default function Features() {
   const t = useTranslations();
   const locale = useLocale();
@@ -81,34 +71,11 @@ export default function Features() {
   // reverted on the next commit - a pin-spacer insertion and a full
   // ScrollTrigger.refresh() paid on every mobile load.
   const [isMobile, setIsMobile] = useState<boolean | null>(null);
-  // Destination of the "next" cue inside the pinned stage - it follows the phase
-  const [nextCueId, setNextCueId] = useState('features-pair-0');
-  const nextCueIdRef = useRef(nextCueId);
 
   const features = t.raw('features.cards') as FeatureCard[];
   const ctaText = t('features.ctaTitle');
   const ctaDesc = t('features.ctaDesc');
   const platformHref = `/${locale}/platform/`;
-
-  // Cue label: "Siguiente" while the cards reveal, "Siguiente: <section>" later
-  const cueSections: Record<string, string> = {
-    how: t('nav.how'),
-    security: t('nav.security'),
-    pricing: t('nav.pricing'),
-    faq: t('nav.faq'),
-    demo: t('nav.requestDemo'),
-  };
-  const cueLabel = cueSections[nextCueId]
-    ? t('cues.nextTo', { section: cueSections[nextCueId] })
-    : t('cues.next');
-  // The visible label stays a short "Siguiente" while the cards reveal; the
-  // accessible name always names where the button goes.
-  const cueAriaLabel = cueSections[nextCueId]
-    ? cueLabel
-    : t('cues.nextTo', { section: t('nav.features') });
-  // Phase 2 parks the CTA column at the left edge, so the cue moves into it and
-  // stops sitting on top of the #how/#security/#pricing/#faq column.
-  const cueInVerticalPhase = ['how', 'security', 'pricing', 'faq', 'demo'].includes(nextCueId);
 
   // Group features in pairs
   const pairs: Array<Array<FeatureCard>> = [];
@@ -130,7 +97,7 @@ export default function Features() {
 
     const registeredIds: string[] = [];
     // Reduced motion keeps the pinned stage (it is the page's only route to
-    // #how/#security/#pricing/#faq) but every reveal renders finished.
+    // #how/#security/#faq) but every reveal renders finished.
     const reduce = prefersReducedMotion();
 
     const ctx = gsap.context(() => {
@@ -153,11 +120,19 @@ export default function Features() {
         if (top) gsap.set(top, { opacity: 0, scale: 0.9, y: -60 });
         if (bottom) gsap.set(bottom, { opacity: 0, scale: 0.9, y: 60 });
       });
-      const headerEl = headerRef.current;
-      gsap.set(headerEl ? [headerEl, lastSlide] : [lastSlide], { opacity: 0 });
+      // The title is visible from the moment the stage scrolls into view (it
+      // used to fade in over the first 10% of the pin, which left a blank
+      // screen between the hero and the first card); only the CTA slide hides.
+      gsap.set(lastSlide, { opacity: 0 });
 
       // CTA reveal pause duration (part of the horizontal leg)
       const ctaRevealPause = 400;
+      // Resting plateau once the sixth card is in and the CTA column has faded
+      // in: nothing moves for this much scroll, so a wheel or trackpad stops on
+      // the finished grid with its CTA (the cue is the only motion) instead of
+      // blowing straight into the carousel's exit. Without it that state existed
+      // for a handful of pixels, which no hand scroll ever lands on.
+      const gridHold = 480;
 
       // Every viewport-dependent length lives in one snapshot, re-taken on each
       // ScrollTrigger refresh (see `end` below). The pin length, the onUpdate
@@ -174,7 +149,7 @@ export default function Features() {
 
         // Horizontal scroll includes the pause that reveals the CTA
         const totalHorizontalScroll =
-          featureCardsWidth + startPadding + emptySlideWidth + ctaRevealPause;
+          featureCardsWidth + startPadding + emptySlideWidth + gridHold + ctaRevealPause;
         // Content height for the vertical leg
         const contentHeight = contentScroll.scrollHeight - window.innerHeight;
 
@@ -200,22 +175,43 @@ export default function Features() {
         const baseRevealDuration = 250;
         const revealDuration = baseRevealDuration * (window.innerWidth / 1920 + 0.5); // 0.5x - 1.5x
         const staggerDelay = revealDuration + 80;
+        // The first pair reveals during the approach (the section travelling up
+        // to its pin, see the approach trigger below), so the pinned timeline
+        // starts one reveal ahead: the title is never on screen alone.
+        const lead = revealDuration;
         return {
           revealDuration,
           staggerDelay,
-          allCardsRevealedAt: (pairElements.length - 1) * staggerDelay + revealDuration,
+          lead,
+          revealStartOf: (index: number) => index * staggerDelay - lead,
+          allCardsRevealedAt: (pairElements.length - 1) * staggerDelay + revealDuration - lead,
         };
+      };
+
+      // Carousel speed during the reveal phase: the CTA's right edge must reach
+      // the screen's right edge exactly when the last card is revealed. The
+      // reveal clock runs `lead` ahead of the pin (pair 0 reveals on the
+      // approach), so that distance is spread over allCardsRevealedAt + lead:
+      // the approach trigger covers lead's share, the pinned timeline the rest.
+      const carouselSpeed = () => {
+        const { allCardsRevealedAt, lead } = timings();
+        const screenWidth = window.innerWidth;
+        const isLarge = screenWidth >= 1024;
+        const lastSlideNegMargin = isLarge ? screenWidth * 0.05 : screenWidth * 0.03;
+        const ctaWidth = screenWidth * (isLarge ? 0.3 : 0.35);
+        const ctaRight = m.startPadding + m.emptySlideWidth + m.featureCardsWidth - lastSlideNegMargin + ctaWidth;
+        return Math.max(0.5, Math.min(1, (ctaRight - screenWidth) / (allCardsRevealedAt + lead)));
       };
 
       // Sub-sections that live inside the scrubbed content column
       const blocks: Array<{ id: string; el: HTMLElement }> = [];
-      ['how', 'security', 'pricing', 'faq'].forEach((id) => {
+      ['how', 'security', 'faq'].forEach((id) => {
         const el = contentScroll.querySelector<HTMLElement>(`#${id}`);
         if (el) blocks.push({ id, el });
       });
 
       // --- Phase-2 reveals ------------------------------------------------
-      // The how/security/pricing/faq column has no scroll position of its own:
+      // The how/security/faq column has no scroll position of its own:
       // it is dragged by the same onUpdate below. So its reveals are computed
       // from that one number - the column offset (verticalProgress *
       // contentHeight) against each block's offsetTop - instead of from their
@@ -303,7 +299,7 @@ export default function Features() {
       };
 
       // The animated background cannot put a ScrollTrigger on #how/#security/
-      // #pricing/#faq: they ride inside `contentScroll`, an absolutely
+      // #faq: they ride inside `contentScroll`, an absolutely
       // positioned column this stage translates, so their document offsets are
       // nowhere near where they appear. The stage publishes instead, from the
       // same cached tops the reveals use - no per-frame layout read.
@@ -329,19 +325,55 @@ export default function Features() {
       // not keep re-writing clip-path on twelve cards every frame.
       const pairClipCleared = pairElements.map(() => false);
 
+      // One pair's reveal at a raw 0..1 progress. Shared by the approach trigger
+      // (pair 0, before the pin) and the pinned timeline (every pair).
+      const applyPairReveal = (index: number, revealProgress: number) => {
+        const pair = pairElements[index];
+        const topCard = pair.querySelector('.card-top');
+        const bottomCard = pair.querySelector('.card-bottom');
+        // Eased for the eye only: every measurement and every anchor still
+        // reads the raw, linear revealProgress. Reduced motion keeps the plain
+        // linear ramp this stage always had.
+        const eased = reduce ? revealProgress : revealEase(revealProgress);
+        const revealing = !reduce && revealProgress < 1;
+
+        gsap.set(topCard, {
+          y: -60 * (1 - eased),
+          opacity: eased,
+          scale: 0.9 + 0.1 * eased,
+          // The top card drops in and unrolls downward, the bottom one rises
+          // and unrolls upward: a reveal, not a fade.
+          ...(revealing ? { clipPath: `inset(0% 0% ${(1 - eased) * 100}% 0%)` } : null),
+        });
+        gsap.set(bottomCard, {
+          y: 60 * (1 - eased),
+          opacity: eased,
+          scale: 0.9 + 0.1 * eased,
+          ...(revealing ? { clipPath: `inset(${(1 - eased) * 100}% 0% 0% 0%)` } : null),
+        });
+
+        if (revealing) {
+          pairClipCleared[index] = false;
+        } else if (!pairClipCleared[index]) {
+          gsap.set([topCard, bottomCard], { clipPath: 'none' });
+          pairClipCleared[index] = true;
+        }
+      };
+
       // Where the "next" cue points, given how far into the pin we are. The
       // scrub pacing is left alone, so consecutive pair reveals can be closer
       // together than a click should travel: prefer the first stop a clear
       // jump (400px) ahead and only fall back to the very next one at the end.
+      // The CTA column is not a stop of its own: from the last card the next
+      // destination is "Cómo funciona", and the CTA reveals on the way there.
       const MIN_CUE_JUMP = 400;
       const nextStopId = (scrollY: number) => {
-        const { staggerDelay, revealDuration, allCardsRevealedAt } = timings();
+        const { revealStartOf, revealDuration } = timings();
         const stops = [
           ...pairElements.map((_, index) => ({
             id: `features-pair-${index}`,
-            at: index * staggerDelay + revealDuration,
+            at: revealStartOf(index) + revealDuration,
           })),
-          { id: 'features-cta', at: allCardsRevealedAt + ctaRevealDuration },
           ...blocks.map((block) => ({ id: block.id, at: m.totalHorizontalScroll + block.el.offsetTop })),
         ];
         return (
@@ -367,16 +399,19 @@ export default function Features() {
         scrub: 0.5,
         anticipatePin: 1,
         invalidateOnRefresh: true,
+        // Outside the pin the cue points at the stage itself or at the demo form.
+        onLeave: () => setCue({ target: 'demo', parked: false }),
+        onLeaveBack: () => setCue({ target: 'features', parked: false }),
         onUpdate: (self) => {
           const scrollY = self.progress * m.totalScrollDistance;
           const header = headerRef.current;
 
-          // Keep the cue pointing at whatever comes next
-          const nextId = nextStopId(scrollY);
-          if (nextId !== nextCueIdRef.current) {
-            nextCueIdRef.current = nextId;
-            setNextCueId(nextId);
-          }
+          // The page's floating cue points at whatever comes next; once the CTA
+          // column is parked on the left the cue moves into it.
+          setCue({
+            target: nextStopId(scrollY),
+            parked: scrollY >= timings().allCardsRevealedAt + ctaRevealDuration + gridHold,
+          });
 
           // Animation constants - responsive to screen size
           const screenWidth = window.innerWidth;
@@ -391,38 +426,37 @@ export default function Features() {
           const leftMargin = Math.max(40, screenWidth * 0.04);
 
           // Reveal timing - scales with screen size for consistent feel
-          const { revealDuration, staggerDelay, allCardsRevealedAt } = timings();
+          const { revealDuration, revealStartOf, allCardsRevealedAt, lead } = timings();
 
-          // Calculate carousel speed so CTA's right border is at screen's right edge when fully revealed
-          // CTA right position = ctaLeftPosition + ctaWidth (30vw)
-          const lastSlideNegMargin = isLarge ? screenWidth * 0.05 : screenWidth * 0.03;
-          const ctaLeftPosition = startPadding + emptySlideWidth + featureCardsWidth - lastSlideNegMargin;
-          const ctaWidth = screenWidth * (isLarge ? 0.30 : 0.35);
-          const ctaRightPosition = ctaLeftPosition + ctaWidth;
-          // When CTA is revealed, we want its right border at screenWidth (right edge)
-          const targetEffectiveScroll = ctaRightPosition - screenWidth;
-          const carouselSpeedDuringReveal = Math.max(0.5, Math.min(1, targetEffectiveScroll / allCardsRevealedAt));
+          const carouselSpeedDuringReveal = carouselSpeed();
+          // Distance the carousel has covered by the time the last card is in:
+          // lead's share on the approach plus allCardsRevealedAt here.
+          const revealTravel = (allCardsRevealedAt + lead) * carouselSpeedDuringReveal;
 
-          // CTA appears right after all cards are revealed
+          // CTA appears right after the last card; the rest comes after it
           const ctaStartsAt = allCardsRevealedAt;
+          const holdEndsAt = ctaStartsAt + ctaRevealDuration + gridHold;
 
           // Calculate effective scroll - pause during CTA reveal
           let effectiveScroll: number;
           let ctaProgress: number;
 
-          if (scrollY <= ctaStartsAt) {
-            // Phase 1: Cards revealing, carousel moves SLOWLY
-            effectiveScroll = scrollY * carouselSpeedDuringReveal;
+          if (scrollY <= allCardsRevealedAt) {
+            // Phase 1: Cards revealing, carousel moves SLOWLY (already lead's share in)
+            effectiveScroll = (scrollY + lead) * carouselSpeedDuringReveal;
             ctaProgress = 0;
           } else if (scrollY <= ctaStartsAt + ctaRevealDuration) {
             // Phase 2: CTA revealing, carousel PAUSED
-            effectiveScroll = ctaStartsAt * carouselSpeedDuringReveal; // Freeze at slow position
+            effectiveScroll = revealTravel; // Freeze at slow position
             ctaProgress = (scrollY - ctaStartsAt) / ctaRevealDuration;
+          } else if (scrollY <= holdEndsAt) {
+            // Hold: grid and CTA rest together, nothing moves
+            effectiveScroll = revealTravel;
+            ctaProgress = 1;
           } else {
             // Phase 3: CTA fully visible, carousel resumes at normal speed
-            const phase1Distance = ctaStartsAt * carouselSpeedDuringReveal;
-            const phase3Scroll = scrollY - ctaStartsAt - ctaRevealDuration;
-            effectiveScroll = phase1Distance + phase3Scroll;
+            const phase3Scroll = scrollY - holdEndsAt;
+            effectiveScroll = revealTravel + phase3Scroll;
             ctaProgress = 1;
           }
 
@@ -444,8 +478,6 @@ export default function Features() {
                   x: -120 * fadeProgress,
                   filter: `blur(${fadeProgress * 8}px)`
                 });
-              } else if (progress < 0.1) {
-                gsap.set(header, { opacity: progress / 0.1, x: 0, filter: 'blur(0px)' });
               } else {
                 gsap.set(header, { opacity: 1, x: 0, filter: 'blur(0px)' });
               }
@@ -464,41 +496,10 @@ export default function Features() {
             // Move carousel
             gsap.set(horizontal, { x: -carouselX });
 
-            // Animate cards - reveal from top/bottom
+            // Animate cards - reveal from top/bottom, pairs one by one
             pairElements.forEach((pair, index) => {
-              const topCard = pair.querySelector('.card-top');
-              const bottomCard = pair.querySelector('.card-bottom');
-
-              // Reveal pairs one by one
-              const revealStart = index * staggerDelay;
-              const revealProgress = Math.max(0, Math.min(1, (scrollY - revealStart) / revealDuration));
-              // Eased for the eye only: every measurement above and every anchor
-              // below still reads the raw, linear revealProgress. Reduced motion
-              // keeps the plain linear ramp this stage always had.
-              const eased = reduce ? revealProgress : revealEase(revealProgress);
-              const revealing = !reduce && revealProgress < 1;
-
-              gsap.set(topCard, {
-                y: -60 * (1 - eased),
-                opacity: eased,
-                scale: 0.9 + 0.1 * eased,
-                // The top card drops in and unrolls downward, the bottom one
-                // rises and unrolls upward: a reveal, not a fade.
-                ...(revealing ? { clipPath: `inset(0% 0% ${(1 - eased) * 100}% 0%)` } : null),
-              });
-              gsap.set(bottomCard, {
-                y: 60 * (1 - eased),
-                opacity: eased,
-                scale: 0.9 + 0.1 * eased,
-                ...(revealing ? { clipPath: `inset(${(1 - eased) * 100}% 0% 0% 0%)` } : null),
-              });
-
-              if (revealing) {
-                pairClipCleared[index] = false;
-              } else if (!pairClipCleared[index]) {
-                gsap.set([topCard, bottomCard], { clipPath: 'none' });
-                pairClipCleared[index] = true;
-              }
+              const revealProgress = Math.max(0, Math.min(1, (scrollY - revealStartOf(index)) / revealDuration));
+              applyPairReveal(index, revealProgress);
 
               // Calculate visual position using carouselX (includes smooth transition)
               const initialPosition = startPadding + emptySlideWidth + index * (pairWidth + pairGap);
@@ -564,6 +565,26 @@ export default function Features() {
         },
       });
 
+      // --- Approach ------------------------------------------------------
+      // While the section travels up to its pin the first pair already reveals
+      // and the carousel covers lead's share of its reveal-phase travel, both
+      // scrubbed over that travel, so the reader never sees the title alone.
+      // It ends where the pinned timeline starts, which treats pair 0 as done
+      // and the carousel as lead * speed along (`lead` in timings), so the two
+      // hand over without a jump.
+      if (!reduce) {
+        ScrollTrigger.create({
+          trigger: trigger,
+          start: 'top 85%',
+          end: 'top top',
+          scrub: 0.3,
+          onUpdate: (self) => {
+            applyPairReveal(0, self.progress);
+            gsap.set(horizontal, { x: -(self.progress * timings().lead * carouselSpeed()) });
+          },
+        });
+      }
+
       // --- Anchors -------------------------------------------------------
       // `st.start` is the live pin start (ScrollTrigger recomputes it on every
       // refresh/resize) and the resolvers are functions, so these stay correct.
@@ -576,14 +597,14 @@ export default function Features() {
       const settle = 16;
 
       addAnchor('features', () => st.start);
-      addAnchor('features-revealed', () => st.start + timings().allCardsRevealedAt + settle);
+      // "Módulos" lands in the middle of the resting plateau: six cards and the CTA.
+      addAnchor('features-revealed', () => st.start + timings().allCardsRevealedAt + ctaRevealDuration + gridHold / 2);
       pairElements.forEach((_, index) => {
         addAnchor(`features-pair-${index}`, () => {
-          const { staggerDelay, revealDuration } = timings();
-          return st.start + index * staggerDelay + revealDuration + settle;
+          const { revealStartOf, revealDuration } = timings();
+          return st.start + revealStartOf(index) + revealDuration + settle;
         });
       });
-      addAnchor('features-cta', () => st.start + timings().allCardsRevealedAt + ctaRevealDuration);
       // Phase 2 moves the column by exactly (scroll - totalHorizontalScroll)
       blocks.forEach(({ id, el }) => {
         addAnchor(id, () => st.start + m.totalHorizontalScroll + el.offsetTop);
@@ -596,10 +617,11 @@ export default function Features() {
     };
   }, [isMobile]);
 
-  // Mobile: nothing here is pinned, so each element gets its own short scrubbed
-  // window (90% -> 55% of the viewport) and locks once the window is behind it.
-  // The window closes well above the fold, so a card is never still arriving by
-  // the time the reader is reading it.
+  // Mobile: nothing here is pinned, and a thumb flick crosses a scrubbed window
+  // in a fraction of a second, so a scroll-tied reveal would never actually be
+  // seen. Each element plays its reveal once, in real time, as it enters the
+  // viewport; a short index stagger keeps neighbours that arrive together from
+  // popping in unison.
   useEffect(() => {
     if (isMobile !== true || prefersReducedMotion()) return;
 
@@ -607,10 +629,12 @@ export default function Features() {
     if (!root) return;
 
     const ctx = gsap.context(() => {
-      root.querySelectorAll<HTMLElement>('[data-fx]').forEach((el) => {
+      root.querySelectorAll<HTMLElement>('[data-fx]').forEach((el, i) => {
         const kind = kindOf(el);
         gsap.fromTo(el, { ...revealFrom[kind] }, {
           ...revealTo[kind],
+          duration: kind === 'card' ? 0.7 : 0.5,
+          delay: (i % 4) * 0.06,
           ease: 'power2.out',
           // A finished wipe drops its clip-path: resting on inset(0 0 0 0) keeps
           // clipping at the border box and would swallow the CTA's shadow.
@@ -619,10 +643,8 @@ export default function Features() {
           },
           scrollTrigger: {
             trigger: el,
-            start: 'top 90%',
-            end: 'top 55%',
-            scrub: 0.3,
-            onLeave: lockAtEnd,
+            start: 'top 88%',
+            once: true,
           },
         });
       });
@@ -631,50 +653,46 @@ export default function Features() {
     return () => ctx.revert();
   }, [isMobile]);
 
-  // Mobile card render - simpler style
-  const renderMobileCard = (feature: FeatureCard) => (
-    <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+  const cardIndex = (index: number) => String(index + 1).padStart(2, '0');
+
+  // Mobile card: stacked, the illustration on top at a size where it reads.
+  const renderMobileCard = (feature: FeatureCard, index: number) => (
+    <div className="feature-card relative overflow-hidden rounded-3xl p-5">
       {feature.image && (
-        <div className="relative w-full h-20 mb-4 rounded-xl overflow-hidden">
-          <Image src={feature.image} alt={feature.title} fill className="object-contain" />
+        <div className="relative mb-4 h-32 w-full">
+          <div aria-hidden="true" className="absolute left-1/2 top-1/2 h-20 w-44 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-400/15 blur-2xl" />
+          <Image src={feature.image} alt="" fill sizes="(max-width: 768px) 90vw, 320px" className="object-contain" />
         </div>
       )}
-      <h3 className="font-semibold text-white text-base mb-2">{feature.title}</h3>
-      <p className="text-white/70 text-sm leading-relaxed">{feature.desc}</p>
+      <div className="mb-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-400">{cardIndex(index)}</div>
+      <h3 className="text-base font-semibold tracking-tight text-white">{feature.title}</h3>
+      <p className="mt-1 text-sm leading-relaxed text-white/70">{feature.desc}</p>
     </div>
   );
 
-  const renderCard = (feature: FeatureCard, position: 'top' | 'bottom') => {
-    // All cards start hidden, revealed after title
-    // Responsive sizing: smaller on small screens, larger on big screens
-    return (
-      <div className={`card-${position} feature-card-3d relative w-[clamp(240px,18vw,320px)] h-[clamp(200px,16vw,280px)]`}>
-        {feature.image && (
-          <div className="absolute inset-0 overflow-hidden rounded-[1.25rem] lg:rounded-[1.5rem]">
-            <Image src={feature.image} alt="" fill className="object-cover blur-2xl opacity-30 scale-150" />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-black/70" />
-          </div>
-        )}
-        <div className="absolute inset-0 rounded-[1.25rem] lg:rounded-[1.5rem] p-[1px] bg-gradient-to-br from-white/20 via-white/5 to-white/10">
-          <div className="absolute inset-[1px] rounded-[1.25rem] lg:rounded-[1.5rem] bg-black/40 backdrop-blur-sm" />
-        </div>
-        <div className="relative h-full rounded-[1.25rem] lg:rounded-[1.5rem] bg-transparent p-4 lg:p-6 flex flex-col overflow-hidden">
+  // Carousel card. The outer element is what the stage animates (transform,
+  // opacity, clip-path via gsap.set), so everything visual lives one level in.
+  // The illustration takes whatever height the copy leaves it, and the copy is
+  // pinned to the bottom so titles line up across a pair.
+  const renderCard = (feature: FeatureCard, position: 'top' | 'bottom', index: number) => (
+    <div className={`card-${position} feature-card-3d relative w-[clamp(240px,18vw,320px)] h-[clamp(200px,min(18vw,27vh),300px)]`}>
+      <div className="feature-card group relative flex h-full flex-col overflow-hidden rounded-3xl">
+        <div className="relative min-h-0 flex-1 px-5 pt-5">
+          <div aria-hidden="true" className="absolute left-1/2 top-1/2 h-24 w-44 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-400/15 blur-2xl" />
           {feature.image && (
-            /* shrink-0: the illustration is a flex item next to the description. Without it the
-               longer copy squeezes this box from 64px down to ~16px and the artboard renders as
-               a sliver. Fixed, smaller heights leave the text room inside the card. */
-            <div className="relative w-full mb-2 lg:mb-3 rounded-xl overflow-hidden h-12 lg:h-16 shrink-0">
-              <Image src={feature.image} alt="" fill sizes="260px" className="object-contain p-1" />
+            <div className="relative h-full w-full transition-transform duration-500 ease-out group-hover:scale-[1.04]">
+              <Image src={feature.image} alt="" fill sizes="320px" className="object-contain" />
             </div>
           )}
-          <div className="flex-1 flex flex-col min-h-0">
-            <h3 className="font-semibold text-white text-sm lg:text-base mb-1 lg:mb-2">{feature.title}</h3>
-            <p className="text-white/70 leading-relaxed text-xs lg:text-sm line-clamp-5">{feature.desc}</p>
-          </div>
+        </div>
+        <div className="shrink-0 px-5 pb-5 pt-3 lg:px-6 lg:pb-6">
+          <div className="mb-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-400">{cardIndex(index)}</div>
+          <h3 className="text-sm font-semibold tracking-tight text-white lg:text-base">{feature.title}</h3>
+          <p className="mt-1 text-xs leading-relaxed text-white/70 line-clamp-3 lg:text-[13px]">{feature.desc}</p>
         </div>
       </div>
-    );
-  };
+    </div>
+  );
 
   return (
     <div id="features">
@@ -689,8 +707,8 @@ export default function Features() {
 
         {/* Feature cards grid */}
         <div className="grid gap-4">
-          {features.map((feature) => (
-            <div data-fx="card" key={feature.title}>{renderMobileCard(feature)}</div>
+          {features.map((feature, index) => (
+            <div data-fx="card" key={feature.title}>{renderMobileCard(feature, index)}</div>
           ))}
         </div>
 
@@ -701,11 +719,18 @@ export default function Features() {
         {/* CTA */}
         <div className="mt-12 text-center py-12 border-t border-white/10">
           <Image
-            src="/images/eleva-logo-blue.png"
-            alt="Eleva"
-            width={100}
-            height={33}
-            className="h-8 w-auto opacity-80 mx-auto mb-6"
+            src="/brand/logo/eleva-360-stacked-color.svg"
+            alt="eleva 360°"
+            width={877}
+            height={906}
+            className="logo-light mx-auto mb-6 h-auto w-24"
+          />
+          <Image
+            src="/brand/logo/eleva-360-stacked-reverse.svg"
+            alt=""
+            width={877}
+            height={906}
+            className="logo-dark mx-auto mb-6 h-auto w-24"
           />
           <h2 data-fx="title" className="text-2xl font-semibold text-white mb-3">{ctaText}</h2>
           <p data-fx="text" className="text-base text-white/70 mb-6">{ctaDesc}</p>
@@ -716,7 +741,7 @@ export default function Features() {
             data-fx="card"
             href="#demo"
             onClick={navClick('demo')}
-            className="inline-flex items-center gap-2 rounded-xl bg-brand-600 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-brand-700 shadow-lg shadow-brand-600/25"
+            className="inline-flex items-center gap-2 rounded-xl bg-brand-600 px-6 py-3 text-sm font-medium text-on-accent transition-colors hover:bg-brand-700"
           >
             {t('nav.requestDemo')}
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -725,7 +750,7 @@ export default function Features() {
           </a>
           <NextLink
             href={platformHref}
-            className="mt-4 flex items-center justify-center gap-1.5 text-sm text-white/60 transition hover:text-white"
+            className="mt-3 inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 px-6 py-3 text-sm text-white/85 transition hover:bg-white/10"
           >
             {t('features.detailCta')}
             <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -739,6 +764,9 @@ export default function Features() {
           <h3 data-fx="title" className="text-xl font-semibold text-white">{t('how.title')}</h3>
           <p data-fx="text" className="mt-2 text-white/70">{t('how.sub')}</p>
           <div data-fx="rule" className="mt-4 h-px w-16 bg-gradient-to-r from-brand-400/70 to-brand-400/0" />
+          <div data-fx="card" className="mt-6">
+            <HowIllustration className="mx-auto h-auto w-full max-w-sm" />
+          </div>
           <div className="mt-6 grid gap-4">
             {(t.raw('how.steps') as Array<{ title: string; desc: string }>).map((step, i) => (
               <div data-fx="card" key={step.title} className="rounded-2xl border border-white/10 bg-white/5 p-5">
@@ -764,38 +792,6 @@ export default function Features() {
               <div data-fx="card" key={card.title} className="rounded-2xl border border-white/10 bg-white/5 p-5">
                 <div className="text-sm font-medium text-white">{card.title}</div>
                 <p className="mt-2 text-sm text-white/60">{card.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Pricing section */}
-        <div id="pricing-mobile" className="py-12 border-t border-white/10">
-          <h3 data-fx="title" className="text-xl font-semibold text-white">{t('pricing.title')}</h3>
-          <p data-fx="text" className="mt-2 text-white/70">{t('pricing.sub')}</p>
-          <div data-fx="rule" className="mt-4 h-px w-16 bg-gradient-to-r from-brand-400/70 to-brand-400/0" />
-          <div className="mt-6 grid gap-4">
-            {(t.raw('pricing.plans') as Array<{ name: string; price: string; note: string; bullets: string[]; cta: string; highlight?: string }>).map((plan) => (
-              <div data-fx="card" key={plan.name} className={`rounded-2xl border p-5 ${plan.highlight ? 'border-brand-500/50 bg-brand-500/10' : 'border-white/10 bg-white/5'}`}>
-                <div className="flex items-baseline justify-between mb-3">
-                  <div className="text-sm font-medium text-white">{plan.name}</div>
-                  {plan.highlight && (
-                    <span className="text-xs text-brand-400 bg-brand-500/20 px-2 py-1 rounded-full">{plan.highlight}</span>
-                  )}
-                </div>
-                <div className="text-2xl font-semibold text-white">{plan.price}</div>
-                <p className="text-xs text-white/50 mt-1">{plan.note}</p>
-                <ul className="mt-4 space-y-2">
-                  {plan.bullets.map((bullet) => (
-                    <li key={bullet} className="flex items-start gap-2 text-sm text-white/70">
-                      <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-brand-500 flex-shrink-0" />
-                      {bullet}
-                    </li>
-                  ))}
-                </ul>
-                <a href="#demo" onClick={navClick('demo')} className={`mt-5 block text-center rounded-xl px-4 py-2.5 text-sm font-medium transition ${plan.highlight ? 'bg-brand-600 text-white hover:bg-brand-700' : 'border border-white/15 text-white/85 hover:bg-white/10'}`}>
-                  {plan.cta}
-                </a>
               </div>
             ))}
           </div>
@@ -833,7 +829,7 @@ export default function Features() {
           </div>
         </div>
 
-        <div className="h-full flex items-center pt-36 pb-12">
+        <div className="h-full flex items-center pt-28 pb-24">
           {/* Horizontal carousel container */}
           <div
             ref={horizontalRef}
@@ -852,7 +848,7 @@ export default function Features() {
               >
                 {pair.map((feature, cardIndex) => (
                   <div key={feature.title}>
-                    {renderCard(feature, cardIndex === 0 ? 'top' : 'bottom')}
+                    {renderCard(feature, cardIndex === 0 ? 'top' : 'bottom', pairIndex * 2 + cardIndex)}
                   </div>
                 ))}
               </div>
@@ -867,18 +863,25 @@ export default function Features() {
               {/* Left: CTA - responsive width */}
               <div className="cta-sticky flex w-[35vw] lg:w-[30vw] flex-shrink-0 h-full flex-col items-center justify-center px-4 lg:px-8 py-8 border-r border-white/10">
                 <Image
-                  src="/images/eleva-logo-blue.png"
-                  alt="Eleva"
-                  width={120}
-                  height={40}
-                  className="h-10 w-auto opacity-80 mb-8"
+                  src="/brand/logo/eleva-360-stacked-color.svg"
+                  alt="eleva 360°"
+                  width={877}
+                  height={906}
+                  className="logo-light mb-8 h-auto w-28"
+                />
+                <Image
+                  src="/brand/logo/eleva-360-stacked-reverse.svg"
+                  alt=""
+                  width={877}
+                  height={906}
+                  className="logo-dark mb-8 h-auto w-28"
                 />
                 <h2 className="text-3xl font-semibold text-white text-center mb-4">{ctaText}</h2>
                 <p className="text-base text-white/70 text-center mb-8 max-w-[280px]">{ctaDesc}</p>
                 <a
                   href="#demo"
                   onClick={navClick('demo')}
-                  className="inline-flex items-center gap-2 rounded-xl bg-brand-600 px-6 py-3 text-sm font-medium text-white transition hover:bg-brand-700 shadow-lg shadow-brand-600/25"
+                  className="inline-flex items-center gap-2 rounded-xl bg-brand-600 px-6 py-3 text-sm font-medium text-on-accent transition hover:bg-brand-700"
                 >
                   {t('nav.requestDemo')}
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -887,7 +890,7 @@ export default function Features() {
                 </a>
                 <NextLink
                   href={platformHref}
-                  className="mt-5 flex items-center justify-center gap-1.5 text-center text-sm text-white/60 transition hover:text-white"
+                  className="mt-3 inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 px-6 py-3 text-sm text-white/85 transition hover:bg-white/10"
                 >
                   {t('features.detailCta')}
                   <svg className="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -904,18 +907,24 @@ export default function Features() {
                     <h3 data-fx="title" className="text-2xl font-semibold text-white">{t('how.title')}</h3>
                     <p data-fx="text" className="mt-2 text-white/70">{t('how.sub')}</p>
                     <div data-fx="rule" className="mt-5 h-px w-24 bg-gradient-to-r from-brand-400/70 to-brand-400/0" />
-                    <div className="mt-8 grid gap-4 md:grid-cols-2">
-                      {(t.raw('how.steps') as Array<{ title: string; desc: string }>).map((step, i) => (
-                        <div data-fx="card" key={step.title} className="rounded-2xl border border-white/10 bg-white/5 p-6">
-                          <div className="flex items-center gap-3 mb-3">
-                            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-600/20 text-sm font-medium text-brand-400">
-                              {i + 1}
-                            </span>
-                            <div className="text-base font-medium text-white">{step.title}</div>
+                    {/* Steps on the left, the schematic of the three steps on the right */}
+                    <div className="mt-8 grid gap-8 lg:grid-cols-2 lg:items-center">
+                      <div className="grid gap-4">
+                        {(t.raw('how.steps') as Array<{ title: string; desc: string }>).map((step, i) => (
+                          <div data-fx="card" key={step.title} className="rounded-2xl border border-white/10 bg-white/5 p-6">
+                            <div className="flex items-center gap-3 mb-3">
+                              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-600/20 text-sm font-medium text-brand-400">
+                                {i + 1}
+                              </span>
+                              <div className="text-base font-medium text-white">{step.title}</div>
+                            </div>
+                            <p className="text-sm text-white/60">{step.desc}</p>
                           </div>
-                          <p className="text-sm text-white/60">{step.desc}</p>
-                        </div>
-                      ))}
+                        ))}
+                      </div>
+                      <div data-fx="card" className="flex justify-center lg:justify-end">
+                        <HowIllustration className="h-auto w-full max-w-[520px]" />
+                      </div>
                     </div>
                   </div>
 
@@ -929,38 +938,6 @@ export default function Features() {
                         <div data-fx="card" key={card.title} className="rounded-2xl border border-white/10 bg-white/5 p-6">
                           <div className="text-base font-medium text-white">{card.title}</div>
                           <p className="mt-2 text-sm text-white/60">{card.desc}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Pricing section */}
-                  <div id="pricing" className="min-h-screen flex flex-col justify-center border-l border-t border-white/10 p-8 lg:p-12">
-                    <h3 data-fx="title" className="text-2xl font-semibold text-white">{t('pricing.title')}</h3>
-                    <p data-fx="text" className="mt-2 text-white/70">{t('pricing.sub')}</p>
-                    <div data-fx="rule" className="mt-5 h-px w-24 bg-gradient-to-r from-brand-400/70 to-brand-400/0" />
-                    <div className="mt-8 grid gap-4 md:grid-cols-3">
-                      {(t.raw('pricing.plans') as Array<{ name: string; price: string; note: string; bullets: string[]; cta: string; highlight?: string }>).map((plan) => (
-                        <div data-fx="card" key={plan.name} className={`rounded-2xl border p-6 ${plan.highlight ? 'border-brand-500/50 bg-brand-500/10' : 'border-white/10 bg-white/5'}`}>
-                          <div className="flex items-baseline justify-between mb-4">
-                            <div className="text-base font-medium text-white">{plan.name}</div>
-                            {plan.highlight && (
-                              <span className="text-xs text-brand-400 bg-brand-500/20 px-2 py-1 rounded-full">{plan.highlight}</span>
-                            )}
-                          </div>
-                          <div className="text-3xl font-semibold text-white">{plan.price}</div>
-                          <p className="text-xs text-white/50 mt-1">{plan.note}</p>
-                          <ul className="mt-4 space-y-2">
-                            {plan.bullets.map((bullet) => (
-                              <li key={bullet} className="flex items-start gap-2 text-sm text-white/70">
-                                <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-brand-500 flex-shrink-0" />
-                                {bullet}
-                              </li>
-                            ))}
-                          </ul>
-                          <a href="#demo" onClick={navClick('demo')} className={`mt-6 block text-center rounded-xl px-4 py-2.5 text-sm font-medium transition ${plan.highlight ? 'bg-brand-600 text-white hover:bg-brand-700' : 'border border-white/15 text-white/85 hover:bg-white/10'}`}>
-                            {plan.cta}
-                          </a>
                         </div>
                       ))}
                     </div>
@@ -986,20 +963,6 @@ export default function Features() {
           </div>
         </div>
 
-        {/* "Next" cue - stays visible for the whole pin, follows the phase.
-            bottom-36 keeps it clear of the cookie banner on a first visit. */}
-        <div
-          className={`absolute bottom-36 left-1/2 z-20 transition-transform duration-500 ${
-            cueInVerticalPhase ? '-translate-x-[calc(50%+35vw)]' : '-translate-x-1/2'
-          }`}
-        >
-          <ScrollCue
-            targetId={nextCueId}
-            label={cueLabel}
-            ariaLabel={cueAriaLabel}
-            direction="next"
-          />
-        </div>
       </div>
       </section>
     </div>

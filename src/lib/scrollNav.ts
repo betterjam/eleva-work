@@ -1,13 +1,14 @@
 /**
  * Page navigation for the live landing page.
  *
- * Features (desktop) and DemoForm (desktop) are pinned and scrubbed, so their
- * content has no stable document position: `scrollIntoView()` cannot land on
- * `#how`, `#security`, ... at all. Instead those sections register a *resolver*
- * for each anchor - a function, so it re-reads live values (ScrollTrigger
- * `start`, `offsetTop`, ...) after every resize / refresh - and `goTo()` tweens
- * the window scroll position to it. Because the pins are scrubbed, travelling
- * through them plays their reveal animations on the way in.
+ * The Features stage (desktop) is pinned and scrubbed, so its content has no
+ * stable document position: `scrollIntoView()` cannot land on `#how`,
+ * `#security`, ... at all. Instead the stage registers a *resolver* for each
+ * anchor - a function, so it re-reads live values (ScrollTrigger `start`,
+ * `offsetTop`, ...) after every resize / refresh - and `goTo()` tweens the
+ * window scroll position to it. Because the pin is scrubbed, travelling
+ * through it plays the reveal animations on the way in. Plain sections such
+ * as `#demo` register nothing: `resolveY` falls back to their element.
  */
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -116,28 +117,50 @@ export function goTo(id: string) {
 
   const revealId = AUTO_REVEAL[id];
 
+  // The layout can move while we travel: on a deep-link load the pinned stage
+  // inserts its spacer a moment after the first measurement, and the page
+  // grows by several screens. So the target is resolved again on arrival and
+  // corrected once when it has moved.
+  const CORRECTION_TOLERANCE = 8;
+
   if (prefersReducedMotion()) {
     window.scrollTo(0, y);
+    requestAnimationFrame(() => {
+      const settled = resolveY(id);
+      if (settled !== null && Math.abs(settled - window.scrollY) > CORRECTION_TOLERANCE) {
+        window.scrollTo(0, settled);
+      }
+    });
     return;
   }
 
   const distance = Math.abs(y - window.scrollY);
   const duration = clamp(0.8, distance / 2500, 2.2);
 
-  tweenTo(y, duration, 'power2.inOut', () => {
+  const afterArrival = () => {
     if (!revealId) return;
     // Keep scrolling on the user's behalf so the cards reveal themselves.
     const revealY = resolveY(revealId);
     if (revealY !== null && revealY > window.scrollY) {
       tweenTo(revealY, REVEAL_DURATION, 'power1.out');
     }
+  };
+
+  tweenTo(y, duration, 'power2.inOut', () => {
+    const settled = resolveY(id);
+    if (settled !== null && Math.abs(settled - window.scrollY) > CORRECTION_TOLERANCE) {
+      const remaining = Math.abs(settled - window.scrollY);
+      tweenTo(settled, clamp(0.5, remaining / 2500, 1.6), 'power2.inOut', afterArrival);
+      return;
+    }
+    afterArrival();
   });
 }
 
 /**
  * Which block the pinned Features stage is currently showing.
  *
- * The how/security/pricing/faq blocks live inside a GSAP-translated column, so
+ * The how/security/faq blocks live inside a GSAP-translated column, so
  * their document offsets are meaningless to ScrollTrigger: anything that wants
  * to react to them (the animated background palette) subscribes here and the
  * stage's own onUpdate is what publishes.
@@ -158,6 +181,36 @@ export function onActiveSection(listener: SectionListener) {
   sectionListeners.add(listener);
   return () => {
     sectionListeners.delete(listener);
+  };
+}
+
+/**
+ * The page's one floating cue (src/components/FloatingCue.tsx) is fixed to the
+ * bottom of the viewport and travels with the reader; whoever knows what comes
+ * next publishes it here. `target` is the anchor the cue goes to (null hides
+ * it); `parked` is true while the pinned stage has its CTA column on the left,
+ * so the cue moves into that column instead of sitting on the content.
+ */
+export type CueState = { target: string | null; parked: boolean };
+
+type CueListener = (state: CueState) => void;
+
+const cueListeners = new Set<CueListener>();
+let cueState: CueState = { target: 'features', parked: false };
+
+export function setCue(next: Partial<CueState>) {
+  const merged = { ...cueState, ...next };
+  if (merged.target === cueState.target && merged.parked === cueState.parked) return;
+  cueState = merged;
+  cueListeners.forEach((listener) => listener(cueState));
+}
+
+/** Subscribe to `setCue` (called once with the current state); returns the unsubscribe. */
+export function onCue(listener: CueListener) {
+  cueListeners.add(listener);
+  listener(cueState);
+  return () => {
+    cueListeners.delete(listener);
   };
 }
 

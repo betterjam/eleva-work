@@ -8,7 +8,7 @@ import KeyValue, { type KeyValueRow } from './KeyValue';
 import Plate from './Plate';
 import SectionRule from './SectionRule';
 import { useSectionDirector } from './director/SectionDirector';
-import { SCRUB } from './director/sections';
+import { HOLD_TOP, SCRUB } from './director/sections';
 import { useReveal } from './useReveal';
 
 type Block = {
@@ -52,7 +52,8 @@ const PLATES = [
  * §02 Estructura. A HOLD section: the `[data-hold]` block (title + lead) pins under the
  * header for 55vh while its beat draws, so the page waits for the reveal (`sections.ts`).
  * Desktop (≥1024, motion allowed): a rail of three spec blocks on the left and a pinned
- * plate column (pinSpacing false) on the right. Plate 2.1 reveals as a director BEAT
+ * plate column (pinSpacing false) on the right, parked vertically centred in the area
+ * below the header like the stage box of §01. Plate 2.1 reveals as a director BEAT
  * (scrubbed, locked at completion). Plates 2.2 / 2.3 wipe up over the previous one as
  * their block crosses 60 % → 40 % of the viewport, the covered plate settling back (scale
  * 0.985, 35 %): that cross-fade is a scrubbed trigger of its own, NOT a beat, because it
@@ -88,11 +89,22 @@ export default function EstructuraA() {
           if (plateEls.length < 3) return;
           const unregisters: (() => void)[] = [];
 
+          // The column parks with its centre on the centre of the area below the fixed
+          // header, never higher than the line the hold sections park at (HOLD_TOP under
+          // the header), so a column taller than that area still starts at a readable
+          // top. It leaves with the rail: the pin ends when the last block's bottom
+          // reaches the column's bottom, and the two scroll away together. Both edges are
+          // functions, re-read on every refresh (invalidateOnRefresh) for resizes.
+          const parkedTop = () => {
+            const header = document.querySelector<HTMLElement>('.a-header')?.offsetHeight || 56;
+            const centred = header + (window.innerHeight - header - plateCol.offsetHeight) / 2;
+            return Math.max(header + HOLD_TOP, Math.round(centred));
+          };
           ScrollTrigger.create({
             trigger: plateCol,
-            start: 'top 96px',
+            start: () => `top ${parkedTop()}px`,
             endTrigger: blockEls[blockEls.length - 1],
-            end: 'bottom 90%',
+            end: () => `bottom ${parkedTop() + plateCol.offsetHeight}px`,
             pin: true,
             pinSpacing: false,
             invalidateOnRefresh: true,
@@ -101,7 +113,8 @@ export default function EstructuraA() {
           // Plate 2.1 reveals with the section (body wipes from the right + image slide;
           // frame stays): one beat on the plate column, scrubbed from its top at 80 % of
           // the viewport and locked at completion. The column is measured unpinned (the
-          // whole window closes well before its own pin starts at 96px).
+          // whole window closes at 48 %, always before its own pin starts: the column
+          // parks with its top well above that line).
           const body0 = plateEls[0].querySelector<HTMLElement>('.a-plate-body');
           const img0 = plateEls[0].querySelector('img');
           const intro = gsap.timeline({ paused: true });
@@ -142,7 +155,7 @@ export default function EstructuraA() {
     return () => ctx.revert();
   }, [registerBeat]);
 
-  const refresh = () => ScrollTrigger.refresh();
+  // Plates reserve their box: no refresh on image load (see SystemSheet).
 
   return (
     <section id="estructura" data-section="estructura" ref={ref} className="a-section">
@@ -211,7 +224,6 @@ export default function EstructuraA() {
                   sizes="(min-width: 1024px) 58vw, 100vw"
                   reveal={i === 0 ? 'rv-wipe-left' : undefined}
                   className={i === 0 ? undefined : 'rv-wipe-up'}
-                  onLoad={refresh}
                 />
               ))}
             </div>

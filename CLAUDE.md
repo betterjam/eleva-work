@@ -10,7 +10,9 @@ This file provides context for Claude Code when working on this project.
 
 ```bash
 # Development
-npm run dev          # Start dev server on localhost:3000
+npm run dev          # Start dev server on port 3000, bound to :: (IPv4 + IPv6)
+                     # Under WSL2, open http://127.0.0.1:3000 from Windows if
+                     # localhost hangs (Windows tries ::1 first through wslrelay).
 
 # Production
 npm run build        # Build for production
@@ -29,8 +31,26 @@ npm run lint         # Run ESLint
 
 ### Styling
 - Tailwind CSS v4 with CSS-first configuration
-- Brand colors defined in `src/app/globals.css` using `@theme` directive
-- Use `brand-*` utility classes (not `teal-*` or hardcoded colors)
+- Brand: **eleva 360°** (October 2026). The asset pack lives in `public/brand/` (served at
+  `/brand/`: `logo/`, `symbol/`, `icons/`, `web/`), copied from the brand repo at
+  `C:\Users\bette\source\repos\eleva-360-brand` whose `eleva-360-website-handoff.md` is the spec.
+  The root layout links the fonts (Lexend for headings, labels, buttons and nav; Atkinson
+  Hyperlegible for text), the token sheet `/brand/web/eleva-tokens.css` (light and dark
+  values), the favicon, app icons and manifest.
+- In components keep using `brand-*` utilities: `src/app/globals.css` resolves them to the
+  tokens (`brand-600` = `--accent-fill`, `brand-400` = `--accent`). Primary buttons pair
+  `bg-brand-600` with `text-on-accent`, never `text-white`. The legacy `text-white*`,
+  `bg-white*`, `border-white*` utilities are remapped to `--ink`, `--surface-raised`,
+  `--line` for both themes; do not add new hardcoded colours or the old teal.
+- Logos are always the brand files, never rebuilt in CSS: colour logo on light, reverse
+  on dark (`.logo-light` / `.logo-dark`), compact variant under 140px, stacked in square
+  spaces, `alt="eleva 360°"`.
+- Palette: the **light theme** runs the navy palette by default (`html[data-palette="navy"]`,
+  set by the root layout script; `?palette=ocean` shows the handoff's aqua light palette,
+  `?palette=navy` returns, `?theme=light|dark` fixes the theme). In light, new accents are
+  navy, lavender or ivory, never aqua. The **dark theme** is the handoff's own (ocean
+  surfaces, aqua actions) and must stay that way. Rules sit in `globals.css` under the
+  "Navy palette" heading.
 
 ### Animations
 - GSAP with ScrollTrigger plugin

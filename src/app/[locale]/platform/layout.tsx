@@ -1,24 +1,25 @@
 import type { ReactNode } from 'react';
-import { Schibsted_Grotesk, Geist, JetBrains_Mono } from 'next/font/google';
+import { Lexend, Atkinson_Hyperlegible, JetBrains_Mono } from 'next/font/google';
 import { routing } from '@/i18n/routing';
 import ConceptRoot from '@/components/concepts/shared/ConceptRoot';
 import '@/styles/concept-a.css';
 
 /**
  * `/[locale]/platform` — the platform in detail, in Concept A's "Plano Maestro" language.
- * Display: Schibsted Grotesk (tight newspaper grotesk, tabular numerals).
- * Body: Geist (quiet technical sans). Mono: JetBrains Mono (codes, captions, labels).
- * All three are variable fonts on Google Fonts, so no `weight` list is passed:
- * next/font loads the variable file and every weight used in the CSS (400–700) is available.
+ * Display: Lexend (the brand's heading face). Body: Atkinson Hyperlegible (the
+ * brand's reading face). Mono: JetBrains Mono (codes, captions, labels).
  */
-const display = Schibsted_Grotesk({
+const display = Lexend({
   subsets: ['latin', 'latin-ext'],
+  weight: ['500', '600'],
   display: 'swap',
   variable: '--font-display',
 });
 
-const body = Geist({
+const body = Atkinson_Hyperlegible({
   subsets: ['latin', 'latin-ext'],
+  weight: ['400', '700'],
+  style: ['normal', 'italic'],
   display: 'swap',
   variable: '--font-body',
 });

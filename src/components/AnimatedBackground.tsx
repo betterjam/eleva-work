@@ -28,27 +28,25 @@ export default function AnimatedBackground() {
     const bg = bgRef.current;
     if (!bg) return;
 
-    // Section-based color palettes - matching Eleva blue logo
-    // Dark: subtle, relaxed blues (less aggressive)
+    // Section washes in the brand's Ocean palette: deep ocean and its darker
+    // neighbours on dark grounds, surface with mist, aqua-light and a hint of
+    // lavender on light ones. Calm by design: the pastels stay in small doses.
     const darkSections = {
-      hero: { c1: '#0f1419', c2: '#1e3a5f', c3: '#0c1015' },      // Soft deep blue
-      features: { c1: '#101820', c2: '#234e7a', c3: '#0d1318' },  // Calm blue
-      how: { c1: '#111a24', c2: '#2a5a8a', c3: '#0e1419' },       // Muted royal
-      security: { c1: '#0f171f', c2: '#1f4a70', c3: '#0c1216' },  // Trust blue
-      pricing: { c1: '#101820', c2: '#2d6090', c3: '#0d1318' },   // Gentle sky
-      faq: { c1: '#111a24', c2: '#234e7a', c3: '#0e1419' },       // Calm blue
-      demo: { c1: '#0f1419', c2: '#1e3a5f', c3: '#0c1015' },      // Soft finish
+      hero: { c1: '#071c2a', c2: '#0b3a5c', c3: '#051520' },
+      features: { c1: '#071c2a', c2: '#0d4866', c3: '#051520' },
+      how: { c1: '#071c2a', c2: '#0b3a5c', c3: '#06202f' },
+      security: { c1: '#071c2a', c2: '#0a3350', c3: '#051520' },
+      faq: { c1: '#071c2a', c2: '#0d4866', c3: '#051520' },
+      demo: { c1: '#071c2a', c2: '#0b3a5c', c3: '#051520' },
     };
 
-    // Light: soft surf green / turquoise palette
     const lightSections = {
-      hero: { c1: '#f0fdfa', c2: '#99f6e4', c3: '#e6fffa' },      // Soft mint
-      features: { c1: '#ecfeff', c2: '#a5f3fc', c3: '#e0f7fa' },  // Light cyan
-      how: { c1: '#f0fdfa', c2: '#5eead4', c3: '#ccfbf1' },       // Teal mist
-      security: { c1: '#ecfeff', c2: '#67e8f9', c3: '#cffafe' },  // Aqua pastel
-      pricing: { c1: '#f0fdfa', c2: '#6ee7b7', c3: '#d1fae5' },   // Seafoam
-      faq: { c1: '#ecfeff', c2: '#a5f3fc', c3: '#e0f7fa' },       // Surf turquoise
-      demo: { c1: '#f0fdfa', c2: '#5eead4', c3: '#ccfbf1' },      // Soft teal
+      hero: { c1: '#f5f8f9', c2: '#a7d1d4', c3: '#ebf1f3' },
+      features: { c1: '#f5f8f9', c2: '#b8dde0', c3: '#ebf1f3' },
+      how: { c1: '#f5f8f9', c2: '#a7d1d4', c3: '#e6f0f1' },
+      security: { c1: '#f5f8f9', c2: '#cfd4f2', c3: '#ebf1f3' },
+      faq: { c1: '#f5f8f9', c2: '#b8dde0', c3: '#ebf1f3' },
+      demo: { c1: '#f5f8f9', c2: '#a7d1d4', c3: '#ebf1f3' },
     };
 
     const getColors = (section: string) => {
@@ -87,7 +85,7 @@ export default function AnimatedBackground() {
     applyPalette('hero', true);
 
     // Only sections that really sit in the document flow get a ScrollTrigger.
-    // #how, #security, #pricing and #faq live inside the pinned Features
+    // #how, #security and #faq live inside the pinned Features
     // column, which GSAP translates: ScrollTrigger would measure them at their
     // natural offsets and fire thousands of pixels away from where they appear.
     // The stage publishes those instead (setActiveSection in lib/scrollNav).

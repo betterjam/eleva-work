@@ -253,8 +253,9 @@ export default function HeaderA() {
     <>
       <header ref={headerRef} className="a-header">
         <div className="a-container a-hdr-inner">
-          <Link href={`/${locale}/`} className="a-hdr-logo" onClick={() => setMenuOpen(false)}>
-            <Image src="/images/eleva-logo-blue.png" alt={t('common.logoAlt')} width={43} height={22} priority />
+          <Link href={`/${locale}/`} className="a-hdr-logo" aria-label="eleva 360°" onClick={() => setMenuOpen(false)}>
+            <Image src="/brand/logo/eleva-360-compact-color.svg" alt="eleva 360°" width={1303} height={370} className="logo-light h-7 w-auto" priority />
+            <Image src="/brand/logo/eleva-360-compact-reverse.svg" alt="" width={1303} height={370} className="logo-dark h-7 w-auto" priority />
           </Link>
 
           {/* Decorative for AT: the nav's aria-current already carries the position. */}

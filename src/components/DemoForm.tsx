@@ -43,17 +43,13 @@ export default function DemoForm() {
   const t = useTranslations('demo');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  // `null` until the first client measurement: React commits the effect that
-  // sets it and the motion effects below in the same pass, so a two-state
-  // `false` default would run the desktop pin once against the `hidden
-  // md:block` section on a phone - every metric inside `display:none` is 0, so
-  // the pin length comes out wrong and the trigger (plus its pin-spacer and the
-  // refresh it forces) is built and torn down for nothing.
+  // `null` until the first client measurement: the reveal effect below picks
+  // the mobile or the desktop tree from it, and a `false` default would build
+  // the desktop reveals once against the `hidden md:block` section on a phone.
   const [isMobile, setIsMobile] = useState<boolean | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const mobileRef = useRef<HTMLElement>(null);
-  const triggerRef = useRef<HTMLDivElement>(null);
-  const leftContentRef = useRef<HTMLDivElement>(null);
+  const desktopBoxRef = useRef<HTMLDivElement>(null);
 
   // Check if mobile
   useEffect(() => {
@@ -63,47 +59,38 @@ export default function DemoForm() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
+  // Desktop: "Solicitar demo" (header, hero, stage CTA, deep link) lands on the
+  // page's last screen, the form standing above the footer, not on the section's
+  // top edge: the section fills the viewport and parks the form at its bottom,
+  // so landing on its top edge would show an empty band with the form under it.
+  // On phones the stacked section is taller than the screen and `resolveY`
+  // falls back to the `#demo` wrapper element, which is right.
   useEffect(() => {
-    // Skip the pinned effect on mobile, before the breakpoint is known, and
-    // under reduced motion: unlike the Features stage this pin is not the only
-    // route to anything, so a reader who asked for no motion gets the plain
-    // two-column section instead of a ~500px scroll hijack. Navigation still
-    // resolves `#demo`: with no anchor registered, `resolveY` falls back to the
-    // wrapper element, and `goTo` jumps with `window.scrollTo` anyway.
-    if (isMobile !== false || prefersReducedMotion()) return;
+    if (isMobile !== false) return;
+    registerAnchor('demo', () => document.documentElement.scrollHeight - window.innerHeight);
+    return () => unregisterAnchor('demo');
+  }, [isMobile]);
 
-    const ctx = gsap.context(() => {
-      const leftContent = leftContentRef.current;
-      const trigger = triggerRef.current;
-
-      if (!leftContent || !trigger) return;
-
-      // The column's height is read live, never cached: a resize, a font swap
-      // or a rotation changes it, and a stale value leaves the pin length and
-      // the translation disagreeing - the copy either stops short of the top of
-      // the column or overshoots and is cut before the pin releases.
-      const st = ScrollTrigger.create({
-        trigger: trigger,
-        start: 'top top',
-        end: () => `+=${leftContent.scrollHeight}`,
-        pin: true,
-        scrub: 0.5,
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
-        onUpdate: (self) => {
-          gsap.set(leftContent, {
-            y: -leftContent.scrollHeight * self.progress,
-          });
-        },
-      });
-
-      // The section is pinned: its document position is the pin start.
-      registerAnchor('demo', () => st.start);
-    }, sectionRef);
-
+  // Desktop: centre the pair in the band the reader actually sees on that last
+  // screen, between the header and the footer. The box fills the viewport
+  // below the header; at the page's end its top (footer height minus header)
+  // is scrolled out above and the header covers the rest, so the visible band
+  // is the box minus one footer height at the top. Padding the box by the
+  // footer's height and centring in what is left puts the pair mid-band.
+  useEffect(() => {
+    if (isMobile !== false) return;
+    const box = desktopBoxRef.current;
+    const footer = document.querySelector('footer');
+    if (!box || !footer) return;
+    const apply = () => {
+      box.style.paddingTop = `${footer.offsetHeight}px`;
+    };
+    apply();
+    const observer = new ResizeObserver(apply);
+    observer.observe(footer);
     return () => {
-      unregisterAnchor('demo');
-      ctx.revert();
+      observer.disconnect();
+      box.style.paddingTop = '';
     };
   }, [isMobile]);
 
@@ -121,11 +108,15 @@ export default function DemoForm() {
 
     const ctx = gsap.context(() => {
       if (isMobile) {
-        // Stacked layout: one short window per element, locked once passed.
-        items.forEach((el) => {
+        // Stacked layout: a flick would cross a scrubbed window before anyone
+        // saw it, so each element plays its reveal once, in real time, as it
+        // enters the viewport.
+        items.forEach((el, i) => {
           const kind = kindOf(el);
           gsap.fromTo(el, { ...revealFrom[kind] }, {
             ...revealTo[kind],
+            duration: kind === 'card' ? 0.7 : 0.5,
+            delay: (i % 4) * 0.06,
             ease: 'power2.out',
             // A finished wipe drops its clip-path: resting on inset(0 0 0 0)
             // keeps clipping at the border box and would swallow the card's
@@ -135,18 +126,16 @@ export default function DemoForm() {
             },
             scrollTrigger: {
               trigger: el,
-              start: 'top 90%',
-              end: 'top 55%',
-              scrub: 0.3,
-              onLeave: lockAtEnd,
+              start: 'top 88%',
+              once: true,
             },
           });
         });
         return;
       }
 
-      // Desktop: the section pins at `top top`, so the whole cascade is spent
-      // in the window above that - it is finished before the pin engages.
+      // Desktop: one cascade over the window in which the section enters the
+      // viewport, finished by the time its top reaches 35% of the viewport.
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: root,
@@ -234,8 +223,8 @@ export default function DemoForm() {
     <div className="w-full max-w-md rounded-2xl border border-white/10 bg-white/5 p-5 md:p-6">
       {isSubmitted ? (
         <div className="text-center py-6">
-          <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-green-500/20">
-            <svg className="h-7 w-7 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-brand-600/20">
+            <svg className="h-7 w-7 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
             </svg>
           </div>
@@ -329,7 +318,7 @@ export default function DemoForm() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full rounded-xl bg-brand-600 px-6 py-3 text-sm font-medium text-white transition hover:bg-brand-700 disabled:opacity-50 shadow-lg shadow-brand-600/25"
+            className="w-full rounded-xl bg-brand-600 px-6 py-3 text-sm font-medium text-on-accent transition hover:bg-brand-700 disabled:opacity-50"
           >
             {isSubmitting ? t('submitting') : t('submit')}
           </button>
@@ -363,34 +352,39 @@ export default function DemoForm() {
         </div>
       </section>
 
-      {/* Desktop layout - pinned split */}
+      {/* Desktop layout - copy and form side by side in the hero's container width,
+          the copy flush against the form, both centred on the same vertical axis.
+          The section fills the viewport below the 73px sticky header, so the
+          pinned stage above never shows at the page's last scroll, and the pair
+          is centred in the band between header and footer (see the padding
+          effect above), which is what the reader sees on that last screen. */}
       <section ref={sectionRef} className="hidden md:block border-t border-white/10">
-        <div ref={triggerRef} className="relative h-screen overflow-hidden">
-          <div className="absolute inset-0 flex">
-            {/* Left side - Centered content */}
-            <div className="w-1/2 h-full flex items-center justify-center overflow-hidden">
-              <div ref={leftContentRef} className="px-8 lg:px-16 max-w-xl">
-                <h2 data-fx="title" className="text-3xl font-semibold text-white md:text-4xl">
-                  {t('title')}
-                </h2>
-                <p data-fx="text" className="mt-4 text-lg text-white/70">
-                  {t('sub')}
-                </p>
-                <div data-fx="rule" className="mt-6 h-px w-24 bg-gradient-to-r from-brand-400/70 to-brand-400/0" />
-                <div data-fx="card" className="mt-8">
-                  <Benefits />
-                </div>
+        <div ref={desktopBoxRef} className="mx-auto flex min-h-[calc(100vh-73px)] max-w-6xl flex-col justify-center px-5 pt-20">
+          <div className="flex items-center gap-12 lg:gap-20">
+          {/* Left side - copy */}
+          <div className="flex min-w-0 flex-1 justify-end">
+            <div className="max-w-xl">
+              <h2 data-fx="title" className="text-3xl font-semibold text-white md:text-4xl">
+                {t('title')}
+              </h2>
+              <p data-fx="text" className="mt-4 text-lg text-white/70">
+                {t('sub')}
+              </p>
+              <div data-fx="rule" className="mt-6 h-px w-24 bg-gradient-to-r from-brand-400/70 to-brand-400/0" />
+              <div data-fx="card" className="mt-8">
+                <Benefits />
               </div>
             </div>
+          </div>
 
-            {/* Right side - Fixed Form */}
-            <div className="w-1/2 h-full flex items-center justify-center px-8 lg:px-16">
-              {/* The wrapper, not FormCard itself, carries the reveal: FormCard
-                  is re-created on every render and would lose the inline styles. */}
-              <div data-fx="card" className="w-full max-w-md">
-                <FormCard />
-              </div>
+          {/* Right side - form */}
+          <div className="w-full max-w-md flex-shrink-0">
+            {/* The wrapper, not FormCard itself, carries the reveal: FormCard
+                is re-created on every render and would lose the inline styles. */}
+            <div data-fx="card" className="w-full">
+              <FormCard />
             </div>
+          </div>
           </div>
         </div>
       </section>

@@ -1,13 +1,16 @@
 {
   "meta": {
-    "title": "Eleva · Plataforma en detalle",
-    "description": "Cómo funciona Eleva, módulo por módulo: el organigrama y el catálogo de cargos, la pauta que la IA arma desde un banco curado de preguntas, el ciclo 360° con sus ponderaciones y etapas, el logro por dominio y la normativa chilena a la que todo se alinea."
+    "title": "Eleva · Nuestra metodología",
+    "description": "Cómo funciona Eleva, módulo por módulo: el organigrama y el catálogo de cargos, la pauta que se arma con la metodología de Eleva desde un banco curado de preguntas, guiada por la IA, el ciclo 360° con sus ponderaciones y etapas, el logro por dominio y la normativa chilena a la que todo se alinea."
   },
   "common": {
     "section": "§",
     "logoAlt": "Eleva",
     "skipToContent": "Ir al contenido",
-    "whatsappMessage": "Hola! Me interesa saber más sobre Eleva"
+    "whatsappMessage": "Hola! Me interesa saber más sobre Eleva",
+    "enlarge": "Ampliar imagen",
+    "enlargeFig": "Ampliar {fig}",
+    "close": "Cerrar"
   },
   "header": {
     "nav": [
@@ -61,7 +64,7 @@
       "en": "EN"
     },
     "counter": {
-      "intro": "Plataforma",
+      "intro": "Metodología",
       "system": "El sistema",
       "estructura": "Estructura",
       "pauta": "Pauta",
@@ -74,9 +77,9 @@
     "home": "Inicio"
   },
   "intro": {
-    "eyebrow": "Plataforma · En detalle",
-    "title": "Cómo funciona Eleva, pieza por pieza.",
-    "lead": "Esta página recorre el sistema completo, módulo por módulo, con las pantallas reales del producto. Parte en el organigrama y el catálogo de cargos, pasa por la pauta que la IA arma desde un banco curado de preguntas y termina en la normativa chilena a la que todo se alinea.",
+    "eyebrow": "Nuestra metodología · En detalle",
+    "title": "Nuestra metodología, pieza por pieza.",
+    "lead": "Esta página recorre nuestra metodología de principio a fin, módulo por módulo y con las pantallas reales del producto. Parte en el organigrama y el catálogo de cargos, pasa por la pauta que se arma desde un banco curado de preguntas, guiada por la IA, y termina en la normativa chilena a la que todo se alinea.",
     "back": "← Volver al inicio",
     "cta": "Solicitar demo",
     "indexLabel": "En esta página",
@@ -116,7 +119,8 @@
         "num": "07",
         "label": "Normativa"
       }
-    ]
+    ],
+    "artAlt": "Dos personas avanzan en vuelo, con trazos de la marca a su alrededor."
   },
   "system": {
     "code": "§01",
@@ -376,7 +380,7 @@
     "code": "§03",
     "runningHead": "Banco curado · Pauta generada",
     "title": "Del banco curado a la pauta completa de cada cargo.",
-    "lead": "El banco es curado: preguntas creadas por psicólogos y expertos en evaluación, alineadas a la normativa chilena. Cada una declara su área, su dimensión, desde qué perspectivas del 360° puede responderse, su prioridad, su peso y la ley que la respalda. La IA selecciona por dimensión, perspectiva, prioridad y normativa y arma la pauta completa del cargo; tú la revisas antes de usarla.",
+    "lead": "El banco es curado: preguntas creadas por psicólogos y expertos en evaluación, alineadas a la normativa chilena. Cada una declara su área, su dimensión, desde qué perspectivas del 360° puede responderse, su prioridad, su peso y la ley que la respalda. La metodología define cómo se selecciona —por dimensión, perspectiva, prioridad y normativa— y la IA guía ese armado hasta la pauta completa del cargo; tú la revisas antes de usarla.",
     "bank": {
       "label": "Banco de preguntas · curado",
       "sub": "Preguntas creadas por psicólogos y expertos en evaluación · alineadas a la normativa chilena",
@@ -409,7 +413,7 @@
       }
     },
     "stage": {
-      "srSummary": "Ejemplo del armado: de las preguntas del banco curado, la IA selecciona las que corresponden al cargo Director por dimensión, perspectiva, prioridad y normativa, y arma su pauta evaluativa con las dimensiones del cargo, las normativas y marcos que evalúa y cada pregunta con las leyes que la respaldan.",
+      "srSummary": "Ejemplo del armado: siguiendo la metodología, se seleccionan del banco curado las preguntas que corresponden al cargo Director por dimensión, perspectiva, prioridad y normativa, con la IA guiando el armado, y se arma su pauta evaluativa con las dimensiones del cargo, las normativas y marcos que evalúa y cada pregunta con las leyes que la respaldan.",
       "bankLabel": "Banco de preguntas",
       "bankMeta": "curado · trazado a la normativa chilena",
       "ledgerHead": {
@@ -724,12 +728,12 @@
   "ia": {
     "code": "§06",
     "runningHead": "Tres intervenciones, una regla",
-    "title": "La IA propone. El colegio decide.",
-    "lead": "La IA interviene en tres puntos concretos del sistema. En los tres, la última palabra es tuya.",
+    "title": "La IA guía. El colegio decide.",
+    "lead": "Eleva automatizó el proceso y creó la metodología; la IA acompaña a tu equipo para seguirla en tres puntos concretos del sistema y destraba lo que se traba. En los tres, la última palabra es tuya.",
     "header": {
       "num": "#",
       "intervention": "Intervención",
-      "proposes": "La IA propone",
+      "proposes": "La IA guía",
       "decides": "Tú decides"
     },
     "rows": [
@@ -741,8 +745,8 @@
       },
       {
         "num": "02",
-        "name": "Pauta generada",
-        "proposes": "Arma la pauta evaluativa de un cargo desde el banco curado de preguntas, seleccionando por dimensión, perspectiva, prioridad y normativa. El resultado es la pauta completa del cargo, con sus dimensiones y las normativas y marcos que evalúa.",
+        "name": "Pauta guiada",
+        "proposes": "Guía el armado de la pauta del cargo desde el banco curado de preguntas, aplicando la metodología: selección por dimensión, perspectiva, prioridad y normativa. El resultado es la pauta completa del cargo, con sus dimensiones y las normativas y marcos que evalúa.",
         "decides": "Revisas la pauta, agrupada por marco y área, antes de usarla en un proceso."
       },
       {

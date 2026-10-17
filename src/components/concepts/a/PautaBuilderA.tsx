@@ -582,7 +582,6 @@ export default function PautaBuilderA() {
                       alt={rubricPlate.alt}
                       loading="lazy"
                       sizes="(min-width: 1280px) 960px, 80vw"
-                      onLoad={refreshSoon}
                       draggable={false}
                     />
                   </div>
@@ -608,7 +607,6 @@ export default function PautaBuilderA() {
               alt={rubricPlate.alt}
               sizes="(min-width: 768px) 90vw, 100vw"
               reveal="rv-wipe-up"
-              onLoad={refreshSoon}
             />
           </div>
 

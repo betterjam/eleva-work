@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -H ::",
     "build": "next build && npm run postbuild",
     "postbuild": "cp out/es/index.html out/index.html",
     "start": "next start",

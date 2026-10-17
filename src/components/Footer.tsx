@@ -35,7 +35,7 @@ export default function Footer() {
               alt="Startup Chile"
               width={140}
               height={40}
-              className="h-8 w-auto"
+              className="startup-chile-logo h-8 w-auto"
               unoptimized
             />
           </a>
@@ -44,11 +44,18 @@ export default function Footer() {
         <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div className="flex items-center gap-4">
             <Image
-              src="/images/eleva-logo-blue.png"
-              alt="Eleva"
-              width={80}
-              height={26}
-              className="h-6 w-auto opacity-70"
+              src="/brand/logo/eleva-360-compact-color.svg"
+              alt="eleva 360°"
+              width={1303}
+              height={370}
+              className="logo-light h-7 w-auto"
+            />
+            <Image
+              src="/brand/logo/eleva-360-compact-reverse.svg"
+              alt=""
+              width={1303}
+              height={370}
+              className="logo-dark h-7 w-auto"
             />
             <span className="text-sm text-white/50">
               &copy; {new Date().getFullYear()} &bull; {t('footer.line')}

@@ -49,7 +49,7 @@ export default function CookieBanner() {
             </button>
             <button
               onClick={acceptAll}
-              className="rounded-xl bg-brand-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-brand-700"
+              className="rounded-xl bg-brand-600 px-4 py-2 text-sm font-medium text-on-accent transition hover:bg-brand-700"
             >
               {t('acceptAll')}
             </button>

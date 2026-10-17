@@ -36,7 +36,8 @@ export default function FooterA() {
         <div className="a-cols a-footer-grid">
           <div className="col-span-4 md:col-span-4 rv-mask">
             <div className="a-footer-col a-mask-inner">
-              <Image src="/images/eleva-logo-blue.png" alt={t('common.logoAlt')} width={46} height={24} />
+              <Image src="/brand/logo/eleva-360-compact-color.svg" alt="eleva 360°" width={1303} height={370} className="logo-light h-7 w-auto" />
+              <Image src="/brand/logo/eleva-360-compact-reverse.svg" alt="" width={1303} height={370} className="logo-dark h-7 w-auto" />
               <p className="a-body-sm">{t('footer.description')}</p>
             </div>
           </div>

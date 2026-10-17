@@ -2,16 +2,14 @@
   "meta": {
     "product": "Eleva",
     "tagline": "Evaluación de desempeño para colegios en Chile",
-    "description": "Eleva arma la pauta evaluativa de cada cargo del colegio desde un banco curado por psicólogos y expertos en evaluación, alineado a la normativa chilena, y corre el ciclo 360° con las ponderaciones, las etapas y el logro por dominio que tu colegio necesita."
+    "description": "Eleva automatiza la evaluación de desempeño del colegio con una metodología creada por psicólogos y expertos en evaluación, alineada a la normativa chilena: pauta por cargo desde un banco curado, ciclo 360° con ponderaciones y etapas, y logro por dominio con sugerencias de mejora."
   },
   "nav": {
     "features": "Módulos",
     "how": "Cómo funciona",
     "security": "Seguridad",
-    "pricing": "Precios",
     "faq": "Preguntas",
-    "platform": "Plataforma",
-    "viewPricing": "Ver precios",
+    "platform": "Metodología",
     "requestDemo": "Solicitar demo",
     "menu": "Menú",
     "toggleTheme": "Cambiar tema",
@@ -30,19 +28,19 @@
       "sin planillas",
       "sin partir de cero",
       "con la ley chilena",
-      "con IA que propone",
+      "con IA que te guía",
       "con 360° ponderado"
     ],
-    "sub": "Eleva arma la pauta evaluativa de cada cargo desde un banco de preguntas curado por psicólogos y expertos en evaluación, alineado a la normativa chilena; corre el ciclo 360° con las ponderaciones y etapas que tú defines, y devuelve el logro por dominio con sugerencias de mejora. La IA propone; tu colegio decide.",
+    "sub": "Eleva automatiza la evaluación de desempeño de tu colegio con una metodología creada por psicólogos y expertos en evaluación, alineada a la normativa chilena. Cada cargo recibe su pauta desde un banco curado, el ciclo 360° corre con las ponderaciones y etapas que tú defines, y al cerrar tienes el logro por dominio con sugerencias de mejora. La IA acompaña a tu equipo en cada paso, y las decisiones siempre son del colegio.",
     "ctaPrimary": "Solicitar demo",
     "ctaSecondary": "Ver los módulos",
-    "ctaDetail": "Conoce la plataforma en detalle",
+    "ctaDetail": "Nuestra metodología",
     "pill1Title": "Pauta por cargo",
-    "pill1Sub": "La IA la propone, tú la apruebas",
+    "pill1Sub": "Armada desde el banco curado y aprobada por ti",
     "pill2Title": "360° ponderado",
-    "pill2Sub": "Jefatura, auto, pares y hacia arriba",
+    "pill2Sub": "Jefatura, autoevaluación, pares y colaboradores",
     "pill3Title": "Logro por dominio",
-    "pill3Sub": "Con sugerencias de mejora"
+    "pill3Sub": "Y una sugerencia de mejora por persona"
   },
   "social": {
     "line": "Pensado para quienes responden por el desempeño de todo el colegio",
@@ -57,61 +55,61 @@
   },
   "features": {
     "title": "El ciclo completo, módulo por módulo",
-    "sub": "Del organigrama a la pauta, del 360° ponderado al logro por dominio: cada pieza del producto, con la normativa chilena adentro.",
+    "sub": "Seis módulos que recorren el ciclo completo, desde el organigrama hasta el logro por dominio, con la normativa chilena incorporada en cada paso.",
     "ctaTitle": "¿Lo vemos con tu organigrama?",
     "ctaDesc": "Te mostramos el ciclo completo con los cargos reales de tu colegio.",
-    "detailCta": "Ver la plataforma en detalle",
+    "detailCta": "Conoce nuestra metodología",
     "cards": [
       {
         "title": "Organigrama y cargos",
-        "desc": "Arma el árbol del colegio y calza cada cargo con un catálogo de cobertura completa.",
-        "image": "/images/Eleva-IllustArtboard-3.png"
+        "desc": "Dibuja la estructura de tu colegio y asocia cada puesto a un cargo del catálogo, de dirección a asistentes.",
+        "image": "/images/illustrations/artboard-12.webp"
       },
       {
-        "title": "Pauta generada con IA",
-        "desc": "La IA elige las preguntas de cada cargo y arma la pauta. Tú la revisas.",
-        "image": "/images/Eleva-IllustArtboard-4.png"
+        "title": "Metodología guiada por IA",
+        "desc": "La metodología es nuestra; la IA te acompaña al armar cada pauta y la decisión final es tuya.",
+        "image": "/images/illustrations/artboard-6.webp"
       },
       {
         "title": "Banco curado de preguntas",
         "desc": "Preguntas creadas por psicólogos y expertos en evaluación, agrupadas por área y dimensión.",
-        "image": "/images/Eleva-IllustArtboard-5.png"
+        "image": "/images/illustrations/artboard-17.webp"
       },
       {
         "title": "360° con cuatro perspectivas",
-        "desc": "Autoevaluación, jefatura, colaborador y pares, con las ponderaciones que defines.",
-        "image": "/images/Eleva-IllustArtboard-6.png"
+        "desc": "Autoevaluación, jefatura, colaboradores y pares, con el peso que tu colegio le dé a cada mirada.",
+        "image": "/images/illustrations/artboard-10.webp"
       },
       {
         "title": "Seis etapas de proceso",
-        "desc": "De en preparación a cerrada. Cada proceso congela su flujo al generarse.",
-        "image": "/images/Eleva-IllustArtboard-7.png"
+        "desc": "Cada ciclo avanza por seis etapas, de la preparación al cierre, sin que nadie pierda el hilo.",
+        "image": "/images/illustrations/artboard-8.webp"
       },
       {
         "title": "Logro por dominio",
-        "desc": "Las respuestas Likert 1–5 se convierten en logro por dominio, con una sugerencia de mejora.",
-        "image": "/images/Eleva-IllustArtboard-8.png"
+        "desc": "Las respuestas se transforman en un logro por dominio fácil de leer, con una sugerencia de mejora para cada persona.",
+        "image": "/images/illustrations/artboard-18.webp"
       }
     ]
   },
   "how": {
     "title": "Cómo funciona",
-    "sub": "Tres pasos: la estructura, la pauta y el ciclo. En cada uno, la última palabra es del colegio.",
+    "sub": "Primero la estructura, después la pauta y al final el ciclo. En cada paso, el colegio revisa, ajusta y decide.",
     "steps": [
       {
         "title": "Configura organigrama y cargos",
-        "desc": "Carga la estructura del colegio y calza cada puesto con el catálogo. La IA propone el cargo y explica su razonamiento; tú confirmas o eliges otro.",
-        "image": "/images/Eleva-IllustArtboard-9.png"
+        "desc": "Carga la estructura de tu colegio y asocia cada puesto a un cargo del catálogo. La IA te sugiere el que mejor calza y te explica por qué, y tú confirmas o eliges otro.",
+        "image": "/images/illustrations/artboard-13.webp"
       },
       {
-        "title": "La IA arma la pauta, tú la revisas",
-        "desc": "Cada cargo recibe su pauta evaluativa con preguntas curadas, agrupadas por marco y área y trazadas a la normativa chilena. Ajusta lo que quieras antes de publicar.",
-        "image": "/images/Eleva-IllustArtboard-10.png"
+        "title": "Arma la pauta de cada cargo y apruébala",
+        "desc": "Cada cargo recibe una pauta con preguntas curadas, organizadas por marco y área y vinculadas a la normativa chilena. La IA te acompaña en la selección y te ayuda con las dudas que aparezcan; ajusta lo que quieras antes de publicarla.",
+        "image": "/images/illustrations/artboard-7.webp"
       },
       {
-        "title": "Corre el ciclo 360° y lee los resultados",
-        "desc": "Define ponderaciones y etapas, lanza el proceso y recibe el logro por dominio con sugerencias de mejora para cada persona evaluada.",
-        "image": "/images/Eleva-IllustArtboard-11.png"
+        "title": "Lanza el ciclo 360° y lee los resultados",
+        "desc": "Define cuánto pesa cada perspectiva y por qué etapas pasa el proceso, lánzalo y, al cerrar, recibe el logro por dominio con una sugerencia de mejora para cada persona.",
+        "image": "/images/illustrations/artboard-11.webp"
       }
     ],
     "dashboardTitle": "Panel del proceso",
@@ -137,27 +135,28 @@
     "nextActionLabel": "Siguiente acción",
     "nextActionTitle": "Enviar la evaluación a retroalimentación",
     "send": "Enviar",
-    "preview": "Vista previa"
+    "preview": "Vista previa",
+    "illustrationAlt": "Esquema de los tres pasos: el organigrama con el cargo calzado, la pauta del cargo y el ciclo 360° con su logro por dominio."
   },
   "security": {
     "title": "Seguridad y cumplimiento",
-    "sub": "Son datos de personas: acceso controlado y trazabilidad en cada proceso.",
+    "sub": "Trabajas con datos de personas, así que cada proceso tiene acceso controlado y deja registro de quién hizo qué.",
     "cards": [
       {
         "title": "Acceso por roles",
-        "desc": "Permisos separados para sostenedor, dirección, RR.HH., evaluadores y evaluados."
+        "desc": "Cada rol ve solo lo que le corresponde: sostenedor, dirección, RR.HH., evaluadores y evaluados."
       },
       {
         "title": "Trazabilidad",
-        "desc": "Registro de cambios, aprobaciones e historial por proceso de evaluación."
+        "desc": "Cada cambio y cada aprobación quedan registrados, con un historial por proceso de evaluación."
       },
       {
         "title": "Retención de datos",
-        "desc": "Define la retención según tus políticas internas y exporta cuando lo necesites."
+        "desc": "Tú decides cuánto tiempo se conservan los datos, según tus políticas, y puedes exportarlos cuando quieras."
       }
     ],
     "adminTitle": "Controles de administración",
-    "adminSub": "Configuración central para el sostenedor, ajustable por cada colegio.",
+    "adminSub": "El sostenedor define la configuración central y cada colegio la ajusta a su realidad.",
     "adminRows": [
       {
         "label": "SSO / SAML",
@@ -176,52 +175,7 @@
         "value": "CSV / PDF"
       }
     ],
-    "note": "Cumplimiento con la normativa local de protección de datos personales."
-  },
-  "pricing": {
-    "title": "Precios simples y transparentes",
-    "sub": "Planes por colegio. Valores referenciales que confirmamos contigo en la demo.",
-    "plans": [
-      {
-        "name": "Starter",
-        "price": "$199",
-        "note": "mensual / colegio",
-        "bullets": [
-          "Organigrama y catálogo de cargos",
-          "Pauta generada por cargo",
-          "Ciclo 360° con cuatro perspectivas",
-          "Logro por dominio"
-        ],
-        "cta": "Comenzar ahora"
-      },
-      {
-        "name": "Profesional",
-        "price": "$399",
-        "note": "mensual / colegio",
-        "bullets": [
-          "Todo lo del plan Starter",
-          "Ponderaciones y etapas configurables",
-          "Sugerencias de mejora por dominio",
-          "Exportaciones CSV / PDF"
-        ],
-        "cta": "Hablar con nosotros",
-        "highlight": "Más elegido"
-      },
-      {
-        "name": "Enterprise",
-        "price": "A medida",
-        "note": "según necesidad",
-        "bullets": [
-          "Varios colegios con configuración central",
-          "SSO / SAML",
-          "Onboarding dedicado",
-          "Controles avanzados"
-        ],
-        "cta": "Solicitar cotización"
-      }
-    ],
-    "procTitle": "¿Necesitas términos para compra pública?",
-    "procSub": "Facturación anual y puesta en marcha alineada al año escolar."
+    "note": "Cumplimos con la normativa chilena de protección de datos personales."
   },
   "faq": {
     "title": "Preguntas frecuentes",
@@ -232,12 +186,12 @@
         "a": "Sí. Eleva evalúa todos los cargos del colegio: docentes, directivos, asistentes de la educación, PIE, administrativos y dirección. El catálogo tiene cobertura completa, con nombre, alias y variantes de género para cada cargo."
       },
       {
-        "q": "¿Podemos ajustar la pauta que propone la IA?",
-        "a": "La pauta que genera la IA es una propuesta, no una imposición: revisas las preguntas, ajustas dimensiones y ponderaciones, y la apruebas antes de lanzar el proceso. Cada proceso congela su configuración al generarse, así que los históricos quedan intactos."
+        "q": "¿Podemos ajustar la pauta?",
+        "a": "La pauta sigue la metodología de Eleva y siempre es una propuesta, no una imposición: revisas las preguntas, ajustas dimensiones y ponderaciones, y la apruebas antes de lanzar el proceso. Cada proceso congela su configuración al generarse, así que los históricos quedan intactos."
       },
       {
         "q": "¿Qué hace la IA y qué decide el colegio?",
-        "a": "La IA propone a qué cargo del catálogo corresponde cada puesto de tu organigrama y explica por qué, arma la pauta evaluativa desde el banco curado y sugiere mejoras por dominio al cerrar. Las decisiones —el cargo, la pauta, las ponderaciones y el resultado— son siempre del colegio."
+        "a": "La IA no inventa contenido: guía a tu equipo por la metodología de Eleva. Te orienta sobre el cargo del catálogo que corresponde a cada puesto y explica por qué, acompaña el armado de la pauta desde el banco curado, resuelve dudas durante el proceso y, al cerrar, ordena las sugerencias de mejora por dominio. Las decisiones —el cargo, la pauta, las ponderaciones y el resultado— son siempre del colegio."
       },
       {
         "q": "¿Cómo se alinea con la normativa chilena?",
@@ -245,7 +199,7 @@
       },
       {
         "q": "¿Qué perspectivas y etapas tiene el 360°?",
-        "a": "Cuatro perspectivas: autoevaluación, de jefatura a colaborador, de colaborador a jefatura y entre pares, con las ponderaciones que defines (deben sumar 100). Y seis etapas: en preparación, iniciada, en feedback, feedback respondido, finalizada y cerrada."
+        "a": "El 360° mira a cada persona desde cuatro perspectivas: su autoevaluación, la de su jefatura, la de sus colaboradores y la de sus pares, con las ponderaciones que tú definas (entre todas suman 100). El proceso pasa por seis etapas: en preparación, iniciada, en feedback, feedback respondido, finalizada y cerrada."
       },
       {
         "q": "¿Funciona para un sostenedor con varios colegios?",
@@ -254,12 +208,18 @@
     ],
     "finalTitle": "¿Listo para tu próximo ciclo de evaluación?",
     "finalSub": "Solicita una demo y armamos la pauta de un cargo real de tu colegio.",
-    "viewPricing": "Ver precios",
     "requestDemo": "Solicitar demo"
+  },
+  "testimonial": {
+    "quote": "Con Eleva pasamos de intuir a saber. La evidencia de cada ciclo nos muestra cómo está el colegio, cargo por cargo, y nos permite decidir mejor y a tiempo. Evaluamos en semanas lo que antes nos tomaba meses, con menos costo y más claridad.",
+    "name": "Eduardo Soto Joo",
+    "role": "Rector",
+    "school": "Colegio Santa Cruz de Chicureo",
+    "city": ""
   },
   "demo": {
     "title": "Agenda una demo con los cargos de tu colegio",
-    "sub": "En 30 minutos armamos la pauta de un cargo real, definimos las ponderaciones del 360° y recorremos el ciclo completo hasta el logro por dominio.",
+    "sub": "En 30 minutos armamos juntos la pauta de un cargo real de tu colegio, definimos las ponderaciones del 360° y recorremos el ciclo completo, hasta ver el logro por dominio.",
     "benefit1Title": "Demo con tus cargos",
     "benefit1Sub": "Usamos tu organigrama, no un ejemplo genérico",
     "benefit2Title": "Sin compromiso",
@@ -288,7 +248,7 @@
   },
   "footer": {
     "line": "Evaluación 360° para cada cargo del colegio",
-    "platform": "Plataforma",
+    "platform": "Metodología",
     "security": "Seguridad",
     "faq": "Preguntas",
     "contact": "Contacto",

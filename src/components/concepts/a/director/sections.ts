@@ -8,7 +8,7 @@
  * Vocabulary (see design-section-director.md):
  * - flow: every beat inside is a scroll WINDOW: its timeline is scrubbed from the beat's
  *   top at `enterAt` % of the viewport to its top at `settleAt` %, then locked.
- * - hold: the section's `[data-hold]` intro block pins under the fixed header for
+ * - hold: the section's `[data-hold]` intro block pins `HOLD_TOP` px under the fixed header for
  *   `holdDistance` while the beats inside it are scrubbed across that distance (the page
  *   literally waits for the reveal). Everything else in the section is an ordinary window.
  *   Under 768px or with reduced motion a hold degrades to flow.
@@ -60,6 +60,12 @@ export const DEFAULT_HOLD_DISTANCE = '60vh';
 export const SCRUB = 0.25;
 /** Holds only pin from this viewport width up (Tailwind md). */
 export const HOLD_MIN_WIDTH = 768;
+/**
+ * Gap (px) kept between the fixed header and a parked hold block. Without it the section
+ * title sat flush under the 56px header for the whole pin and read as crowded; with it the
+ * block parks where a section's own top padding would put it.
+ */
+export const HOLD_TOP = 80;
 /**
  * Share of a hold's pin distance kept AFTER its intro has finished drawing. The intro draws
  * across the first (1 - HOLD_DWELL) of the pin and then sits finished for the rest, so the

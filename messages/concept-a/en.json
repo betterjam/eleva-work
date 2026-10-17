@@ -1,13 +1,16 @@
 {
   "meta": {
-    "title": "Eleva · The platform in detail",
-    "description": "How Eleva works, module by module: the org chart and the role catalog, the rubric the AI assembles from a curated question bank, the 360° cycle with its weightings and stages, achievement by domain, and the Chilean regulation everything is aligned to."
+    "title": "Eleva · Our methodology",
+    "description": "How Eleva works, module by module: the org chart and the role catalog, the rubric built with Eleva's methodology from a curated question bank, guided by the AI, the 360° cycle with its weightings and stages, achievement by domain, and the Chilean regulation everything is aligned to."
   },
   "common": {
     "section": "§",
     "logoAlt": "Eleva",
     "skipToContent": "Skip to content",
-    "whatsappMessage": "Hola! Me interesa saber más sobre Eleva"
+    "whatsappMessage": "Hola! Me interesa saber más sobre Eleva",
+    "enlarge": "Enlarge image",
+    "enlargeFig": "Enlarge {fig}",
+    "close": "Close"
   },
   "header": {
     "nav": [
@@ -61,7 +64,7 @@
       "en": "EN"
     },
     "counter": {
-      "intro": "Platform",
+      "intro": "Methodology",
       "system": "The system",
       "estructura": "Structure",
       "pauta": "Rubric",
@@ -74,9 +77,9 @@
     "home": "Home"
   },
   "intro": {
-    "eyebrow": "Platform · In detail",
-    "title": "How Eleva works, piece by piece.",
-    "lead": "This page walks through the whole system, module by module, with the real product screens. It starts at the org chart and the role catalog, goes through the rubric the AI assembles from a curated question bank, and ends at the Chilean regulation everything is aligned to.",
+    "eyebrow": "Our methodology · In detail",
+    "title": "Our methodology, piece by piece.",
+    "lead": "This page walks through our methodology from start to finish, module by module and with the real product screens. It starts at the org chart and the role catalog, goes through the rubric built from a curated question bank, guided by the AI, and ends at the Chilean regulation everything is aligned to.",
     "back": "← Back to the home page",
     "cta": "Request a demo",
     "indexLabel": "On this page",
@@ -116,7 +119,8 @@
         "num": "07",
         "label": "Regulation"
       }
-    ]
+    ],
+    "artAlt": "Two people flying forward, with the brand’s strokes around them."
   },
   "system": {
     "code": "§01",
@@ -376,7 +380,7 @@
     "code": "§03",
     "runningHead": "Curated bank · Generated rubric",
     "title": "From the curated bank to a complete rubric for every role.",
-    "lead": "The bank is curated: questions written by psychologists and evaluation experts, aligned to Chilean regulation. Each one declares its area, its dimension, which 360° perspectives can answer it, its priority, its weight and the law behind it. The AI selects by dimension, perspective, priority and regulation and assembles the role's complete rubric; you review it before using it.",
+    "lead": "The bank is curated: questions written by psychologists and evaluation experts, aligned to Chilean regulation. Each one declares its area, its dimension, which 360° perspectives can answer it, its priority, its weight and the law behind it. The methodology defines how questions are selected — by dimension, perspective, priority and regulation — and the AI guides that assembly up to the role's complete rubric; you review it before using it.",
     "bank": {
       "label": "Question bank · curated",
       "sub": "Questions written by psychologists and evaluation experts · aligned to Chilean regulation",
@@ -409,7 +413,7 @@
       }
     },
     "stage": {
-      "srSummary": "Assembly example: from the curated bank, the AI selects the questions that apply to the Director role by dimension, perspective, priority and regulation, and assembles its evaluation rubric with the role's dimensions, the regulations and frameworks it evaluates and each question with the laws behind it.",
+      "srSummary": "Assembly example: following the methodology, the questions that apply to the Director role are selected from the curated bank by dimension, perspective, priority and regulation, with the AI guiding the assembly, and its evaluation rubric is built with the role's dimensions, the regulations and frameworks it evaluates and each question with the laws behind it.",
       "bankLabel": "Question bank",
       "bankMeta": "curated · traced to Chilean regulation",
       "ledgerHead": {
@@ -724,12 +728,12 @@
   "ia": {
     "code": "§06",
     "runningHead": "Three interventions, one rule",
-    "title": "The AI proposes. The school decides.",
-    "lead": "The AI steps in at three concrete points of the system. In all three, the last word is yours.",
+    "title": "The AI guides. The school decides.",
+    "lead": "Eleva automated the process and built the methodology; the AI helps your team follow it at three concrete points of the system and unblocks whatever gets stuck. In all three, the last word is yours.",
     "header": {
       "num": "#",
       "intervention": "Intervention",
-      "proposes": "The AI proposes",
+      "proposes": "The AI guides",
       "decides": "You decide"
     },
     "rows": [
@@ -741,8 +745,8 @@
       },
       {
         "num": "02",
-        "name": "Generated rubric",
-        "proposes": "It assembles a role's evaluation rubric from the curated question bank, selecting by dimension, perspective, priority and regulation. The result is the role's complete rubric, with its dimensions and the regulations and frameworks it evaluates.",
+        "name": "Guided rubric",
+        "proposes": "It guides the assembly of the role's rubric from the curated question bank, applying the methodology: selection by dimension, perspective, priority and regulation. The result is the role's complete rubric, with its dimensions and the regulations and frameworks it evaluates.",
         "decides": "You review the rubric, grouped by framework and area, before using it in a process."
       },
       {

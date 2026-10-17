@@ -2,16 +2,14 @@
   "meta": {
     "product": "Eleva",
     "tagline": "Staff performance evaluation for schools in Chile",
-    "description": "Eleva builds the evaluation rubric for every role in your school from a question bank curated by psychologists and evaluation experts, aligned to Chilean regulation, and runs the 360° cycle with the weights, stages and achievement-by-domain results your school needs."
+    "description": "Eleva automates your school's performance evaluation with a methodology created by psychologists and evaluation experts, aligned to Chilean regulation: a rubric per role from a curated bank, a 360° cycle with weights and stages, and achievement by domain with improvement suggestions."
   },
   "nav": {
     "features": "Modules",
     "how": "How it works",
     "security": "Security",
-    "pricing": "Pricing",
     "faq": "FAQ",
-    "platform": "Platform",
-    "viewPricing": "View pricing",
+    "platform": "Methodology",
     "requestDemo": "Request demo",
     "menu": "Menu",
     "toggleTheme": "Toggle theme",
@@ -30,19 +28,19 @@
       "without spreadsheets",
       "without starting over",
       "with Chilean law",
-      "with AI that proposes",
+      "with AI that guides you",
       "with weighted 360°"
     ],
-    "sub": "Eleva builds each role's evaluation rubric from a question bank curated by psychologists and evaluation experts and aligned to Chilean regulation; it runs the 360° cycle with the weights and stages you define, and returns achievement by domain with improvement suggestions. The AI proposes; your school decides.",
+    "sub": "Eleva automates your school's performance evaluation with a methodology created by psychologists and evaluation experts and aligned to Chilean regulation. Every role gets its rubric from a curated bank, the 360° cycle runs with the weights and stages you define, and at the close you have achievement by domain with improvement suggestions. The AI walks your team through every step, and the decisions always belong to the school.",
     "ctaPrimary": "Request a demo",
     "ctaSecondary": "See the modules",
-    "ctaDetail": "See the platform in detail",
+    "ctaDetail": "Our methodology",
     "pill1Title": "A rubric per role",
-    "pill1Sub": "AI proposes it, you approve it",
+    "pill1Sub": "Built from the curated bank, approved by you",
     "pill2Title": "Weighted 360°",
-    "pill2Sub": "Manager, self, peers and upward",
+    "pill2Sub": "Manager, self, peers and direct reports",
     "pill3Title": "Achievement by domain",
-    "pill3Sub": "With improvement suggestions"
+    "pill3Sub": "Plus an improvement suggestion per person"
   },
   "social": {
     "line": "Built for the people accountable for performance across the whole school",
@@ -57,61 +55,61 @@
   },
   "features": {
     "title": "The whole cycle, module by module",
-    "sub": "From the org chart to the rubric, from the weighted 360° to achievement by domain: every piece of the product, with Chilean regulation built in.",
+    "sub": "Six modules that cover the whole cycle, from the org chart to achievement by domain, with Chilean regulation built into every step.",
     "ctaTitle": "Shall we walk through your org chart?",
     "ctaDesc": "We'll show you the full cycle using your school's real roles.",
-    "detailCta": "See the platform in detail",
+    "detailCta": "See our methodology",
     "cards": [
       {
         "title": "Org chart and roles",
-        "desc": "Build your school's tree and match every role against a catalog with full coverage.",
-        "image": "/images/Eleva-IllustArtboard-3.png"
+        "desc": "Map your school's structure and link each position to a catalog role, from leadership to support staff.",
+        "image": "/images/illustrations/artboard-12.webp"
       },
       {
-        "title": "AI-generated rubric",
-        "desc": "The AI picks each role’s questions and assembles the rubric. You review it.",
-        "image": "/images/Eleva-IllustArtboard-4.png"
+        "title": "Methodology guided by AI",
+        "desc": "The methodology is ours; the AI walks you through each rubric, and the final call is yours.",
+        "image": "/images/illustrations/artboard-6.webp"
       },
       {
         "title": "A curated question bank",
         "desc": "Written by psychologists and evaluation experts, grouped by area and dimension.",
-        "image": "/images/Eleva-IllustArtboard-5.png"
+        "image": "/images/illustrations/artboard-17.webp"
       },
       {
         "title": "360° with four perspectives",
-        "desc": "Self-assessment, manager, staff and peers, with the weights you define.",
-        "image": "/images/Eleva-IllustArtboard-6.png"
+        "desc": "Self, manager, direct reports and peers, each weighted the way your school decides.",
+        "image": "/images/illustrations/artboard-10.webp"
       },
       {
         "title": "Six process stages",
-        "desc": "From in preparation to closed. Every process freezes its flow when it is generated.",
-        "image": "/images/Eleva-IllustArtboard-7.png"
+        "desc": "Every cycle moves through six stages, from preparation to close, so nobody loses the thread.",
+        "image": "/images/illustrations/artboard-8.webp"
       },
       {
         "title": "Achievement by domain",
-        "desc": "Likert 1–5 answers turn into achievement per domain, each with an improvement suggestion.",
-        "image": "/images/Eleva-IllustArtboard-8.png"
+        "desc": "Answers turn into an easy-to-read achievement by domain, with an improvement suggestion for each person.",
+        "image": "/images/illustrations/artboard-18.webp"
       }
     ]
   },
   "how": {
     "title": "How it works",
-    "sub": "Three steps: the structure, the rubric and the cycle. At each one, the school has the final word.",
+    "sub": "First the structure, then the rubric, and finally the cycle. At every step, the school reviews, adjusts and decides.",
     "steps": [
       {
         "title": "Set up the org chart and roles",
-        "desc": "Load your school's structure and match every position against the catalog. The AI proposes the role and explains its reasoning; you confirm it or pick another.",
-        "image": "/images/Eleva-IllustArtboard-9.png"
+        "desc": "Load your school's structure and link each position to a catalog role. The AI suggests the best fit and explains why, and you confirm it or pick another.",
+        "image": "/images/illustrations/artboard-13.webp"
       },
       {
-        "title": "The AI drafts the rubric, you review it",
-        "desc": "Every role gets its evaluation rubric with curated questions, grouped by framework and area and traced to Chilean regulation. Adjust whatever you want before publishing.",
-        "image": "/images/Eleva-IllustArtboard-10.png"
+        "title": "Build each role's rubric and approve it",
+        "desc": "Every role gets a rubric with curated questions, organised by framework and area and tied to Chilean regulation. The AI accompanies you through the selection and helps with any doubts along the way; adjust whatever you want before publishing.",
+        "image": "/images/illustrations/artboard-7.webp"
       },
       {
-        "title": "Run the 360° cycle and read the results",
-        "desc": "Set weights and stages, launch the process and get achievement by domain with improvement suggestions for each person evaluated.",
-        "image": "/images/Eleva-IllustArtboard-11.png"
+        "title": "Launch the 360° cycle and read the results",
+        "desc": "Decide how much each perspective weighs and which stages the process goes through, launch it and, at the close, get achievement by domain with an improvement suggestion for each person.",
+        "image": "/images/illustrations/artboard-11.webp"
       }
     ],
     "dashboardTitle": "Process dashboard",
@@ -137,27 +135,28 @@
     "nextActionLabel": "Next action",
     "nextActionTitle": "Send the evaluation to feedback",
     "send": "Send",
-    "preview": "Preview"
+    "preview": "Preview",
+    "illustrationAlt": "Diagram of the three steps: the org chart with the matched role, the role's rubric, and the 360° cycle with its achievement by domain."
   },
   "security": {
     "title": "Security & compliance",
-    "sub": "This is data about people: controlled access and an audit trail on every process.",
+    "sub": "You're handling people's data, so every process has controlled access and a record of who did what.",
     "cards": [
       {
         "title": "Role-based access",
-        "desc": "Separate permissions for the school board, leadership, HR, evaluators and the people evaluated."
+        "desc": "Each role sees only what concerns it: school board, leadership, HR, evaluators and the people evaluated."
       },
       {
         "title": "Audit trail",
-        "desc": "A record of changes, approvals and history for each evaluation process."
+        "desc": "Every change and every approval is recorded, with a history for each evaluation process."
       },
       {
         "title": "Data retention",
-        "desc": "Set retention to match your internal policies and export whenever you need to."
+        "desc": "You decide how long data is kept, in line with your policies, and can export it whenever you want."
       }
     ],
     "adminTitle": "Admin controls",
-    "adminSub": "Central configuration for the school board, overridable by each school.",
+    "adminSub": "The school board sets the central configuration and each school adjusts it to its own reality.",
     "adminRows": [
       {
         "label": "SSO / SAML",
@@ -176,52 +175,7 @@
         "value": "CSV / PDF"
       }
     ],
-    "note": "Compliant with local personal data protection regulation."
-  },
-  "pricing": {
-    "title": "Simple, transparent pricing",
-    "sub": "Plans per school. Reference figures that we confirm with you during the demo.",
-    "plans": [
-      {
-        "name": "Starter",
-        "price": "$199",
-        "note": "per month / school",
-        "bullets": [
-          "Org chart and role catalog",
-          "A generated rubric per role",
-          "360° cycle with four perspectives",
-          "Achievement by domain"
-        ],
-        "cta": "Get started"
-      },
-      {
-        "name": "Professional",
-        "price": "$399",
-        "note": "per month / school",
-        "bullets": [
-          "Everything in Starter",
-          "Configurable weights and stages",
-          "Improvement suggestions per domain",
-          "CSV / PDF exports"
-        ],
-        "cta": "Talk to us",
-        "highlight": "Most popular"
-      },
-      {
-        "name": "Enterprise",
-        "price": "Custom",
-        "note": "tailored",
-        "bullets": [
-          "Several schools with central configuration",
-          "SSO / SAML",
-          "Dedicated onboarding",
-          "Advanced controls"
-        ],
-        "cta": "Request quote"
-      }
-    ],
-    "procTitle": "Need procurement-friendly terms?",
-    "procSub": "Annual invoicing and a rollout aligned to the school year."
+    "note": "We comply with Chilean personal data protection law."
   },
   "faq": {
     "title": "FAQ",
@@ -232,12 +186,12 @@
         "a": "Yes. Eleva evaluates every role in the school: teachers, leadership, education assistants, inclusion teams (PIE), administrative staff and management. The catalog covers every role, with its name, aliases and gender variants."
       },
       {
-        "q": "Can we adjust the rubric the AI proposes?",
-        "a": "The rubric the AI generates is a proposal, not an imposition: you review the questions, adjust dimensions and weights, and approve it before launching the process. Every process freezes its configuration when it is generated, so past cycles stay untouched."
+        "q": "Can we adjust the rubric?",
+        "a": "The rubric follows Eleva's methodology and is always a proposal, never an imposition: you review the questions, adjust dimensions and weights, and approve it before launching the process. Every process freezes its configuration when it is generated, so past cycles stay untouched."
       },
       {
         "q": "What does the AI do, and what does the school decide?",
-        "a": "The AI proposes which catalog role matches each position in your org chart and explains why, assembles the evaluation rubric from the curated bank, and suggests improvements per domain at the end. The decisions — the role, the rubric, the weights and the result — always belong to the school."
+        "a": "The AI does not invent content: it guides your team through Eleva's methodology. It points you to the catalog role that matches each position and explains why, walks you through assembling the rubric from the curated bank, clears up doubts during the process and, at the end, organises the improvement suggestions by domain. The decisions — the role, the rubric, the weights and the result — always belong to the school."
       },
       {
         "q": "How does it align with Chilean regulation?",
@@ -245,7 +199,7 @@
       },
       {
         "q": "Which perspectives and stages does the 360° have?",
-        "a": "Four perspectives: self-assessment, manager to staff, staff to manager and peer to peer, with the weights you define (they must add up to 100). And six stages: in preparation, started, in feedback, feedback answered, finalized and closed."
+        "a": "The 360° looks at each person from four perspectives: their self-assessment, their manager's view, their direct reports' and their peers', with the weights you define (together they add up to 100). The process goes through six stages: in preparation, started, in feedback, feedback answered, finalized and closed."
       },
       {
         "q": "Does it work for a board running several schools?",
@@ -254,12 +208,18 @@
     ],
     "finalTitle": "Ready for your next evaluation cycle?",
     "finalSub": "Request a demo and we'll build the rubric for a real role in your school.",
-    "viewPricing": "View pricing",
     "requestDemo": "Request a demo"
+  },
+  "testimonial": {
+    "quote": "With Eleva we went from guessing to knowing. The evidence from every cycle shows us how the school is doing, role by role, and lets us decide better and in time. We now evaluate in weeks what used to take us months, at lower cost and with more clarity.",
+    "name": "Eduardo Soto Joo",
+    "role": "Rector",
+    "school": "Colegio Santa Cruz de Chicureo",
+    "city": ""
   },
   "demo": {
     "title": "Book a demo with your school's roles",
-    "sub": "In 30 minutes we build the rubric for a real role, set the 360° weights and walk the full cycle through to achievement by domain.",
+    "sub": "In 30 minutes we build the rubric for a real role at your school together, set the 360° weights and walk through the whole cycle, right up to achievement by domain.",
     "benefit1Title": "A demo with your roles",
     "benefit1Sub": "We use your org chart, not a generic example",
     "benefit2Title": "No commitment",
@@ -288,7 +248,7 @@
   },
   "footer": {
     "line": "360° evaluation for every role in your school",
-    "platform": "Platform",
+    "platform": "Methodology",
     "security": "Security",
     "faq": "FAQ",
     "contact": "Contact",

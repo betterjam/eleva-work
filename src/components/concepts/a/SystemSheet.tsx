@@ -108,7 +108,10 @@ export default function SystemSheet() {
     return () => ctx.revert();
   }, []);
 
-  const refresh = () => ScrollTrigger.refresh();
+  // No ScrollTrigger.refresh() when a plate image loads: the plates reserve their
+  // box (width/height + aspect-ratio window), so nothing moves, and under
+  // ScrollSmoother a refresh scrolls to the top to measure and glides back - the
+  // page visibly lurched to the intro whenever a chapter's figure lazy-loaded.
 
   return (
     <section
@@ -165,7 +168,6 @@ export default function SystemSheet() {
                         alt={plates[i]?.alt ?? ''}
                         sizes="(min-width: 1024px) 22vw, 100vw"
                         reveal="rv-wipe-up"
-                        onLoad={refresh}
                       />
                     </div>
                   ))}
@@ -220,6 +222,10 @@ export default function SystemSheet() {
 /* ------------------------------------------------------------------ */
 /* Desktop choreography (positions are fractions of a 1-unit timeline)  */
 /* ------------------------------------------------------------------ */
+/* Where each chapter is fully drawn and its index row still lit: a hair before the
+   flips at 0.25 / 0.5 / 0.75 (see "index rows + readout flips" below). */
+const RESTS = [0, 0.24, 0.49, 0.74, 1];
+
 function buildDesktop(section: HTMLElement): (() => void) | undefined {
   const pin = section.querySelector<HTMLElement>('.a-sys-pin');
   const svg = section.querySelector<SVGSVGElement>('.a-sys-desk svg.a-sys-svg');
@@ -242,19 +248,78 @@ function buildDesktop(section: HTMLElement): (() => void) | undefined {
   const crit = (i: number) => svg.querySelector<SVGTextElement>(`[data-crit="${i}"]`) as SVGTextElement;
   const ringCenter = svg.querySelector<SVGTextElement>('[data-text="ringCenter"]');
 
+  /* Where the reader is, read from the native scroll (the value ScrollTrigger passes lags
+     behind it under ScrollSmoother). */
+  const progressOf = (self: ScrollTrigger) =>
+    gsap.utils.clamp(0, 1, (window.scrollY - self.start) / (self.end - self.start));
+
+  /* Development trace (stripped from production builds): every snap decision, every
+     enter/leave, every refresh of this trigger and any jump of the smoother's content,
+     prefixed `[stage]`, so a console paste shows what moved the page when a stop
+     misbehaves on a machine the headless checks cannot imitate. */
+  const trace = process.env.NODE_ENV !== 'production';
+  const log = (event: string, data?: Record<string, unknown>) => {
+    if (trace) console.log('[stage]', event, JSON.stringify({ y: Math.round(window.scrollY), ...data }));
+  };
+  const where = (self: ScrollTrigger) => ({
+    progress: +progressOf(self).toFixed(3),
+    start: Math.round(self.start),
+    end: Math.round(self.end),
+    dir: self.direction,
+  });
+  if (trace) {
+    const content = document.getElementById('smooth-content');
+    let last: number | null = null;
+    let frame = 0;
+    const tick = () => {
+      if (content) {
+        const ty = new DOMMatrixReadOnly(getComputedStyle(content).transform).f;
+        if (last !== null && Math.abs(ty - last) > 200) log('content jump', { from: Math.round(last), to: Math.round(ty) });
+        last = ty;
+      }
+      frame = window.requestAnimationFrame(tick);
+    };
+    frame = window.requestAnimationFrame(tick);
+    restores.push(() => window.cancelAnimationFrame(frame));
+  }
+
   const tl = gsap.timeline({
     defaults: { ease: 'none' },
     scrollTrigger: {
       trigger: pin,
-      start: 'top top',
+      // The box is content-sized (concept-a.css .a-sys-pin) and pins once its centre
+      // reaches the centre of the area below the 56px header: it enters right after
+      // the intro with no empty band, then holds centred for the choreography.
+      start: 'center center+=28px',
       end: '+=260%',
       pin: true,
       scrub: 0.6,
       anticipatePin: 1,
-      /* Gentle settle to the nearest station, only once the user has clearly stopped
-         (nearest label, not directional; never advances a station on a single wheel notch). */
+      onEnter: (self) => log('enter', where(self)),
+      onEnterBack: (self) => log('enter back', where(self)),
+      onLeave: (self) => log('leave', where(self)),
+      onLeaveBack: (self) => log('leave back', where(self)),
+      onRefresh: (self) => log('refresh', where(self)),
+      /* Settle once the reader has clearly stopped, and always FORWARD: on the completed
+         state of the chapter the reader is in (just before its index flips), whichever
+         way they were moving. A stop never rewinds a drawing: scrolling up scrubs the
+         chapters back while the wheel moves, and the moment it stops the chapter under
+         the reader completes. Every direction heuristic tried before (last movement,
+         furthest point reached) read some real input, a wheel rolling back a notch, a
+         trackpad fling's tail, a return from the section below, as "going up" and
+         snapped a chapter away. */
       snap: {
-        snapTo: 'labels',
+        snapTo: (value: number, self?: ScrollTrigger) => {
+          if (!self) return value;
+          const intent = progressOf(self);
+          // The first 4 % is the start itself (where the index links land), not chapter 1.
+          const to = intent < 0.04 ? 0 : (RESTS.find((r) => r >= intent - 0.002) ?? 1);
+          log('snap', { ...where(self), intent: +intent.toFixed(3), to, velocity: Math.round(self.getVelocity()) });
+          return to;
+        },
+        onStart: (self: ScrollTrigger) => log('snap start', where(self)),
+        onInterrupt: (self: ScrollTrigger) => log('snap interrupted', where(self)),
+        onComplete: (self: ScrollTrigger) => log('snap complete', where(self)),
         delay: 0.3,
         duration: { min: 0.4, max: 0.9 },
         inertia: true,

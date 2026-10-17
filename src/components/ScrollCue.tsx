@@ -8,6 +8,12 @@ type BaseProps = {
   /** Section id to travel to (the `-mobile` twin is picked automatically). */
   targetId: string;
   direction?: Direction;
+  /**
+   * `pill`: compact bordered button (inline cues, phones).
+   * `float`: a mouse outline with a dot that keeps travelling down, label
+   * underneath. The invitation to keep going on desktop stages.
+   */
+  variant?: 'pill' | 'float';
   className?: string;
 };
 
@@ -31,8 +37,27 @@ export default function ScrollCue({
   label,
   ariaLabel,
   direction = 'down',
+  variant = 'pill',
   className = '',
 }: Props) {
+  if (variant === 'float') {
+    return (
+      <button
+        type="button"
+        onClick={() => goTo(targetId)}
+        aria-label={ariaLabel ?? label}
+        className={`scroll-cue scroll-cue--float scroll-cue--${direction} inline-flex flex-col items-center gap-2.5 text-white/70 transition hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current ${className}`}
+      >
+        <span aria-hidden="true" className="scroll-cue-mouse relative block h-10 w-6 rounded-full border-2 border-current">
+          <span className="scroll-cue-dot absolute left-1/2 top-1.5 h-1.5 w-1.5 -ml-[3px] rounded-full bg-current" />
+        </span>
+        {label && (
+          <span className="whitespace-nowrap text-[11px] font-medium uppercase tracking-[0.14em]">{label}</span>
+        )}
+      </button>
+    );
+  }
+
   return (
     <button
       type="button"

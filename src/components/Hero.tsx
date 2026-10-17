@@ -9,21 +9,10 @@ import { SplitText } from 'gsap/SplitText';
 // export has no i18n middleware, so a prefix-less `/platform/` would 404.
 import NextLink from 'next/link';
 import ScrollCue from '@/components/ScrollCue';
+import Testimonial from '@/components/Testimonial';
 import { goTo, prefersReducedMotion } from '@/lib/scrollNav';
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
-
-/**
- * A scrubbed reveal must never un-reveal itself when the reader scrolls back:
- * once its window is behind us the animation is snapped to its end and the
- * trigger stops listening (the tween stays alive, so gsap.context can still
- * revert it on unmount).
- */
-function lockAtEnd(self: ScrollTrigger) {
-  self.getTween()?.kill();
-  self.animation?.progress(1);
-  self.disable(false, true);
-}
 
 export default function Hero() {
   const t = useTranslations();
@@ -47,8 +36,8 @@ export default function Hero() {
   // Entrance ------------------------------------------------------------------
   // Reveals, not fades: the kicker and the rotating line wipe open, the headline
   // and the sub unmask line by line (SplitText, after the fonts are in), the CTAs
-  // settle from 0.96, and the mock card wipes in from its right edge with its
-  // rows cascading behind it and the result bar drawing to its value.
+  // settle from 0.96, and the testimonial card wipes in from its right edge
+  // with its quote and attribution cascading behind it.
   useEffect(() => {
     // Reduced motion: the markup already is the final state, so nothing moves.
     if (prefersReducedMotion()) return;
@@ -60,10 +49,9 @@ export default function Hero() {
     const ctas = all('[data-hero-cta]');
     const pills = all('[data-hero-pill]');
     const rows = all('[data-hero-row]');
-    const bar = root.querySelector<HTMLElement>('[data-hero-bar]');
 
     // A wipe that lands on inset(0 0 0 0) keeps clipping at the border box,
-    // which would eat the mock card's shadow for good - so every wipe drops its
+    // which would eat the card's shadow for good - so every wipe drops its
     // clip-path the moment it finishes.
     const dropClip = (targets: gsap.TweenTarget) => () => {
       gsap.set(targets, { clipPath: 'none' });
@@ -82,7 +70,6 @@ export default function Hero() {
       gsap.set(pills, { opacity: 0, clipPath: 'inset(0% 0% 100% 0%)' });
       gsap.set(mockupRef.current, { opacity: 0, x: 20, clipPath: 'inset(0% 0% 0% 100%)' });
       gsap.set(rows, { opacity: 0, clipPath: 'inset(0% 100% 0% 0%)' });
-      gsap.set(bar, { scaleX: 0, transformOrigin: 'left center' });
     }, containerRef);
 
     // Lines can only be split once the text is laid out in its real font -
@@ -185,9 +172,6 @@ export default function Hero() {
             },
             0.5,
           )
-          // Draws to the value the card states (mock.equityTitle: 3,83 of 5),
-          // which is what the 77% width is
-          .to(bar, { scaleX: 1, duration: 0.5, ease: 'power2.out' }, 0.76)
           .to(ctas, { opacity: 1, scale: 1, duration: 0.5, stagger: 0.08, ease: 'back.out(1.4)' }, 0.5)
           .to(
             pills,
@@ -224,16 +208,16 @@ export default function Hero() {
     const line = strip.querySelector<HTMLElement>('[data-social-line]');
     const tags = Array.from(strip.querySelectorAll<HTMLElement>('[data-social-tag]'));
 
+    // The strip plays its reveal once, in real time, when it is in view. On
+    // desktop it closes the first screen, so it is in view from the start and
+    // waits for the hero's own entrance; on phones it plays as it scrolls in.
+    const inViewAtStart = strip.getBoundingClientRect().top < window.innerHeight;
+
     const ctx = gsap.context(() => {
       gsap
         .timeline({
-          scrollTrigger: {
-            trigger: strip,
-            start: 'top 92%',
-            end: 'top 62%',
-            scrub: 0.3,
-            onLeave: lockAtEnd,
-          },
+          delay: inViewAtStart ? 1.1 : 0,
+          scrollTrigger: { trigger: strip, start: 'top 100%', once: true },
         })
         .fromTo(line, { opacity: 0, x: -12 }, { opacity: 1, x: 0, duration: 0.4, ease: 'power2.out' }, 0)
         .fromTo(
@@ -346,15 +330,22 @@ export default function Hero() {
     };
   }, [currentIndex]);
 
+  // On desktop the hero owns the first screen: it fills the viewport below the
+  // 73px sticky header (content centred, social strip at the bottom), so the
+  // next section's heading never shows before the reader scrolls.
   return (
-    <section id="hero" ref={containerRef} className="relative overflow-hidden bg-[#070A12]">
+    <section
+      id="hero"
+      ref={containerRef}
+      className="relative flex flex-col overflow-hidden bg-[#070A12] md:min-h-[calc(100vh-73px)]"
+    >
       {/* Background Effects */}
       <div className="pointer-events-none absolute inset-0 opacity-70">
         <div className="absolute -top-24 left-1/2 h-[520px] w-[900px] -translate-x-1/2 rounded-full bg-white/10 blur-3xl" />
         <div className="absolute -bottom-28 right-[-140px] h-[420px] w-[620px] rounded-full bg-white/5 blur-3xl" />
       </div>
 
-      <div className="mx-auto grid max-w-6xl items-center gap-[2vh] px-5 pt-[4vh] pb-[4vh] md:grid-cols-2">
+      <div className="mx-auto grid w-full max-w-6xl flex-1 content-center items-center gap-[2vh] px-5 pt-[4vh] pb-[4vh] md:grid-cols-2">
         {/* Content */}
         <div>
           <p ref={kickerRef} className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs text-white/80">
@@ -383,13 +374,13 @@ export default function Hero() {
                 </span>
                 <span
                   ref={rotatingTextRef}
-                  className="absolute left-0 top-0 inline-block whitespace-nowrap bg-gradient-to-r from-brand-400 via-cyan-300 to-emerald-300 bg-clip-text text-transparent"
+                  className="absolute left-0 top-0 inline-block whitespace-nowrap bg-gradient-to-r from-brand-aqua via-brand-aqua-light to-brand-lavender bg-clip-text text-transparent"
                 >
                   {rotatingItems[currentIndex]}
                   {/* Animated underline */}
                   <span
                     ref={underlineRef}
-                    className="absolute bottom-0 left-0 h-[2px] w-full origin-left bg-gradient-to-r from-brand-500/70 via-cyan-400/50 to-transparent"
+                    className="absolute bottom-0 left-0 h-[2px] w-full origin-left bg-gradient-to-r from-brand-aqua/70 via-brand-lavender/50 to-transparent"
                   />
                 </span>
               </span>
@@ -408,31 +399,36 @@ export default function Hero() {
             <button
               data-hero-cta
               onClick={() => goTo('demo')}
-              className="inline-flex items-center justify-center rounded-2xl bg-brand-600 px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-brand-700 shadow-lg shadow-brand-600/25"
+              className="inline-flex items-center justify-center rounded-2xl bg-brand-600 px-5 py-3 text-sm font-medium text-on-accent transition-colors hover:bg-brand-700"
             >
               {t('hero.ctaPrimary')}
             </button>
-            <button
-              data-hero-cta
-              onClick={() => goTo('features')}
-              className="inline-flex items-center justify-center rounded-2xl border border-white/15 px-5 py-3 text-sm text-white/85 transition-colors hover:bg-white/10"
-            >
-              {t('hero.ctaSecondary')}
-            </button>
-          </div>
-
-          {/* Quiet text link to the detail page: a real navigation, so it uses
-              next/link with an explicit locale prefix, never goTo. */}
-          <div ref={detailLinkRef} className="mt-[1.5vh]">
+            {/* The detail page is the full product tour, so it gets the button: a
+                real navigation with an explicit locale prefix, never goTo. */}
             <NextLink
+              data-hero-cta
               href={`/${locale}/platform/`}
-              className="inline-flex items-center gap-1.5 text-sm text-white/60 transition hover:text-white"
+              className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/15 px-5 py-3 text-sm text-white/85 transition-colors hover:bg-white/10"
             >
               {t('hero.ctaDetail')}
               <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </NextLink>
+          </div>
+
+          {/* Quiet scroll link to the modules stage below */}
+          <div ref={detailLinkRef} className="mt-[1.5vh]">
+            <button
+              type="button"
+              onClick={() => goTo('features')}
+              className="inline-flex items-center gap-1.5 text-sm text-white/60 transition hover:text-white"
+            >
+              {t('hero.ctaSecondary')}
+              <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
           </div>
 
           {/* Pills */}
@@ -461,79 +457,23 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Mock UI */}
+        {/* Testimonial: the one place that shows social proof before the reader
+            scrolls. Its parts carry data-hero-row for the entrance cascade. */}
         <div ref={mockupRef}>
-          <div className="rounded-[28px] border border-white/12 bg-white/5 p-4 shadow-2xl">
-            <div className="flex items-center justify-between">
-              <div className="text-sm font-medium text-white/90">{t('mock.title')}</div>
-              <div className="text-xs text-white/60">{t('mock.org')}</div>
-            </div>
-
-            <div className="mt-4 grid gap-3">
-              <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
-                <div className="flex items-center justify-between">
-                  <div className="text-sm font-medium">{t('mock.cardTitle')}</div>
-                  <span className="rounded-full border border-white/15 bg-white/5 px-2 py-1 text-xs text-white/75">
-                    {t('mock.status')}
-                  </span>
-                </div>
-
-                <div className="mt-3 grid gap-2 text-xs text-white/70">
-                  <div data-hero-row className="flex items-center justify-between rounded-xl border border-white/10 bg-white/5 p-3">
-                    <span>{t('mock.d1')}</span>
-                    <span>{t('mock.v1')}</span>
-                  </div>
-                  <div data-hero-row className="flex items-center justify-between rounded-xl border border-white/10 bg-white/5 p-3">
-                    <span>{t('mock.d2')}</span>
-                    <span>{t('mock.v2')}</span>
-                  </div>
-                  <div data-hero-row className="flex items-center justify-between rounded-xl border border-white/10 bg-white/5 p-3">
-                    <span>{t('mock.d3')}</span>
-                    <span>{t('mock.v3')}</span>
-                  </div>
-
-                  <div data-hero-row className="flex items-center justify-between rounded-xl border border-white/10 bg-white/10 p-3">
-                    <span>{t('mock.evidence')}</span>
-                    <span className="text-white/85">{t('mock.files')}</span>
-                  </div>
-                  <div data-hero-row className="flex items-center justify-between rounded-xl border border-white/10 bg-white/10 p-3">
-                    <span>{t('mock.approval')}</span>
-                    <span className="text-white/85">{t('mock.pending')}</span>
-                  </div>
-                </div>
-              </div>
-
-              <div data-hero-row className="rounded-2xl border border-white/10 bg-black/20 p-4">
-                <div className="text-xs text-white/70">{t('mock.equityLabel')}</div>
-                <div className="mt-2 text-sm font-medium">{t('mock.equityTitle')}</div>
-                {/* The bar reads the example result in mock.equityTitle: 3,83 of 5 */}
-                <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-white/10">
-                  <div data-hero-bar className="h-full w-[77%] rounded-full bg-white/70" />
-                </div>
-                <div className="mt-2 text-xs text-white/60">{t('mock.equityNote')}</div>
-              </div>
-            </div>
-          </div>
-
-          <p className="mt-3 text-center text-xs text-white/50">{t('mock.mockNote')}</p>
+          <Testimonial />
         </div>
-      </div>
-
-      {/* Scroll cue (desktop) - lands on the features stage and plays its reveal */}
-      <div className="hidden justify-center pb-[3vh] md:flex">
-        <ScrollCue
-          targetId="features"
-          label={t('cues.keepScrolling')}
-          ariaLabel={t('cues.keepScrollingTo', { section: t('nav.features') })}
-        />
       </div>
 
       {/* Social proof */}
       <section ref={socialRef} className="border-t border-white/10">
         <div className="mx-auto max-w-6xl px-5 py-[3vh]">
-          <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-            <p data-social-line className="text-sm text-white/70">{t('social.line')}</p>
-            <div className="flex flex-wrap gap-2">
+          {/* On desktop the strip closes the first screen and its middle stays
+              empty on purpose: the page's one fixed cue (FloatingCue) sits there
+              at the top of the page and stays put while the strip scrolls away. */}
+          <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between md:gap-6">
+            {/* Capped so the line wraps before the tags do and the middle stays clear. */}
+            <p data-social-line className="text-sm text-white/70 md:max-w-xs">{t('social.line')}</p>
+            <div className="flex flex-wrap gap-2 md:justify-end">
               {(t.raw('social.tags') as string[]).map((tag: string) => (
                 <span
                   key={tag}

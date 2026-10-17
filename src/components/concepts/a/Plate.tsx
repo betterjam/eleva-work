@@ -1,5 +1,9 @@
+'use client';
+
 import Image from 'next/image';
-import type { CSSProperties, ReactNode } from 'react';
+import { useCallback, useState, type CSSProperties, type ReactNode } from 'react';
+import { useTranslations } from 'next-intl';
+import PlateLightbox from './PlateLightbox';
 
 export type PlateRegion = { x: number; y: number; w: number; h: number };
 
@@ -38,6 +42,9 @@ export type PlateProps = {
  * Screenshot frame: 1px plate with crop marks, an image window and a FIG. caption bar.
  * Region crops are pure CSS (`--crop-*` vars on the figure, read by `.a-crop`),
  * so the full-resolution file is positioned inside the window and stays sharp.
+ * The window is also a button: it opens the whole file, uncropped, in a modal
+ * lightbox (`PlateLightbox`). A wipe that still clips the body clips the button
+ * too, so a print cannot be opened before it has developed.
  */
 export default function Plate({
   src,
@@ -59,6 +66,10 @@ export default function Plate({
   overlay,
   style,
 }: PlateProps) {
+  const t = useTranslations('conceptA');
+  const [open, setOpen] = useState(false);
+  const close = useCallback(() => setOpen(false), []);
+
   const vars: Record<string, string | number> = {};
   if (region) {
     vars['--img-w'] = naturalW;
@@ -113,12 +124,35 @@ export default function Plate({
             />
           )}
           {overlay}
+          <button
+            type="button"
+            className="a-plate-zoom"
+            aria-label={fig ? t('common.enlargeFig', { fig }) : t('common.enlarge')}
+            onClick={() => setOpen(true)}
+          >
+            <span className="a-plate-zoom-tag" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square">
+                <path d="M3 9V3h6M15 3h6v6M21 15v6h-6M9 21H3v-6" />
+              </svg>
+            </span>
+          </button>
         </div>
         <figcaption className="a-plate-caption">
           <span className="a-fig">{fig}</span>
           <span>{caption}</span>
         </figcaption>
       </div>
+      {open ? (
+        <PlateLightbox
+          src={src}
+          alt={alt}
+          naturalW={naturalW}
+          naturalH={naturalH}
+          fig={fig}
+          caption={caption}
+          onClose={close}
+        />
+      ) : null}
     </figure>
   );
 }
