@@ -243,93 +243,43 @@ h1, h2, h3, h4, button, [data-hero-cta], .header-cta, header a, footer a, .font-
 }
 
 /* =====================================================================
-   Navy palette, the default (the root layout stamps html[data-palette="navy"];
-   ?palette=ocean shows the handoff's aqua palette, ?palette=navy returns).
-   It touches the LIGHT theme only: header and hero become one deep-ocean band
-   with ivory buttons, everything below keeps the light surface with navy
-   buttons, and the accent is navy instead of aqua. The dark theme is the
+   Light theme: navy actions on the handoff's light surfaces. The accent is
+   navy instead of aqua (buttons, links, focus rings), the rotating headline
+   runs navy to lavender and the floating WhatsApp button goes navy. The
+   surfaces are the token sheet's own: no band, no inverted header, so the
+   first screen reads as the light page it is. The dark theme is the
    handoff's own (deep-ocean surfaces, aqua actions) and is left untouched.
    ===================================================================== */
-html[data-palette="navy"][data-theme="light"] {
+html[data-theme="light"] {
   --accent: #0b3a5c;
   --accent-fill: #0b3a5c;
   --on-accent: #ffffff;
   --focus-ring: #0b3a5c;
 }
 
-html[data-palette="navy"][data-theme="light"] header[data-over="hero"],
-html[data-palette="navy"][data-theme="light"] #hero {
-  --surface: #0b3a5c;
-  --surface-raised: #12476c;
-  --surface-sunken: #08304d;
-  --line: #2a5f86;
-  --line-strong: #6a98bd;
-  --ink: #eef4f8;
-  --ink-muted: #c5d6e3;
-  --accent: #b7bfee;
-  --accent-fill: #f7f8f5;
-  --on-accent: #0b3a5c;
-  --focus-ring: #f7f8f5;
-}
-
-/* While it is over the hero the header is part of the band: solid navy at the
-   top, the same navy slightly translucent (with the blur it already has) once the
-   page has scrolled. Past the hero (data-over="page") it is the page's own light
-   header again. */
-html[data-palette="navy"][data-theme="light"] header[data-over="hero"] {
-  background: var(--surface) !important;
-}
-
-html[data-palette="navy"][data-theme="light"] header[data-over="hero"].bg-black\/20 {
-  background: color-mix(in srgb, var(--surface) 92%, transparent) !important;
-}
-
-/* The band-to-page switch is a cut, not a crossfade: it fires the moment the hero's
-   edge passes under the header, so a cut reads as the band scrolling away, while a
-   300ms blend lags behind a fast travel and flashes. During programmatic travel
-   (scrollNav stamps html.is-programmatic-scroll) the header's text and logo
-   transitions are muted too, so nothing inside it trails the cut. */
-header.sticky[data-over] {
-  transition: none;
-}
-
+/* During programmatic travel (scrollNav stamps html.is-programmatic-scroll) the
+   header's text and logo transitions are muted, so nothing inside it trails the
+   scroll. */
 html.is-programmatic-scroll header * {
   transition: none !important;
 }
 
-/* Inside the band the reverse logo is the right file. */
-html[data-palette="navy"][data-theme="light"] header[data-over="hero"] .logo-light,
-html[data-palette="navy"][data-theme="light"] #hero .logo-light {
-  display: none !important;
+/* Rotating headline and its underline: navy to lavender, no aqua. */
+html[data-theme="light"] .bg-gradient-to-r.from-brand-aqua.via-brand-aqua-light.to-brand-lavender {
+  background-image: linear-gradient(to right, #0b3a5c, #5b6fc4, #9fa8e6) !important;
 }
 
-html[data-palette="navy"][data-theme="light"] header[data-over="hero"] .logo-dark,
-html[data-palette="navy"][data-theme="light"] #hero .logo-dark {
-  display: block !important;
-}
-
-/* The school crest keeps its white plate on the band. */
-html[data-palette="navy"][data-theme="light"] #hero .testimonial-logo {
-  background: #ffffff;
-  padding: 6px;
-}
-
-/* Rotating headline and its underline on the band: lavender to ivory, no aqua. */
-html[data-palette="navy"][data-theme="light"] .bg-gradient-to-r.from-brand-aqua.via-brand-aqua-light.to-brand-lavender {
-  background-image: linear-gradient(to right, #9fa8e6, #c5cdf0, #f7f8f5) !important;
-}
-
-html[data-palette="navy"][data-theme="light"] .bg-gradient-to-r.from-brand-aqua\/70.via-brand-lavender\/50 {
-  background-image: linear-gradient(to right, rgba(159, 168, 230, 0.8), rgba(197, 205, 240, 0.5), transparent) !important;
+html[data-theme="light"] .bg-gradient-to-r.from-brand-aqua\/70.via-brand-lavender\/50 {
+  background-image: linear-gradient(to right, rgba(11, 58, 92, 0.8), rgba(159, 168, 230, 0.5), transparent) !important;
 }
 
 /* On the light theme the floating WhatsApp button goes navy instead of WhatsApp green. */
-html[data-palette="navy"][data-theme="light"] .bg-\[\#25D366\] {
+html[data-theme="light"] .bg-\[\#25D366\] {
   background: var(--accent-fill) !important;
   box-shadow: 0 8px 24px rgba(11, 58, 92, 0.3) !important;
 }
 
-html[data-palette="navy"][data-theme="light"] .bg-\[\#25D366\] .text-pure-white {
+html[data-theme="light"] .bg-\[\#25D366\] .text-pure-white {
   color: var(--on-accent) !important;
 }
 

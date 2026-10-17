@@ -347,13 +347,13 @@ export default function Hero() {
 
       <div className="mx-auto grid w-full max-w-6xl flex-1 content-center items-center gap-[2vh] px-5 pt-[4vh] pb-[4vh] md:grid-cols-2">
         {/* Content */}
-        <div>
+        <div className="min-w-0">
           <p ref={kickerRef} className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs text-white/80">
             <span className="h-1.5 w-1.5 rounded-full bg-white/70" />
             {t('meta.tagline')}
           </p>
 
-          <h1 className="mt-[2vh] text-4xl font-semibold leading-tight text-white md:text-5xl">
+          <h1 className="mt-[2vh] text-[clamp(1.75rem,8vw,2.25rem)] font-semibold leading-tight text-white md:text-5xl">
             {/* SplitText rewrites this element's markup, so it holds nothing but
                 the static half of the headline and is keyed by locale: switching
                 language hands React a brand new node instead of one the split
@@ -361,7 +361,10 @@ export default function Hero() {
             <span key={locale} ref={titleLineRef} className="block">
               {t('hero.titleStart')}
             </span>
-            <span ref={rotatingLineRef} className="relative inline-flex items-center mt-1">
+            {/* The sizer below keeps every phrase on one line, so on phones the rotating
+                line is set a notch smaller than the headline: the longest phrase must fit
+                the viewport, or it widens the whole column past the screen edge. */}
+            <span ref={rotatingLineRef} className="relative mt-1 inline-flex max-w-full items-center text-[0.8em] sm:text-[1em]">
               {/* Rotating text container. The invisible sizer below holds every
                   entry, so the box is already as wide as the longest one and
                   the visible word - taken out of flow - can be swapped without

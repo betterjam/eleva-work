@@ -23,18 +23,6 @@ const themeScript = `
       }
     } catch (e) {}
     try {
-      // Palette: the brand's own light palette (aqua actions on paper) is the
-      // default for everyone. ?palette=navy opts into the navy exploration (navy
-      // header and hero band) and ?palette=ocean comes back; the choice sticks.
-      var wanted = new URLSearchParams(location.search).get('palette');
-      if (wanted === 'navy' || wanted === 'ocean') {
-        localStorage.setItem('eleva-palette', wanted);
-      }
-      if (localStorage.getItem('eleva-palette') === 'navy') {
-        document.documentElement.setAttribute('data-palette', 'navy');
-      }
-    } catch (e) {}
-    try {
       // ?theme=light|dark fixes the theme the same way the toggle does.
       var wantedTheme = new URLSearchParams(location.search).get('theme');
       if (wantedTheme === 'light' || wantedTheme === 'dark') {
