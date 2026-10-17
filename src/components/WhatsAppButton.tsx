@@ -19,7 +19,7 @@ export default function WhatsAppButton({ phoneNumber, message = '' }: WhatsAppBu
       rel="noopener noreferrer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="fixed bottom-6 right-6 z-40 flex items-center gap-3 rounded-full bg-[#25D366] p-4 shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-xl"
+      className="fixed bottom-4 right-4 z-40 flex items-center gap-3 rounded-full bg-[#25D366] p-3 shadow-lg md:bottom-6 md:right-6 md:p-4 transition-all duration-300 hover:scale-110 hover:shadow-xl"
       aria-label="Chat on WhatsApp"
     >
       <svg

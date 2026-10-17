@@ -24,6 +24,12 @@ const SLOT_PLATES = [
 
 type Geo = SVGGeometryElement & { dataset: DOMStringMap };
 
+/** Widest a stacked station figure may render: its viewBox width times 1.1 (px). */
+function stationMaxWidth(i: number): number {
+  const width = parseFloat(STATION_VIEWBOX[i].split(' ')[2]);
+  return Math.round(width * 1.1);
+}
+
 /** Measure every `.a-draw`, hide it with its own dash length, and un-hide the SVG. */
 function prepDraws(svg: SVGSVGElement) {
   const lens = new Map<Geo, number>();
@@ -196,7 +202,17 @@ export default function SystemSheet() {
                   {index[i]?.label}
                 </div>
                 <p className="a-body-sm">{index[i]?.sentence}</p>
-                <svg className="a-svg-pending" viewBox={STATION_VIEWBOX[i]} aria-hidden="true">
+                {/* Each station is a crop of the 1200-unit drawing. Rendered at the
+                    column's full width a 240-unit crop would scale its labels up
+                    almost twice (one word per line, type far bigger than the body), so
+                    the figure is capped near its own unit width: labels stay the size of
+                    the running mono text. */}
+                <svg
+                  className="a-svg-pending"
+                  viewBox={STATION_VIEWBOX[i]}
+                  style={{ maxWidth: stationMaxWidth(i) }}
+                  aria-hidden="true"
+                >
                   <Station p={`sm${i}`} L={L} />
                 </svg>
                 <Plate

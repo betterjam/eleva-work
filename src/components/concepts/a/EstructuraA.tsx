@@ -118,7 +118,7 @@ export default function EstructuraA() {
           const body0 = plateEls[0].querySelector<HTMLElement>('.a-plate-body');
           const img0 = plateEls[0].querySelector('img');
           const intro = gsap.timeline({ paused: true });
-          if (body0) intro.fromTo(body0, { clipPath: 'inset(0 0 0 100%)' }, { clipPath: 'inset(0 0 0 0)', duration: 1.0, ease: 'reveal' }, 0);
+          if (body0) intro.fromTo(body0, { clipPath: 'inset(0% 0% 0% 100%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.0, ease: 'reveal' }, 0);
           if (img0) intro.fromTo(img0, { x: -32 }, { x: 0, duration: 1.0, ease: 'reveal' }, 0);
           // A residual `clip-path` still clips focus rings and overflow at 100 %, so the
           // beat drops it at the end (same reason as `useReveal`). The 2.2/2.3 cross-fade

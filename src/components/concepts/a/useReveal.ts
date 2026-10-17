@@ -17,12 +17,16 @@ const SELECTOR = [
   '.rv-mask',
 ].join(',');
 
+/* Every edge carries a unit on both ends of the tween: GSAP cannot interpolate
+   "100%" into a unitless "0", so a mixed pair never produced a single intermediate
+   value and every wipe was a pop at the end of its window. */
 const WIPE_FROM: Record<string, string> = {
-  'rv-wipe': 'inset(0 100% 0 0)',
-  'rv-wipe-up': 'inset(100% 0 0 0)',
-  'rv-wipe-down': 'inset(0 0 100% 0)',
-  'rv-wipe-left': 'inset(0 0 0 100%)',
+  'rv-wipe': 'inset(0% 100% 0% 0%)',
+  'rv-wipe-up': 'inset(100% 0% 0% 0%)',
+  'rv-wipe-down': 'inset(0% 0% 100% 0%)',
+  'rv-wipe-left': 'inset(0% 0% 0% 100%)',
 };
+const WIPE_TO = 'inset(0% 0% 0% 0%)';
 
 type Options = {
   /** Legacy trigger start (`'top 80%'`): its percentage becomes the beats' `enterAt`. */
@@ -108,7 +112,7 @@ export function useReveal(ref: RefObject<HTMLElement | null>, options: Options =
           if (wipe) {
             const isPlate = cls.contains('a-plate-body');
             const duration = isPlate ? 0.9 : 0.8;
-            tl.fromTo(el, { clipPath: WIPE_FROM[wipe] }, { clipPath: 'inset(0 0 0 0)', duration, ease: 'reveal' }, at);
+            tl.fromTo(el, { clipPath: WIPE_FROM[wipe] }, { clipPath: WIPE_TO, duration, ease: 'reveal' }, at);
             tl.set(el, { clipPath: 'none' }, at + duration);
             if (isPlate) {
               const img = el.querySelector('img');

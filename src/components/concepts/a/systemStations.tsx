@@ -30,7 +30,10 @@ export const SLOTS = [
 ];
 
 /** Per-station viewBoxes for the stacked mobile figures. */
-export const STATION_VIEWBOX = ['0 0 300 340', '260 0 380 290', '640 0 240 270', '890 0 310 240'];
+/* Stacked (phone/tablet) crops of the 1200×640 drawing, one per station. Each keeps a few
+   units of air around its ink: Perspectivas' side labels reach x≈655 in English, and the
+   Proceso rail ends at y≈264 with the "Cerrada" label. */
+export const STATION_VIEWBOX = ['0 0 300 340', '250 0 410 290', '630 0 260 270', '890 0 310 275'];
 
 /** LOGRO ring: 3.83 / 5 = 76.6 % of a r=44 circle. */
 export const LOGRO = { cx: 1135, cy: 156, r: 44, ratio: 0.766 };

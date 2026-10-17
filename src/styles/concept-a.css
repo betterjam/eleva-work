@@ -1511,8 +1511,9 @@ html[data-concept="a"] body {
 [data-concept="a"] .a-proc-col > .a-plate { margin-top: 32px; }
 [data-concept="a"] .a-stages { position: relative; margin-top: 8px; }
 [data-concept="a"] .a-stage > .a-index { position: relative; z-index: 1; background: var(--paper); }
-[data-concept="a"] .a-stage[data-lit="true"] > .a-index { background: var(--accent-c); border-color: var(--accent-c); color: var(--accent-ink); }
-[data-concept="a"] .a-stage[data-lit="true"] .a-h4 { color: var(--ink); }
+/* ProcesoA lights a stage with the `is-lit` class (added, never removed). */
+[data-concept="a"] .a-stage.is-lit > .a-index { background: var(--accent-c); border-color: var(--accent-c); color: var(--accent-ink); }
+[data-concept="a"] .a-stage.is-lit .a-h4 { color: var(--ink); }
 [data-concept="a"] .a-stage .a-body-sm { margin-top: 4px; }
 [data-concept="a"] .a-proc-notes { margin-top: 24px; display: flex; flex-direction: column; gap: 12px; }
 
@@ -2443,3 +2444,60 @@ html[data-concept="a"] body {
     animation: none;
   }
 }
+
+/* =====================================================================
+   Phones (under 768px): the page reads on a 360–430px screen. Rhythm a
+   notch tighter, a 12px floor for the mono family, stage rows and key/value
+   pairs stacked, the lightbox full screen with the file panning and pinching,
+   44px tap targets on coarse pointers, and the fixed chrome out of the way of
+   the footer and of an open lightbox.
+   ===================================================================== */
+@media (max-width: 767.98px) {
+  [data-concept="a"] .a-section { padding-block: 60px; }
+  [data-concept="a"] .a-rule { margin-bottom: 36px; flex-wrap: wrap; row-gap: 4px; }
+  /* a label that strays outside a station crop is drawn, not cut */
+  [data-concept="a"] .a-sys-fig > svg { overflow: visible; }
+  [data-concept="a"] .a-pb-text { font-size: 15px; line-height: 1.35; }
+  [data-concept="a"] .a-pb-code,
+  [data-concept="a"] .a-pb-meta,
+  [data-concept="a"] .a-pb-law,
+  [data-concept="a"] .a-pb-tag { font-size: 12px; }
+  [data-concept="a"] .a-pb-meta { line-height: 16px; }
+  [data-concept="a"] .a-pb-law,
+  [data-concept="a"] .a-pb-tag { height: auto; line-height: 1.4; padding-block: 1px; }
+  [data-concept="a"] .a-pb-norms > li { font-size: 12px; line-height: 18px; }
+  [data-concept="a"] .a-likert { gap: 6px; }
+  [data-concept="a"] .a-likert-name { font-size: 11px; letter-spacing: 0.03em; line-height: 1.25; }
+  /* stage rows: the state tag sits under the description, the text keeps the width */
+  [data-concept="a"] .a-stage { grid-template-columns: 28px minmax(0, 1fr); }
+  [data-concept="a"] .a-stage-state { grid-column: 2; padding-top: 0; margin-top: 4px; }
+  /* plate captions wrap; the FIG label aligns with their first line */
+  [data-concept="a"] .a-plate-caption { align-items: baseline; }
+  /* the floating WhatsApp button must not cover the footer's last row */
+  [data-concept="a"] .a-footer { padding-bottom: 112px; }
+  /* lightbox: full screen, the whole file pans and pinches */
+  [data-concept="a"] .a-lightbox { padding: 0; }
+  [data-concept="a"] .a-lightbox-plate { width: 100vw; max-width: none; height: 100dvh; grid-template-rows: minmax(0, 1fr) auto; }
+  [data-concept="a"] .a-lightbox-plate > .a-plate-window { display: block; overflow: auto; touch-action: pan-x pan-y pinch-zoom; -webkit-overflow-scrolling: touch; }
+  [data-concept="a"] .a-lightbox-img { width: auto; height: auto; max-width: none; max-height: none; min-width: 100%; }
+}
+@media (max-width: 479.98px) {
+  [data-concept="a"] .a-kv2-row { grid-template-columns: 1fr; row-gap: 2px; padding: 8px 0; }
+  [data-concept="a"] .a-kv2-row > dt { padding-top: 0; }
+}
+@media (max-width: 1023.98px) {
+  /* the ledger's column legend belongs to the pinned desktop builder */
+  [data-concept="a"] .a-pb-ledger-head { display: none; }
+}
+@media (pointer: coarse) {
+  [data-concept="a"] .a-switch { height: 44px; }
+  [data-concept="a"] .a-btn-sm { height: 44px; }
+  [data-concept="a"] .a-footer-link,
+  [data-concept="a"] .a-intro-index-link { display: inline-flex; align-items: center; min-height: 44px; }
+  [data-concept="a"] .a-footer-col { gap: 0; }
+  [data-concept="a"] .a-menu-home,
+  [data-concept="a"] .a-intro-back { display: inline-flex; align-items: center; min-height: 44px; }
+  [data-concept="a"] .a-lightbox-close { min-height: 44px; padding-inline: 12px; }
+}
+/* While a lightbox is open the fixed chrome (WhatsApp, cookie banner) steps aside. */
+html:has(dialog.a-lightbox[open]) [data-a-chrome] { visibility: hidden; }

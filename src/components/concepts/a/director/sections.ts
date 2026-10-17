@@ -73,6 +73,12 @@ export const HOLD_TOP = 80;
  * of stillness on the finished block before the page moves on.
  */
 export const HOLD_DWELL = 0.3;
+/**
+ * Phones (under HOLD_MIN_WIDTH): a beat plays once, in time, when its top reaches this % of
+ * the viewport, instead of being scrubbed across a window. A notch inside the fold so the
+ * reveal is seen, not finished before the element has entered.
+ */
+export const PHONE_ENTER_AT = 85;
 /** Minimum window length (enterAt − settleAt, in % of the viewport). */
 export const MIN_WINDOW = 8;
 /** First beat of a section reached through `continue` enters at 100 %. */

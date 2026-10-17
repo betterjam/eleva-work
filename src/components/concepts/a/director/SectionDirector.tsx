@@ -12,6 +12,7 @@ import {
   HOLD_MIN_WIDTH,
   HOLD_TOP,
   MIN_WINDOW,
+  PHONE_ENTER_AT,
   RULE_SPANS,
   SCRUB,
   SECTIONS,
@@ -45,8 +46,11 @@ export type BeatOptions = {
  * - self: inside the `[data-rv-manual]` stage of a `self` section — ignored, the section drives it.
  * - static: completed at once (reduced motion, hidden variant, empty timeline, or focus-locked
  *   before the build).
+ * - once: phones (under HOLD_MIN_WIDTH): the timeline plays in time, once, when the beat's top
+ *   reaches PHONE_ENTER_AT, then locks. A scrubbed window keeps the lower half of a phone
+ *   screen in a permanent mid-reveal, because the settle line is where the reader's eyes are.
  */
-export type BeatDriver = 'pending' | 'window' | 'hold' | 'self' | 'static';
+export type BeatDriver = 'pending' | 'window' | 'hold' | 'self' | 'static' | 'once';
 
 export type BeatSnapshot = {
   id: string;
@@ -465,6 +469,20 @@ export class DirectorEngine {
     }
     enterAt = Math.max(enterAt, settleAt + MIN_WINDOW);
     const reversible = beat.opts.reversible ?? spec.reversible;
+    if (!this.holdsOn) {
+      // Phone: play once in time when the beat arrives; `lock` drops the trigger afterwards.
+      // Beats already past their line at build time are locked by the refresh sweep.
+      const st = ScrollTrigger.create({
+        trigger: beat.el,
+        start: `top ${PHONE_ENTER_AT}%`,
+        invalidateOnRefresh: true,
+        refreshPriority: -1,
+        onEnter: () => this.playOnce(beat),
+      });
+      beat.trigger = st;
+      beat.driver = 'once';
+      return;
+    }
     // Lock at completion: onLeave covers scrolling (a jump across the whole window in one
     // tick fires onEnter then onLeave); the global refresh sweep covers refreshes, during
     // which callbacks are muted; the check after creation covers a trigger born already
@@ -488,18 +506,34 @@ export class DirectorEngine {
     return beat.opts.reversible ?? beat.section?.spec.reversible ?? false;
   }
 
+  /** Phone reveal: the beat's timeline plays through once, then the beat locks. */
+  private playOnce(beat: Beat) {
+    if (beat.locked || beat.driver !== 'once') return;
+    beat.tl.eventCallback('onComplete', () => this.lock(beat));
+    beat.tl.play(0);
+  }
+
   /**
    * After every global refresh (callbacks are muted while it runs, and the per-trigger
    * onRefresh loop walks the live trigger list, so nothing may be killed from inside it):
    * lock whatever now sits past its settle line.
    */
   private sweep = () => {
+    // A window whose end sits above the page top can never be scrolled through (its
+    // clamp() leaves start 0 / end -0.001 and progress 0 forever): treat it as passed.
+    const passed = (st: ScrollTrigger) => st.progress >= 1 || st.end <= st.start;
     [...this.beats].forEach((b) => {
-      if (b.trigger && !b.locked && !this.isReversible(b) && b.trigger.progress >= 1) this.lock(b);
+      if (!b.trigger || b.locked) return;
+      if (b.driver === 'once') {
+        if (passed(b.trigger)) this.lock(b);
+        else if (b.trigger.isActive) this.playOnce(b);
+        return;
+      }
+      if (!this.isReversible(b) && passed(b.trigger)) this.lock(b);
     });
     this.sections.forEach((s) =>
       [...s.rules].forEach((r) => {
-        if (r.trigger && !r.reversible && r.trigger.progress >= 1) r.lock();
+        if (r.trigger && !r.reversible && passed(r.trigger)) r.lock();
       })
     );
   };
@@ -617,8 +651,8 @@ export class DirectorEngine {
       const head = el.querySelector<HTMLElement>('.a-running');
       const tl = gsap.timeline({ paused: true });
       if (line) tl.fromTo(line, { scaleX: 0 }, { scaleX: 1, duration: 0.7, ease: 'reveal' }, 0);
-      if (code) tl.fromTo(code, { clipPath: 'inset(0 100% 0 0)' }, { clipPath: 'inset(0 0 0 0)', duration: 0.4, ease: 'reveal' }, 0.3);
-      if (head) tl.fromTo(head, { clipPath: 'inset(0 0 0 100%)' }, { clipPath: 'inset(0 0 0 0)', duration: 0.4, ease: 'reveal' }, 0.4);
+      if (code) tl.fromTo(code, { clipPath: 'inset(0% 100% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.4, ease: 'reveal' }, 0.3);
+      if (head) tl.fromTo(head, { clipPath: 'inset(0% 0% 0% 100%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.4, ease: 'reveal' }, 0.4);
       const ends = [code, head].filter((x): x is HTMLElement => !!x);
       if (ends.length) tl.set(ends, { clipPath: 'none' }, 0.8);
       // The tweens have rendered their start states inline: the CSS parking can go.

@@ -63,9 +63,9 @@ export default function HeaderA() {
         gsap.fromTo(rule, { scaleX: 0 }, { scaleX: 1, duration: 0.9, ease: 'reveal' });
         gsap.fromTo(
           links,
-          { clipPath: 'inset(0 0 0 100%)' },
+          { clipPath: 'inset(0% 0% 0% 100%)' },
           {
-            clipPath: 'inset(0 0 0 0)',
+            clipPath: 'inset(0% 0% 0% 0%)',
             duration: 0.5,
             stagger: 0.05,
             ease: 'reveal',

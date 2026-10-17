@@ -58,8 +58,8 @@ export default function IntroA() {
         if (eyebrow) {
           tl.fromTo(
             eyebrow,
-            { clipPath: 'inset(0 100% 0 0)' },
-            { clipPath: 'inset(0 0 0 0)', duration: 0.5, ease: 'reveal' },
+            { clipPath: 'inset(0% 100% 0% 0%)' },
+            { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.5, ease: 'reveal' },
             0
           ).set(eyebrow, { clipPath: 'none' });
         }
@@ -83,16 +83,16 @@ export default function IntroA() {
         if (indexLabel) {
           tl.fromTo(
             indexLabel,
-            { clipPath: 'inset(0 100% 0 0)' },
-            { clipPath: 'inset(0 0 0 0)', duration: 0.45, ease: 'reveal' },
+            { clipPath: 'inset(0% 100% 0% 0%)' },
+            { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.45, ease: 'reveal' },
             0.95
           ).set(indexLabel, { clipPath: 'none' });
         }
         if (rows.length) {
           tl.fromTo(
             rows,
-            { clipPath: 'inset(0 100% 0 0)' },
-            { clipPath: 'inset(0 0 0 0)', duration: 0.45, stagger: 0.05, ease: 'reveal' },
+            { clipPath: 'inset(0% 100% 0% 0%)' },
+            { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.45, stagger: 0.05, ease: 'reveal' },
             1
             // A residual clip-path would clip the focus ring of the button inside.
           ).set(rows, { clipPath: 'none' });
