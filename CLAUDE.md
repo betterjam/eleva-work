@@ -45,12 +45,12 @@ npm run lint         # Run ESLint
 - Logos are always the brand files, never rebuilt in CSS: colour logo on light, reverse
   on dark (`.logo-light` / `.logo-dark`), compact variant under 140px, stacked in square
   spaces, `alt="eleva 360°"`.
-- Palette: the **light theme** runs the navy palette by default (`html[data-palette="navy"]`,
-  set by the root layout script; `?palette=ocean` shows the handoff's aqua light palette,
-  `?palette=navy` returns, `?theme=light|dark` fixes the theme). In light, new accents are
-  navy, lavender or ivory, never aqua. The **dark theme** is the handoff's own (ocean
-  surfaces, aqua actions) and must stay that way. Rules sit in `globals.css` under the
-  "Navy palette" heading.
+- Palette: the **light theme** is the handoff's own light palette by default (aqua actions on
+  paper). `?palette=navy` opts into the navy exploration (`html[data-palette="navy"]`: navy
+  header and hero band, navy buttons; rules under the "Navy palette" heading in `globals.css`),
+  `?palette=ocean` returns; the choice is stored in `localStorage` as `eleva-palette`, so a
+  tab that visited one of those links keeps it. `?theme=light|dark` fixes the theme. The
+  **dark theme** is the handoff's own (ocean surfaces, aqua actions) and must stay that way.
 
 ### Animations
 - GSAP with ScrollTrigger plugin

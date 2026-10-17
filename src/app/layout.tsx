@@ -23,13 +23,14 @@ const themeScript = `
       }
     } catch (e) {}
     try {
-      // Palette: navy is the default. ?palette=ocean shows the handoff's aqua
-      // palette for comparison and ?palette=navy comes back; the choice sticks.
+      // Palette: the brand's own light palette (aqua actions on paper) is the
+      // default for everyone. ?palette=navy opts into the navy exploration (navy
+      // header and hero band) and ?palette=ocean comes back; the choice sticks.
       var wanted = new URLSearchParams(location.search).get('palette');
       if (wanted === 'navy' || wanted === 'ocean') {
         localStorage.setItem('eleva-palette', wanted);
       }
-      if (localStorage.getItem('eleva-palette') !== 'ocean') {
+      if (localStorage.getItem('eleva-palette') === 'navy') {
         document.documentElement.setAttribute('data-palette', 'navy');
       }
     } catch (e) {}
