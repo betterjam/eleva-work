@@ -4,8 +4,7 @@
 
 - Node.js 18+
 - npm or yarn
-- AWS CLI configured (for deployment)
-- Access to S3 bucket and CloudFront distribution
+- AWS CLI with the `eleva` profile only for the manual fallback; normal deploys go through the pipeline
 
 ## Available Commands
 
@@ -38,47 +37,32 @@ This command:
 npm run lint
 ```
 
-## AWS Deployment
+## Deployment: the pipeline
 
-### 1. Build the Site
+Every push to `main` deploys eleva.school through the CodePipeline **eleva-landing-prod**
+(us-east-1): GitHub (CodeConnections) → CodeBuild running `buildspec.yml` from this repo.
+The build installs with `npm ci`, runs `npm run build`, syncs `out/` to the site bucket
+(hashed `_next` chunks with a one-year immutable cache, everything else with five minutes
+and `--delete`) and invalidates the CloudFront distribution. Watch a run in the
+CodePipeline console; a failed build never touches the bucket.
+
+The pipeline was created once with `scripts/aws/create-landing-pipeline.sh` (idempotent:
+re-running it only fills in what is missing). The site bucket and the distribution are not
+managed by it; the script reads the bucket name from the account and the distribution id
+from its `DISTRIBUTION_ID` default.
+
+### Manual fallback
 
 ```bash
 npm run build
+aws s3 sync out/ s3://<site-bucket> --delete --acl public-read
+aws cloudfront create-invalidation --distribution-id <distribution-id> --paths "/*"
 ```
 
-### 2. Upload to S3
-
-```bash
-# Sync out/ folder with S3 bucket
-aws s3 sync out/ s3://eleva-landing --delete
-```
-
-Useful options:
-- `--delete`: Removes files in S3 that no longer exist locally
-- `--cache-control "max-age=31536000"`: For static assets
-- `--exclude` / `--include`: To filter files
-
-### 3. Invalidate CloudFront Cache
-
-```bash
-# Invalidate entire cache
-aws cloudfront create-invalidation \
-  --distribution-id YOUR_DISTRIBUTION_ID \
-  --paths "/*"
-```
-
-Specific invalidations:
-```bash
-# HTML pages only
-aws cloudfront create-invalidation \
-  --distribution-id YOUR_DISTRIBUTION_ID \
-  --paths "/index.html" "/es/*" "/en/*"
-
-# Assets only (CSS/JS)
-aws cloudfront create-invalidation \
-  --distribution-id YOUR_DISTRIBUTION_ID \
-  --paths "/_next/*"
-```
+`<site-bucket>` and `<distribution-id>` are the values the pipeline uses (CodeBuild project
+`eleva-landing-prod`, environment variables `SITE_BUCKET` and `DISTRIBUTION_ID`). Objects
+must be uploaded with `--acl public-read`: the bucket serves as a website endpoint and has
+no bucket policy.
 
 ## Generated File Structure
 
@@ -104,75 +88,6 @@ out/
 ├── _next/
 │   └── static/         # Compiled assets (JS, CSS, fonts)
 └── images/             # Optimized images
-```
-
-## S3 Configuration
-
-### Bucket Policy (for static website)
-
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "PublicReadGetObject",
-      "Effect": "Allow",
-      "Principal": "*",
-      "Action": "s3:GetObject",
-      "Resource": "arn:aws:s3:::eleva-landing/*"
-    }
-  ]
-}
-```
-
-### Static Hosting Settings
-
-- **Index document**: `index.html`
-- **Error document**: `index.html` (for SPA routing)
-
-## CloudFront Configuration
-
-### Recommended Behaviors
-
-| Path Pattern | Origin | Cache Policy |
-|--------------|--------|--------------|
-| `/_next/static/*` | S3 | CachingOptimized (1 year) |
-| `*.html` | S3 | CachingDisabled or short TTL |
-| Default (*) | S3 | CachingOptimized |
-
-### Error Pages
-
-- **403/404**: Redirect to `/index.html` with 200 status code
-
-## Complete Deployment Script
-
-Create `deploy.sh`:
-
-```bash
-#!/bin/bash
-set -e
-
-BUCKET="eleva-landing"
-DISTRIBUTION_ID="YOUR_DISTRIBUTION_ID"
-
-echo "Building..."
-npm run build
-
-echo "Uploading to S3..."
-aws s3 sync out/ s3://$BUCKET --delete
-
-echo "Invalidating CloudFront cache..."
-aws cloudfront create-invalidation \
-  --distribution-id $DISTRIBUTION_ID \
-  --paths "/*"
-
-echo "Done!"
-```
-
-Run:
-```bash
-chmod +x deploy.sh
-./deploy.sh
 ```
 
 ## Environment Variables

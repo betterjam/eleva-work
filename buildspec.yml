@@ -1,0 +1,32 @@
+# Build and deploy of eleva.school, run by the eleva-landing-prod pipeline
+# (CodePipeline: GitHub main → CodeBuild) on every push to main.
+#
+# SITE_BUCKET and DISTRIBUTION_ID are environment variables of the CodeBuild
+# project (scripts/aws/create-landing-pipeline.sh sets them), never values in
+# this file. The bucket is a public static-website bucket whose objects are
+# readable through per-object ACLs, hence --acl public-read on every upload.
+#
+# Everything runs in the build phase on purpose: CodeBuild runs post_build
+# even when build fails, and a broken build must never reach the bucket.
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 22
+    commands:
+      - npm ci --no-audit --no-fund
+  build:
+    commands:
+      - npm run build
+      # Hashed chunks first, immutable for a year: new HTML never points at
+      # files that are not there yet, and repeat visits re-download nothing.
+      - aws s3 sync out/_next "s3://$SITE_BUCKET/_next" --acl public-read --cache-control "public, max-age=31536000, immutable"
+      # Pages, RSC payloads, images and brand assets keep a five-minute cache
+      # so a deploy is visible fast; --delete clears the leftovers of old builds.
+      - aws s3 sync out "s3://$SITE_BUCKET" --exclude "_next/*" --delete --acl public-read --cache-control "public, max-age=300"
+      # Prune old chunks only now, after the new HTML is live.
+      - aws s3 sync out/_next "s3://$SITE_BUCKET/_next" --delete --acl public-read --cache-control "public, max-age=31536000, immutable"
+      # The CLI cannot guess this content type.
+      - aws s3 cp out/brand/web/site.webmanifest "s3://$SITE_BUCKET/brand/web/site.webmanifest" --acl public-read --content-type "application/manifest+json" --cache-control "public, max-age=300"
+      - aws cloudfront create-invalidation --distribution-id "$DISTRIBUTION_ID" --paths "/*"
