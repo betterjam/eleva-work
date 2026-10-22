@@ -6,6 +6,7 @@ import { Atkinson_Hyperlegible, Lexend } from "next/font/google";
 // globals.css.
 import "@/styles/eleva-tokens.css";
 import "./globals.css";
+import WebAnalytics from "@/components/WebAnalytics";
 
 // The two brand fonts, self-hosted by next/font: served from this domain and
 // preloaded, instead of a render-blocking stylesheet on fonts.googleapis.com
@@ -81,6 +82,7 @@ export default function RootLayout({
       </head>
       <body className="antialiased">
         {children}
+        <WebAnalytics />
       </body>
     </html>
   );
