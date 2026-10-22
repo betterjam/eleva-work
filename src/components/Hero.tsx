@@ -4,7 +4,6 @@ import { useTranslations, useLocale } from 'next-intl';
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { SplitText } from 'gsap/SplitText';
 // Cross-page link: plain next/link with an explicit locale prefix. The static
 // export has no i18n middleware, so a prefix-less `/platform/` would 404.
 import NextLink from 'next/link';
@@ -12,7 +11,7 @@ import ScrollCue from '@/components/ScrollCue';
 import Testimonial from '@/components/Testimonial';
 import { goTo, prefersReducedMotion } from '@/lib/scrollNav';
 
-gsap.registerPlugin(ScrollTrigger, SplitText);
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Hero() {
   const t = useTranslations();
@@ -34,8 +33,7 @@ export default function Hero() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   // Entrance ------------------------------------------------------------------
-  // Reveals, not fades: the kicker and the rotating line wipe open, the headline
-  // and the sub unmask line by line (SplitText, after the fonts are in), the CTAs
+  // Reveals, not fades: the kicker and the rotating line wipe open, the CTAs
   // settle from 0.96, and the testimonial card wipes in from its right edge
   // with its quote and attribution cascading behind it.
   useEffect(() => {
@@ -57,13 +55,8 @@ export default function Hero() {
       gsap.set(targets, { clipPath: 'none' });
     };
 
-    const splits: SplitText[] = [];
-    let cancelled = false;
-    let fontTimer: number | undefined;
-
     const ctx = gsap.context(() => {
       gsap.set(kickerRef.current, { opacity: 0, clipPath: 'inset(0% 100% 0% 0%)' });
-      gsap.set([titleLineRef.current, subtitleRef.current], { opacity: 0 });
       gsap.set(rotatingLineRef.current, { opacity: 0, clipPath: 'inset(0% 100% 0% 0%)' });
       gsap.set(ctas, { opacity: 0, scale: 0.96, transformOrigin: 'left center' });
       gsap.set(detailLinkRef.current, { opacity: 0, x: -10 });
@@ -72,52 +65,14 @@ export default function Hero() {
       gsap.set(rows, { opacity: 0, clipPath: 'inset(0% 100% 0% 0%)' });
     }, containerRef);
 
-    // Lines can only be split once the text is laid out in its real font -
-    // splitting earlier bakes the fallback font's line breaks into the markup.
-    // The wait is raced against a timeout: the copy above is already at
-    // opacity 0, so a font promise that never settles (a hung or blocked font
-    // host) would otherwise leave the whole hero blank for good. Losing the
-    // race just means the lines arrive whole instead of one by one.
-    const fontsReady = Promise.race([
-      Promise.resolve(document.fonts?.ready),
-      new Promise((resolve) => {
-        fontTimer = window.setTimeout(resolve, 1200);
-      }),
-    ]);
-
-    void fontsReady.then(() => {
-      if (cancelled) return;
-
+    {
       ctx.add(() => {
-        // Never let a split failure leave the copy at opacity 0: the timeline
-        // below fades both containers in either way, so a text that could not
-        // be split simply arrives whole instead of line by line.
-        const splitLines = (el: HTMLElement | null) => {
-          if (!el) return null;
-          try {
-            return new SplitText(el, { type: 'lines', mask: 'lines', linesClass: 'hero-line' });
-          } catch {
-            return null;
-          }
-        };
+        // The headline and the paragraph under it are the page's largest content
+        // (what Google measures as Largest Contentful Paint): they are painted
+        // with the HTML and never hidden, so the first screen reads at once; the
+        // rest of the hero keeps its entrance around them.
 
-        const title = splitLines(titleLineRef.current);
-        const sub = splitLines(subtitleRef.current);
-        [title, sub].forEach((split) => split && splits.push(split));
-
-        const tl = gsap.timeline({
-          defaults: { ease: 'power3.out' },
-          // A split bakes today's line breaks into the markup, which would
-          // survive a window resize, so the splits are undone the moment the
-          // entrance is over and the copy goes back to re-wrapping by itself.
-          // (Restoring the markup replaces its text node; the `key={locale}` on
-          // both elements means React never has to update that node in place,
-          // so a language switch cannot be stranded by it.)
-          onComplete: () => {
-            splits.forEach((split) => split.revert());
-            splits.length = 0;
-          },
-        });
+        const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
         tl.to(
           kickerRef.current,
@@ -128,17 +83,7 @@ export default function Hero() {
             onComplete: dropClip(kickerRef.current),
           },
           0,
-        )
-          // The masks hide the lines, so the containers only need to stop being
-          // transparent - the movement is entirely in the lines themselves.
-          .to([titleLineRef.current, subtitleRef.current], { opacity: 1, duration: 0.25 }, 0.06);
-
-        if (title) {
-          tl.from(title.lines, { yPercent: 115, duration: 0.7, stagger: 0.08 }, 0.08);
-        }
-        if (sub) {
-          tl.from(sub.lines, { yPercent: 110, opacity: 0, duration: 0.55, stagger: 0.06 }, 0.36);
-        }
+        );
 
         tl.to(
           rotatingLineRef.current,
@@ -186,15 +131,10 @@ export default function Hero() {
           )
           .to(detailLinkRef.current, { opacity: 1, x: 0, duration: 0.45 }, 0.64);
       });
-    });
+    }
 
     return () => {
-      cancelled = true;
-      window.clearTimeout(fontTimer);
-      // Order matters: the context first restores the inline styles it wrote,
-      // then each split puts its original markup back.
       ctx.revert();
-      splits.forEach((split) => split.revert());
     };
   }, [locale]);
 
@@ -354,10 +294,8 @@ export default function Hero() {
           </p>
 
           <h1 className="mt-[2vh] text-[clamp(1.75rem,8vw,2.25rem)] font-semibold leading-tight text-white md:text-5xl">
-            {/* SplitText rewrites this element's markup, so it holds nothing but
-                the static half of the headline and is keyed by locale: switching
-                language hands React a brand new node instead of one the split
-                has already taken apart. */}
+            {/* The static half of the headline: painted with the HTML and never
+                hidden, since it is the page's largest content. */}
             <span key={locale} ref={titleLineRef} className="block">
               {t('hero.titleStart')}
             </span>
