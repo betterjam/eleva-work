@@ -1,8 +1,8 @@
 {
   "meta": {
     "product": "Eleva",
-    "tagline": "Staff performance evaluation for schools in Chile",
-    "description": "Eleva automates your school's performance evaluation with a methodology created by psychologists and evaluation experts, aligned to Chilean regulation: a rubric per role from a curated bank, a 360° cycle with weights and stages, and achievement by domain with improvement suggestions."
+    "tagline": "360° feedback for companies in Chile",
+    "description": "360° feedback for everyone in your company: self, manager, peers and direct reports, with a rubric per role, clear results by domain and improvement suggestions."
   },
   "nav": {
     "features": "Modules",
@@ -23,15 +23,15 @@
     "backToTop": "Back to top"
   },
   "hero": {
-    "titleStart": "360° evaluation for every role in your school",
+    "titleStart": "360° feedback for everyone in your company",
     "titleRotating": [
       "without spreadsheets",
       "without starting over",
       "with Chilean law",
       "with AI that guides you",
-      "with weighted 360°"
+      "with clear results"
     ],
-    "sub": "Eleva automates your school's performance evaluation with a methodology created by psychologists and evaluation experts and aligned to Chilean regulation.",
+    "sub": "Eleva organises 360° feedback for your people by role, with a methodology created by psychologists and evaluation experts, and turns it into clear results.",
     "ctaPrimary": "Request a demo",
     "ctaSecondary": "See the modules",
     "ctaDetail": "Our methodology",
@@ -39,30 +39,38 @@
     "pill1Sub": "Built from the curated bank, approved by you",
     "pill2Title": "Weighted 360°",
     "pill2Sub": "Manager, self, peers and direct reports",
-    "pill3Title": "Achievement by domain",
-    "pill3Sub": "Plus an improvement suggestion per person"
+    "pill3Title": "Clear results",
+    "pill3Sub": "Achievement by domain and an improvement suggestion",
+    "visualLabel": "One person, four perspectives",
+    "visualAlt": "Two colleagues talking at a laptop: 360° feedback brings together the views of the people who work with each person.",
+    "perspectives": [
+      "Self-assessment",
+      "Manager",
+      "Peers",
+      "Direct reports"
+    ]
   },
   "social": {
-    "line": "Built for the people accountable for performance across the whole school",
+    "line": "Built for the people accountable for performance across the whole company",
     "tags": [
-      "School owners",
-      "Principals",
+      "Board",
+      "Leadership",
       "HR",
-      "Academic leadership",
-      "School climate",
-      "Inclusion (PIE)"
+      "Managers",
+      "Operations",
+      "Sales"
     ]
   },
   "features": {
     "title": "The whole cycle, module by module",
-    "sub": "Six modules that cover the whole cycle, from the org chart to achievement by domain, with Chilean regulation built into every step.",
+    "sub": "Six modules that cover the whole 360° cycle, from the org chart to results by domain, with Chilean labour law built into every step.",
     "ctaTitle": "Shall we walk through your org chart?",
-    "ctaDesc": "We'll show you the full cycle using your school's real roles.",
+    "ctaDesc": "We'll show you the full cycle using your company's real roles.",
     "detailCta": "See our methodology",
     "cards": [
       {
         "title": "Org chart and roles",
-        "desc": "Map your school's structure and link each position to a catalog role.",
+        "desc": "Map your company's structure and link each position to a catalog role.",
         "image": "/images/illustrations/artboard-12.webp"
       },
       {
@@ -76,8 +84,8 @@
         "image": "/images/illustrations/artboard-17.webp"
       },
       {
-        "title": "360° with four perspectives",
-        "desc": "Self, manager, direct reports and peers, weighted the way your school decides.",
+        "title": "360° feedback, four perspectives",
+        "desc": "Self, manager, peers and direct reports, weighted the way your company decides.",
         "image": "/images/illustrations/artboard-10.webp"
       },
       {
@@ -86,24 +94,24 @@
         "image": "/images/illustrations/artboard-8.webp"
       },
       {
-        "title": "Achievement by domain",
-        "desc": "Answers become an achievement score per domain, with a suggestion to improve.",
+        "title": "Results by domain",
+        "desc": "Each person gets an achievement score per domain and a suggestion to improve.",
         "image": "/images/illustrations/artboard-18.webp"
       }
     ]
   },
   "how": {
     "title": "How it works",
-    "sub": "First the structure, then the rubric, and finally the cycle. At every step, the school reviews, adjusts and decides.",
+    "sub": "First the structure, then the rubric, and finally the 360° cycle. At every step, the company reviews, adjusts and decides.",
     "steps": [
       {
         "title": "Set up the org chart and roles",
-        "desc": "Load your school's structure and link each position to a catalog role. The AI suggests the best fit and explains why, and you confirm it or pick another.",
+        "desc": "Load your company's structure and link each position to a catalog role. The AI suggests the best fit and explains why, and you confirm it or pick another.",
         "image": "/images/illustrations/artboard-13.webp"
       },
       {
         "title": "Build each role's rubric and approve it",
-        "desc": "Every role gets a rubric with curated questions, organised by framework and area and tied to Chilean regulation. The AI accompanies you through the selection and helps with any doubts along the way; adjust whatever you want before publishing.",
+        "desc": "Every role gets a rubric with curated questions, organised by framework and area and tied to Chilean labour law. The AI accompanies you through the selection and helps with any doubts along the way; adjust whatever you want before publishing.",
         "image": "/images/illustrations/artboard-7.webp"
       },
       {
@@ -144,7 +152,7 @@
     "cards": [
       {
         "title": "Role-based access",
-        "desc": "Each role sees only what concerns it: school board, leadership, HR, evaluators and the people evaluated."
+        "desc": "Each role sees only what concerns it: leadership, HR, managers, evaluators and the people evaluated."
       },
       {
         "title": "Audit trail",
@@ -156,7 +164,7 @@
       }
     ],
     "adminTitle": "Admin controls",
-    "adminSub": "The school board sets the central configuration and each school adjusts it to its own reality.",
+    "adminSub": "Head office sets the central configuration and each company or area adjusts it to its own reality.",
     "adminRows": [
       {
         "label": "SSO / SAML",
@@ -179,47 +187,40 @@
   },
   "faq": {
     "title": "FAQ",
-    "sub": "What school boards, principals and HR teams ask us most.",
+    "sub": "What leadership teams, managers and HR ask us most.",
     "items": [
       {
-        "q": "Does it work for education assistants?",
-        "a": "Yes. Eleva evaluates every role in the school: teachers, leadership, education assistants, inclusion teams (PIE), administrative staff and management. The catalog covers every role, with its name, aliases and gender variants."
+        "q": "Does it work for every role in the company?",
+        "a": "Yes. Eleva evaluates all your people, from leadership and managers to operations, sales and administrative teams. Each position in the org chart is linked to a catalog role, with its name, aliases and gender variants."
       },
       {
         "q": "Can we adjust the rubric?",
         "a": "The rubric follows Eleva's methodology and is always a proposal, never an imposition: you review the questions, adjust dimensions and weights, and approve it before launching the process. Every process freezes its configuration when it is generated, so past cycles stay untouched."
       },
       {
-        "q": "What does the AI do, and what does the school decide?",
-        "a": "The AI does not invent content: it guides your team through Eleva's methodology. It points you to the catalog role that matches each position and explains why, walks you through assembling the rubric from the curated bank, clears up doubts during the process and, at the end, organises the improvement suggestions by domain. The decisions — the role, the rubric, the weights and the result — always belong to the school."
+        "q": "What does the AI do, and what does the company decide?",
+        "a": "The AI does not invent content: it guides your team through Eleva's methodology. It points you to the catalog role that matches each position and explains why, walks you through assembling the rubric from the curated bank, clears up doubts during the process and, at the end, organises the improvement suggestions by domain. The decisions — the role, the rubric, the weights and the result — always belong to the company."
       },
       {
         "q": "How does it align with Chilean regulation?",
-        "a": "Every question in the bank declares the regulation and frameworks it evaluates: Ley 21.643 (Ley Karin), Ley 20.903 on the teaching career, the Framework for Good School Leadership (MBDLE), Ley 21.719 on personal data protection, Ley 20.536 on school violence and the child protection laws, among others. Each role's rubric shows what it aligns to."
+        "a": "Every question in the bank declares the regulation and frameworks it evaluates: the Chilean Labour Code (Código del Trabajo), Ley 21.643 (Ley Karin) on workplace harassment, sexual harassment and violence at work, and Ley 21.719 on personal data protection, among others. Each role's rubric shows what it aligns to."
       },
       {
         "q": "Which perspectives and stages does the 360° have?",
         "a": "The 360° looks at each person from four perspectives: their self-assessment, their manager's view, their direct reports' and their peers', with the weights you define (together they add up to 100). The process goes through six stages: in preparation, started, in feedback, feedback answered, finalized and closed."
       },
       {
-        "q": "Does it work for a board running several schools?",
-        "a": "Yes. Central configuration sets the default stages and values for the whole network, and each school can override them on its own stages page."
+        "q": "Does it work for a group with several companies?",
+        "a": "Yes. Central configuration sets the default stages and values for the whole group, and each company can override them on its own stages page."
       }
     ],
     "finalTitle": "Ready for your next evaluation cycle?",
-    "finalSub": "Request a demo and we'll build the rubric for a real role in your school.",
+    "finalSub": "Request a demo and we'll build the rubric for a real role in your company.",
     "requestDemo": "Request a demo"
   },
-  "testimonial": {
-    "quote": "With Eleva we went from guessing to knowing. The evidence from every cycle shows us how the school is doing, role by role, and lets us decide better and in time. We now evaluate in weeks what used to take us months, at lower cost and with more clarity.",
-    "name": "Eduardo Soto Joo",
-    "role": "Rector",
-    "school": "Colegio Santa Cruz de Chicureo",
-    "city": ""
-  },
   "demo": {
-    "title": "Book a demo with your school's roles",
-    "sub": "In 30 minutes we build the rubric for a real role at your school together, set the 360° weights and walk through the whole cycle, right up to achievement by domain.",
+    "title": "Book a demo with your company's roles",
+    "sub": "In 30 minutes we build the rubric for a real role at your company together, set the 360° weights and walk through the whole cycle, right up to results by domain.",
     "benefit1Title": "A demo with your roles",
     "benefit1Sub": "We use your org chart, not a generic example",
     "benefit2Title": "No commitment",
@@ -229,17 +230,17 @@
     "nameLabel": "Full name",
     "namePlaceholder": "Your name",
     "emailLabel": "Email address",
-    "emailPlaceholder": "email@school.edu",
-    "schoolLabel": "School name",
-    "schoolPlaceholder": "Lincoln High School",
+    "emailPlaceholder": "email@company.com",
+    "schoolLabel": "Company name",
+    "schoolPlaceholder": "Example Ltd.",
     "roleLabel": "Your role",
     "rolePlaceholder": "Select your role",
-    "roleDirector": "Principal",
+    "roleDirector": "CEO / General manager",
     "roleHR": "HR Manager",
-    "roleUTP": "Academic Head",
+    "roleUTP": "Team or area manager",
     "roleOther": "Other",
     "messageLabel": "Message (optional)",
-    "messagePlaceholder": "Tell us about your school, or which role you want to evaluate first...",
+    "messagePlaceholder": "Tell us about your company, or which role you want to evaluate first...",
     "submit": "Request demo",
     "submitting": "Sending...",
     "successTitle": "Request sent!",
@@ -247,7 +248,7 @@
     "privacy": "By submitting, you agree to be contacted about Eleva."
   },
   "footer": {
-    "line": "360° evaluation for every role in your school",
+    "line": "360° feedback for everyone in your company",
     "platform": "Methodology",
     "security": "Security",
     "faq": "FAQ",
@@ -256,11 +257,11 @@
   },
   "mock": {
     "title": "Evaluation rubric",
-    "org": "Example School",
-    "cardTitle": "Principal · DIR",
+    "org": "Example Company",
+    "cardTitle": "Area manager · AM",
     "status": "In feedback",
     "d1": "Leadership",
-    "d2": "School climate",
+    "d2": "Teamwork",
     "d3": "Regulatory compliance",
     "v1": "4.1",
     "v2": "3.8",

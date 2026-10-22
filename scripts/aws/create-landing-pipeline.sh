@@ -1,26 +1,29 @@
 #!/usr/bin/env bash
-# One-time creation of the eleva-landing-prod pipeline: GitHub main → CodeBuild
-# (buildspec.yml at the repo root builds, syncs to the eleva.school bucket and
+# One-time creation of the eleva-work-prod pipeline: GitHub main → CodeBuild
+# (buildspec.yml at the repo root builds, syncs to the eleva.works bucket and
 # invalidates CloudFront). Same shape as the eleva-web-prod pipeline.
 #
-#   AWS_PROFILE=eleva scripts/aws/create-landing-pipeline.sh
+#   AWS_PROFILE=eleva SITE_BUCKET=<eleva.works bucket> DISTRIBUTION_ID=<its CloudFront id> \
+#     scripts/aws/create-landing-pipeline.sh
 #
 # Creates: an artifact bucket, a CodeBuild role + project, a pipeline role +
 # pipeline. Re-running skips what already exists. The site bucket and the
-# distribution are NOT created or changed here: they already serve eleva.school.
+# distribution are NOT created or changed here: create the eleva.works hosting first.
+# There are deliberately no defaults for them: this repo is a fork of the school
+# site, and a default would publish the company site over eleva.school.
 # The pipeline runs as soon as it is created and publishes main.
 set -euo pipefail
 
 REGION="${AWS_REGION:-us-east-1}"
-NAME="eleva-landing-prod"
-GITHUB_REPO="${GITHUB_REPO:-betterjam/eleva-landing}"
+NAME="eleva-work-prod"
+GITHUB_REPO="${GITHUB_REPO:-betterjam/eleva-work}"
 GITHUB_BRANCH="${GITHUB_BRANCH:-main}"
 CONNECTION_NAME="${CONNECTION_NAME:-personal}"
-DISTRIBUTION_ID="${DISTRIBUTION_ID:-EWI65SPV6QW2U}"
+DISTRIBUTION_ID="${DISTRIBUTION_ID:?Set DISTRIBUTION_ID to the eleva.works CloudFront distribution id}"
 
 export AWS_PAGER=""
 ACCOUNT="$(aws sts get-caller-identity --query Account --output text)"
-SITE_BUCKET="${SITE_BUCKET:-eleschool-${ACCOUNT}-${REGION}-an}"
+SITE_BUCKET="${SITE_BUCKET:?Set SITE_BUCKET to the eleva.works site bucket}"
 ARTIFACT_BUCKET="${NAME}-artifacts-${ACCOUNT}-${REGION}"
 CONNECTION_ARN="$(aws codeconnections list-connections --region "$REGION" \
   --query "Connections[?ConnectionName=='${CONNECTION_NAME}'].ConnectionArn" --output text)"
@@ -45,7 +48,7 @@ fi
 # ── 2. CodeBuild role: logs, read artifacts, publish to the site bucket, invalidate ──
 BUILD_ROLE="${NAME}-codebuild"
 if ! aws iam get-role --role-name "$BUILD_ROLE" >/dev/null 2>&1; then
-  aws iam create-role --role-name "$BUILD_ROLE" --tags Key=project,Value=eleva-landing \
+  aws iam create-role --role-name "$BUILD_ROLE" --tags Key=project,Value=eleva-work \
     --assume-role-policy-document '{"Version":"2012-10-17","Statement":[{"Effect":"Allow","Principal":{"Service":"codebuild.amazonaws.com"},"Action":"sts:AssumeRole"}]}' >/dev/null
   echo "created role ${BUILD_ROLE}"
 fi
@@ -75,21 +78,21 @@ JSON
 if ! aws codebuild batch-get-projects --names "$NAME" --region "$REGION" --query 'projects[0].name' --output text 2>/dev/null | grep -qx "$NAME"; then
   sleep 10 # new IAM roles take a few seconds to become assumable
   aws codebuild create-project --region "$REGION" --name "$NAME" \
-    --description "Builds eleva.school (Next.js static export) and publishes it to S3 + CloudFront" \
+    --description "Builds eleva.works (Next.js static export) and publishes it to S3 + CloudFront" \
     --source type=CODEPIPELINE,buildspec=buildspec.yml \
     --artifacts type=CODEPIPELINE \
     --environment "type=LINUX_CONTAINER,image=aws/codebuild/standard:7.0,computeType=BUILD_GENERAL1_SMALL,environmentVariables=[{name=SITE_BUCKET,value=${SITE_BUCKET},type=PLAINTEXT},{name=DISTRIBUTION_ID,value=${DISTRIBUTION_ID},type=PLAINTEXT}]" \
     --service-role "arn:aws:iam::${ACCOUNT}:role/${BUILD_ROLE}" \
     --timeout-in-minutes 20 --queued-timeout-in-minutes 60 \
     --logs-config "cloudWatchLogs={status=ENABLED,groupName=/aws/codebuild/${NAME}}" \
-    --tags key=project,value=eleva-landing >/dev/null
+    --tags key=project,value=eleva-work >/dev/null
   echo "created CodeBuild project ${NAME}"
 fi
 
 # ── 4. pipeline role: artifacts, start the build, use the GitHub connection ──
 PIPE_ROLE="${NAME}-pipeline"
 if ! aws iam get-role --role-name "$PIPE_ROLE" >/dev/null 2>&1; then
-  aws iam create-role --role-name "$PIPE_ROLE" --tags Key=project,Value=eleva-landing \
+  aws iam create-role --role-name "$PIPE_ROLE" --tags Key=project,Value=eleva-work \
     --assume-role-policy-document '{"Version":"2012-10-17","Statement":[{"Effect":"Allow","Principal":{"Service":"codepipeline.amazonaws.com"},"Action":"sts:AssumeRole"}]}' >/dev/null
   echo "created role ${PIPE_ROLE}"
 fi
@@ -133,7 +136,7 @@ if ! aws codepipeline get-pipeline --name "$NAME" --region "$REGION" >/dev/null 
           "inputArtifacts": [ { "name": "Source" } ] } ] }
     ]
   },
-  "tags": [ { "key": "project", "value": "eleva-landing" } ]
+  "tags": [ { "key": "project", "value": "eleva-work" } ]
 }
 JSON
 )" >/dev/null

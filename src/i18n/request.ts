@@ -9,10 +9,9 @@ export default getRequestConfig(async ({ requestLocale }) => {
   }
 
   // Base site copy + one namespace per redesign concept (messages/concept-*/).
-  const [base, conceptA, conceptB] = await Promise.all([
+  const [base, conceptA] = await Promise.all([
     import(`../../messages/${locale}.json`),
     import(`../../messages/concept-a/${locale}.json`),
-    import(`../../messages/concept-b/${locale}.json`),
   ]);
 
   return {
@@ -20,7 +19,6 @@ export default getRequestConfig(async ({ requestLocale }) => {
     messages: {
       ...base.default,
       conceptA: conceptA.default,
-      conceptB: conceptB.default,
     },
   };
 });

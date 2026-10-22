@@ -27,8 +27,8 @@ Para cualquier consulta relacionada con privacidad, puedes contactarnos en: priv
 
 **Datos proporcionados directamente:**
 • Nombre completo y cargo
-• Correo electrónico institucional
-• Nombre del establecimiento educacional
+• Correo electrónico corporativo
+• Nombre de la empresa u organización
 • Teléfono de contacto (opcional)
 • Mensajes y consultas enviadas
 
@@ -88,7 +88,7 @@ Puedes gestionar tus preferencias de cookies desde el banner de consentimiento o
       content: `Podemos compartir datos con:
 
 • **Proveedores de servicios:** Hosting, email, analytics (bajo acuerdos de confidencialidad)
-• **Establecimientos educacionales:** Datos de evaluación según el contrato de servicio
+• **Empresas clientes:** Datos de evaluación según el contrato de servicio
 • **Autoridades:** Cuando sea requerido por ley o proceso judicial
 
 No vendemos, alquilamos ni comercializamos datos personales a terceros.`
@@ -111,11 +111,11 @@ Ningún sistema es 100% seguro. En caso de brecha de seguridad, notificaremos a 
       content: `Conservamos los datos por el tiempo necesario para:
 
 • **Datos de contacto:** Mientras exista relación comercial o hasta solicitud de eliminación
-• **Datos de plataforma:** Según el contrato con el establecimiento, típicamente durante la vigencia más 5 años
+• **Datos de plataforma:** Según el contrato con la empresa, típicamente durante la vigencia más 5 años
 • **Logs de seguridad:** 2 años
 • **Datos de facturación:** 6 años (requisito legal)
 
-Los datos de evaluación pertenecen al establecimiento educacional y se gestionan según sus políticas.`
+Los datos de evaluación pertenecen a la empresa cliente y se gestionan según sus políticas.`
     },
     {
       title: '9. Tus Derechos',
@@ -129,7 +129,7 @@ Los datos de evaluación pertenecen al establecimiento educacional y se gestiona
 
 Para ejercer estos derechos, contacta a privacidad@eleva.cl con tu solicitud. Responderemos en un plazo máximo de 30 días.
 
-Para datos de evaluación, contacta al administrador de tu establecimiento educacional.`
+Para datos de evaluación, contacta al administrador de Eleva en tu empresa.`
     },
     {
       title: '10. Transferencias Internacionales',
@@ -139,9 +139,9 @@ Garantizamos que los proveedores cumplen con estándares de seguridad equivalent
     },
     {
       title: '11. Menores de Edad',
-      content: `Eleva está diseñado para uso por personal administrativo y docente de establecimientos educacionales. No recopilamos intencionalmente datos de menores de 18 años a través de este sitio.
+      content: `Eleva está diseñado para uso por empresas y sus colaboradores en el contexto laboral. No recopilamos intencionalmente datos de menores de 18 años a través de este sitio.
 
-Los datos de estudiantes que puedan existir en la plataforma son gestionados por el establecimiento educacional según sus propias políticas.`
+Si la plataforma llegara a contener datos de trabajadores menores de edad, la empresa cliente los gestiona según sus propias políticas y la normativa laboral vigente.`
     },
     {
       title: '12. Cambios a esta Política',
@@ -181,8 +181,8 @@ For any privacy-related inquiries, contact us at: privacy@eleva.cl`
 
 **Data you provide directly:**
 • Full name and job title
-• Institutional email address
-• School/institution name
+• Corporate email address
+• Company or organisation name
 • Contact phone (optional)
 • Messages and inquiries
 
@@ -242,7 +242,7 @@ You can manage your cookie preferences from the consent banner or by configuring
       content: `We may share data with:
 
 • **Service providers:** Hosting, email, analytics (under confidentiality agreements)
-• **Educational institutions:** Evaluation data per service agreement
+• **Client companies:** Evaluation data per service agreement
 • **Authorities:** When required by law or legal process
 
 We do not sell, rent, or trade personal data to third parties.`
@@ -265,11 +265,11 @@ No system is 100% secure. In case of a security breach, we will notify affected 
       content: `We retain data for the time necessary for:
 
 • **Contact data:** While commercial relationship exists or until deletion request
-• **Platform data:** Per agreement with institution, typically during service plus 5 years
+• **Platform data:** Per agreement with the company, typically during service plus 5 years
 • **Security logs:** 2 years
 • **Billing data:** 6 years (legal requirement)
 
-Evaluation data belongs to the educational institution and is managed according to their policies.`
+Evaluation data belongs to the client company and is managed according to its policies.`
     },
     {
       title: '9. Your Rights',
@@ -283,7 +283,7 @@ Evaluation data belongs to the educational institution and is managed according 
 
 To exercise these rights, contact privacy@eleva.cl with your request. We will respond within 30 days maximum.
 
-For evaluation data, contact your educational institution's administrator.`
+For evaluation data, contact the Eleva administrator at your company.`
     },
     {
       title: '10. International Transfers',
@@ -293,9 +293,9 @@ We ensure providers meet equivalent security standards through contractual claus
     },
     {
       title: '11. Minors',
-      content: `Eleva is designed for use by administrative and teaching staff of educational institutions. We do not intentionally collect data from minors under 18 through this website.
+      content: `Eleva is designed for use by companies and their employees in a workplace context. We do not intentionally collect data from minors under 18 through this website.
 
-Student data that may exist on the platform is managed by the educational institution according to their own policies.`
+If the platform ever holds data about employees under 18, the client company manages it according to its own policies and applicable labour law.`
     },
     {
       title: '12. Changes to this Policy',

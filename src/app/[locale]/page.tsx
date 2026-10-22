@@ -24,9 +24,26 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'meta' });
+  const title = `${t('product')} | ${t('tagline')}`;
+  const description = t('description');
+  // Static export with trailing slashes: each locale lives at /<locale>/ on
+  // https://eleva.works (metadataBase in the root layout makes these absolute).
   return {
-    title: `${t('product')} | ${t('tagline')}`,
-    description: t('description'),
+    title,
+    description,
+    alternates: {
+      canonical: `/${locale}/`,
+      languages: { es: '/es/', en: '/en/', 'x-default': '/es/' },
+    },
+    openGraph: {
+      type: 'website',
+      url: `/${locale}/`,
+      siteName: 'eleva 360°',
+      title,
+      description,
+      locale: locale === 'en' ? 'en_US' : 'es_CL',
+      images: [{ url: '/brand/logo/eleva-360-horizontal-color.png', width: 2400, height: 682, alt: 'eleva 360°' }],
+    },
   };
 }
 
@@ -46,7 +63,7 @@ export default async function Home({ params }: Props) {
       <FloatingCue />
       <WhatsAppButton
         phoneNumber="56979591791"
-        message="Hola! Me interesa saber más sobre Eleva"
+        message={locale === 'en' ? "Hi! I'd like to know more about Eleva for my company" : "¡Hola! Me interesa saber más sobre Eleva para mi empresa"}
       />
     </main>
   );

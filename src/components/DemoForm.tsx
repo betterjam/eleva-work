@@ -271,13 +271,13 @@ export default function DemoForm() {
           </div>
 
           <div>
-            <label htmlFor="school" className="block text-sm font-medium text-white/80 mb-1.5">
+            <label htmlFor="company" className="block text-sm font-medium text-white/80 mb-1.5">
               {t('schoolLabel')}
             </label>
             <input
               type="text"
-              id="school"
-              name="school"
+              id="company"
+              name="company"
               required
               className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-white placeholder-white/40 outline-none transition focus:border-white/25 focus:bg-white/10"
               placeholder={t('schoolPlaceholder')}
@@ -295,9 +295,9 @@ export default function DemoForm() {
               className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-white outline-none transition focus:border-white/25 focus:bg-white/10"
             >
               <option value="" className="bg-[#070A12]">{t('rolePlaceholder')}</option>
-              <option value="director" className="bg-[#070A12]">{t('roleDirector')}</option>
+              <option value="gerencia" className="bg-[#070A12]">{t('roleDirector')}</option>
               <option value="rrhh" className="bg-[#070A12]">{t('roleHR')}</option>
-              <option value="utp" className="bg-[#070A12]">{t('roleUTP')}</option>
+              <option value="jefatura" className="bg-[#070A12]">{t('roleUTP')}</option>
               <option value="other" className="bg-[#070A12]">{t('roleOther')}</option>
             </select>
           </div>

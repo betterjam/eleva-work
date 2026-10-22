@@ -1,6 +1,6 @@
-# Eleva Landing Page
+# eleva 360° for companies (eleva.works)
 
-A modern, animated landing page for **Eleva** - a school performance evaluation software for Chilean educational institutions.
+Landing page for **eleva 360°** for companies: 360° feedback for every collaborator, organised by role, with clear results and improvement suggestions. Forked from the school edition (betterjam/eleva-landing, eleva.school).
 
 ## Tech Stack
 

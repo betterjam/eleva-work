@@ -39,7 +39,11 @@ npm run lint
 
 ## Deployment: the pipeline
 
-Every push to `main` deploys eleva.school through the CodePipeline **eleva-landing-prod**
+> Not set up yet. eleva.works needs its own bucket, CloudFront distribution and
+> certificate first; then run the script below with `SITE_BUCKET` and
+> `DISTRIBUTION_ID` set to them. It has no defaults on purpose.
+
+Every push to `main` deploys eleva.works through the CodePipeline **eleva-work-prod**
 (us-east-1): GitHub (CodeConnections) → CodeBuild running `buildspec.yml` from this repo.
 The build installs with `npm ci`, runs `npm run build`, syncs `out/` to the site bucket
 (hashed `_next` chunks with a one-year immutable cache, everything else with five minutes
@@ -60,7 +64,7 @@ aws cloudfront create-invalidation --distribution-id <distribution-id> --paths "
 ```
 
 `<site-bucket>` and `<distribution-id>` are the values the pipeline uses (CodeBuild project
-`eleva-landing-prod`, environment variables `SITE_BUCKET` and `DISTRIBUTION_ID`). Objects
+`eleva-work-prod`, environment variables `SITE_BUCKET` and `DISTRIBUTION_ID`). Objects
 must be uploaded with `--acl public-read`: the bucket serves as a website endpoint and has
 no bucket policy.
 

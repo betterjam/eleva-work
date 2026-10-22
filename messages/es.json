@@ -1,8 +1,8 @@
 {
   "meta": {
     "product": "Eleva",
-    "tagline": "Evaluación de desempeño para colegios en Chile",
-    "description": "Eleva automatiza la evaluación de desempeño del colegio con una metodología creada por psicólogos y expertos en evaluación, alineada a la normativa chilena: pauta por cargo desde un banco curado, ciclo 360° con ponderaciones y etapas, y logro por dominio con sugerencias de mejora."
+    "tagline": "Feedback 360° para empresas en Chile",
+    "description": "Feedback 360° para cada colaborador de tu empresa: autoevaluación, jefatura, pares y colaboradores a cargo, con una pauta por cargo, resultados claros por dominio y sugerencias de mejora."
   },
   "nav": {
     "features": "Módulos",
@@ -23,46 +23,54 @@
     "backToTop": "Volver arriba"
   },
   "hero": {
-    "titleStart": "Evaluación 360° para cada cargo del colegio",
+    "titleStart": "Feedback 360° para cada colaborador de tu empresa",
     "titleRotating": [
       "sin planillas",
       "sin partir de cero",
       "con la ley chilena",
       "con IA que te guía",
-      "con 360° ponderado"
+      "con resultados claros"
     ],
-    "sub": "Eleva automatiza la evaluación de desempeño de tu colegio con una metodología creada por psicólogos y expertos en evaluación, alineada a la normativa chilena.",
+    "sub": "Eleva organiza el feedback 360° de tus colaboradores por cargo, con una metodología creada por psicólogos y expertos en evaluación, y lo convierte en resultados claros.",
     "ctaPrimary": "Solicitar demo",
     "ctaSecondary": "Ver los módulos",
     "ctaDetail": "Nuestra metodología",
     "pill1Title": "Pauta por cargo",
     "pill1Sub": "Armada desde el banco curado y aprobada por ti",
     "pill2Title": "360° ponderado",
-    "pill2Sub": "Jefatura, autoevaluación, pares y colaboradores",
-    "pill3Title": "Logro por dominio",
-    "pill3Sub": "Y una sugerencia de mejora por persona"
+    "pill2Sub": "Autoevaluación, jefatura, pares y equipo a cargo",
+    "pill3Title": "Resultados claros",
+    "pill3Sub": "Logro por dominio y una sugerencia de mejora",
+    "visualLabel": "Una persona, cuatro miradas",
+    "visualAlt": "Dos colegas conversan junto a un computador: el feedback 360° reúne la mirada de quienes trabajan con cada persona.",
+    "perspectives": [
+      "Autoevaluación",
+      "Jefatura",
+      "Pares",
+      "Colaboradores a cargo"
+    ]
   },
   "social": {
-    "line": "Pensado para quienes responden por el desempeño de todo el colegio",
+    "line": "Pensado para quienes responden por el desempeño de toda la empresa",
     "tags": [
-      "Sostenedores",
-      "Directores",
+      "Directorio",
+      "Gerencia",
       "RR.HH.",
-      "Jefaturas UTP",
-      "Convivencia",
-      "PIE"
+      "Jefaturas",
+      "Operaciones",
+      "Comercial"
     ]
   },
   "features": {
     "title": "El ciclo completo, módulo por módulo",
-    "sub": "Seis módulos que recorren el ciclo completo, desde el organigrama hasta el logro por dominio, con la normativa chilena incorporada en cada paso.",
+    "sub": "Seis módulos que recorren el ciclo 360° completo, desde el organigrama hasta los resultados por dominio, con la normativa laboral chilena en cada paso.",
     "ctaTitle": "¿Lo vemos con tu organigrama?",
-    "ctaDesc": "Te mostramos el ciclo completo con los cargos reales de tu colegio.",
+    "ctaDesc": "Te mostramos el ciclo completo con los cargos reales de tu empresa.",
     "detailCta": "Conoce nuestra metodología",
     "cards": [
       {
         "title": "Organigrama y cargos",
-        "desc": "Dibuja la estructura del colegio y asocia cada puesto a un cargo del catálogo.",
+        "desc": "Dibuja la estructura de tu empresa y asocia cada puesto a un cargo del catálogo.",
         "image": "/images/illustrations/artboard-12.webp"
       },
       {
@@ -76,8 +84,8 @@
         "image": "/images/illustrations/artboard-17.webp"
       },
       {
-        "title": "360° con cuatro perspectivas",
-        "desc": "Autoevaluación, jefatura, colaboradores y pares, con el peso que tú definas.",
+        "title": "Feedback 360° en cuatro miradas",
+        "desc": "Autoevaluación, jefatura, pares y colaboradores a cargo, con el peso que definas.",
         "image": "/images/illustrations/artboard-10.webp"
       },
       {
@@ -86,29 +94,29 @@
         "image": "/images/illustrations/artboard-8.webp"
       },
       {
-        "title": "Logro por dominio",
-        "desc": "Las respuestas se vuelven un logro por dominio con una sugerencia de mejora.",
+        "title": "Resultados por dominio",
+        "desc": "Cada colaborador recibe su logro por dominio y una sugerencia para mejorar.",
         "image": "/images/illustrations/artboard-18.webp"
       }
     ]
   },
   "how": {
     "title": "Cómo funciona",
-    "sub": "Primero la estructura, después la pauta y al final el ciclo. En cada paso, el colegio revisa, ajusta y decide.",
+    "sub": "Primero la estructura, después la pauta y al final el ciclo 360°. En cada paso, la empresa revisa, ajusta y decide.",
     "steps": [
       {
         "title": "Configura organigrama y cargos",
-        "desc": "Carga la estructura de tu colegio y asocia cada puesto a un cargo del catálogo. La IA te sugiere el que mejor calza y te explica por qué, y tú confirmas o eliges otro.",
+        "desc": "Carga la estructura de tu empresa y asocia cada puesto a un cargo del catálogo. La IA te sugiere el que mejor calza y te explica por qué, y tú confirmas o eliges otro.",
         "image": "/images/illustrations/artboard-13.webp"
       },
       {
         "title": "Arma la pauta de cada cargo y apruébala",
-        "desc": "Cada cargo recibe una pauta con preguntas curadas, organizadas por marco y área y vinculadas a la normativa chilena. La IA te acompaña en la selección y te ayuda con las dudas que aparezcan; ajusta lo que quieras antes de publicarla.",
+        "desc": "Cada cargo recibe una pauta con preguntas curadas, organizadas por marco y área y vinculadas a la normativa laboral chilena. La IA te acompaña en la selección y te ayuda con las dudas que aparezcan; ajusta lo que quieras antes de publicarla.",
         "image": "/images/illustrations/artboard-7.webp"
       },
       {
         "title": "Lanza el ciclo 360° y lee los resultados",
-        "desc": "Define cuánto pesa cada perspectiva y por qué etapas pasa el proceso, lánzalo y, al cerrar, recibe el logro por dominio con una sugerencia de mejora para cada persona.",
+        "desc": "Define cuánto pesa cada perspectiva y por qué etapas pasa el proceso, lánzalo y, al cerrar, recibe el logro por dominio con una sugerencia de mejora para cada colaborador.",
         "image": "/images/illustrations/artboard-11.webp"
       }
     ],
@@ -144,7 +152,7 @@
     "cards": [
       {
         "title": "Acceso por roles",
-        "desc": "Cada rol ve solo lo que le corresponde: sostenedor, dirección, RR.HH., evaluadores y evaluados."
+        "desc": "Cada rol ve solo lo que le corresponde: gerencia, RR.HH., jefaturas, evaluadores y evaluados."
       },
       {
         "title": "Trazabilidad",
@@ -156,7 +164,7 @@
       }
     ],
     "adminTitle": "Controles de administración",
-    "adminSub": "El sostenedor define la configuración central y cada colegio la ajusta a su realidad.",
+    "adminSub": "La casa matriz define la configuración central y cada empresa o área la ajusta a su realidad.",
     "adminRows": [
       {
         "label": "SSO / SAML",
@@ -179,47 +187,40 @@
   },
   "faq": {
     "title": "Preguntas frecuentes",
-    "sub": "Lo que más nos preguntan sostenedores, directores y equipos de RR.HH.",
+    "sub": "Lo que más nos preguntan gerencias, jefaturas y equipos de RR.HH.",
     "items": [
       {
-        "q": "¿Sirve para asistentes de la educación?",
-        "a": "Sí. Eleva evalúa todos los cargos del colegio: docentes, directivos, asistentes de la educación, PIE, administrativos y dirección. El catálogo tiene cobertura completa, con nombre, alias y variantes de género para cada cargo."
+        "q": "¿Sirve para todos los cargos de la empresa?",
+        "a": "Sí. Eleva evalúa a todos tus colaboradores, desde la gerencia y las jefaturas hasta los equipos de operaciones, comercial y administración. Cada puesto del organigrama se asocia a un cargo del catálogo, con su nombre, alias y variantes de género."
       },
       {
         "q": "¿Podemos ajustar la pauta?",
         "a": "La pauta sigue la metodología de Eleva y siempre es una propuesta, no una imposición: revisas las preguntas, ajustas dimensiones y ponderaciones, y la apruebas antes de lanzar el proceso. Cada proceso congela su configuración al generarse, así que los históricos quedan intactos."
       },
       {
-        "q": "¿Qué hace la IA y qué decide el colegio?",
-        "a": "La IA no inventa contenido: guía a tu equipo por la metodología de Eleva. Te orienta sobre el cargo del catálogo que corresponde a cada puesto y explica por qué, acompaña el armado de la pauta desde el banco curado, resuelve dudas durante el proceso y, al cerrar, ordena las sugerencias de mejora por dominio. Las decisiones —el cargo, la pauta, las ponderaciones y el resultado— son siempre del colegio."
+        "q": "¿Qué hace la IA y qué decide la empresa?",
+        "a": "La IA no inventa contenido: guía a tu equipo por la metodología de Eleva. Te orienta sobre el cargo del catálogo que corresponde a cada puesto y explica por qué, acompaña el armado de la pauta desde el banco curado, resuelve dudas durante el proceso y, al cerrar, ordena las sugerencias de mejora por dominio. Las decisiones —el cargo, la pauta, las ponderaciones y el resultado— son siempre de la empresa."
       },
       {
         "q": "¿Cómo se alinea con la normativa chilena?",
-        "a": "Cada pregunta del banco declara la normativa y los marcos que evalúa: Ley 21.643 (Ley Karin), Ley 20.903 de Carrera Docente, el Marco para la Buena Dirección y Liderazgo Escolar, Ley 21.719 de Protección de Datos Personales, Ley 20.536 sobre Violencia Escolar y las leyes de protección a la niñez, entre otras. La pauta de cada cargo muestra a qué marcos se alinea."
+        "a": "Cada pregunta del banco declara la normativa y los marcos que evalúa: el Código del Trabajo, la Ley 21.643 (Ley Karin) sobre acoso laboral, acoso sexual y violencia en el trabajo, y la Ley 21.719 de Protección de Datos Personales, entre otras. La pauta de cada cargo muestra a qué marcos se alinea."
       },
       {
         "q": "¿Qué perspectivas y etapas tiene el 360°?",
         "a": "El 360° mira a cada persona desde cuatro perspectivas: su autoevaluación, la de su jefatura, la de sus colaboradores y la de sus pares, con las ponderaciones que tú definas (entre todas suman 100). El proceso pasa por seis etapas: en preparación, iniciada, en feedback, feedback respondido, finalizada y cerrada."
       },
       {
-        "q": "¿Funciona para un sostenedor con varios colegios?",
-        "a": "Sí. La configuración central define las etapas y los valores por defecto para toda la red, y cada colegio puede sobrescribirlos en su propia página de etapas."
+        "q": "¿Funciona para un grupo con varias empresas?",
+        "a": "Sí. La configuración central define las etapas y los valores por defecto para todo el grupo, y cada empresa puede sobrescribirlos en su propia página de etapas."
       }
     ],
     "finalTitle": "¿Listo para tu próximo ciclo de evaluación?",
-    "finalSub": "Solicita una demo y armamos la pauta de un cargo real de tu colegio.",
+    "finalSub": "Solicita una demo y armamos la pauta de un cargo real de tu empresa.",
     "requestDemo": "Solicitar demo"
   },
-  "testimonial": {
-    "quote": "Con Eleva pasamos de intuir a saber. La evidencia de cada ciclo nos muestra cómo está el colegio, cargo por cargo, y nos permite decidir mejor y a tiempo. Evaluamos en semanas lo que antes nos tomaba meses, con menos costo y más claridad.",
-    "name": "Eduardo Soto Joo",
-    "role": "Rector",
-    "school": "Colegio Santa Cruz de Chicureo",
-    "city": ""
-  },
   "demo": {
-    "title": "Agenda una demo con los cargos de tu colegio",
-    "sub": "En 30 minutos armamos juntos la pauta de un cargo real de tu colegio, definimos las ponderaciones del 360° y recorremos el ciclo completo, hasta ver el logro por dominio.",
+    "title": "Agenda una demo con los cargos de tu empresa",
+    "sub": "En 30 minutos armamos juntos la pauta de un cargo real de tu empresa, definimos las ponderaciones del 360° y recorremos el ciclo completo, hasta ver los resultados por dominio.",
     "benefit1Title": "Demo con tus cargos",
     "benefit1Sub": "Usamos tu organigrama, no un ejemplo genérico",
     "benefit2Title": "Sin compromiso",
@@ -229,17 +230,17 @@
     "nameLabel": "Nombre completo",
     "namePlaceholder": "Tu nombre",
     "emailLabel": "Correo electrónico",
-    "emailPlaceholder": "correo@colegio.cl",
-    "schoolLabel": "Nombre del colegio",
-    "schoolPlaceholder": "Colegio San José",
+    "emailPlaceholder": "correo@empresa.cl",
+    "schoolLabel": "Nombre de la empresa",
+    "schoolPlaceholder": "Empresa Ejemplo SpA",
     "roleLabel": "Tu cargo",
     "rolePlaceholder": "Selecciona tu cargo",
-    "roleDirector": "Director/a",
+    "roleDirector": "Gerente/a general",
     "roleHR": "Encargado/a RR.HH.",
-    "roleUTP": "Jefe/a UTP",
+    "roleUTP": "Jefatura de área",
     "roleOther": "Otro",
     "messageLabel": "Mensaje (opcional)",
-    "messagePlaceholder": "Cuéntanos de tu colegio o del cargo que quieres evaluar primero...",
+    "messagePlaceholder": "Cuéntanos de tu empresa o del cargo que quieres evaluar primero...",
     "submit": "Solicitar demo",
     "submitting": "Enviando...",
     "successTitle": "¡Solicitud enviada!",
@@ -247,7 +248,7 @@
     "privacy": "Al enviar, aceptas que te contactemos sobre Eleva."
   },
   "footer": {
-    "line": "Evaluación 360° para cada cargo del colegio",
+    "line": "Feedback 360° para cada colaborador de tu empresa",
     "platform": "Metodología",
     "security": "Seguridad",
     "faq": "Preguntas",
@@ -256,11 +257,11 @@
   },
   "mock": {
     "title": "Pauta evaluativa",
-    "org": "Colegio Ejemplo",
-    "cardTitle": "Director · DIR",
+    "org": "Empresa Ejemplo",
+    "cardTitle": "Jefatura de área · JA",
     "status": "En feedback",
     "d1": "Liderazgo",
-    "d2": "Convivencia escolar",
+    "d2": "Trabajo en equipo",
     "d3": "Cumplimiento normativo",
     "v1": "4,1",
     "v2": "3,8",

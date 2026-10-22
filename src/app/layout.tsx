@@ -5,7 +5,10 @@ import "./globals.css";
 // be a hardcoded Spanish sentence describing a different product, and it
 // shadowed meta.description for every locale; each page under `[locale]` now
 // exports its own generateMetadata with the translated strings instead.
+// metadataBase turns every relative canonical, alternate and Open Graph URL
+// into an absolute one on the production domain.
 export const metadata: Metadata = {
+  metadataBase: new URL('https://eleva.works'),
   title: 'Eleva',
 };
 

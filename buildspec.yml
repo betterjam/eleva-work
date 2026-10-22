@@ -1,4 +1,4 @@
-# Build and deploy of eleva.school, run by the eleva-landing-prod pipeline
+# Build and deploy of eleva.works, run by the eleva-work-prod pipeline
 # (CodePipeline: GitHub main → CodeBuild) on every push to main.
 #
 # SITE_BUCKET and DISTRIBUTION_ID are environment variables of the CodeBuild

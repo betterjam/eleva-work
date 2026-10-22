@@ -41,7 +41,7 @@ export default async function TermsPage({ params }: Props) {
 
             <section>
               <h2 className="text-xl font-semibold text-white mb-3">2. Descripción del Servicio</h2>
-              <p>Eleva es una plataforma de evaluación de desempeño diseñada para instituciones educativas en Chile. Proporcionamos herramientas para crear rúbricas, gestionar evaluaciones y generar reportes.</p>
+              <p>Eleva es una plataforma de evaluación de desempeño diseñada para empresas en Chile. Proporcionamos herramientas para configurar pautas por cargo, gestionar procesos de feedback 360° y generar reportes.</p>
             </section>
 
             <section>

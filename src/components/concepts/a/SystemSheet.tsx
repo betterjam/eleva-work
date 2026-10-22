@@ -14,7 +14,7 @@ type NodeMsg = { name: string; code: string };
 type PerspectiveMsg = { label: string; weight: string };
 
 /** Slot crops (natural px), ratio 1.45 each. The org chart starts below the app's header strip
-    (its role counters stay out of the crop; the Sostenedor node stays centred). */
+    (its role counters stay out of the crop; the root node stays centred). */
 const SLOT_PLATES = [
   { src: '/images/app/org-chart-editor.png', w: 1540, h: 1162, region: { x: 200, y: 140, w: 1340, h: 924 } },
   { src: '/images/app/perspective-weights-wizard.png', w: 1490, h: 1154, region: { x: 340, y: 288, w: 820, h: 565 } },
