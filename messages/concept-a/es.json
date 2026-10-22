@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Eleva · Nuestra metodología",
-    "description": "Cómo funciona Eleva, módulo por módulo: el organigrama y el catálogo de cargos que definen quién da feedback a quién, la pauta que se arma con la metodología de Eleva desde un banco curado de preguntas, guiada por la IA, el ciclo de feedback 360° con sus ponderaciones y etapas, el logro por dominio con sugerencias de mejora para cada colaborador y la normativa laboral chilena a la que todo se alinea."
+    "description": "Cómo funciona Eleva, módulo por módulo: el organigrama y el catálogo de cargos que definen quién da feedback a quién, la pauta que se arma con la metodología de Eleva desde un banco curado de preguntas, guiada por la IA, el ciclo de feedback 360° con sus ponderaciones y etapas, el logro por dominio con sugerencias de mejora para cada colaborador y la normativa laboral a la que todo se alinea."
   },
   "common": {
     "section": "§",
@@ -79,7 +79,7 @@
   "intro": {
     "eyebrow": "Nuestra metodología · En detalle",
     "title": "Nuestra metodología, pieza por pieza.",
-    "lead": "Esta página recorre nuestra metodología de feedback 360° de principio a fin, módulo por módulo y con las pantallas reales del producto. Parte en el organigrama y el catálogo de cargos, que definen quién da feedback a quién, pasa por la pauta que se arma desde un banco curado de preguntas, guiada por la IA, y termina en la normativa laboral chilena a la que todo se alinea.",
+    "lead": "Esta página recorre nuestra metodología de feedback 360° de principio a fin, módulo por módulo y con las pantallas reales del producto. Parte en el organigrama y el catálogo de cargos, que definen quién da feedback a quién, pasa por la pauta que se arma desde un banco curado de preguntas, guiada por la IA, y termina en la normativa laboral a la que todo se alinea.",
     "back": "← Volver al inicio",
     "cta": "Solicitar demo",
     "indexLabel": "En esta página",
@@ -269,7 +269,7 @@
         "index": "2.2",
         "label": "Catálogo de cargos",
         "title": "Cobertura completa, con los nombres correctos.",
-        "body": "Cada cargo del catálogo tiene código, familia, alias, nombre en español chileno e inglés y variantes de género. Declara a quién reporta y a quién evalúa. Incluye también los cargos de apoyo: servicios generales, recepcionista, prevencionista de riesgos, analistas y ejecutivos. Se exporta e importa en JSON y se aplica a una empresa.",
+        "body": "Cada cargo del catálogo tiene código, familia, alias, nombre en español e inglés y variantes de género. Declara a quién reporta y a quién evalúa. Incluye también los cargos de apoyo: servicios generales, recepcionista, prevencionista de riesgos, analistas y ejecutivos. Se exporta e importa en JSON y se aplica a una empresa.",
         "rows": [
           {
             "key": "Cobertura",
@@ -330,7 +330,7 @@
           },
           {
             "key": "Marcos y normativas",
-            "value": "Código del Trabajo · Ley 16.744 (Accidentes del Trabajo) · Ley 21.643 (Ley Karin) · …"
+            "value": "Legislación laboral · Seguridad y salud en el trabajo · Acoso laboral · …"
           }
         ],
         "barsLabel": "Opciones de match · confianza",
@@ -380,10 +380,10 @@
     "code": "§03",
     "runningHead": "Banco curado · Pauta generada",
     "title": "Del banco curado a la pauta completa de cada cargo.",
-    "lead": "El banco es curado: preguntas creadas por psicólogos y expertos en evaluación, alineadas a la normativa chilena. Cada una declara su área, su dimensión, desde qué perspectivas del 360° puede responderse, su prioridad, su peso y la ley que la respalda. La metodología define cómo se selecciona —por dimensión, perspectiva, prioridad y normativa— y la IA guía ese armado hasta la pauta completa del cargo, la base del feedback que recibe cada colaborador; tú la revisas antes de usarla.",
+    "lead": "El banco es curado: preguntas creadas por psicólogos y expertos en evaluación, alineadas a la normativa laboral. Cada una declara su área, su dimensión, desde qué perspectivas del 360° puede responderse, su prioridad, su peso y la norma que la respalda. La metodología define cómo se selecciona —por dimensión, perspectiva, prioridad y normativa— y la IA guía ese armado hasta la pauta completa del cargo, la base del feedback que recibe cada colaborador; tú la revisas antes de usarla.",
     "bank": {
       "label": "Banco de preguntas · curado",
-      "sub": "Preguntas creadas por psicólogos y expertos en evaluación · alineadas a la normativa chilena",
+      "sub": "Preguntas creadas por psicólogos y expertos en evaluación · alineadas a la normativa laboral",
       "rows": [
         {
           "key": "Tipo",
@@ -415,7 +415,7 @@
     "stage": {
       "srSummary": "Ejemplo del armado: siguiendo la metodología, se seleccionan del banco curado las preguntas que corresponden al cargo Gerente General por dimensión, perspectiva, prioridad y normativa, con la IA guiando el armado, y se arma su pauta evaluativa con las dimensiones del cargo, las normativas y marcos que evalúa y cada pregunta con las leyes que la respaldan.",
       "bankLabel": "Banco de preguntas",
-      "bankMeta": "curado · trazado a la normativa chilena",
+      "bankMeta": "curado · trazado a la normativa laboral",
       "ledgerHead": {
         "code": "Código",
         "text": "Texto",
@@ -476,10 +476,10 @@
           ],
           "priority": "P0",
           "laws": [
-            "Ley 21.643",
+            "Acoso laboral",
             "BP Eleva 360°",
-            "Ley 20.609",
-            "Código del Trabajo"
+            "No discriminación",
+            "Legislación laboral"
           ],
           "selected": true
         },
@@ -510,8 +510,8 @@
           "priority": "P0",
           "laws": [
             "BP Eleva 360°",
-            "Ley 16.744",
-            "Ley 21.643"
+            "Seguridad y salud",
+            "Acoso laboral"
           ],
           "selected": true
         },
@@ -527,7 +527,7 @@
           ],
           "priority": "P0",
           "laws": [
-            "Código del Trabajo",
+            "Legislación laboral",
             "BP Eleva 360°"
           ],
           "selected": true
@@ -554,17 +554,17 @@
         "normsLabel": "Normativas y marcos que esta pauta evalúa",
         "norms": [
           "Buenas Prácticas 360° Eleva",
-          "Código del Trabajo",
-          "Ley 16.744 — Accidentes",
-          "Ley 19.628 — Vida Privada",
-          "Ley 20.005 — Acoso Sexual",
-          "Ley 20.348 — Igualdad Salarial",
-          "Ley 20.609 — No Discriminación",
-          "Ley 21.015 — Inclusión Laboral",
-          "Ley 21.063 — Seguro SANNA",
-          "Ley 21.643 — Ley Karin",
-          "Ley 21.719 — Datos Personales",
-          "Reglamento Interno (RIOHS)"
+          "Legislación laboral",
+          "Seguridad y salud en el trabajo",
+          "Privacidad",
+          "Acoso sexual",
+          "Igualdad salarial",
+          "No discriminación",
+          "Inclusión laboral",
+          "Licencias de cuidado",
+          "Acoso laboral y violencia",
+          "Datos personales",
+          "Reglamento interno"
         ]
       }
     },
@@ -789,26 +789,26 @@
   },
   "normativa": {
     "code": "§07",
-    "runningHead": "Cada pregunta, trazada a la ley",
-    "title": "Cada pregunta, trazada a la normativa laboral chilena.",
-    "lead": "La pauta de cada cargo lista la normativa nacional y los marcos con que se alinea; la de Gerente General y la de Analista de Operaciones no citan las mismas leyes. Cada pregunta lleva sus leyes como etiquetas: Código del Trabajo, Ley Karin, No Discriminación, Protección de Datos Personales 2024, Accidentes del Trabajo. El resultado son evaluaciones consistentes y defendibles.",
+    "runningHead": "Cada pregunta, trazada a la norma",
+    "title": "Cada pregunta, trazada a la normativa laboral.",
+    "lead": "La pauta de cada cargo lista la normativa y los marcos con que se alinea; la de Gerente General y la de Analista de Operaciones no citan las mismas normas. Cada pregunta lleva sus normas como etiquetas: legislación laboral, acoso laboral, no discriminación, protección de datos personales, seguridad y salud en el trabajo. El resultado son evaluaciones consistentes y defendibles.",
     "issuersLabel": "Pauta de Gerente General · normativa por ámbito",
     "issuers": [
       {
-        "key": "Normativa Laboral",
-        "value": "Código del Trabajo, Ley Karin, acoso sexual, igualdad de remuneraciones e inclusión laboral"
+        "key": "Normativa laboral",
+        "value": "Legislación laboral, acoso laboral, acoso sexual, igualdad salarial e inclusión laboral"
       },
       {
         "key": "Derechos Fundamentales",
         "value": "No discriminación arbitraria, vida privada y protección de datos personales"
       },
       {
-        "key": "Seguros Laborales",
-        "value": "Accidentes del trabajo, enfermedades profesionales y seguro SANNA"
+        "key": "Seguridad y salud",
+        "value": "Accidentes del trabajo, enfermedades profesionales y licencias de cuidado"
       },
       {
-        "key": "Normativa Interna",
-        "value": "Reglamento Interno de Orden, Higiene y Seguridad"
+        "key": "Normativa interna",
+        "value": "Reglamento interno de orden, higiene y seguridad"
       },
       {
         "key": "Buenas Prácticas Eleva",
@@ -843,82 +843,82 @@
         ]
       },
       {
-        "issuer": "Normativa Laboral",
+        "issuer": "Normativa laboral",
         "items": [
           {
-            "ref": "Código del Trabajo",
-            "name": "Dirección del Trabajo",
+            "ref": "Laboral",
+            "name": "Legislación laboral",
             "matched": true
           },
           {
-            "ref": "Ley 21.643",
-            "name": "Ley Karin",
+            "ref": "Acoso",
+            "name": "Acoso laboral y violencia en el trabajo",
             "matched": true
           },
           {
-            "ref": "Ley 20.005",
-            "name": "Acoso Sexual",
+            "ref": "Acoso sexual",
+            "name": "Prevención del acoso sexual",
             "matched": false
           },
           {
-            "ref": "Ley 20.348",
-            "name": "Igualdad de Remuneraciones",
+            "ref": "Igualdad",
+            "name": "Igualdad salarial",
             "matched": false
           },
           {
-            "ref": "Ley 21.015",
-            "name": "Inclusión Laboral",
+            "ref": "Inclusión",
+            "name": "Inclusión laboral",
             "matched": false
           }
         ]
       },
       {
-        "issuer": "Derechos Fundamentales",
+        "issuer": "Derechos fundamentales",
         "items": [
           {
-            "ref": "Ley 20.609",
-            "name": "Medidas contra la Discriminación (Ley Zamudio)",
+            "ref": "No discrim.",
+            "name": "No discriminación",
             "matched": true
           },
           {
-            "ref": "Ley 19.628",
-            "name": "Protección de la Vida Privada",
+            "ref": "Privacidad",
+            "name": "Protección de la vida privada",
             "matched": false
           },
           {
-            "ref": "Ley 21.719",
-            "name": "Protección de Datos Personales (2024)",
+            "ref": "Datos",
+            "name": "Protección de datos personales",
             "matched": false
           }
         ]
       },
       {
-        "issuer": "Seguros Laborales",
+        "issuer": "Seguridad y salud",
         "items": [
           {
-            "ref": "Ley 16.744",
-            "name": "Accidentes del Trabajo y Enfermedades Profesionales",
+            "ref": "SST",
+            "name": "Seguridad y salud en el trabajo",
             "matched": false
           },
           {
-            "ref": "Ley 21.063",
-            "name": "Seguro SANNA",
+            "ref": "Cuidados",
+            "name": "Licencias de cuidado",
             "matched": false
           }
         ]
       },
       {
-        "issuer": "Normativa Interna",
+        "issuer": "Normativa interna",
         "items": [
           {
-            "ref": "RIOHS",
-            "name": "Reglamento Interno de Orden, Higiene y Seguridad",
+            "ref": "Interno",
+            "name": "Reglamento interno de orden, higiene y seguridad",
             "matched": false
           }
         ]
       }
     ],
-    "footnote": "Vistos también en la pauta de Analista de Operaciones: Ley 21.561 — Jornada de 40 Horas · Ley 21.645 — Conciliación de la Vida Personal, Familiar y Laboral.",
+    "footnote": "Vistas también en la pauta de Analista de Operaciones: jornada laboral · conciliación de la vida personal y laboral.",
     "plate": {
       "fig": "FIG. 7.1",
       "caption": "Normativas y marcos que esta pauta evalúa · ejemplo",
@@ -933,7 +933,7 @@
     "back": "Volver al inicio"
   },
   "footer": {
-    "description": "Feedback 360° y evaluación de desempeño para empresas en Chile.",
+    "description": "Feedback 360° y evaluación de desempeño para empresas.",
     "product": {
       "label": "Producto",
       "links": [

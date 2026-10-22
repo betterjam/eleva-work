@@ -1,7 +1,7 @@
 {
   "meta": {
     "product": "Eleva",
-    "tagline": "360° feedback for companies in Chile",
+    "tagline": "360° feedback for companies",
     "description": "360° feedback for everyone in your company: self, manager, peers and direct reports, with a rubric per role, clear results by domain and improvement suggestions."
   },
   "nav": {
@@ -25,9 +25,9 @@
   "hero": {
     "titleStart": "360° feedback for everyone in your company",
     "titleRotating": [
-      "without spreadsheets",
+      "without flat forms",
       "without starting over",
-      "with Chilean law",
+      "with current regulations",
       "with AI that guides you",
       "with clear results"
     ],
@@ -63,7 +63,7 @@
   },
   "features": {
     "title": "The whole cycle, module by module",
-    "sub": "Six modules that cover the whole 360° cycle, from the org chart to results by domain, with Chilean labour law built into every step.",
+    "sub": "Six modules that cover the whole 360° cycle, from the org chart to results by domain, with the labour regulations that apply to you built into every step.",
     "ctaTitle": "Shall we walk through your org chart?",
     "ctaDesc": "We'll show you the full cycle using your company's real roles.",
     "detailCta": "See our methodology",
@@ -111,7 +111,7 @@
       },
       {
         "title": "Build each role's rubric and approve it",
-        "desc": "Every role gets a rubric with curated questions, organised by framework and area and tied to Chilean labour law. The AI accompanies you through the selection and helps with any doubts along the way; adjust whatever you want before publishing.",
+        "desc": "Every role gets a rubric with curated questions, organised by framework and area and tied to the labour regulations that apply where you operate. The AI accompanies you through the selection and helps with any doubts along the way; adjust whatever you want before publishing.",
         "image": "/images/illustrations/artboard-7.webp"
       },
       {
@@ -183,7 +183,7 @@
         "value": "CSV / PDF"
       }
     ],
-    "note": "We comply with Chilean personal data protection law."
+    "note": "We comply with personal data protection law."
   },
   "faq": {
     "title": "FAQ",
@@ -202,8 +202,8 @@
         "a": "The AI does not invent content: it guides your team through Eleva's methodology. It points you to the catalog role that matches each position and explains why, walks you through assembling the rubric from the curated bank, clears up doubts during the process and, at the end, organises the improvement suggestions by domain. The decisions — the role, the rubric, the weights and the result — always belong to the company."
       },
       {
-        "q": "How does it align with Chilean regulation?",
-        "a": "Every question in the bank declares the regulation and frameworks it evaluates: the Chilean Labour Code (Código del Trabajo), Ley 21.643 (Ley Karin) on workplace harassment, sexual harassment and violence at work, and Ley 21.719 on personal data protection, among others. Each role's rubric shows what it aligns to."
+        "q": "How does it align with labour regulations?",
+        "a": "Every question in the bank declares the regulations and frameworks it evaluates: labour law, workplace and sexual harassment, equal pay, non-discrimination, health and safety at work and personal data protection, the same ground that well-known laws such as the GDPR or equal pay and anti-harassment legislation cover. Each role's rubric shows exactly what it aligns to."
       },
       {
         "q": "Which perspectives and stages does the 360° have?",

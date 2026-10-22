@@ -1,7 +1,7 @@
 {
   "meta": {
     "product": "Eleva",
-    "tagline": "Feedback 360° para empresas en Chile",
+    "tagline": "Feedback 360° para empresas",
     "description": "Feedback 360° para cada colaborador de tu empresa: autoevaluación, jefatura, pares y colaboradores a cargo, con una pauta por cargo, resultados claros por dominio y sugerencias de mejora."
   },
   "nav": {
@@ -25,9 +25,9 @@
   "hero": {
     "titleStart": "Feedback 360° para cada colaborador de tu empresa",
     "titleRotating": [
-      "sin planillas",
+      "sin formularios planos",
       "sin partir de cero",
-      "con la ley chilena",
+      "con la normativa vigente",
       "con IA que te guía",
       "con resultados claros"
     ],
@@ -63,7 +63,7 @@
   },
   "features": {
     "title": "El ciclo completo, módulo por módulo",
-    "sub": "Seis módulos que recorren el ciclo 360° completo, desde el organigrama hasta los resultados por dominio, con la normativa laboral chilena en cada paso.",
+    "sub": "Seis módulos que recorren el ciclo 360° completo, desde el organigrama hasta los resultados por dominio, con la normativa laboral que aplica a tu empresa en cada paso.",
     "ctaTitle": "¿Lo vemos con tu organigrama?",
     "ctaDesc": "Te mostramos el ciclo completo con los cargos reales de tu empresa.",
     "detailCta": "Conoce nuestra metodología",
@@ -111,7 +111,7 @@
       },
       {
         "title": "Arma la pauta de cada cargo y apruébala",
-        "desc": "Cada cargo recibe una pauta con preguntas curadas, organizadas por marco y área y vinculadas a la normativa laboral chilena. La IA te acompaña en la selección y te ayuda con las dudas que aparezcan; ajusta lo que quieras antes de publicarla.",
+        "desc": "Cada cargo recibe una pauta con preguntas curadas, organizadas por marco y área y vinculadas a la normativa laboral que aplica a tu empresa. La IA te acompaña en la selección y te ayuda con las dudas que aparezcan; ajusta lo que quieras antes de publicarla.",
         "image": "/images/illustrations/artboard-7.webp"
       },
       {
@@ -183,7 +183,7 @@
         "value": "CSV / PDF"
       }
     ],
-    "note": "Cumplimos con la normativa chilena de protección de datos personales."
+    "note": "Cumplimos con la normativa de protección de datos personales."
   },
   "faq": {
     "title": "Preguntas frecuentes",
@@ -202,8 +202,8 @@
         "a": "La IA no inventa contenido: guía a tu equipo por la metodología de Eleva. Te orienta sobre el cargo del catálogo que corresponde a cada puesto y explica por qué, acompaña el armado de la pauta desde el banco curado, resuelve dudas durante el proceso y, al cerrar, ordena las sugerencias de mejora por dominio. Las decisiones —el cargo, la pauta, las ponderaciones y el resultado— son siempre de la empresa."
       },
       {
-        "q": "¿Cómo se alinea con la normativa chilena?",
-        "a": "Cada pregunta del banco declara la normativa y los marcos que evalúa: el Código del Trabajo, la Ley 21.643 (Ley Karin) sobre acoso laboral, acoso sexual y violencia en el trabajo, y la Ley 21.719 de Protección de Datos Personales, entre otras. La pauta de cada cargo muestra a qué marcos se alinea."
+        "q": "¿Cómo se alinea con la normativa laboral?",
+        "a": "Cada pregunta del banco declara la normativa y los marcos que evalúa: legislación laboral, acoso laboral y sexual, igualdad salarial, no discriminación, seguridad y salud en el trabajo y protección de datos personales. La pauta de cada cargo muestra exactamente con qué normas se alinea."
       },
       {
         "q": "¿Qué perspectivas y etapas tiene el 360°?",

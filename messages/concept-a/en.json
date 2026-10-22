@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Eleva · Our methodology",
-    "description": "How Eleva works, module by module: the org chart and the role catalog that define who gives feedback to whom, the rubric built with Eleva's methodology from a curated question bank, guided by the AI, the 360° feedback cycle with its weightings and stages, achievement by domain with improvement suggestions for each collaborator, and the Chilean labor regulation everything is aligned to."
+    "description": "How Eleva works, module by module: the org chart and the role catalog that define who gives feedback to whom, the rubric built with Eleva's methodology from a curated question bank, guided by the AI, the 360° feedback cycle with its weightings and stages, achievement by domain with improvement suggestions for each collaborator, and the labor regulation everything is aligned to."
   },
   "common": {
     "section": "§",
@@ -79,7 +79,7 @@
   "intro": {
     "eyebrow": "Our methodology · In detail",
     "title": "Our methodology, piece by piece.",
-    "lead": "This page walks through our 360° feedback methodology from start to finish, module by module and with the real product screens. It starts at the org chart and the role catalog, which define who gives feedback to whom, goes through the rubric built from a curated question bank, guided by the AI, and ends at the Chilean labor regulation everything is aligned to.",
+    "lead": "This page walks through our 360° feedback methodology from start to finish, module by module and with the real product screens. It starts at the org chart and the role catalog, which define who gives feedback to whom, goes through the rubric built from a curated question bank, guided by the AI, and ends at the labor regulation everything is aligned to.",
     "back": "← Back to the home page",
     "cta": "Request a demo",
     "indexLabel": "On this page",
@@ -269,7 +269,7 @@
         "index": "2.2",
         "label": "Role catalog",
         "title": "Complete coverage, with the right names.",
-        "body": "Each catalog role has a code, a family, aliases, names in Chilean Spanish and English, and gender variants. It declares who it reports to and whom it evaluates. It also includes support roles: general services, receptionist, risk-prevention officer, analysts and account executives. It exports and imports as JSON and is applied to a company.",
+        "body": "Each catalog role has a code, a family, aliases, names in Spanish and English, and gender variants. It declares who it reports to and whom it evaluates. It also includes support roles: general services, receptionist, risk-prevention officer, analysts and account executives. It exports and imports as JSON and is applied to a company.",
         "rows": [
           {
             "key": "Coverage",
@@ -330,7 +330,7 @@
           },
           {
             "key": "Frameworks and regulations",
-            "value": "Labor Code · Law 16.744 (Work Accidents) · Law 21.643 (Ley Karin) · …"
+            "value": "Labor law · Occupational health and safety · Workplace harassment · …"
           }
         ],
         "barsLabel": "Match options · confidence",
@@ -380,10 +380,10 @@
     "code": "§03",
     "runningHead": "Curated bank · Generated rubric",
     "title": "From the curated bank to a complete rubric for every role.",
-    "lead": "The bank is curated: questions written by psychologists and evaluation experts, aligned to Chilean regulation. Each one declares its area, its dimension, which 360° perspectives can answer it, its priority, its weight and the law behind it. The methodology defines how questions are selected — by dimension, perspective, priority and regulation — and the AI guides that assembly up to the role's complete rubric, the basis of the feedback each collaborator receives; you review it before using it.",
+    "lead": "The bank is curated: questions written by psychologists and evaluation experts, aligned to labor regulation. Each one declares its area, its dimension, which 360° perspectives can answer it, its priority, its weight and the regulation behind it. The methodology defines how questions are selected — by dimension, perspective, priority and regulation — and the AI guides that assembly up to the role's complete rubric, the basis of the feedback each collaborator receives; you review it before using it.",
     "bank": {
       "label": "Question bank · curated",
-      "sub": "Questions written by psychologists and evaluation experts · aligned to Chilean regulation",
+      "sub": "Questions written by psychologists and evaluation experts · aligned to labor regulation",
       "rows": [
         {
           "key": "Type",
@@ -415,7 +415,7 @@
     "stage": {
       "srSummary": "Assembly example: following the methodology, the questions that apply to the General Manager role are selected from the curated bank by dimension, perspective, priority and regulation, with the AI guiding the assembly, and its evaluation rubric is built with the role's dimensions, the regulations and frameworks it evaluates and each question with the laws behind it.",
       "bankLabel": "Question bank",
-      "bankMeta": "curated · traced to Chilean regulation",
+      "bankMeta": "curated · traced to labor regulation",
       "ledgerHead": {
         "code": "Code",
         "text": "Text",
@@ -476,10 +476,10 @@
           ],
           "priority": "P0",
           "laws": [
-            "Law 21.643",
+            "Workplace harassment",
             "Eleva 360° GP",
-            "Law 20.609",
-            "Labor Code"
+            "Non-discrimination",
+            "Labor law"
           ],
           "selected": true
         },
@@ -510,8 +510,8 @@
           "priority": "P0",
           "laws": [
             "Eleva 360° GP",
-            "Law 16.744",
-            "Law 21.643"
+            "Health & safety",
+            "Workplace harassment"
           ],
           "selected": true
         },
@@ -527,7 +527,7 @@
           ],
           "priority": "P0",
           "laws": [
-            "Labor Code",
+            "Labor law",
             "Eleva 360° GP"
           ],
           "selected": true
@@ -554,17 +554,17 @@
         "normsLabel": "Regulations and frameworks this rubric evaluates",
         "norms": [
           "Eleva 360° Good Practices",
-          "Labor Code",
-          "Law 16.744 — Work Accidents",
-          "Law 19.628 — Privacy",
-          "Law 20.005 — Sexual Harassment",
-          "Law 20.348 — Equal Pay",
-          "Law 20.609 — Non-Discrimination",
-          "Law 21.015 — Labor Inclusion",
-          "Law 21.063 — SANNA Insurance",
-          "Law 21.643 — Ley Karin",
-          "Law 21.719 — Personal Data",
-          "Internal Regulations (RIOHS)"
+          "Labor law",
+          "Occupational health and safety",
+          "Privacy",
+          "Sexual harassment",
+          "Equal pay",
+          "Non-discrimination",
+          "Workplace inclusion",
+          "Care leave",
+          "Workplace harassment and violence",
+          "Personal data",
+          "Internal rules"
         ]
       }
     },
@@ -789,26 +789,26 @@
   },
   "normativa": {
     "code": "§07",
-    "runningHead": "Every question, traced to the law",
-    "title": "Every question, traced to Chilean labor regulation.",
-    "lead": "Each role's rubric lists the national regulation and frameworks it aligns with; the General Manager rubric and the Operations Analyst rubric do not cite the same laws. Each question carries its laws as tags: Labor Code, Ley Karin, Non-Discrimination, Personal Data Protection 2024, Work Accidents. The result is consistent, defensible evaluations.",
+    "runningHead": "Every question, traced to regulation",
+    "title": "Every question, traced to labor regulation.",
+    "lead": "Each role's rubric lists the regulations and frameworks it aligns with, and two roles do not cite the same ones. Each question carries its regulations as tags, across the ground any well-known framework covers: labor law, workplace harassment, non-discrimination, personal data protection (what the GDPR does in Europe) and health and safety at work. The result is consistent, defensible evaluations.",
     "issuersLabel": "General Manager rubric · regulation by area",
     "issuers": [
       {
         "key": "Labor regulation",
-        "value": "Labor Code, Ley Karin, sexual harassment, equal pay and labor inclusion"
+        "value": "Labor law, workplace harassment, sexual harassment, equal pay and workplace inclusion"
       },
       {
         "key": "Fundamental rights",
         "value": "Non-discrimination, private life and personal data protection"
       },
       {
-        "key": "Work insurance",
-        "value": "Work accidents, occupational diseases and SANNA insurance"
+        "key": "Health and safety",
+        "value": "Work accidents, occupational diseases and care leave"
       },
       {
         "key": "Internal rules",
-        "value": "Internal Regulations on Order, Hygiene and Safety"
+        "value": "Internal rules on order, hygiene and safety"
       },
       {
         "key": "Eleva good practice",
@@ -846,28 +846,28 @@
         "issuer": "Labor regulation",
         "items": [
           {
-            "ref": "Labor Code",
-            "name": "Labor Directorate",
+            "ref": "Labor",
+            "name": "Labor law",
             "matched": true
           },
           {
-            "ref": "Law 21.643",
-            "name": "Ley Karin",
+            "ref": "Harassment",
+            "name": "Workplace harassment and violence",
             "matched": true
           },
           {
-            "ref": "Law 20.005",
-            "name": "Sexual Harassment",
+            "ref": "Sexual har.",
+            "name": "Sexual harassment prevention",
             "matched": false
           },
           {
-            "ref": "Law 20.348",
-            "name": "Equal Pay",
+            "ref": "Equal pay",
+            "name": "Equal pay",
             "matched": false
           },
           {
-            "ref": "Law 21.015",
-            "name": "Labor Inclusion",
+            "ref": "Inclusion",
+            "name": "Workplace inclusion",
             "matched": false
           }
         ]
@@ -876,33 +876,33 @@
         "issuer": "Fundamental rights",
         "items": [
           {
-            "ref": "Law 20.609",
-            "name": "Anti-Discrimination Measures (Ley Zamudio)",
+            "ref": "Non-discr.",
+            "name": "Non-discrimination",
             "matched": true
           },
           {
-            "ref": "Law 19.628",
-            "name": "Protection of Private Life",
+            "ref": "Privacy",
+            "name": "Protection of private life",
             "matched": false
           },
           {
-            "ref": "Law 21.719",
-            "name": "Personal Data Protection (2024)",
+            "ref": "Data",
+            "name": "Personal data protection",
             "matched": false
           }
         ]
       },
       {
-        "issuer": "Work insurance",
+        "issuer": "Health and safety",
         "items": [
           {
-            "ref": "Law 16.744",
-            "name": "Work Accidents and Occupational Diseases",
+            "ref": "OHS",
+            "name": "Occupational health and safety",
             "matched": false
           },
           {
-            "ref": "Law 21.063",
-            "name": "SANNA Insurance",
+            "ref": "Care",
+            "name": "Care leave",
             "matched": false
           }
         ]
@@ -911,14 +911,14 @@
         "issuer": "Internal rules",
         "items": [
           {
-            "ref": "RIOHS",
-            "name": "Internal Regulations on Order, Hygiene and Safety",
+            "ref": "Internal",
+            "name": "Internal rules on order, hygiene and safety",
             "matched": false
           }
         ]
       }
     ],
-    "footnote": "Also seen in the Operations Analyst rubric: Law 21.561 — 40-Hour Work Week · Law 21.645 — Work, Personal and Family Life Balance.",
+    "footnote": "Also seen in the Operations Analyst rubric: working hours · work-life balance.",
     "plate": {
       "fig": "FIG. 7.1",
       "caption": "Regulations and frameworks this rubric evaluates · example",
@@ -933,7 +933,7 @@
     "back": "Back to the home page"
   },
   "footer": {
-    "description": "360° feedback and performance evaluation for companies in Chile.",
+    "description": "360° feedback and performance evaluation for companies.",
     "product": {
       "label": "Product",
       "links": [

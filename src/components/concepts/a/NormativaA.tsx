@@ -13,7 +13,7 @@ type Group = { issuer: string; items: { ref: string; name: string; matched: bool
 type PlateMsg = { fig: string; caption: string; alt: string };
 
 /** The rubric's own framework list (cropped below its heading, which carries a count). */
-const INSET = { src: '/images/app/generated-evaluation-rubric.png', w: 1390, h: 951, region: { x: 0, y: 405, w: 400, h: 546 } };
+const INSET = { src: '/images/app/generated-evaluation-rubric.png', w: 1390, h: 951, region: { x: 0, y: 345, w: 400, h: 546 } };
 
 /**
  * §07 Normativa. A HOLD section: the `[data-hold]` block (title + lead) runs the full grid
