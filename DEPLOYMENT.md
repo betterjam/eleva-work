@@ -39,9 +39,14 @@ npm run lint
 
 ## Deployment: the pipeline
 
-> Not set up yet. eleva.works needs its own bucket, CloudFront distribution and
-> certificate first; then run the script below with `SITE_BUCKET` and
-> `DISTRIBUTION_ID` set to them. It has no defaults on purpose.
+> Hosting (created 2026-10-22, account `eleva`, us-east-1): bucket
+> `elevaworks-166429125068-us-east-1` (website endpoint, objects public through ACLs),
+> CloudFront `E66FS6J8XLRWN` (d87jyy595qcsf.cloudfront.net), Route 53 zone `eleva.works`
+> with A/AAAA aliases for the apex and www, ACM certificate for eleva.works + www.
+> The domain is registered at Namecheap: its nameservers must point to the zone's
+> (ns-1719.awsdns-22.co.uk, ns-998.awsdns-60.net, ns-1511.awsdns-60.org, ns-273.awsdns-34.com);
+> once the certificate shows ISSUED, `scripts/aws/attach-domain.sh` attaches the domain
+> to the distribution.
 
 Every push to `main` deploys eleva.works through the CodePipeline **eleva-work-prod**
 (us-east-1): GitHub (CodeConnections) → CodeBuild running `buildspec.yml` from this repo.
