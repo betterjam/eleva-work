@@ -8,8 +8,8 @@ import { SplitText } from 'gsap/SplitText';
 // Cross-page link: plain next/link with an explicit locale prefix. The static
 // export has no i18n middleware, so a prefix-less `/platform/` would 404.
 import NextLink from 'next/link';
-import Image from 'next/image';
 import ScrollCue from '@/components/ScrollCue';
+import Testimonial from '@/components/Testimonial';
 import { goTo, prefersReducedMotion } from '@/lib/scrollNav';
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
@@ -36,8 +36,8 @@ export default function Hero() {
   // Entrance ------------------------------------------------------------------
   // Reveals, not fades: the kicker and the rotating line wipe open, the headline
   // and the sub unmask line by line (SplitText, after the fonts are in), the CTAs
-  // settle from 0.96, and the 360° card wipes in from its right edge with its
-  // label, illustration and perspectives cascading behind it.
+  // settle from 0.96, and the testimonial card wipes in from its right edge
+  // with its quote and attribution cascading behind it.
   useEffect(() => {
     // Reduced motion: the markup already is the final state, so nothing moves.
     if (prefersReducedMotion()) return;
@@ -460,36 +460,10 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* The 360° at a glance: one collaborator seen from the four
-            perspectives. Its parts carry data-hero-row for the entrance cascade.
-            The illustration is capped by viewport height so the hero still fits
-            short desktop screens. */}
+        {/* Testimonial: the one place that shows social proof before the reader
+            scrolls. Its parts carry data-hero-row for the entrance cascade. */}
         <div ref={mockupRef}>
-          <figure className="rounded-3xl border border-white/12 bg-white/5 p-6 md:p-8">
-            <p data-hero-row className="text-[11px] uppercase tracking-[0.12em] text-white/50">
-              {t('hero.visualLabel')}
-            </p>
-            <div data-hero-row className="mt-4 flex justify-center">
-              <Image
-                src="/images/illustrations/artboard-9.webp"
-                alt={t('hero.visualAlt')}
-                width={960}
-                height={802}
-                priority
-                className="h-auto max-h-[30vh] w-auto max-w-full md:max-h-[34vh]"
-              />
-            </div>
-            <figcaption data-hero-row className="mt-6 border-t border-white/10 pt-5">
-              <ul className="grid grid-cols-2 gap-2 text-xs text-white/75">
-                {(t.raw('hero.perspectives') as string[]).map((perspective) => (
-                  <li key={perspective} className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2">
-                    <span aria-hidden="true" className="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-brand-400" />
-                    {perspective}
-                  </li>
-                ))}
-              </ul>
-            </figcaption>
-          </figure>
+          <Testimonial />
         </div>
       </div>
 

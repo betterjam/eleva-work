@@ -1,0 +1,62 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;width:806px;height:797px;overflow:hidden}
+body{position:relative;background:#eff3f8;font-family:Lato,sans-serif;color:#495057}
+.abs{position:absolute}
+.head{left:59px;top:26px;display:flex;align-items:center;gap:12px}
+h1{margin:0;font-size:19px;font-weight:700;color:#495057;white-space:nowrap}
+.badge{height:24px;padding:0 8px 0 8px;border:1px solid #86dae2;background:#cdebf1;border-radius:13px;color:#00a9b8;font-size:12px;font-weight:700;display:flex;align-items:center;gap:4px;white-space:nowrap}
+.desc{left:59px;top:55px;width:690px;font-size:13px;line-height:17px;color:#6c757d}
+.info{left:58px;top:90px;width:665px;height:37px;padding:7px 12px 7px 12px;border:1px solid #dfe7ef;border-radius:8px;background:#e8f6f9;line-height:18px;font-size:13px;color:#6c757d;display:flex;gap:8px}
+.info svg{flex:none;margin-top:2px}
+.info b{color:#495057}
+.lab{left:58px;top:161px;font-size:12px;font-weight:700;color:#6c757d}
+.sel{left:58px;top:183px;min-width:187px;padding-right:68px;height:44px;border:1px solid #ced4da;border-radius:6px;background:#fff;display:flex;align-items:center;padding-left:11px;box-sizing:border-box;font-size:13px;color:#495057;white-space:nowrap}
+.sel .x{position:absolute;right:44px;top:15px}.sel .v{position:absolute;right:15px;top:18px}
+.line{left:83px;width:2px;background:#91d7e1}
+.card{left:58px;width:690px;height:61px;border-radius:9px;border:1px solid #dfe7ef;background:#fff}
+.card.lock{background:#e4f5f7;border-color:#e0eaf0}
+.num{position:absolute;left:14px;top:18px;width:25px;height:25px;border-radius:50%;background:#d9f5f8;color:#00b9c6;font-size:11.5px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.lock .num{background:#d3e2e5;color:#6c757d}
+.nm{position:absolute;left:52px;top:14px;font-size:14px;color:#495057;white-space:nowrap}
+.ds{position:absolute;left:52px;top:36px;font-size:11.3px;color:#6c757d;white-space:nowrap}
+.pill{position:absolute;right:13px;top:18px;height:25px;padding:0 10px 0 11px;border-radius:13px;background:#d5e5e8;color:#6c757d;font-size:11.3px;font-weight:700;display:flex;align-items:center;gap:6px;white-space:nowrap}
+.tg{position:absolute;right:13px;top:17px;width:42px;height:24px;border-radius:12px;background:#00b9c6}
+.tg i{position:absolute;right:3px;top:3px;width:18px;height:18px;border-radius:50%;background:#fff}
+.save{left:640px;top:706px;width:110px;height:44px;border-radius:6px;background:#60d0da;color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px}
+</style></head>
+<body>
+<div class="abs head"><h1 data-t="title"></h1><div class="badge"><svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="#00a9b8" stroke-width="1.1"><circle cx="7" cy="7" r="5.8"/><ellipse cx="7" cy="7" rx="2.5" ry="5.8"/><path d="M1.2 7h11.6"/></svg><span data-t="badge"></span></div></div>
+<div class="abs desc" data-t="desc"></div>
+<div class="abs info"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#00b9c6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.3 8a5.8 5.8 0 1 0 1.7-4.1L2 6"/><path d="M2 2.4V6h3.6"/><path d="M8 4.8V8l2.3 1.5"/></svg><div data-h="info"></div></div>
+<div class="abs lab" data-t="ptype"></div>
+<div class="abs sel"><span data-t="sel"></span>
+ <svg class="x" width="14" height="14" viewBox="0 0 14 14" stroke="#5f666d" stroke-width="1.4" stroke-linecap="round"><path d="M1.5 1.5l11 11M12.5 1.5l-11 11"/></svg>
+ <svg class="v" width="14" height="9" viewBox="0 0 14 9" fill="none" stroke="#5f666d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 1.5 7 7l5.5-5.5"/></svg></div>
+<div id="stages"></div>
+<div class="abs save"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"><path d="M2 3.2C2 2.5 2.5 2 3.2 2h7.6L14 5.2v7.6c0 .7-.5 1.2-1.2 1.2H3.2C2.5 14 2 13.5 2 12.8z"/><path d="M5 2v3.5h5V2"/><circle cx="8" cy="10" r="1.7"/></svg><span data-t="save"></span></div>
+<script>
+const T={
+ es:{title:'Etapas por defecto por perspectiva (central)',badge:'Configuración central',
+  desc:'Define qué etapas del flujo están disponibles por defecto para todas las empresas del grupo, según el tipo de perspectiva. Cada empresa puede sobrescribir esta configuración en su propia página de etapas.',
+  info:'Los cambios aplican a los <b>procesos nuevos</b>: cada proceso congela su flujo al generarse, así que los procesos históricos conservan la configuración con la que fueron creados.',
+  ptype:'Tipo de perspectiva',sel:'Jefe-Subordinado',always:'Siempre activa',save:'Guardar',
+  st:[['En Preparación','Evaluación creada, aún no iniciada',1],['Iniciada','El evaluador responde la pauta',1],['En Feedback','El evaluador envía la evaluación al evaluado para retroalimentación',0],['Feedback Respondido','El evaluado respondió la retroalimentación',0],['Finalizada','Evaluación finalizada; sus resultados cuentan en los reportes',1],['Cerrada','Cierre definitivo; sólo un administrador puede reabrirla',0]]},
+ en:{title:'Default stages per perspective (central)',badge:'Central configuration',
+  desc:'Defines which stages of the flow are available by default for every company in the group, by perspective type. Each company can override this configuration on its own stages page.',
+  info:'Changes apply to <b>new processes</b>: each process freezes its flow when generated, so historical processes keep the configuration they were created with.',
+  ptype:'Perspective type',sel:'Manager-Subordinate',always:'Always active',save:'Save',
+  st:[['In Preparation','Evaluation created, not yet started',1],['Started','The evaluator answers the rubric',1],['In Feedback','The evaluator sends the evaluation to the evaluee for feedback',0],['Feedback Answered','The evaluee answered the feedback',0],['Finalized','Evaluation finalized; its results count in reports',1],['Closed','Definitive closure; only an administrator can reopen it',0]]}};
+const lang=new URLSearchParams(location.search).get('lang')==='en'?'en':'es';
+const t=T[lang]; document.documentElement.lang=lang;
+document.querySelectorAll('[data-t]').forEach(e=>e.textContent=t[e.dataset.t]);
+document.querySelectorAll('[data-h]').forEach(e=>e.innerHTML=t[e.dataset.h]);
+const tops=[245,321,397,473,548,624]; let h='';
+for(let i=0;i<5;i++) h+=`<div class="abs line" style="top:${tops[i]+62}px;height:${tops[i+1]-tops[i]-61}px"></div>`;
+const lk='<svg width="12" height="13" viewBox="0 0 12 13" fill="none" stroke="#6c757d" stroke-width="1.2"><rect x="1.5" y="5.5" width="9" height="6.8" rx="1.4"/><path d="M3.6 5.5V3.9a2.4 2.4 0 0 1 4.8 0v1.6"/></svg>';
+t.st.forEach(([n,d,a],i)=>{h+=`<div class="abs card${a?' lock':''}" style="top:${tops[i]}px"><div class="num">${i}</div><div class="nm">${n}</div><div class="ds">${d}</div>${a?`<div class="pill">${lk}${t.always}</div>`:'<div class="tg"><i></i></div>'}</div>`});
+document.getElementById('stages').innerHTML=h;
+</script>
+</body></html>

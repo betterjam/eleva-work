@@ -1,0 +1,108 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;width:1490px;height:1154px;overflow:hidden}
+body{position:relative;font-family:Lato,sans-serif;color:#495057;
+  background:linear-gradient(128deg,#d9eef4 0%,#e3f0f6 22%,#eff3f8 52%,#eaf2f7 72%,#e4f1f6 100%)}
+.blob{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(190,231,238,.95) 0%,rgba(205,235,241,.6) 35%,rgba(225,240,245,0) 70%)}
+.abs{position:absolute;white-space:nowrap}
+.bar{left:335px;top:27px;width:858px;height:6px;border:1px solid #c1c6cd;border-radius:5px;background:#e9eef4;overflow:hidden}
+.bar i{display:block;height:100%;width:429px;background:#00b9c6;border-radius:0 4px 4px 0}
+.corner{left:1482px;top:14px;width:30px;height:31px;background:#fff;border:1px solid #dde6ee;border-radius:7px}
+h1{margin:0;left:356px;top:379px;font-size:27px;font-weight:700;color:#495057;letter-spacing:-.1px}
+.sub{left:356px;top:422px;font-size:14px;color:#6c757d}
+.lbl{left:356px;font-size:14px;color:#495057;line-height:20px}
+.lock{left:480px;width:14px;height:14px}
+.inp{left:505px;width:82px;height:42px;border:1px solid #ced4da;border-radius:4px;background:#fff;font-size:14px;line-height:42px;text-align:center;color:#495057}
+.inp span{position:relative;left:7px}
+.pct{left:597px;font-size:14px;line-height:20px;color:#495057}
+.total{left:356px;top:676px;font-size:14px;font-weight:700;color:#50bb9b}
+.sim{left:376px;top:715px;font-size:14px;font-weight:700;color:#00b9c6;display:flex;align-items:center;gap:7px}
+.clab{font-size:11px;line-height:14px;color:#495057;display:flex;align-items:center;gap:4px;letter-spacing:-.15px}
+.clab b{display:inline-flex;width:16px;height:16px;border-radius:50%;align-items:center;justify-content:center}
+.prev{left:373px;top:1107px;font-size:14px;font-weight:700;color:#00b9c6;display:flex;align-items:center;gap:6px}
+.ring{left:1053px;top:1090px;width:120px;height:48px;border:2px solid #63f5ff;border-radius:9px}
+.btn{left:1057px;top:1094px;width:117px;height:44px;border-radius:6px;background:#00b9c6;color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:6px}
+</style></head>
+<body>
+<div class="blob" style="left:390px;top:-60px;width:400px;height:380px"></div>
+<div class="blob" style="left:700px;top:190px;width:95px;height:90px"></div>
+<div class="blob" style="left:1250px;top:425px;width:250px;height:240px"></div>
+<div class="blob" style="left:320px;top:770px;width:160px;height:160px"></div>
+<div class="blob" style="left:790px;top:830px;width:350px;height:340px"></div>
+
+<div class="abs bar"><i></i></div>
+<div class="abs corner"></div>
+
+<h1 class="abs" data-t="title"></h1>
+<div class="abs sub" data-t="sub"></div>
+
+<div id="rows"></div>
+
+<div class="abs total" data-t="total"></div>
+<div class="abs sim"><svg width="12" height="15" viewBox="0 0 12 15" fill="none" stroke="#00b9c6" stroke-width="1.3"><rect x="1" y="1" width="10" height="13" rx="1.5"/><rect x="3" y="3.2" width="6" height="2.6"/><path d="M3.4 8h.6M5.7 8h.6M8 8h.6M3.4 10h.6M5.7 10h.6M8 10h.6M3.4 12h.6M5.7 12h.6M8 12h.6"/></svg><span data-t="sim"></span></div>
+
+<!-- donut -->
+<svg class="abs" style="left:780px;top:480px" width="380" height="290" viewBox="780 480 380 290">
+  <defs>
+    <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".75"/><stop offset=".75" stop-color="#fff" stop-opacity="0"/></linearGradient>
+    <mask id="m" maskUnits="userSpaceOnUse" x="780" y="680" width="380" height="90"><rect x="780" y="680" width="380" height="80" fill="url(#fade)"/></mask>
+    <filter id="bl" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="1.6"/><feColorMatrix type="saturate" values=".25"/></filter>
+    <g id="seg"></g>
+  </defs>
+  <g mask="url(#m)"><g filter="url(#bl)"><g id="refl" transform="translate(0 1366) scale(1 -1)"></g></g></g>
+  <g id="donut"></g>
+  <g id="leaders" fill="none" stroke-width="1"></g>
+  <text x="901.5" y="597" text-anchor="middle" font-family="Lato" font-weight="700" font-size="16" fill="#495057">100%</text>
+</svg>
+<div id="clabs"></div>
+
+<div class="abs prev"><svg width="16" height="14" viewBox="0 0 16 14" fill="none" stroke="#00b9c6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7H2M7 1.5 1.5 7 7 12.5"/></svg><span data-t="prev"></span></div>
+<div class="abs ring"></div>
+<div class="abs btn"><span data-t="next"></span><svg width="16" height="14" viewBox="0 0 16 14" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 7h13M9 1.5 14.5 7 9 12.5"/></svg></div>
+
+<script>
+const T={
+ es:{title:'¿Cuánto pesa cada perspectiva?',sub:'Definen el cálculo final. Deben sumar exactamente 100.',total:'Total: 100 / 100',sim:'Simular tipos faltantes',prev:'Anterior',next:'Siguiente',
+     p:['A Jefatura','Autoevaluación','De Jefatura','Pares a Pares']},
+ en:{title:'How much does each perspective weigh?',sub:'They define the final calculation. They must add up to exactly 100.',total:'Total: 100 / 100',sim:'Simulate missing types',prev:'Previous',next:'Next',
+     p:['Upward','Self-assessment','Manager','Peer to peer']}};
+const lang=new URLSearchParams(location.search).get('lang')==='en'?'en':'es';
+const t=T[lang]; document.documentElement.lang=lang;
+document.querySelectorAll('[data-t]').forEach(e=>e.textContent=t[e.dataset.t]);
+// rows
+const tops=[459,511.5,564,616.5]; let h='';
+const lock='<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#b4bcc4" stroke-width="1.1"><rect x="1.5" y="6.5" width="8" height="6.5" rx="1.2"/><path d="M7.5 6.5V4.2a2.3 2.3 0 0 1 4.6 0v.8"/></svg>';
+t.p.forEach((p,i)=>{const y=Math.round(tops[i]);
+ h+=`<div class="abs lbl" style="top:${y+12}px">${p}</div><div class="abs lock" style="top:${y+14}px">${lock}</div><div class="abs inp" style="top:${y}px"><span>25</span></div><div class="abs pct" style="top:${y+12}px">%</div>`});
+document.getElementById('rows').innerHTML=h;
+// donut segments (cx,cy,R,r) with ~5px gaps and small corner rounding
+const cx=901.5,cy=590.5,R=88,r=53,g=2.6;
+function seg(q){ // q: 0=top-right,1=bottom-right,2=bottom-left,3=top-left
+  const sx=[1,1,-1,-1][q], sy=[-1,1,1,-1][q];
+  const P=(x,y)=>`${cx+sx*x} ${cy+sy*y}`;
+  const xo=Math.sqrt(R*R-g*g), xi=Math.sqrt(r*r-g*g); const c=3;
+  const sweep=(sx*sy<0)?1:0; // orientation
+  // path: start at vertical edge outer (g, yo) -> arc to horizontal edge outer (xo, g) -> line to (xi,g) -> arc back to (g, xi)
+  return `M${P(g,xo-c)} Q${P(g,xo)} ${P(g+c,xo-.1)} A${R} ${R} 0 0 ${sweep} ${P(xo-.1,g+c)} Q${P(xo,g)} ${P(xo-c,g)} L${P(xi+c,g)} Q${P(xi,g)} ${P(xi,g+c*.6)} A${r} ${r} 0 0 ${1-sweep} ${P(g+c*.6,xi)} Q${P(g,xi)} ${P(g,xi+c)} Z`;
+}
+const cols=['#8b5cf6','#1016bc','#3b82f6','#f59e0b'];
+let d='';cols.forEach((c,q)=>d+=`<path d="${seg(q)}" fill="${c}"/>`);
+document.getElementById('donut').innerHTML=d;
+document.getElementById('refl').innerHTML=`<path d="${seg(1)}" fill="#4a4f9a"/><path d="${seg(2)}" fill="#7f8ea8"/>`;
+// leaders: [color, points]
+const L=[['#8b5cf6','965 528 975 518 1019 518'],['#1016bc','965 654 975 662 1019 662'],['#3b82f6','838 654 828 662 783 662'],['#f59e0b','838 528 828 518 783 518']];
+document.getElementById('leaders').innerHTML=L.map(([c,p])=>`<polyline points="${p}" stroke="${c}" stroke-opacity=".55"/>`).join('');
+const ic={
+ up:'<svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9V1.3M1.6 4.6 5 1.2l3.4 3.4"/></svg>',
+ down:'<svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 1v7.7M1.6 5.4 5 8.8l3.4-3.4"/></svg>',
+ self:'<svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="#fff" stroke-width="1.2"><circle cx="5" cy="3.4" r="1.9"/><path d="M1.6 9c.4-1.9 1.7-2.9 3.4-2.9S8 7.1 8.4 9"/></svg>',
+ peers:'<svg width="11" height="10" viewBox="0 0 11 10" fill="#fff"><circle cx="3.6" cy="3.3" r="1.5"/><circle cx="7.4" cy="3.3" r="1.5"/><path d="M.8 8.4c.3-1.8 1.4-2.8 2.8-2.8s2.4 1 2.7 2.8zM4.8 8.4c.3-1.8 1.3-2.8 2.6-2.8s2.4 1 2.8 2.8z"/></svg>'};
+const C=[ // label, color, icon, side, y
+ [t.p[0],'#8b5cf6',ic.up,'r',509],[t.p[1],'#1016bc',ic.self,'r',654],[t.p[2],'#3b82f6',ic.down,'l',654],[t.p[3],'#f59e0b',ic.peers,'l',509]];
+document.getElementById('clabs').innerHTML=C.map(([l,c,i,s,y])=>{
+ const pos=s==='r'?`left:1023px`:`right:${1490-781}px`;
+ return `<div class="abs clab" style="${pos};top:${y}px"><b style="background:${c}">${i}</b><span>${l} 25%</span></div>`}).join('');
+</script>
+</body></html>

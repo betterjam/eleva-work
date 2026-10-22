@@ -1,0 +1,161 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;width:1390px;height:951px;overflow:hidden;background:#fff}
+*{box-sizing:border-box}
+body{font-family:Lato,sans-serif;color:#333b44;position:relative;-webkit-font-smoothing:antialiased}
+.topline{position:absolute;left:0;top:0;width:100%;height:2px;background:#5f6368}
+h1{position:absolute;left:16px;top:24px;margin:0;font-size:19px;font-weight:700;color:#1f2933;letter-spacing:-.1px}
+.ico{position:absolute;top:28px;width:18px;height:18px}
+.left{position:absolute;left:16px;top:70px;width:372px}
+.role{font-size:22px;font-weight:700;color:#29323b;margin:0;line-height:28px}
+.rmeta{font-size:12px;color:#454e57;margin-top:2px}
+.plab{font-size:13px;color:#29323b;margin-top:15px}
+.sel{margin-top:5px;height:44px;border:1px solid #c9ced4;border-radius:5px;display:flex;align-items:center;justify-content:space-between;padding:0 12px 0 11px;font-size:14px;color:#545c64}
+.sec{font-size:14px;letter-spacing:.15px;white-space:nowrap;color:#5a636c;font-weight:700;margin-top:14px;text-transform:uppercase}
+.dims{display:flex;flex-wrap:wrap;gap:6px 4px;margin-top:7px;width:372px}
+.dim{font-size:10.5px;letter-spacing:-.15px;color:#4a525a;background:#f2f3f5;border:1px solid #e3e6ea;border-radius:12px;padding:3px 8px;line-height:12px}
+.ndesc{font-size:12px;line-height:18px;color:#3a424b;margin-top:7px}
+.norms{margin-top:6px}
+.nrow{display:flex;background:#f1f9fe;border-left:3px solid #0ea5e9;margin-bottom:5px;padding:6px 6px 6px 7px;font-size:12px;line-height:18px}
+.nrow .k{width:126px;padding-right:6px;flex:none;color:#0b86bd;font-weight:700;letter-spacing:-.2px}
+.nrow .v{color:#3d454d}
+.vline{position:absolute;left:395px;top:72px;width:1px;height:860px;background:#e4e8ec}
+.right{position:absolute;left:413px;top:72px;width:956px}
+.rhead{height:46px;display:flex;align-items:center;padding-left:8px;border-bottom:1px solid #e1e6ea}
+.rhead b{font-size:13px;color:#2a333c}
+.pill{margin-left:10px;font-size:10.5px;color:#5c6670;background:#f0f2f4;border-radius:10px;padding:3px 8px}
+.act{position:absolute;top:13px;font-size:12px;font-weight:700;color:#1fb7c7;display:flex;align-items:center;gap:7px}
+.eje{height:39px;display:flex;align-items:center;font-size:13.5px;letter-spacing:.6px;color:#4e5862;font-weight:700;border-bottom:2px solid #e3e7ea;margin-top:0}
+.eje .cnt{margin-left:9px;font-size:11px;letter-spacing:0;color:#3b58c8;background:#e6edfb;border-radius:11px;padding:3px 7px}
+.grp{margin-top:12px;border:1px solid #e3e7ec;border-radius:10px 10px 0 0;height:900px}
+.ghead{height:58px;background:linear-gradient(#f6f8fb,#fafbfd);border-bottom:1px solid #e6eaee;position:relative;border-radius:10px 10px 0 0}
+.ghead .t{position:absolute;left:45px;top:9px;font-size:14px;font-weight:700;color:#29323b}
+.ghead .s{position:absolute;left:45px;top:31px;font-size:11px;color:#5a636c}
+.ghead .n{position:absolute;right:14px;top:16px;width:26px;height:26px;border-radius:50%;background:#1d4ed8;color:#fff;font-size:11.5px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.qs{padding:6px 10px 0 11px}
+.q{border:1px solid #e3e7ea;border-radius:9px;padding:9px 12px 0 50px;position:relative;margin-bottom:9px;height:97px}
+.q.req{background:#fff7f1;border-color:#fcc9a2}
+.q .num{position:absolute;left:12px;top:11px;width:28px;height:28px;border-radius:50%;border:1px solid #e1e4e8;background:#fff;color:#5a636c;font-size:11px;display:flex;align-items:center;justify-content:center}
+.q.req .num{background:#f97316;border:2px solid #fde3cf;color:#fff;font-weight:700;width:30px;height:30px;left:11px;top:9px;box-shadow:0 0 0 1px #fbd5b5}
+.q .tx{font-size:13.5px;color:#29323b;line-height:20px;white-space:nowrap}
+.chips{display:flex;gap:5px;margin-top:4px;flex-wrap:nowrap}
+.c{display:inline-flex;align-items:center;gap:4px;font-size:10px;line-height:12px;padding:2px 7px;border-radius:10px;border:1px solid;white-space:nowrap}
+.c svg{width:10px;height:10px;flex:none}
+.c.area{color:#3f9a2e;background:#ecf6e6;border-color:#bfe2b0}
+.c.per{color:#5b3fb5;background:#f1edfc;border-color:#d5cbf3}
+.c.pr{color:#a0610f;background:#fff4dc;border-color:#f7d996}
+.c.ob{color:#b8460f;background:#ffe6d2;border-color:#f8b98d;font-weight:700}
+.sep{border-top:1px dashed #e2e5e8;margin:6px 0 5px}
+.laws{display:flex;gap:5px}
+.c.law{color:#1e7fa6;background:#eef8fc;border-color:#9fd6e8;border-radius:4px;padding:3px 7px}
+</style></head>
+<body>
+<div class="topline"></div>
+<h1 id="title"></h1>
+<svg class="ico" style="left:1306px" viewBox="0 0 24 24" fill="none" stroke="#4b545c" stroke-width="1.6"><rect x="3.5" y="3.5" width="17" height="17" rx="2.5"/><path d="M13 6.5h4.5V11M17.5 6.5 12 12M6.5 13.5v4h4"/></svg>
+<svg class="ico" style="left:1348px" viewBox="0 0 24 24" fill="none" stroke="#4b545c" stroke-width="1.8"><path d="M5 5l14 14M19 5 5 19"/></svg>
+<div class="left" id="left"></div>
+<div class="vline"></div>
+<div class="right" id="right"></div>
+<script>
+const lang = new URLSearchParams(location.search).get('lang') === 'en' ? 'en' : 'es';
+const I = {
+  tag:'<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 2h6l6 6-6 6-6-6z"/><circle cx="5" cy="5" r="1"/></svg>',
+  per:'<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="6" cy="5" r="2.3"/><path d="M1.8 13c.4-2.5 2.2-3.8 4.2-3.8s3.8 1.3 4.2 3.8"/><path d="M10 3a2.2 2.2 0 0 1 0 4.3M11.5 9.5c1.5.4 2.5 1.6 2.8 3.5"/></svg>',
+  flag:'<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 14V2.5h9l-2 3 2 3H3"/></svg>',
+  alert:'<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="8" cy="8" r="6"/><path d="M8 4.8v3.8M8 10.8v.4"/></svg>',
+  book:'<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="1.8" width="10" height="12.4" rx="1"/><path d="M5.5 5h5M5.5 7.5h5"/></svg>'
+};
+const T = {
+es:{title:'Pauta evaluativa generada',role:'Gerente General',meta:'GG · 116 preguntas',plab:'Perspectiva 360°:',all:'Todas las perspectivas',
+ dimsH:'Dimensiones del cargo (11)',
+ dims:['Administración y Finanzas','Adquisiciones y Logística','Comunicación','Cuidado del Entorno','Cumplimiento Normativo','General / Todos los trabajadores','Gestión de Equipos','Liderazgo','Planificación','Trato con Clientes','Trato con Pares'],
+ normsH:'Normativas y marcos que esta pauta evalúa (12)',
+ ndesc:'Las preguntas seleccionadas para este cargo se alinean con la siguiente normativa nacional y marcos profesionales:',
+ norms:[['Buenas Prácticas Eleva','Buenas Prácticas de Evaluación 360°'],
+  ['Derechos Fundamentales','Ley 19.628 — Protección de la Vida Privada'],
+  ['Derechos Fundamentales','Ley 20.609 — Medidas contra la Discriminación'],
+  ['Derechos Fundamentales','Ley 21.719 — Protección de Datos Personales (2024)'],
+  ['Normativa Interna','RIOHS — Reglamento Interno de Orden, Higiene y Seguridad'],
+  ['Normativa Laboral','Código del Trabajo — Dirección del Trabajo'],
+  ['Normativa Laboral','Ley 20.005 — Acoso Sexual'],
+  ['Normativa Laboral','Ley 20.348 — Igualdad de Remuneraciones'],
+  ['Normativa Laboral','Ley 21.015 — Inclusión Laboral'],
+  ['Normativa Laboral','Ley 21.643 — Ley Karin'],
+  ['Seguros Laborales','Ley 16.744 — Accidentes del Trabajo y Enfermedades Profesionales'],
+  ['Seguros Laborales','Ley 21.063 — Seguro SANNA']],
+ grouped:'Preguntas agrupadas por marco y área',frames:'2 marcos',expand:'Expandir',collapse:'Colapsar',eje:'EJE TRANSVERSAL',
+ gT:'General',gS:'Preguntas transversales del marco',mand:'Obligatoria',
+ P:{sub:'Subordinado',jef:'Jefatura',par:'Par',auto:'Auto'},
+ L:{bp:'Buenas Prácticas de Evaluación 360°',ct:'Código del Trabajo — Dirección del Trabajo',karin:'Ley 21.643 — Ley Karin',disc:'Ley 20.609 — No Discriminación',acc:'Ley 16.744 — Accidentes del Trabajo y Enfermedades Profesionales',riohs:'RIOHS — Reglamento Interno de Orden, Higiene y Seguridad'},
+ A:{pares:'Trato con Pares',gen:'General / Todos los trabajadores',adq:'Adquisiciones y Logística'},
+ Q:['Mantiene un trato respetuoso con todas las personas de la organización (pares, equipo, clientes y proveedores)',
+  'Promueve un ambiente de trabajo seguro y saludable para todos los colaboradores, en cualquier área de la empresa.',
+  'Actúa en coherencia con los valores y la cultura de la organización en su trabajo diario.',
+  'Supervisa que las compras y la logística se ajusten al presupuesto, a los plazos y a las condiciones pactadas con los proveedores.',
+  'Hace seguimiento de las órdenes y de los proveedores, anticipando atrasos y gestionando reclamos o devoluciones.',
+  'Representa positivamente a la empresa en su trato con clientes, proveedores y en las actividades institucionales',
+  'Mantiene una presentación personal adecuada a su rol y a las normas de la empresa']},
+en:{title:'Generated evaluation rubric',role:'General Manager',meta:'GG · 116 questions',plab:'360° perspective:',all:'All perspectives',
+ dimsH:'Role dimensions (11)',
+ dims:['Administration and Finance','Procurement and Logistics','Communication','Care of the Environment','Regulatory Compliance','General / All staff','Team Management','Leadership','Planning','Dealing with Clients','Dealing with Peers'],
+ normsH:'Regulations and frameworks this rubric evaluates (12)',
+ ndesc:'The questions selected for this role are aligned with the following national regulations and professional frameworks:',
+ norms:[['Eleva good practice','Good Practice in 360° Evaluation'],
+  ['Fundamental rights','Law 19.628 — Protection of Private Life'],
+  ['Fundamental rights','Law 20.609 — Anti-Discrimination Measures'],
+  ['Fundamental rights','Law 21.719 — Personal Data Protection (2024)'],
+  ['Internal rules','RIOHS — Internal Regulations on Order, Hygiene and Safety'],
+  ['Labor regulation','Labor Code — Labor Directorate'],
+  ['Labor regulation','Law 20.005 — Sexual Harassment'],
+  ['Labor regulation','Law 20.348 — Equal Pay'],
+  ['Labor regulation','Law 21.015 — Labor Inclusion'],
+  ['Labor regulation','Law 21.643 — Karin Law'],
+  ['Work insurance','Law 16.744 — Work Accidents and Occupational Diseases'],
+  ['Work insurance','Law 21.063 — SANNA Insurance']],
+ grouped:'Questions grouped by framework and area',frames:'2 frameworks',expand:'Expand',collapse:'Collapse',eje:'CROSS-CUTTING AXIS',
+ gT:'General',gS:'Cross-cutting questions of the framework',mand:'Mandatory',
+ P:{sub:'Upward',jef:'Manager',par:'Peer',auto:'Self'},
+ L:{bp:'Good Practice in 360° Evaluation',ct:'Labor Code — Labor Directorate',karin:'Law 21.643 — Karin Law',disc:'Law 20.609 — Non-Discrimination',acc:'Law 16.744 — Work Accidents and Occupational Diseases',riohs:'RIOHS — Internal Regulations on Order, Hygiene and Safety'},
+ A:{pares:'Dealing with Peers',gen:'General / All staff',adq:'Procurement and Logistics'},
+ Q:['Maintains respectful treatment of everyone in the organization (peers, team, clients and suppliers)',
+  'Promotes a safe and healthy work environment for every collaborator, in every area of the company.',
+  'Acts in line with the organization\'s values and culture in daily work.',
+  'Ensures that purchasing and logistics stay within budget, deadlines and the conditions agreed with suppliers.',
+  'Follows up on orders and suppliers, anticipating delays and handling claims or returns.',
+  'Represents the company positively in dealings with clients, suppliers and at company events',
+  'Keeps a personal presentation suited to the role and to the company\'s standards']}
+}[lang];
+document.documentElement.lang = lang;
+document.getElementById('title').textContent = T.title;
+const chev = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4b545c" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>';
+let L = `<div class="role">${T.role}</div><div class="rmeta">${T.meta}</div><div class="plab">${T.plab}</div>
+<div class="sel"><span>${T.all}</span>${chev}</div><div class="sec">${T.dimsH}</div>
+<div class="dims">${T.dims.map(d=>`<span class="dim">${d}</span>`).join('')}</div>
+<div class="sec" style="margin-top:18px;white-space:normal;line-height:18px">${T.normsH}</div><div class="ndesc">${T.ndesc}</div>
+<div class="norms">${T.norms.map(([k,v])=>`<div class="nrow"><span class="k">${k}</span><span class="v">${v}</span></div>`).join('')}</div>`;
+document.getElementById('left').innerHTML = L;
+const P=T.P, A=T.A, Lw=T.L;
+const qs = [
+ {req:1,a:A.pares,p:['sub','jef','par','auto'],pr:'P0',l:['karin','bp','disc','ct']},
+ {req:1,a:A.gen,p:['jef','par','auto','sub'],pr:'P0',l:['bp','acc','karin']},
+ {req:1,a:A.gen,p:['sub','par','jef','auto'],pr:'P0',l:['ct','bp']},
+ {a:A.adq,p:['auto','jef','par'],pr:'P1',l:['bp','ct']},
+ {a:A.adq,p:['par','jef','auto'],pr:'P1',l:['bp','ct']},
+ {a:A.gen,p:['auto','par','jef','sub'],pr:'P2',l:['bp']},
+ {a:A.gen,p:['auto','par','jef','sub'],pr:'P2',l:['bp','riohs']}
+];
+const qh = qs.map((q,i)=>`<div class="q${q.req?' req':''}"><div class="num">${i+1}</div><div class="tx">${T.Q[i]}</div>
+<div class="chips"><span class="c area">${I.tag}${q.a}</span>${q.p.map(k=>`<span class="c per">${I.per}${P[k]}</span>`).join('')}<span class="c pr">${I.flag}${q.pr}</span>${q.req?`<span class="c ob">${I.alert}${T.mand}</span>`:''}</div>
+<div class="sep"></div><div class="laws">${q.l.map(k=>`<span class="c law">${I.book}${Lw[k]}</span>`).join('')}</div></div>`).join('');
+const dbl='<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1fb7c7" stroke-width="2.4"><path d="M6 5l6 6 6-6M6 12l6 6 6-6"/></svg>';
+const dblu='<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1fb7c7" stroke-width="2.4"><path d="M6 12l6-6 6 6M6 19l6-6 6 6"/></svg>';
+document.getElementById('right').innerHTML = `<div class="rhead"><b>${T.grouped}</b><span class="pill">${T.frames}</span>
+<span class="act" style="right:${lang==='en'?'118':'120'}px">${dbl}${T.expand}</span><span class="act" style="right:16px">${dblu}${T.collapse}</span></div>
+<div class="eje">${T.eje}<span class="cnt">53</span></div>
+<div class="grp"><div class="ghead"><svg style="position:absolute;left:16px;top:20px" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4b545c" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg><div class="t">${T.gT}</div><div class="s">${T.gS}</div><div class="n">8</div></div>
+<div class="qs">${qh}</div></div>`;
+</script>
+</body></html>

@@ -1,0 +1,114 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;width:1305px;height:1104px;overflow:hidden}
+*{box-sizing:border-box}
+body{font-family:Lato,sans-serif;color:#495057;position:relative;-webkit-font-smoothing:antialiased;
+ background:
+  radial-gradient(circle at 80px 805px,#c9e7ef 0,#d7edf3 40px,rgba(220,238,244,.0) 95px),
+  radial-gradient(ellipse 260px 120px at 1010px 1104px,#d5eaf2 0,rgba(214,235,243,0) 100%),
+  radial-gradient(ellipse 420px 360px at 0 0,#dbeef4 0,rgba(223,239,245,0) 100%),
+  radial-gradient(ellipse 380px 300px at 1305px 0,#e6f1f6 0,rgba(230,241,246,0) 100%),
+  #edf2f8}
+.card{position:absolute;left:249px;top:-12px;width:878px;height:367px;background:#f6f8fb;border-radius:14px;box-shadow:0 10px 26px rgba(120,130,145,.22),0 1px 2px rgba(120,130,145,.15);border:1px solid #eef1f4}
+.abs{position:absolute}
+.evl{left:20px;top:28px;font-size:9.5px;letter-spacing:.2px;color:#6c757d}
+.evt{left:20px;top:42px;font-size:15px;font-weight:700;color:#495057}
+.badge{top:31px;height:25px;border-radius:13px;display:flex;align-items:center;gap:5px;padding:0 11px;font-size:11px;font-weight:700}
+.b1{right:169px;background:#dff0f2;border:1px solid #bfe2e6;color:#6c757d}
+.b2{right:63px;background:#c6ecf0;border:1px solid #c6ecf0;color:#00b9c6}
+.xbtn{right:21px;top:28px;width:31px;height:31px;border:1px solid #e1e5ea;background:#fff;border-radius:6px;display:flex;align-items:center;justify-content:center}
+.inner{left:21px;top:76px;width:836px;height:74px;background:#fff;border:1px solid #e3e7eb;border-radius:12px}
+.selfpill{left:15px;top:22px;height:29px;border-radius:15px;background:#dcdef6;border:1px solid #a9ade6;color:#1016bc;font-size:11.5px;font-weight:700;display:flex;align-items:center;gap:6px;padding:0 11px 0 10px}
+.av{font-family:Lato,sans-serif;left:155px;top:20px;width:33px;height:33px;border-radius:50%;background:#00b9c6;color:#fff;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center}
+.who{left:196px;top:12px}
+.who .k{font-size:9.5px;color:#6c757d;letter-spacing:.1px}
+.who .n{font-size:14px;font-weight:700;color:#495057;margin-top:1px}
+.who .r{font-size:11px;color:#6c757d;margin-top:3px}
+.scale{right:13px;top:24px;height:25px;border-radius:13px;background:#cbe7ea;color:#6c757d;font-size:11px;display:flex;align-items:center;gap:6px;padding:0 11px}
+.prog{left:20px;top:178px;font-size:10px;font-weight:700;letter-spacing:.5px;color:#6c757d;display:flex;align-items:center;gap:5px}
+.count{right:123px;top:178px;font-size:11px;color:#6c757d}
+.count b{color:#495057}.count i{font-style:normal;color:#00b9c6;font-weight:700}
+.bar{left:21px;top:198px;width:734px;height:9px;border-radius:5px;background:linear-gradient(90deg,#2ec7d2,#14bccb)}
+.logro{right:72px;top:187px;font-size:9.5px;letter-spacing:.5px;color:#6c757d;font-weight:700}
+.ring{left:813px;top:171px}
+html[lang=en] .bar{width:704px}html[lang=en] .count{right:153px}
+.doms{left:20px;top:232px;font-size:13px;color:#495057;display:flex;align-items:center;gap:8px}
+.dot{width:7px;height:7px;border-radius:50%;background:#00b9c6;display:inline-block}
+.chips{left:35px;top:257px;display:flex;gap:6px}
+.chip{height:27px;border-radius:14px;background:#fff;border:1px solid #e3e7eb;display:flex;align-items:center;gap:7px;padding:0 10px 0 11px;font-size:11px;color:#6c757d}
+.chip.on{background:#d3eff2;border:1px solid #47c7d1;color:#495057}
+.chip .dot{width:6px;height:6px}
+.hr{left:20px;top:297px;width:834px;height:1px;background:#e7ebef}
+.dl{left:20px;top:307px;font-size:11px;font-weight:700;letter-spacing:.3px;color:#00b9c6}
+.dt{left:20px;top:325px;font-size:20.5px;font-weight:700;color:#495057}
+.qs{position:absolute;left:269px;top:479px;width:838px}
+.q{position:relative;padding-left:33px;border-bottom:1px dashed #d9e0e6;margin-bottom:0}
+.q .num{position:absolute;left:0;top:3px;width:24px;height:24px;border-radius:50%;border:1.5px solid #2ec7d2;color:#2c7a83;background:#f2fbfc;font-size:11px;display:flex;align-items:center;justify-content:center}
+.q .ok{position:absolute;left:15px;top:0;width:10px;height:10px;border-radius:50%;background:#3ccf8e;border:1.5px solid #edf2f8;display:flex;align-items:center;justify-content:center}
+.q .tx{max-width:790px;font-size:15px;line-height:24px;color:#2c7a83;padding-top:3px}
+.opts{display:flex;gap:8px;margin:12px 0 21px -33px}
+.o{height:42px;border-radius:9px;background:#f3f6f9;border:1px solid #dde3e8;display:flex;align-items:center;gap:9px;padding:0 15px 0 16px;font-size:13.5px;color:#9aa0a6}
+.o .c{width:19px;height:19px;border-radius:50%;background:#d6f1f4;color:#7dd6df;font-size:9px;display:flex;align-items:center;justify-content:center;font-weight:700}
+.o.on{border:2px solid #6cd3dd;background:#e1f3f6;color:#949aa0;font-weight:700;box-shadow:0 0 0 3px rgba(108,211,221,.18);padding:0 14px 0 15px}
+.o.on .c{background:#6cd3dd;color:#fff}
+.q+.q{padding-top:16px}
+.q+.q .num{top:19px}.q+.q .ok{top:16px}
+.chev{position:absolute;left:-21px;top:6px}
+.sug{position:absolute;left:269px;top:984px;width:838px;height:59px;background:#fff;border:1px dashed #cfd8df;border-radius:10px;font-size:13px;font-weight:700;color:#495057;padding:18px 23px}
+</style></head>
+<body>
+<div class="card">
+ <div class="abs evl" id="evl"></div>
+ <div class="abs evt" id="evt"></div>
+ <div class="abs badge b1"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="#6c757d" stroke-width="1.3"><path d="M3 14.5V2h9.5l-2 3 2 3H3"/></svg><span id="fin"></span></div>
+ <div class="abs badge b2"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="#00b9c6" stroke-width="1.5"><rect x="3" y="7" width="10" height="7.5" rx="1.5"/><path d="M5.3 7V5a2.7 2.7 0 0 1 5.4 0v2"/></svg><span id="ro"></span></div>
+ <div class="abs xbtn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5a636c" stroke-width="1.7"><rect x="3.5" y="3.5" width="17" height="17" rx="2.5"/><path d="M13 6.5h4.5V11M17.5 6.5 12 12M6.5 13.5v4h4"/></svg></div>
+ <div class="abs inner">
+  <div class="abs selfpill"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1016bc" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c.8-4 3.8-6 7.5-6s6.7 2 7.5 6"/></svg><span id="self"></span></div>
+  <div class="abs av">P</div>
+  <div class="abs who"><div class="k" id="whok"></div><div class="n">Persona 011 QA</div><div class="r" id="role"></div></div>
+  <div class="abs scale"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="#2ec7d2" stroke-width="1.5"><path d="M2 4h12M2 8h12M2 12h12"/><circle cx="5" cy="4" r="1.3" fill="#cbe7ea"/><circle cx="10.5" cy="8" r="1.3" fill="#cbe7ea"/><circle cx="7" cy="12" r="1.3" fill="#cbe7ea"/></svg><span id="scale"></span></div>
+ </div>
+ <div class="abs prog"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="#2ec7d2" stroke-width="1.5"><path d="M14 8a6 6 0 1 1-2.2-4.6"/><path d="M5.5 7.8 7.8 10 14 3.5"/></svg><span id="prog"></span></div>
+ <div class="abs count" id="count"></div>
+ <div class="abs bar"></div>
+ <div class="abs logro" id="logro"></div>
+ <svg class="abs ring" width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="19" fill="none" stroke="#dff2f4" stroke-width="4"/><circle cx="22" cy="22" r="19" fill="none" stroke="#14bccb" stroke-width="4" stroke-linecap="round" stroke-dasharray="91.5 119.4" transform="rotate(-90 22 22)"/><text x="22" y="21" text-anchor="middle" font-family="Lato" font-weight="700" font-size="13" fill="#14bccb">3.83</text><text x="22" y="30" text-anchor="middle" font-family="Lato" font-size="7" fill="#6c757d">/5</text></svg>
+ <div class="abs doms"><span class="dot"></span><span id="doms"></span></div>
+ <div class="abs chips" id="chips"></div>
+ <div class="abs hr"></div>
+ <div class="abs dl" id="dl"></div>
+ <div class="abs dt" id="dt"></div>
+</div>
+<div class="qs" id="qs"></div>
+<div class="sug" id="sug"></div>
+<script>
+const lang = new URLSearchParams(location.search).get('lang') === 'en' ? 'en' : 'es';
+document.documentElement.lang = lang;
+const T = {
+es:{evl:'EVALUACIÓN',evt:'Proceso 360° 2026',fin:'Finalizada',ro:'Sólo lectura',self:'Autoevaluación',whok:'AUTOEVALUACIÓN',role:'Analista de Operaciones · Bodega Central',scale:'Escala 1-5',prog:'PROGRESO',
+ count:'<b>32</b> de 32 respondidas · <i>100%</i>',logro:'LOGRO',doms:'Dominios',dl:'DOMINIOS · PONDERACIÓN 7.84%',dt:'Comunicación interpersonal',sug:'Sugerencia de mejora',
+ lik:['Nunca','Casi Nunca','A Veces','Casi Siempre','Siempre'],
+ q:['Es capaz de escuchar activamente, mostrando paciencia y atención con los demás',
+ 'Comunica inmediatamente a la jefatura cualquier situación que ponga en riesgo la seguridad de las personas en el trabajo',
+ 'Se comunica en forma clara y respetuosa, manteniendo abiertos los canales de diálogo con su equipo y otras áreas.',
+ 'Cuando el trabajo conjunto lo requiere, entrega retroalimentación a colegas en forma abierta, clara y respetuosa, cuidando la relación profesional.']},
+en:{evl:'EVALUATION',evt:'360° Process 2026',fin:'Finalized',ro:'Read-only',self:'Self-assessment',whok:'SELF-ASSESSMENT',role:'Operations Analyst · Central Warehouse',scale:'Scale 1-5',prog:'PROGRESS',
+ count:'<b>32</b> of 32 answered · <i>100%</i>',logro:'ACHIEVEMENT',doms:'Domains',dl:'DOMAINS · WEIGHTING 7.84%',dt:'Interpersonal communication',sug:'Improvement suggestion',
+ lik:['Never','Almost never','Sometimes','Almost always','Always'],
+ q:['Listens actively, showing patience and attention to others',
+ 'Immediately reports to their manager any situation that puts people\'s safety at work at risk',
+ 'Communicates clearly and respectfully, keeping channels of dialogue open with their team and other areas.',
+ 'When joint work requires it, gives colleagues feedback in an open, clear and respectful way, taking care of the working relationship.']}
+}[lang];
+for (const k of ['evl','evt','fin','ro','self','whok','role','scale','prog','logro','doms','dl','dt','sug']) document.getElementById(k).textContent = T[k];
+document.getElementById('count').innerHTML = T.count;
+document.getElementById('chips').innerHTML = [1,2,3,4,5,6,7].map(n=>`<div class="chip${n===2?' on':''}"><span class="dot"></span>${n}</div>`).join('');
+const sel=[4,2,5,3];
+const check='<svg width="6" height="6" viewBox="0 0 10 10" fill="none" stroke="#fff" stroke-width="2"><path d="M2 5.2 4.2 7.2 8 2.8"/></svg>';
+document.getElementById('qs').innerHTML = T.q.map((q,i)=>`<div class="q" style="${i===3?'border-bottom:1px dashed #d9e0e6':''}">${i===0?'<svg class="chev" width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#a0dfe8" stroke-width="1.8"><path d="M2 2l5 5-5 5"/></svg>':''}<div class="num">${i+1}</div><div class="ok">${check}</div><div class="tx">${q}</div>
+<div class="opts">${T.lik.map((l,j)=>`<div class="o${sel[i]===j+1?' on':''}"><span class="c">${j+1}</span>${l}</div>`).join('')}</div></div>`).join('');
+</script>
+</body></html>

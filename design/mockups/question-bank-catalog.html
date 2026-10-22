@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<title>question-bank-catalog</title>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--teal:#00b9c6;--txt:#495057;--muted:#6c757d;--dark:#343a40}
+html,body{margin:0;width:1578px;height:990px;overflow:hidden;background:#eef2f7;font-family:Lato,sans-serif;color:var(--txt);-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+.abs{position:absolute}
+svg{display:inline-block;vertical-align:middle}
+.card{left:37px;top:28px;width:1504px;height:1000px;background:#fff;border-radius:12px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+.title{left:58px;top:46px;font-size:28.5px;font-weight:700;color:var(--txt);letter-spacing:-.1px}
+.sub{left:58px;top:88px;font-size:11.5px;color:var(--txt)}
+.meta{right:58px;top:68px;font-size:11.5px;color:var(--txt);display:flex;align-items:center;gap:6px}
+.lab{font-size:11.5px;color:#212121}
+.sel{height:44px;border:1px solid #ced4da;border-radius:4px;display:flex;align-items:center;justify-content:space-between;padding:0 15px 0 11px;font-size:13.5px;color:var(--muted)}
+.tbl{left:58px;top:304px;width:835px}
+.thead{height:36px;background:#f8f9fa;border-bottom:1px solid #dee2e6;position:relative;font-weight:700;font-size:14px;color:var(--dark)}
+.thead span{position:absolute;top:10px}
+.tr{position:relative;border-bottom:1px solid #dee2e6;background:#fff}
+.tr:nth-child(odd){background:#fcfcfc}
+.tr.on{background:#d1f2f5}
+.tr.on::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--teal)}
+.c{position:absolute;top:50%;transform:translateY(-50%)}
+.code{left:6px;font-family:Consolas,'Courier New',monospace;font-size:10.2px;color:var(--txt)}
+.txt{position:relative;margin-left:136px;width:255px;padding:7px 0 8px;font-size:13.5px;line-height:21px;color:var(--txt)}
+.area{left:401px;font-size:11.5px}
+.dim{left:505px;font-size:11.5px;width:105px;line-height:21px}
+.persp{left:618px;display:flex;gap:4px}
+.pi{width:23px;height:14px;border-radius:7px;display:flex;align-items:center;justify-content:center}
+.prio{left:772px;width:21px;height:19px;border-radius:3px;color:#fff;font-weight:700;font-size:11px;display:flex;align-items:center;justify-content:center}
+.p0{background:#dc2626}.p1{background:#f59e0b}
+.scroll{left:893px;top:304px;width:6px;height:700px;background:#d8d8d8;border-radius:3px}
+.det{left:927px;top:305px;width:592px;height:455px;background:#fff;border-radius:14px;box-shadow:0 2px 10px rgba(30,40,60,.10),0 0 1px rgba(30,40,60,.12)}
+.det .t{position:absolute;left:14px;top:13px;font-size:26px;font-weight:700;color:var(--txt);letter-spacing:-.2px;white-space:nowrap}
+.det .q{position:absolute;left:14px;top:46px;font-size:11.5px;color:var(--dark)}
+.kv{position:absolute;left:14px;top:63px;width:564px;height:148px;background:#fafafa;border:1px solid #dbe4f0;border-radius:6px;padding:4px 10px}
+.kv .r{display:flex;align-items:center;height:26px;border-bottom:1px dashed #dde3ea;font-size:11.5px}
+.kv .r:last-child{border-bottom:0}
+.kv .k{width:105px;font-size:10px;color:var(--muted);letter-spacing:.3px;text-transform:uppercase}
+.kv .v{color:var(--txt)}
+.ob{background:#dc2626;color:#fff;font-weight:700;font-size:11px;border-radius:3px;padding:2px 5px;letter-spacing:-.2px}
+.h{position:absolute;left:14px;font-size:19px;color:var(--txt);font-weight:400;letter-spacing:-.2px}
+.pc{display:inline-flex;align-items:center;gap:4px;height:25px;border-radius:13px;padding:0 10px 0 9px;color:#fff;font-weight:700;font-size:11px;letter-spacing:-.25px}
+.coll{display:inline-block;background:#ede7fb;color:#7458be;font-size:11.5px;border-radius:9px;padding:2px 8px;letter-spacing:-.2px}
+.norm{display:inline-block;background:#e0f4fb;border:1px solid #9fd4ea;color:#2387b6;font-size:11px;border-radius:2px;padding:2px 7px;letter-spacing:-.2px}
+</style></head>
+<body>
+<div id="app"></div>
+<script>
+const lang = (new URLSearchParams(location.search).get('lang') || 'es') === 'en' ? 'en' : 'es';
+document.documentElement.lang = lang;
+const C = {par:'#f59e0b',sub:'#8b5cf6',jef:'#3b82f6',auto:'#130fa0'};
+const T = {
+ es:{title:'Catálogo Eleva — Banco de preguntas',
+  sub:'Preguntas globales agrupadas por área y dimensión. Cada pregunta declara desde qué perspectivas del 360° puede responderse.',
+  meta:'600 preguntas · 13 colecciones · 24 áreas',
+  f:[['Colección','Todas las colecciones',207],['Área','Todas las áreas',170],['Dimensión','Todas las dimensiones',213],['Perspectiva','Cualquiera',146]],
+  f2:['Normativa','Cualquier normativa',204],search:['Buscar texto','Texto o código...'],
+  th:['Código','Texto','Área','Dimensión','Perspectivas','Prio'],
+  rows:[
+   ['Q_COLAB_RED_06','Cumple los compromisos pactados con el equipo','Trabajo en Equipo','psja',0],
+   ['Q_COLAB_RED_08','Conoce, difunde y vela por el cumplimiento del Reglamento Interno y los protocolos de la empresa','Cumplimiento Normativo','psja',0],
+   ['Q_COLAB_RED_38','Reporta de inmediato a la jefatura cualquier situación de acoso o violencia en el trabajo que observe','Ambiente Laboral','psja',0],
+   ['Q_COLAB_RED_39','Reporta a la jefatura situaciones de discriminación o trato desigual que detecte en el equipo','Ambiente Laboral','spja',0],
+   ['Q_COLAB_RED_C1','Informa de inmediato a la jefatura o al canal de denuncias cualquier conducta de acoso laboral, acoso sexual o violencia que observe, según el protocolo de la empresa','Ambiente Laboral','jsap',0],
+   ['Q_COLAB_RED_01','Aporta al logro de los objetivos y de las actividades de su área, colaborando y apoyando a los demás.','Trabajo en Equipo','spja',1],
+   ['Q_COLAB_RED_04','Identifica e informa a su jefatura las necesidades específicas de apoyo de las personas del equipo que puedan afectar su desempeño','Inclusión y Diversidad','jpa',1],
+   ['Q_COLAB_RED_11','Participa activamente en las reuniones de equipo y aporta ideas para mejorar los procesos del área','Trabajo en Equipo','psja',1]],
+  det:{t:'Cumple los compromisos pactados con el equipo',k:['Área','Dimensión','Tipo','Prioridad','Peso'],v:['Colaboración en red','Trabajo en Equipo','Likert','0 · Obligatoria','1.5'],
+   ph:'Perspectivas (360°)',p:[['par','Par'],['sub','Subordinado-Jefe'],['jef','Jefe-Subordinado'],['auto','Auto']],
+   ch:'Colecciones (5)',coll:['Eleva — Bundle Colaborador General','Eleva — Eje Transversal','Eleva — Bundle Jefaturas','Eleva — 360° Base','Eleva — Autoevaluación'],
+   nh:'Normativas (1)',norm:'Buenas Prácticas de Evaluación 360°'}},
+ en:{title:'Eleva Catalog — Question bank',
+  sub:'Global questions grouped by area and dimension. Each question declares from which 360° perspectives it can be answered.',
+  meta:'600 questions · 13 collections · 24 areas',
+  f:[['Collection','All collections',207],['Area','All areas',170],['Dimension','All dimensions',213],['Perspective','Any',146]],
+  f2:['Regulation','Any regulation',204],search:['Search text','Text or code...'],
+  th:['Code','Text','Area','Dimension','Perspectives','Prio'],
+  rows:[
+   ['Q_COLAB_RED_06','Meets the commitments agreed with the team','Teamwork','psja',0],
+   ['Q_COLAB_RED_08','Knows, disseminates and ensures compliance with the company’s Internal Regulations and protocols','Regulatory Compliance','psja',0],
+   ['Q_COLAB_RED_38','Immediately reports to management any situation of harassment or violence at work that they observe','Work Environment','psja',0],
+   ['Q_COLAB_RED_39','Reports to management situations of discrimination or unequal treatment detected in the team','Work Environment','spja',0],
+   ['Q_COLAB_RED_C1','Immediately informs management or the reporting channel of any workplace harassment, sexual harassment or violence they observe, following the company protocol','Work Environment','jsap',0],
+   ['Q_COLAB_RED_01','Contributes to the objectives and activities of their area, collaborating with and supporting others.','Teamwork','spja',1],
+   ['Q_COLAB_RED_04','Identifies and reports to their manager the specific support needs of team members that may affect their performance','Inclusion and Diversity','jpa',1],
+   ['Q_COLAB_RED_11','Takes an active part in team meetings and contributes ideas to improve the area’s processes','Teamwork','psja',1]],
+  det:{t:'Meets the commitments agreed with the team',k:['Area','Dimension','Type','Priority','Weight'],v:['Network collaboration','Teamwork','Likert','0 · Mandatory','1.5'],
+   ph:'Perspectives (360°)',p:[['par','Peer'],['sub','Upward'],['jef','Manager'],['auto','Self']],
+   ch:'Collections (5)',coll:['Eleva — General Staff Bundle','Eleva — Cross-cutting Axis','Eleva — Managers Bundle','Eleva — 360° Base','Eleva — Self-assessment'],
+   nh:'Regulations (1)',norm:'Good Practices for 360° Evaluation'}}
+}[lang];
+
+const ico = {
+ par:(c,s)=>`<svg width="${s}" height="${s}" viewBox="0 0 16 16" fill="none" stroke="${c}" stroke-width="1.5"><circle cx="6" cy="5" r="2.5"/><path d="M1.5 13c0-2.6 2-4.2 4.5-4.2s4.5 1.6 4.5 4.2"/><path d="M10.5 2.6a2.4 2.4 0 0 1 0 4.6M12.4 8.9c1.4.6 2.1 2 2.1 4.1"/></svg>`,
+ sub:(c,s)=>`<svg width="${s}" height="${s}" viewBox="0 0 16 16" fill="none" stroke="${c}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 14V2.5M3.5 7 8 2.5 12.5 7"/></svg>`,
+ jef:(c,s)=>`<svg width="${s}" height="${s}" viewBox="0 0 16 16" fill="none" stroke="${c}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v11.5M3.5 9 8 13.5 12.5 9"/></svg>`,
+ auto:(c,s)=>`<svg width="${s}" height="${s}" viewBox="0 0 16 16" fill="none" stroke="${c}" stroke-width="1.6"><circle cx="8" cy="5" r="2.8"/><path d="M2.5 14.5c0-3 2.4-5 5.5-5s5.5 2 5.5 5"/></svg>`
+};
+const map={p:'par',s:'sub',j:'jef',a:'auto'};
+const chev='<svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="#495057" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5.8 8 10.6 13 5.8"/></svg>';
+
+let h='<div class="abs card"></div>';
+h+=`<div class="abs title">${T.title}</div><div class="abs sub">${T.sub}</div>`;
+h+=`<div class="abs meta"><svg width="14" height="14" viewBox="0 0 12 13" fill="none" stroke="#495057" stroke-width="1"><ellipse cx="6" cy="2.6" rx="4.5" ry="1.8"/><path d="M1.5 2.6v7.8c0 1 2 1.8 4.5 1.8s4.5-.8 4.5-1.8V2.6M1.5 6.5c0 1 2 1.8 4.5 1.8s4.5-.8 4.5-1.8"/></svg>${T.meta}</div>`;
+const fx=[58,430,803,1175];
+T.f.forEach((f,i)=>{h+=`<div class="abs lab" style="left:${fx[i]}px;top:120px">${f[0]}</div><div class="abs sel" style="left:${fx[i]}px;top:139px;width:${f[2]}px">${f[1]}${chev}</div>`;});
+h+=`<div class="abs lab" style="left:58px;top:213px">${T.f2[0]}</div><div class="abs sel" style="left:58px;top:232px;width:${T.f2[2]}px">${T.f2[1]}${chev}</div>`;
+h+=`<div class="abs lab" style="left:430px;top:213px">${T.search[0]}</div><div class="abs sel" style="left:430px;top:232px;width:345px;justify-content:flex-start;gap:10px;padding-left:10px"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="#495057" stroke-width="1.4" stroke-linecap="round"><circle cx="7" cy="7" r="5"/><path d="m11 11 3.5 3.5"/></svg>${T.search[1]}</div>`;
+h+=`<div class="abs" style="left:816px;top:248px"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="#00b9c6" stroke-width="1.3" stroke-linejoin="round"><path d="M1.5 2h13L9.5 8.2V14l-3-1.6V8.2z"/><path d="M4 3.5 2 1.5M12 3.5l2-2" stroke-linecap="round"/></svg></div>`;
+let t=`<div class="thead"><span style="left:6px">${T.th[0]}</span><span style="left:136px">${T.th[1]}</span><span style="left:401px">${T.th[2]}</span><span style="left:505px">${T.th[3]}</span><span style="left:618px">${T.th[4]}</span><span style="left:772px">${T.th[5]}</span></div>`;
+T.rows.forEach((r,i)=>{
+ const ps=[...r[3]].map(k=>`<span class="pi" style="background:${C[map[k]]}">${ico[map[k]]('#fff',11)}</span>`).join('');
+ t+=`<div class="tr${i?'':' on'}"><span class="c code">${r[0]}</span><div class="txt">${r[1]}</div><span class="c area">COLAB_RED</span><span class="c dim">${r[2]}</span><span class="c persp">${ps}</span><span class="c prio p${r[4]}">${r[4]}</span></div>`;
+});
+h+=`<div class="abs tbl" style="height:686px;overflow:hidden">${t}</div><div class="abs scroll"></div>`;
+const D=T.det;
+let d=`<div class="t">${D.t}</div><div class="q">Q_COLAB_RED_06</div><div class="kv">`;
+D.k.forEach((k,i)=>{d+=`<div class="r"><span class="k">${k}</span><span class="v">${i===3?`<span class="ob">${D.v[i]}</span>`:D.v[i]}</span></div>`;});
+d+='</div>';
+d+=`<div class="h" style="top:223px">${D.ph}</div><div style="position:absolute;left:14px;top:253px;display:flex;gap:7px">${D.p.map(p=>`<span class="pc" style="background:${C[p[0]]}">${ico[p[0]]('#fff',13)}${p[1]}</span>`).join('')}</div>`;
+d+=`<div class="h" style="top:290px">${D.ch}</div><div style="position:absolute;left:14px;top:320px;width:540px;display:flex;flex-wrap:wrap;gap:5px 6px">${D.coll.map(c=>`<span class="coll">${c}</span>`).join('')}</div>`;
+d+=`<div class="h" style="top:375px">${D.nh}</div><div style="position:absolute;left:14px;top:405px"><span class="norm">${D.norm}</span></div>`;
+h+=`<div class="abs det">${d}</div>`;
+document.getElementById('app').innerHTML=h;
+</script>
+</body></html>

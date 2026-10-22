@@ -2,10 +2,11 @@
 
 import Image from 'next/image';
 import { Fragment, useEffect, useRef, type CSSProperties } from 'react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { gsap, ScrollTrigger, SplitText } from '@/components/concepts/shared/gsapSetup';
 import KeyValue, { type KeyValueRow } from './KeyValue';
 import Plate from './Plate';
+import { appImage } from './appImage';
 import SectionRule from './SectionRule';
 import { splitLinesInto } from './splitLines';
 import { useReveal } from './useReveal';
@@ -124,6 +125,7 @@ function Ladder({ criteria, vertical }: { criteria: string[]; vertical?: boolean
  */
 export default function PautaBuilderA() {
   const t = useTranslations('conceptA');
+  const locale = useLocale();
   const ref = useRef<HTMLElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const frameRef = useRef<HTMLDivElement>(null);
@@ -576,7 +578,7 @@ export default function PautaBuilderA() {
                   <div className="a-pb-cover-crop">
                     <Image
                       className="a-crop"
-                      src={RUBRIC.src}
+                      src={appImage(RUBRIC.src, locale)}
                       width={RUBRIC.w}
                       height={RUBRIC.h}
                       alt={rubricPlate.alt}

@@ -294,5 +294,12 @@
     "privacyTitle": "Privacy Policy",
     "termsTitle": "Terms of Service",
     "lastUpdated": "Last updated"
+  },
+  "testimonial": {
+    "quote": "With Eleva we went from guessing to knowing. The evidence from every cycle shows us how the school is doing, role by role, and lets us decide better and in time. We now evaluate in weeks what used to take us months, at lower cost and with more clarity.",
+    "name": "Eduardo Soto Joo",
+    "role": "Rector",
+    "school": "Colegio Santa Cruz de Chicureo",
+    "city": ""
   }
 }

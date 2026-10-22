@@ -309,6 +309,17 @@ html[data-theme="light"] .bg-\[\#25D366\] .text-pure-white {
   .how-flow { animation: none; }
 }
 
+/* The testimonial's school crest is full colour: a white plate keeps it legible on
+   dark backgrounds, and the plate goes away on paper. */
+.testimonial-logo {
+  background: #ffffff;
+}
+
+[data-theme="light"] .testimonial-logo {
+  background: transparent;
+  padding: 0;
+}
+
 /* The dandelion seeds belonged to the previous brand; the background keeps its
    colour washes but the seeds stay hidden in both themes. */
 .dandelion-seed {

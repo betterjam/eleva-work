@@ -2,8 +2,9 @@
 
 import Image from 'next/image';
 import { useCallback, useState, type CSSProperties, type ReactNode } from 'react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import PlateLightbox from './PlateLightbox';
+import { appImage } from './appImage';
 
 export type PlateRegion = { x: number; y: number; w: number; h: number };
 
@@ -47,7 +48,7 @@ export type PlateProps = {
  * too, so a print cannot be opened before it has developed.
  */
 export default function Plate({
-  src,
+  src: rawSrc,
   alt,
   naturalW,
   naturalH,
@@ -67,6 +68,7 @@ export default function Plate({
   style,
 }: PlateProps) {
   const t = useTranslations('conceptA');
+  const src = appImage(rawSrc, useLocale());
   const [open, setOpen] = useState(false);
   const close = useCallback(() => setOpen(false), []);
 

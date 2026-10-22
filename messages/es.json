@@ -294,5 +294,12 @@
     "privacyTitle": "Política de Privacidad",
     "termsTitle": "Términos de Servicio",
     "lastUpdated": "Última actualización"
+  },
+  "testimonial": {
+    "quote": "Con Eleva pasamos de intuir a saber. La evidencia de cada ciclo nos muestra cómo está el colegio, cargo por cargo, y nos permite decidir mejor y a tiempo. Evaluamos en semanas lo que antes nos tomaba meses, con menos costo y más claridad.",
+    "name": "Eduardo Soto Joo",
+    "role": "Rector",
+    "school": "Colegio Santa Cruz de Chicureo",
+    "city": ""
   }
 }

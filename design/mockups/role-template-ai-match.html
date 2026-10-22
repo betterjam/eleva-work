@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<title>role-template-ai-match</title>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--teal:#00b9c6;--txt:#495057;--muted:#6c757d;--dark:#343a40;--line:#dfe7ef}
+html,body{margin:0;width:1505px;height:1010px;overflow:hidden;background:#fff;font-family:Lato,sans-serif;color:var(--txt);-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+.abs{position:absolute}
+svg{display:inline-block;vertical-align:middle}
+/* table header */
+.thead{left:7px;top:12px;width:1462px;height:35px;background:#f8f9fa;border-bottom:1px solid #e3e7eb}
+.th{position:absolute;top:9px;font-weight:700;font-size:14px;color:var(--dark);display:flex;align-items:center;gap:8px}
+/* selected row */
+.row{left:7px;top:47px;width:1462px;height:84px;background:#f6f6fe;border-left:3px solid var(--teal)}
+.circ{left:11px;top:65px;width:48px;height:48px;border-radius:50%;border:2px solid #7ff0f8;box-shadow:0 0 0 1px #c9f7fb inset;background:#f6f6fe;display:flex;align-items:center;justify-content:center}
+.rname{left:69px;top:58px;font-size:14.5px;color:#ba2126;display:flex;align-items:center;gap:7px}
+.badge-red{background:#ef4444;color:#fff;font-weight:700;font-size:11px;padding:4px 5px;border-radius:4px;letter-spacing:-.2px}
+.uuid{left:69px;top:84px;font-family:Consolas,'Courier New',monospace;font-size:9.6px;color:#6c7581;display:flex;align-items:center;gap:6px}
+.borrar{color:#ef4444;font-family:Lato;font-size:12px;display:flex;align-items:center;gap:6px;margin-left:12px}
+.rdesc{left:69px;top:108px;font-size:11.5px;color:var(--muted)}
+.sugg{left:1068px;top:79px;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--txt)}
+.pct{display:inline-flex;align-items:center;justify-content:center;width:32px;height:22px;border-radius:4px;color:#fff;font-weight:700;font-size:11px;letter-spacing:-.3px}
+.g{background:#22c55e}.r{background:#ef4444}
+/* expanded region */
+.exp{left:7px;top:131px;width:1462px;height:879px;background:#e9ecef}
+.expin{left:15px;top:138px;width:1446px;height:872px;background:#fafafa;border-left:1px solid var(--line);border-right:1px solid var(--line);border-top:1px solid var(--line)}
+.pill{display:inline-flex;align-items:center;gap:7px;background:#eeeeee;border-radius:10px;padding:2px 8px 2px 7px;font-size:10px;letter-spacing:.2px;color:var(--muted);text-transform:uppercase}
+.mejorar{left:1359px;top:152px;width:84px;height:38px;border:1px solid var(--teal);border-radius:4px;background:#fff;color:var(--teal);font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:center}
+.sep{left:32px;top:199px;width:1411px;height:1px;background:#e6e6e6}
+.lpanel{left:32px;top:212px;width:635px;height:87px;background:#f3f4f9;border:1px solid #e1e6ee;border-radius:7px;padding:14px 14px;font-size:11.5px;color:var(--muted);line-height:21px}
+.lpanel b{color:var(--dark);font-weight:700}
+.tags{left:32px;top:315px;display:flex;align-items:center;gap:5px;font-size:12px;color:var(--muted)}
+.tteal{background:var(--teal);color:#fff;border-radius:10px;padding:3px 11px;font-size:10px;font-weight:700;letter-spacing:.2px}
+.tsav{background:var(--teal);color:#fff;border-radius:4px;padding:3px 5px;font-size:11px;font-weight:700;display:inline-flex;align-items:center;gap:3px;margin-right:2px}
+.opt{left:32px;width:635px;height:56px;background:#fff;border:1px solid #e3e8ee;border-radius:6px;display:flex;align-items:center;padding-left:11px;font-size:14px;color:var(--txt)}
+.opt.sel{background:#f4f4f9;border:2px solid var(--teal);padding-left:9px;height:57px}
+.opt .code{font-size:11.5px;color:var(--muted);margin-left:4px}
+.opt .pct{position:absolute;left:500px;top:17px}
+.opt.sel .pct{left:499px;top:16px}
+.elegir{position:absolute;left:539px;top:8px;width:84px;height:39px;border:1px solid var(--teal);border-radius:5px;color:var(--teal);font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:center;gap:7px;background:#fff}
+.opt.sel .elegir{left:538px;top:7px}
+.reason{left:32px;top:597px;width:625px;font-size:11.5px;line-height:17.5px;color:var(--muted)}
+/* right panel */
+.rpanel{left:681px;top:212px;width:762px;height:661px;background:#fafafa;border:1px solid #e1e6ee;border-radius:7px}
+.rp{position:absolute;left:15px;right:14px}
+.dtitle{font-size:15px;font-weight:700;color:var(--txt)}
+.dtitle span{font-weight:400;color:#6c757d}
+.small{font-size:11.5px;color:var(--muted)}
+.ddesc{font-size:11.5px;color:var(--txt);line-height:18px}
+.chips{display:flex;flex-wrap:wrap;gap:5px 4px;width:700px}
+.chip{background:#3b82f6;color:#fff;font-weight:700;font-size:11px;letter-spacing:-.25px;padding:0 6px;height:22px;line-height:22px;border-radius:5px}
+.chip.gr{background:#22c55e}
+.laws{font-size:11.5px;line-height:17.5px;color:var(--txt)}
+.laws .i{color:var(--muted)}
+.verp{position:absolute;left:15px;top:607px;width:165px;height:39px;border:1px solid var(--teal);border-radius:4px;color:var(--teal);font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:center;gap:8px;background:#fff}
+.h2{left:32px;top:888px;font-size:14px;color:var(--txt);display:flex;align-items:center;gap:3px}
+.sub2{left:32px;top:912px;font-size:11.5px;color:var(--muted)}
+.ta{left:32px;top:936px;width:1411px;height:65px;background:#fff;border:1px solid #ced4da;border-radius:4px;padding:13px 10px;font-size:13px;color:var(--muted)}
+.scroll{left:1490px;top:0;width:15px;height:1010px;background:linear-gradient(90deg,#e1e5e9,#ecf0f5 40%,#edf1f6)}
+</style></head>
+<body>
+<div id="app"></div>
+<script>
+const lang = (new URLSearchParams(location.search).get('lang') || (location.hash.slice(1)) || 'es') === 'en' ? 'en' : 'es';
+document.documentElement.lang = lang;
+const T = {
+ es:{name:'Nombre',sugg:'Sugerencias guardadas',role:'Analista de Operaciones',unassigned:'Sin asignar',del:'Borrar',
+  rdesc:'Analista de operaciones en Bodega Central.',rec:'Recomendación de plantilla',improve:'Mejorar',
+  reports:'Reporta a:',boss:'Jefe de Operaciones',people:'0 persona(s)',opts:'Opciones de match',saved:'guardada',general:'General',
+  choose:'Elegir',
+  options:[['Analista de Operaciones','AN_OPS',99],['Analista de Procesos','AN_PROC',40],['Asistente Operativo','ASIST_OPS',30],['Analista de Calidad','AN_CAL',10]],
+  reason:'Nombre y descripción idénticos a AN_OPS. Hijo del Jefe de Operaciones, coherente como apoyo directo a la gestión diaria del área.',
+  detail:'Detalle de la plantilla',tipo:'Tipo: Analista',
+  desc:'Apoya a la jefatura de operaciones en la planificación y el control diario del área: consolida indicadores de bodega y despacho, detecta desvíos, propone mejoras de proceso y colabora en reportes de gestión y en el cumplimiento de los procedimientos de seguridad.',
+  detailed:'Descripción detallada',reportsT:'Jefatura de Operaciones',similar:'Similares: Analista de Procesos, Analista de Control de Gestión',
+  dims:'Dimensiones (12)',
+  dimList:[['Comunicación'],['Planificación'],['Orientación a Resultados'],['Trabajo en Equipo'],['Ambiente Laboral'],['Cumplimiento Normativo'],['General / Todos los trabajadores'],['Gestión de Operaciones',1],['Mejora Continua'],['Prevención de Riesgos'],['Probidad y Ética'],['Trato con Pares']],
+  frames:'Marcos / normativas (16)',
+  laws:[['Buenas Prácticas Eleva','Buenas Prácticas de Evaluación 360°'],
+   ['Normativa Laboral','Código del Trabajo — Dirección del Trabajo'],
+   ['Normativa Laboral','Ley 16.744 — Accidentes del Trabajo y Enfermedades Profesionales'],
+   ['Normativa Laboral','Ley 19.628 — Protección de la Vida Privada'],
+   ['Normativa Laboral','Ley 20.005 — Acoso Sexual'],
+   ['Normativa Laboral','Ley 20.123 — Subcontratación y Servicios Transitorios'],
+   ['Normativa Laboral','Ley 20.348 — Igualdad de Remuneraciones'],
+   ['Normativa Laboral','Ley 20.609 — No Discriminación (Ley Zamudio)'],
+   ['Normativa Laboral','Ley 21.015 — Inclusión Laboral'],
+   ['Normativa Laboral','Ley 21.063 — Seguro SANNA'],
+   ['Normativa Laboral','Ley 21.561 — Reducción de la Jornada (40 horas)'],
+   ['Normativa Laboral','Ley 21.643 — Ley Karin'],
+   ['Normativa Laboral','Ley 21.645 — Conciliación de la Vida Personal, Familiar y Laboral'],
+   ['Normativa Laboral','Ley 21.719 — Protección de Datos Personales (2024)'],
+   ['Normativa Laboral','DS 44/2024 — Gestión Preventiva de los Riesgos Laborales'],
+   ['Reglamento Interno','RIOHS — Reglamento Interno de Orden, Higiene y Seguridad']],
+  view:'Ver pauta evaluativa',fix:'Mejorar el árbol para que calce este cargo',
+  fixSub:'Describe qué falta o qué buscas. La IA propondrá la mejor solución; tú tienes la última palabra.',
+  ph:'Ej.: este cargo también coordina el inventario cíclico de la bodega; debería evaluarse en control de inventario y en prevención de riesgos…'},
+ en:{name:'Name',sugg:'Saved suggestions',role:'Analista de Operaciones',unassigned:'Unassigned',del:'Delete',
+  rdesc:'Operations analyst at the Central Warehouse.',rec:'Template recommendation',improve:'Improve',
+  reports:'Reports to:',boss:'Head of Operations',people:'0 person(s)',opts:'Match options',saved:'saved',general:'General',
+  choose:'Choose',
+  options:[['Operations Analyst','AN_OPS',99],['Process Analyst','AN_PROC',40],['Operations Assistant','ASIST_OPS',30],['Quality Analyst','AN_CAL',10]],
+  reason:'Name and description identical to AN_OPS. Child of the Head of Operations, consistent as direct support for the area’s daily management.',
+  detail:'Template detail',tipo:'Type: Analyst',
+  desc:'Supports the operations manager in planning and controlling the area day to day: consolidates warehouse and dispatch indicators, detects deviations, proposes process improvements and helps with management reports and compliance with safety procedures.',
+  detailed:'Detailed description',reportsT:'Operations Management',similar:'Similar: Process Analyst, Management Control Analyst',
+  dims:'Dimensions (12)',
+  dimList:[['Communication'],['Planning'],['Results Orientation'],['Teamwork'],['Work Environment'],['Regulatory Compliance'],['General / All staff'],['Operations Management',1],['Continuous Improvement'],['Risk Prevention'],['Integrity and Ethics'],['Treatment of Peers']],
+  frames:'Frameworks / regulations (16)',
+  laws:[['Eleva Good Practices','Good Practices for 360° Evaluation'],
+   ['Labour law','Labor Code — Dirección del Trabajo'],
+   ['Labour law','Law 16.744 — Work Accidents and Occupational Diseases'],
+   ['Labour law','Law 19.628 — Protection of Private Life'],
+   ['Labour law','Law 20.005 — Sexual Harassment'],
+   ['Labour law','Law 20.123 — Subcontracting and Temporary Services'],
+   ['Labour law','Law 20.348 — Equal Pay'],
+   ['Labour law','Law 20.609 — Non-Discrimination (Zamudio Law)'],
+   ['Labour law','Law 21.015 — Workplace Inclusion'],
+   ['Labour law','Law 21.063 — SANNA Insurance'],
+   ['Labour law','Law 21.561 — Shorter Working Week (40 hours)'],
+   ['Labour law','Law 21.643 — Karin Law'],
+   ['Labour law','Law 21.645 — Work, Family and Personal Life Balance'],
+   ['Labour law','Law 21.719 — Personal Data Protection (2024)'],
+   ['Labour law','DS 44/2024 — Preventive Management of Occupational Risks'],
+   ['Internal Regulations','RIOHS — Internal Rules of Order, Hygiene and Safety']],
+  view:'View rubric',fix:'Improve the tree so this role fits',
+  fixSub:'Describe what is missing or what you are looking for. The AI will propose the best solution; you have the final say.',
+  ph:'E.g.: this role also coordinates the warehouse cycle counts; it should be evaluated on inventory control and risk prevention…'}
+}[lang];
+
+const ic = {
+ sort:'<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#343a40" stroke-width="1.6" stroke-linecap="round"><path d="M5 14V2M2.5 4.5 5 2l2.5 2.5M11 2v12M8.5 11.5 11 14l2.5-2.5"/></svg>',
+ chev:'<svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="#6c757d" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 6 8 10.5 12.5 6"/></svg>',
+ copy:'<svg width="11" height="12" viewBox="0 0 12 13" fill="none" stroke="#6c7581" stroke-width="1.1"><rect x="3.5" y="3.5" width="6.5" height="8" rx="1.2"/><path d="M2 9.5V2.2C2 1.5 2.5 1 3.2 1H8"/></svg>',
+ trash:'<svg width="13" height="14" viewBox="0 0 14 15" fill="none" stroke="#ef4444" stroke-width="1.3" stroke-linecap="round"><path d="M1.5 3.5h11M5 3.5V2h4v1.5M3 3.5l.7 9.5h6.6l.7-9.5M5.8 6v4.5M8.2 6v4.5"/></svg>',
+ clock:'<svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="#6c757d" stroke-width="1.3" stroke-linecap="round"><circle cx="8" cy="8" r="6.5"/><path d="M8 4.2V8l2.4 1.6"/></svg>',
+ tree:'<svg width="14" height="12" viewBox="0 0 16 14" fill="none" stroke="#6c757d" stroke-width="1.2"><rect x="6" y="1" width="4" height="3.4" rx=".6"/><rect x="1" y="9.6" width="4" height="3.4" rx=".6"/><rect x="6" y="9.6" width="4" height="3.4" rx=".6"/><rect x="11" y="9.6" width="4" height="3.4" rx=".6"/><path d="M8 4.4v5.2M3 9.6V7h10v2.6"/></svg>',
+ up:'<svg width="12" height="15" viewBox="0 0 12 16" fill="none" stroke="#343a40" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15V1.5M1.5 6 6 1.5 10.5 6"/></svg>',
+ people:'<svg width="15" height="12" viewBox="0 0 16 13" fill="none" stroke="#6c757d" stroke-width="1.1"><circle cx="6" cy="4" r="2.6"/><path d="M1 12c0-2.8 2.2-4.6 5-4.6s5 1.8 5 4.6"/><path d="M10.5 1.6a2.6 2.6 0 0 1 0 5M12.5 7.8c1.6.6 2.5 2 2.5 4.2"/></svg>',
+ db:'<svg width="11" height="12" viewBox="0 0 12 13" fill="none" stroke="#fff" stroke-width="1.3"><ellipse cx="6" cy="2.6" rx="4.5" ry="1.8"/><path d="M1.5 2.6v7.8c0 1 2 1.8 4.5 1.8s4.5-.8 4.5-1.8V2.6M1.5 6.5c0 1 2 1.8 4.5 1.8s4.5-.8 4.5-1.8"/></svg>',
+ star:'<svg width="12" height="12" viewBox="0 0 24 24" fill="#fbbf24"><path d="M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z"/></svg>',
+ flag:'<svg width="13" height="14" viewBox="0 0 14 15" fill="none" stroke="#00b9c6" stroke-width="1.3" stroke-linejoin="round"><path d="M2 14V1.5h9.5l-2.3 3.4 2.3 3.4H2"/></svg>',
+ tri:'<svg width="8" height="9" viewBox="0 0 8 9"><path d="M0.5 0.5 7.5 4.5 0.5 8.5z" fill="#495057"/></svg>',
+ edit:'<svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="#00b9c6" stroke-width="1.3" stroke-linejoin="round"><path d="M10 1.5H3.5a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1V6"/><path d="M13.8 1.8 7.5 8.1 7 10l1.9-.5 6.3-6.3z"/></svg>',
+ wrench:'<svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="#00b9c6" stroke-width="1.2" stroke-linejoin="round"><path d="M14.3 3.6 11.9 6 10 5.9 9.9 4l2.4-2.4A4 4 0 0 0 7.2 6.8L1.6 12.4a1.4 1.4 0 0 0 2 2L9.2 8.8a4 4 0 0 0 5.1-5.2z"/></svg>'
+};
+
+let h = '';
+h += `<div class="abs thead"><div class="th" style="left:62px">${T.name} ${ic.sort}</div><div class="th" style="left:1062px">${T.sugg} ${ic.sort}</div></div>`;
+h += `<div class="abs row"></div><div class="abs circ">${ic.chev}</div>`;
+h += `<div class="abs rname">${T.role}<span class="badge-red">${T.unassigned}</span></div>`;
+h += `<div class="abs uuid">019f3e41-7c2a-7b16-9d04-4a8e2f61c0b3 ${ic.copy}<span class="borrar">${ic.trash}${T.del}</span></div>`;
+h += `<div class="abs rdesc">${T.rdesc}</div>`;
+h += `<div class="abs sugg">${ic.clock}<span class="pct g" style="margin-left:6px">99%</span><span style="margin-left:1px">${T.options[0][0]}</span></div>`;
+h += `<div class="abs exp"></div><div class="abs expin"></div>`;
+h += `<div class="abs" style="left:32px;top:162px"><span class="pill">${ic.tree}${T.rec}</span></div>`;
+h += `<div class="abs mejorar">${T.improve}</div><div class="abs sep"></div>`;
+h += `<div class="abs lpanel">${T.rdesc}<br><span style="display:inline-flex;align-items:center;gap:1px">${ic.up}<b>${T.reports}</b>&nbsp;${T.boss}</span><br><span style="display:inline-flex;align-items:center;gap:1px;position:relative;top:-2px">${ic.people}${T.people}</span></div>`;
+h += `<div class="abs tags"><span class="tteal">${T.opts.toUpperCase()}</span><span class="tsav">${ic.db}${T.saved}</span>${T.general}</div>`;
+const tops=[344,407,470,533];
+T.options.forEach((o,i)=>{
+  h += `<div class="abs opt${i?'':' sel'}" style="top:${tops[i]}px">${i?'':'<span style="margin-right:6px;display:inline-flex">'+ic.star+'</span>'}${o[0]}<span class="code">(${o[1]})</span><span class="pct ${i?'r':'g'}">${o[2]}%</span><span class="elegir">${ic.flag}${T.choose}</span></div>`;
+});
+h += `<div class="abs reason">${T.reason}</div>`;
+let rp = '';
+rp += `<div class="rp" style="top:15px"><span class="pill">${ic.tree}${T.detail}</span></div>`;
+rp += `<div class="rp dtitle" style="top:45px">${T.options[0][0]} <span>(AN_OPS)</span></div>`;
+rp += `<div class="rp small" style="top:67px">${T.tipo}</div>`;
+rp += `<div class="rp ddesc" style="top:86px">${T.desc}</div>`;
+rp += `<div class="rp small" style="top:130px;color:#6c757d;display:flex;align-items:center;gap:7px;padding-left:1px">${ic.tri}${T.detailed}</div>`;
+rp += `<div class="rp" style="top:152px;font-size:11.5px;color:#495057;display:flex;align-items:center;gap:1px">${ic.up}<b style="color:#343a40">${T.reports}</b>&nbsp;${T.reportsT}</div>`;
+rp += `<div class="rp small" style="top:176px">${T.similar}</div>`;
+rp += `<div class="rp small" style="top:207px">${T.dims}</div>`;
+rp += `<div class="rp chips" style="top:228px">${T.dimList.map(d=>`<span class="chip${d[1]?' gr':''}">${d[0]}</span>`).join('')}</div>`;
+rp += `<div class="rp small" style="top:294px">${T.frames}</div>`;
+rp += `<div class="rp laws" style="top:313px">${T.laws.map(l=>`<div><span class="i">${l[0]} ·</span> ${l[1]}</div>`).join('')}</div>`;
+rp += `<div class="verp">${ic.edit}${T.view}</div>`;
+h += `<div class="abs rpanel">${rp}</div>`;
+h += `<div class="abs h2">${ic.wrench}${T.fix}</div><div class="abs sub2">${T.fixSub}</div><div class="abs ta">${T.ph}<svg style="position:absolute;right:3px;bottom:3px" width="8" height="8" viewBox="0 0 8 8" stroke="#999" stroke-width="1"><path d="M7 1 1 7M7 4 4 7"/></svg></div>`;
+h += `<div class="abs scroll"></div>`;
+document.getElementById('app').innerHTML = h;
+</script>
+</body></html>
