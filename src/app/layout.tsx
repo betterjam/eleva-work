@@ -1,5 +1,23 @@
 import type { Metadata } from "next";
+import { Atkinson_Hyperlegible, Lexend } from "next/font/google";
+// The brand token sheet (a copy of public/brand/web/eleva-tokens.css) is bundled
+// into the site's own stylesheet rather than linked: one request fewer before the
+// first paint. Its font variables are pointed at the self-hosted fonts below in
+// globals.css.
+import "@/styles/eleva-tokens.css";
 import "./globals.css";
+
+// The two brand fonts, self-hosted by next/font: served from this domain and
+// preloaded, instead of a render-blocking stylesheet on fonts.googleapis.com
+// plus font files on fonts.gstatic.com (two extra connections on a slow phone).
+const lexend = Lexend({ subsets: ["latin"], weight: ["500", "600"], display: "swap", variable: "--font-lexend" });
+const atkinson = Atkinson_Hyperlegible({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
+  display: "swap",
+  variable: "--font-atkinson",
+});
 
 // Only a language-neutral fallback title lives here. The description used to
 // be a hardcoded Spanish sentence describing a different product, and it
@@ -49,23 +67,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es" suppressHydrationWarning>
+    <html lang="es" className={`${lexend.variable} ${atkinson.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         {/* eleva 360° brand (public/brand = brand-assets/, see brand-assets/web/head.html):
-            the two brand fonts, the colour/type tokens, the favicon, the app icons
-            and the web manifest. The token sheet carries its own light and dark values. */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        {/* The brand's head snippet asks for plain <link> tags; this is the single root
-            layout, so both rules below are false alarms for the app router. */}
-        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Lexend:wght@500;600&display=swap"
-        />
-        {/* eslint-disable-next-line @next/next/no-css-tags */}
-        <link rel="stylesheet" href="/brand/web/eleva-tokens.css" />
+            the favicon, the app icons and the web manifest. Fonts and tokens are
+            bundled above. */}
         <link rel="icon" href="/brand/icons/favicon.svg" type="image/svg+xml" />
         <link rel="icon" href="/brand/icons/favicon.ico" sizes="16x16 32x32 48x48" />
         <link rel="apple-touch-icon" href="/brand/icons/icon-180.png" />

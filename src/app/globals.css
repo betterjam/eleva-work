@@ -1,4 +1,11 @@
 @import "tailwindcss";
+
+/* Brand fonts: the token sheet names "Lexend" and "Atkinson Hyperlegible" by family;
+   point those variables at the self-hosted next/font faces (root layout). */
+:root {
+  --font-display: var(--font-lexend), "Segoe UI", Arial, sans-serif;
+  --font-text: var(--font-atkinson), Calibri, Arial, sans-serif;
+}
 @import "flag-icons/css/flag-icons.min.css";
 
 /* eleva 360° brand. The tokens themselves (colours, type, radii, spacing, light and
