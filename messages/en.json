@@ -31,7 +31,7 @@
       "with AI that guides you",
       "with weighted 360°"
     ],
-    "sub": "Eleva automates your school's performance evaluation with a methodology created by psychologists and evaluation experts and aligned to Chilean regulation. Every role gets its rubric from a curated bank, the 360° cycle runs with the weights and stages you define, and at the close you have achievement by domain with improvement suggestions. The AI walks your team through every step, and the decisions always belong to the school.",
+    "sub": "Eleva automates your school's performance evaluation with a methodology created by psychologists and evaluation experts and aligned to Chilean regulation.",
     "ctaPrimary": "Request a demo",
     "ctaSecondary": "See the modules",
     "ctaDetail": "Our methodology",
@@ -62,12 +62,12 @@
     "cards": [
       {
         "title": "Org chart and roles",
-        "desc": "Map your school's structure and link each position to a catalog role, from leadership to support staff.",
+        "desc": "Map your school's structure and link each position to a catalog role.",
         "image": "/images/illustrations/artboard-12.webp"
       },
       {
         "title": "Methodology guided by AI",
-        "desc": "The methodology is ours; the AI walks you through each rubric, and the final call is yours.",
+        "desc": "The methodology is ours; the AI walks you through each rubric and you decide.",
         "image": "/images/illustrations/artboard-6.webp"
       },
       {
@@ -77,17 +77,17 @@
       },
       {
         "title": "360° with four perspectives",
-        "desc": "Self, manager, direct reports and peers, each weighted the way your school decides.",
+        "desc": "Self, manager, direct reports and peers, weighted the way your school decides.",
         "image": "/images/illustrations/artboard-10.webp"
       },
       {
         "title": "Six process stages",
-        "desc": "Every cycle moves through six stages, from preparation to close, so nobody loses the thread.",
+        "desc": "Every cycle moves from preparation to close without anyone losing the thread.",
         "image": "/images/illustrations/artboard-8.webp"
       },
       {
         "title": "Achievement by domain",
-        "desc": "Answers turn into an easy-to-read achievement by domain, with an improvement suggestion for each person.",
+        "desc": "Answers become an achievement score per domain, with a suggestion to improve.",
         "image": "/images/illustrations/artboard-18.webp"
       }
     ]

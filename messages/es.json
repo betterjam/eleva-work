@@ -31,7 +31,7 @@
       "con IA que te guía",
       "con 360° ponderado"
     ],
-    "sub": "Eleva automatiza la evaluación de desempeño de tu colegio con una metodología creada por psicólogos y expertos en evaluación, alineada a la normativa chilena. Cada cargo recibe su pauta desde un banco curado, el ciclo 360° corre con las ponderaciones y etapas que tú defines, y al cerrar tienes el logro por dominio con sugerencias de mejora. La IA acompaña a tu equipo en cada paso, y las decisiones siempre son del colegio.",
+    "sub": "Eleva automatiza la evaluación de desempeño de tu colegio con una metodología creada por psicólogos y expertos en evaluación, alineada a la normativa chilena.",
     "ctaPrimary": "Solicitar demo",
     "ctaSecondary": "Ver los módulos",
     "ctaDetail": "Nuestra metodología",
@@ -62,32 +62,32 @@
     "cards": [
       {
         "title": "Organigrama y cargos",
-        "desc": "Dibuja la estructura de tu colegio y asocia cada puesto a un cargo del catálogo, de dirección a asistentes.",
+        "desc": "Dibuja la estructura del colegio y asocia cada puesto a un cargo del catálogo.",
         "image": "/images/illustrations/artboard-12.webp"
       },
       {
         "title": "Metodología guiada por IA",
-        "desc": "La metodología es nuestra; la IA te acompaña al armar cada pauta y la decisión final es tuya.",
+        "desc": "La metodología es nuestra; la IA te acompaña en cada pauta y tú decides.",
         "image": "/images/illustrations/artboard-6.webp"
       },
       {
         "title": "Banco curado de preguntas",
-        "desc": "Preguntas creadas por psicólogos y expertos en evaluación, agrupadas por área y dimensión.",
+        "desc": "Preguntas de psicólogos y expertos en evaluación, por área y dimensión.",
         "image": "/images/illustrations/artboard-17.webp"
       },
       {
         "title": "360° con cuatro perspectivas",
-        "desc": "Autoevaluación, jefatura, colaboradores y pares, con el peso que tu colegio le dé a cada mirada.",
+        "desc": "Autoevaluación, jefatura, colaboradores y pares, con el peso que tú definas.",
         "image": "/images/illustrations/artboard-10.webp"
       },
       {
         "title": "Seis etapas de proceso",
-        "desc": "Cada ciclo avanza por seis etapas, de la preparación al cierre, sin que nadie pierda el hilo.",
+        "desc": "Cada ciclo avanza de la preparación al cierre sin que nadie pierda el hilo.",
         "image": "/images/illustrations/artboard-8.webp"
       },
       {
         "title": "Logro por dominio",
-        "desc": "Las respuestas se transforman en un logro por dominio fácil de leer, con una sugerencia de mejora para cada persona.",
+        "desc": "Las respuestas se vuelven un logro por dominio con una sugerencia de mejora.",
         "image": "/images/illustrations/artboard-18.webp"
       }
     ]

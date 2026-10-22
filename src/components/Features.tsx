@@ -675,9 +675,9 @@ export default function Features() {
   // The illustration takes whatever height the copy leaves it, and the copy is
   // pinned to the bottom so titles line up across a pair.
   const renderCard = (feature: FeatureCard, position: 'top' | 'bottom', index: number) => (
-    <div className={`card-${position} feature-card-3d relative w-[clamp(240px,18vw,320px)] h-[clamp(200px,min(18vw,27vh),300px)]`}>
+    <div className={`card-${position} feature-card-3d relative w-[clamp(240px,18vw,320px)] [@media(max-height:820px)]:w-[clamp(250px,20vw,320px)] h-[clamp(180px,min(18vw,calc((100vh-300px)/2)),300px)]`}>
       <div className="feature-card group relative flex h-full flex-col overflow-hidden rounded-3xl">
-        <div className="relative min-h-0 flex-1 px-5 pt-5">
+        <div className="relative min-h-0 flex-1 px-5 pt-5 [@media(max-height:820px)]:pt-3">
           <div aria-hidden="true" className="absolute left-1/2 top-1/2 h-24 w-44 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-400/15 blur-2xl" />
           {feature.image && (
             <div className="relative h-full w-full transition-transform duration-500 ease-out group-hover:scale-[1.04]">
@@ -685,10 +685,10 @@ export default function Features() {
             </div>
           )}
         </div>
-        <div className="shrink-0 px-5 pb-5 pt-3 lg:px-6 lg:pb-6">
+        <div className="shrink-0 px-5 pb-5 pt-3 lg:px-6 lg:pb-6 [@media(max-height:820px)]:lg:px-5 [@media(max-height:820px)]:pb-4 [@media(max-height:820px)]:pt-2">
           <div className="mb-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-400">{cardIndex(index)}</div>
-          <h3 className="text-sm font-semibold tracking-tight text-white lg:text-base">{feature.title}</h3>
-          <p className="mt-1 text-xs leading-relaxed text-white/70 line-clamp-3 lg:text-[13px]">{feature.desc}</p>
+          <h3 className="text-sm font-semibold tracking-tight text-white lg:text-base [@media(max-height:820px)]:lg:text-sm">{feature.title}</h3>
+          <p className="mt-1 text-xs leading-relaxed text-white/70 lg:text-[13px]">{feature.desc}</p>
         </div>
       </div>
     </div>
@@ -822,14 +822,14 @@ export default function Features() {
       {/* Pinned scroll container */}
       <div ref={triggerRef} className="relative h-screen overflow-hidden">
         {/* Title header - on top, visible during cards phase */}
-        <div ref={headerRef} className="absolute top-0 left-0 right-0 z-10 pt-24 pb-6 px-8">
+        <div ref={headerRef} className="absolute top-0 left-0 right-0 z-10 pt-[clamp(4.75rem,11vh,6rem)] pb-6 px-8">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-semibold text-white">{t('features.title')}</h2>
-            <p className="mt-3 text-white/70 max-w-2xl">{t('features.sub')}</p>
+            <h2 className="text-[clamp(1.5rem,3.8vh,1.875rem)] font-semibold text-white">{t('features.title')}</h2>
+            <p className="mt-3 text-white/70 max-w-2xl [@media(max-height:820px)]:mt-2 [@media(max-height:820px)]:text-sm">{t('features.sub')}</p>
           </div>
         </div>
 
-        <div className="h-full flex items-center pt-28 pb-24">
+        <div className="h-full flex items-center pt-[clamp(10rem,25vh,12rem)] pb-[clamp(4.5rem,11vh,6rem)]">
           {/* Horizontal carousel container */}
           <div
             ref={horizontalRef}
@@ -844,7 +844,7 @@ export default function Features() {
               <div
                 key={pairIndex}
                 ref={(el) => { pairsRef.current[pairIndex] = el; }}
-                className="flex-shrink-0 flex flex-col gap-3 lg:gap-5 items-center justify-center w-[clamp(260px,20vw,340px)]"
+                className="flex-shrink-0 flex flex-col gap-3 lg:gap-5 [@media(max-height:820px)]:lg:gap-3 items-center justify-center w-[clamp(260px,20vw,340px)]"
               >
                 {pair.map((feature, cardIndex) => (
                   <div key={feature.title}>
