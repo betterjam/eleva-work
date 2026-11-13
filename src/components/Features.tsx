@@ -1,11 +1,8 @@
 'use client';
 
-import { useTranslations, useLocale } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-// Cross-page link: plain next/link with an explicit locale prefix (the static
-// export has no i18n middleware). In-page jumps keep using goTo/navClick.
-import NextLink from 'next/link';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ScrollCue from '@/components/ScrollCue';
@@ -53,7 +50,6 @@ const kindOf = (el: HTMLElement): RevealKind => (el.dataset.fx as RevealKind) ||
 
 export default function Features() {
   const t = useTranslations();
-  const locale = useLocale();
   const sectionRef = useRef<HTMLElement>(null);
   const mobileRef = useRef<HTMLElement>(null);
   const triggerRef = useRef<HTMLDivElement>(null);
@@ -75,7 +71,6 @@ export default function Features() {
   const features = t.raw('features.cards') as FeatureCard[];
   const ctaText = t('features.ctaTitle');
   const ctaDesc = t('features.ctaDesc');
-  const platformHref = `/${locale}/platform/`;
 
   // Group features in pairs
   const pairs: Array<Array<FeatureCard>> = [];
@@ -748,15 +743,6 @@ export default function Features() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>
           </a>
-          <NextLink
-            href={platformHref}
-            className="mt-3 inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 px-6 py-3 text-sm text-white/85 transition hover:bg-white/10"
-          >
-            {t('features.detailCta')}
-            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </NextLink>
         </div>
 
         {/* How section */}
@@ -888,15 +874,6 @@ export default function Features() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                   </svg>
                 </a>
-                <NextLink
-                  href={platformHref}
-                  className="mt-3 inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 px-6 py-3 text-sm text-white/85 transition hover:bg-white/10"
-                >
-                  {t('features.detailCta')}
-                  <svg className="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </NextLink>
               </div>
 
               {/* Right: Content - 70% */}

@@ -8,7 +8,7 @@ export default function ConceptARedirect() {
   const router = useRouter();
 
   useEffect(() => {
-    router.replace('/es/platform');
+    router.replace('/es');
   }, [router]);
 
   return null;

@@ -13,8 +13,9 @@ type Perspective = { label: string; desc: string; weight: string };
 type Stage = { num: string; name: string; desc: string; always: boolean };
 type PlateMsg = { fig: string; caption: string; alt: string };
 
-const WEIGHTS = { src: '/images/app/perspective-weights-wizard.png', w: 1490, h: 1154, region: { x: 340, y: 288, w: 820, h: 547 } };
-const STAGES = { src: '/images/app/evaluation-stages-config.png', w: 806, h: 797 };
+/** FIG. 4.1: the process blueprint (evaluations per perspective and role). FIG. 4.2: the process settings. */
+const WEIGHTS = 'blueprint';
+const STAGES = 'proceso';
 
 /* Donut geometry: viewBox 640×360, centre (320,180), r 110, stroke 18. */
 const VB = { w: 640, h: 360 };
@@ -236,14 +237,10 @@ export default function ProcesoA() {
 
             <div data-rv-group data-rv-start="top 85%" style={{ marginTop: 32 }}>
               <Plate
-                src={WEIGHTS.src}
-                naturalW={WEIGHTS.w}
-                naturalH={WEIGHTS.h}
-                region={WEIGHTS.region}
+                escena={WEIGHTS}
                 fig={weightsPlate.fig}
                 caption={weightsPlate.caption}
                 alt={weightsPlate.alt}
-                sizes="(min-width: 768px) 46vw, 100vw"
                 reveal="rv-wipe-up"
               />
             </div>
@@ -272,17 +269,11 @@ export default function ProcesoA() {
               <p className="a-code rv-lines">{t('proceso.stages.freeze')}</p>
             </div>
             <Plate
-              src={STAGES.src}
-              naturalW={STAGES.w}
-              naturalH={STAGES.h}
-              width={420}
-              height={415}
+              escena={STAGES}
               fig={stagesPlate.fig}
               caption={stagesPlate.caption}
               alt={stagesPlate.alt}
-              sizes="420px"
               reveal="rv-wipe-up"
-              style={{ maxWidth: 420 }}
             />
           </div>
         </div>

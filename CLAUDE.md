@@ -173,5 +173,8 @@ switcher were removed from this fork.
 - Fixed elements (headers, floating buttons) go OUTSIDE `<SmoothScroll>`; anchors use `scrollTo`.
 - Do NOT use `text-white*`, `bg-white*`, `border-white*`, `bg-black/20|40`, `blur-3xl`, `text-black`
   or `id="demo"` in concept code: legacy light-mode overrides in `globals.css` hijack them.
-- Product screenshots: `public/images/app/*.png`. All but `perspective-weights-wizard.png` still
-  show school data (Sostenedor, colegio, MINEDUC) and must be replaced with company captures.
+- Product screens: recordings of the platform in `public/media/grabaciones/`
+  (`<escena>-<dark|light>[-en][-fija].webp`, copied from the school landing), shown by
+  `src/components/media/Grabacion.tsx` in the page's theme and language and framed by `Plate.tsx`
+  (optional crop in recording pixels). They were recorded in a school's data (Colegio, Profesor,
+  MINEDUC are legible) and should be re-recorded with a company.

@@ -2,9 +2,6 @@
 
 import { useTranslations, useLocale } from 'next-intl';
 import { Link, usePathname, useRouter } from '@/i18n/navigation';
-// Cross-page links use plain next/link with an explicit locale prefix: this
-// static export has no i18n middleware, so a prefix-less URL would 404.
-import NextLink from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { goTo, initHashNavigation, navClick } from '@/lib/scrollNav';
@@ -142,13 +139,6 @@ export default function Header() {
               {l.label}
             </a>
           ))}
-          {/* Detail page: a real navigation, so it never goes through goTo */}
-          <NextLink
-            href={`/${locale}/platform/`}
-            className="text-sm text-white/75 transition hover:text-white"
-          >
-            {t('nav.platform')}
-          </NextLink>
         </nav>
 
         {/* Right side actions */}
@@ -271,13 +261,6 @@ export default function Header() {
                 {l.label}
               </a>
             ))}
-            <NextLink
-              href={`/${locale}/platform/`}
-              className="rounded-xl px-4 py-3 text-left text-sm text-white/70 transition-all hover:bg-white/5 hover:text-white"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              {t('nav.platform')}
-            </NextLink>
           </nav>
           <div className="mt-3 flex flex-col gap-2">
             <a

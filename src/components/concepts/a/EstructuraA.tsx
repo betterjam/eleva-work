@@ -1,6 +1,6 @@
 'use client';
 
-import { Fragment, useEffect, useRef } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { gsap, ScrollTrigger } from '@/components/concepts/shared/gsapSetup';
 import ConfidenceBars, { type Bar } from './ConfidenceBars';
@@ -24,29 +24,8 @@ type Block = {
 };
 type PlateMsg = { fig: string; caption: string; alt: string };
 
-const PLATES = [
-  {
-    src: '/images/app/org-chart-editor.png',
-    w: 1540,
-    h: 1162,
-    region: { x: 0, y: 0, w: 1540, h: 1155 },
-    mobile: { x: 0, y: 0, w: 1540, h: 1059 },
-  },
-  {
-    src: '/images/app/role-catalog-tree.png',
-    w: 1576,
-    h: 1173,
-    region: { x: 0, y: 0, w: 1564, h: 1173 },
-    mobile: { x: 0, y: 0, w: 1576, h: 1084 },
-  },
-  {
-    src: '/images/app/role-template-ai-match.png',
-    w: 1505,
-    h: 1010,
-    region: { x: 0, y: 0, w: 1347, h: 1010 },
-    mobile: { x: 0, y: 0, w: 1469, h: 1010 },
-  },
-];
+/** The recorded scene of each block: org chart, role list with its template, import with the AI role match. */
+const PLATES = ['organigrama', 'cargos', 'importacion'];
 
 /**
  * §02 Estructura. A HOLD section: the `[data-hold]` block (title + lead) pins under the
@@ -66,6 +45,8 @@ export default function EstructuraA() {
   const t = useTranslations('conceptA');
   const ref = useRef<HTMLElement>(null);
   const { registerBeat } = useSectionDirector();
+  // The plate on top of the pinned stack: the only one whose recording plays.
+  const [front, setFront] = useState(0);
   useReveal(ref);
 
   const blocks = t.raw('estructura.blocks') as Block[];
@@ -129,6 +110,7 @@ export default function EstructuraA() {
           // Plates 2.2 / 2.3 (whole figures, stacked over 2.1 whose crop marks sit at the same
           // coordinates) wipe up over the previous one as their block arrives. Only the covered
           // plate's BODY dims, so the crop marks underneath keep full opacity.
+          const covered = [false, false, false];
           for (let i = 1; i < 3; i++) {
             const tl = gsap.timeline({ paused: true });
             const prevBody = plateEls[i - 1].querySelector<HTMLElement>('.a-plate-body') ?? plateEls[i - 1];
@@ -144,6 +126,10 @@ export default function EstructuraA() {
               scrub: SCRUB,
               animation: tl,
               invalidateOnRefresh: true,
+              onUpdate: (self) => {
+                covered[i] = self.progress > 0.5;
+                setFront(covered[2] ? 2 : covered[1] ? 1 : 0);
+              },
             });
           }
 
@@ -195,14 +181,10 @@ export default function EstructuraA() {
               </div>
               <div className="a-estr-mplate">
                 <Plate
-                  src={PLATES[i].src}
-                  naturalW={PLATES[i].w}
-                  naturalH={PLATES[i].h}
-                  region={PLATES[i].mobile}
+                  escena={PLATES[i]}
                   fig={plates[i]?.fig ?? ''}
                   caption={plates[i]?.caption ?? ''}
                   alt={plates[i]?.alt ?? ''}
-                  sizes="100vw"
                   reveal="rv-wipe-up"
                 />
               </div>
@@ -211,17 +193,14 @@ export default function EstructuraA() {
 
           <div className="a-plate-col" data-rv-manual>
             <div className="a-plate-stack">
-              {PLATES.map((p, i) => (
+              {PLATES.map((escena, i) => (
                 <Plate
-                  key={p.src}
-                  src={p.src}
-                  naturalW={p.w}
-                  naturalH={p.h}
-                  region={p.region}
+                  key={escena}
+                  escena={escena}
                   fig={plates[i]?.fig ?? ''}
                   caption={plates[i]?.caption ?? ''}
                   alt={plates[i]?.alt ?? ''}
-                  sizes="(min-width: 1024px) 58vw, 100vw"
+                  play={front === i}
                   reveal={i === 0 ? 'rv-wipe-left' : undefined}
                   className={i === 0 ? undefined : 'rv-wipe-up'}
                 />

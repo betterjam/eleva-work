@@ -13,13 +13,13 @@ type PlateMsg = { fig: string; caption: string; alt: string };
 type NodeMsg = { name: string; code: string };
 type PerspectiveMsg = { label: string; weight: string };
 
-/** Slot crops (natural px), ratio 1.45 each. The org chart starts below the app's header strip
-    (its role counters stay out of the crop; the root node stays centred). */
+/** Slot crops (recording px, 1200 × 750), ratio 1.45 each: the chart's role cards, the blueprint's
+    perspective tiles and role table, the rubric list, and the answering screen's question. */
 const SLOT_PLATES = [
-  { src: '/images/app/org-chart-editor.png', w: 1540, h: 1162, region: { x: 200, y: 140, w: 1340, h: 924 } },
-  { src: '/images/app/perspective-weights-wizard.png', w: 1490, h: 1154, region: { x: 340, y: 288, w: 820, h: 565 } },
-  { src: '/images/app/generated-evaluation-rubric.png', w: 1390, h: 951, region: { x: 415, y: 170, w: 975, h: 672 } },
-  { src: '/images/app/evaluation-answering-360.png', w: 1305, h: 1104, region: { x: 250, y: 0, w: 880, h: 607 } },
+  { escena: 'organigrama', region: { x: 117, y: 300, w: 653, h: 450 } },
+  { escena: 'blueprint', region: { x: 117, y: 205, w: 620, h: 428 } },
+  { escena: 'pautas', region: { x: 117, y: 127, w: 560, h: 386 } },
+  { escena: 'enfoque', region: { x: 117, y: 127, w: 740, h: 510 } },
 ];
 
 type Geo = SVGGeometryElement & { dataset: DOMStringMap };
@@ -165,14 +165,11 @@ export default function SystemSheet() {
                   {SLOT_PLATES.map((sp, i) => (
                     <div key={i} className="a-sys-slot" style={SLOTS[i]}>
                       <Plate
-                        src={sp.src}
-                        naturalW={sp.w}
-                        naturalH={sp.h}
+                        escena={sp.escena}
                         region={sp.region}
                         fig={plates[i]?.fig ?? ''}
                         caption={plates[i]?.caption ?? ''}
                         alt={plates[i]?.alt ?? ''}
-                        sizes="(min-width: 1024px) 22vw, 100vw"
                         reveal="rv-wipe-up"
                       />
                     </div>
@@ -216,14 +213,11 @@ export default function SystemSheet() {
                   <Station p={`sm${i}`} L={L} />
                 </svg>
                 <Plate
-                  src={SLOT_PLATES[i].src}
-                  naturalW={SLOT_PLATES[i].w}
-                  naturalH={SLOT_PLATES[i].h}
+                  escena={SLOT_PLATES[i].escena}
                   region={SLOT_PLATES[i].region}
                   fig={plates[i]?.fig ?? ''}
                   caption={plates[i]?.caption ?? ''}
                   alt={plates[i]?.alt ?? ''}
-                  sizes="(min-width: 768px) 60vw, 100vw"
                   reveal="rv-wipe-up"
                 />
               </figure>

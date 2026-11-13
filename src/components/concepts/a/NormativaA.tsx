@@ -12,8 +12,8 @@ import { useReveal } from './useReveal';
 type Group = { issuer: string; items: { ref: string; name: string; matched: boolean }[] };
 type PlateMsg = { fig: string; caption: string; alt: string };
 
-/** The rubric's own framework list (cropped below its heading, which carries a count). */
-const INSET = { src: '/images/app/generated-evaluation-rubric.png', w: 1390, h: 951, region: { x: 0, y: 345, w: 400, h: 546 } };
+/** The process screen: its recording opens the compliance tab (laws covered by the evaluations). */
+const INSET = 'proceso';
 
 /**
  * §07 Normativa. A HOLD section: the `[data-hold]` block (title + lead) runs the full grid
@@ -178,17 +178,7 @@ export default function NormativaA() {
           <div className="col-span-4 md:col-span-5 a-norm-side" data-rv-group>
             <p className="a-label rv-wipe">{t('normativa.issuersLabel')}</p>
             <KeyValue rows={issuers} className="a-norm-issuers" />
-            <Plate
-              src={INSET.src}
-              naturalW={INSET.w}
-              naturalH={INSET.h}
-              region={INSET.region}
-              fig={plate.fig}
-              caption={plate.caption}
-              alt={plate.alt}
-              sizes="300px"
-              reveal="rv-wipe-up"
-            />
+            <Plate escena={INSET} fig={plate.fig} caption={plate.caption} alt={plate.alt} reveal="rv-wipe-up" />
           </div>
 
           <div ref={mainRef} className="col-span-4 md:col-start-6 md:col-span-7 a-norm-main a-sheet">

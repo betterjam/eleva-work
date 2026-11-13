@@ -213,23 +213,23 @@
     "plates": [
       {
         "fig": "FIG. 1.1",
-        "caption": "Organigrama · 2026 · nodo raíz · vista Actual",
-        "alt": "Editor de organigrama de Eleva con el nodo raíz del árbol, el selector de año y las vistas Actual y Propuesto."
+        "caption": "Organigrama · cargos y personas · vista Actual",
+        "alt": "Organigrama en Eleva: tarjetas de cargo con las personas que lo ocupan y las acciones Detalles, Mover y Quitar."
       },
       {
         "fig": "FIG. 1.2",
-        "caption": "Pesos por perspectiva · Total 100 / 100",
-        "alt": "Paso del asistente: cuatro perspectivas con 25 % cada una y un gráfico que suma 100 %."
+        "caption": "Blueprint del proceso · evaluaciones por perspectiva",
+        "alt": "Blueprint de un proceso: total de evaluaciones y su reparto por perspectiva y por cargo."
       },
       {
         "fig": "FIG. 1.3",
-        "caption": "Pauta generada · cargo directivo · Ejemplo",
-        "alt": "Pauta evaluativa generada para un cargo directivo: preguntas agrupadas por marco y área, cada una con su dimensión, perspectivas, prioridad y leyes."
+        "caption": "Pautas evaluativas · listado · versiones",
+        "alt": "Listado de pautas evaluativas de la organización, cada una con sus versiones."
       },
       {
         "fig": "FIG. 1.4",
-        "caption": "Evaluación · 32 de 32 respondidas · Logro 3.83 /5",
-        "alt": "Cabecera de una evaluación finalizada: progreso 32 de 32 respondidas y logro 3.83 sobre 5."
+        "caption": "Evaluación · una pregunta por pantalla · 3 de 32 respondidas",
+        "alt": "Pantalla de respuesta de una evaluación: avance de 3 de 32 respondidas, logro parcial y un campo para fundamentar una subárea."
       }
     ]
   },
@@ -361,18 +361,18 @@
     "plates": [
       {
         "fig": "FIG. 2.1",
-        "caption": "Organigrama · nodo raíz · 2026 · vista Actual",
-        "alt": "Editor de organigrama: el Directorio, el Gerente General y las gerencias y cargos de apoyo bajo él, con acciones Detalles, Mover y Quitar."
+        "caption": "Organigrama · cargos, personas y jerarquía · vista Actual",
+        "alt": "Editor de organigrama: tarjetas de cargo conectadas por jerarquía, con las personas de cada cargo y las acciones Detalles, Mover y Quitar; arriba, el año y las vistas Actual y Propuesto."
       },
       {
         "fig": "FIG. 2.2",
-        "caption": "Catálogo Eleva · cargo directivo · alias y relaciones",
-        "alt": "Catálogo de cargos: un nodo directivo con sus alias y un panel de detalle con variantes de género y relaciones de reporte y evaluación."
+        "caption": "Listado de cargos · plantilla vinculada · dimensiones heredadas",
+        "alt": "Listado de cargos: un cargo desplegado con su plantilla vinculada, su tipo, facetas y descripción, y las dimensiones que hereda de cada nivel."
       },
       {
         "fig": "FIG. 2.3",
-        "caption": "Recomendación de plantilla · 99 % · Elegir",
-        "alt": "Match de cargos con IA: cuatro opciones con porcentaje de confianza y el detalle de la plantilla con sus dimensiones, marcos y normativas."
+        "caption": "Importar colaboradores · cargo del archivo y cargo asignado · Exacto o IA %",
+        "alt": "Importación de colaboradores: cada fila con la persona, el cargo escrito en el archivo y el cargo asignado, marcado como coincidencia exacta o como propuesta de la IA con su porcentaje."
       }
     ]
   },
@@ -408,8 +408,8 @@
       ],
       "plate": {
         "fig": "FIG. 3.1",
-        "caption": "Banco de preguntas · preguntas curadas agrupadas por área y dimensión · detalle de Q_COLAB_RED_06",
-        "alt": "Catálogo Eleva, banco de preguntas: tabla con código, texto, área, dimensión, perspectivas y prioridad, y panel de detalle de la pregunta Q_COLAB_RED_06 con sus perspectivas 360°, colecciones y normativa."
+        "caption": "Pautas evaluativas · listado · versiones y preguntas por perspectiva",
+        "alt": "Pantalla Pautas Evaluativas: listado de pautas con sus versiones y un panel para ver las preguntas de la pauta elegida."
       }
     },
     "stage": {
@@ -570,8 +570,8 @@
     },
     "rubricPlate": {
       "fig": "FIG. 3.2",
-      "caption": "Pauta evaluativa generada · cargo directivo · preguntas agrupadas por marco y área",
-      "alt": "Pauta evaluativa generada por Eleva para un cargo directivo: preguntas agrupadas por marco y área, con dimensión, perspectivas, prioridad y las leyes que respaldan cada pregunta."
+      "caption": "Pauta aplicada · preguntas de un área · respuesta del evaluador",
+      "alt": "Evaluación en retroalimentación: cabecera con la persona evaluada y el evaluador, y las preguntas de un área de la pauta con la respuesta del evaluador en cada una."
     },
     "close": "Pautas por cargo en minutos, no en meses.",
     "closeSub": "Revisable antes de usarla."
@@ -612,8 +612,8 @@
       "simulate": "Simular tipos faltantes",
       "plate": {
         "fig": "FIG. 4.1",
-        "caption": "Pesos por perspectiva · 25 · 25 · 25 · 25 · Total 100 / 100",
-        "alt": "Paso del asistente ¿Cuánto pesa cada perspectiva?: A Jefatura, Autoevaluación, De Jefatura y Pares a Pares con 25 % cada una y un gráfico circular al 100 %."
+        "caption": "Blueprint del proceso · evaluaciones por perspectiva y por cargo",
+        "alt": "Blueprint de un proceso de evaluación: total de evaluaciones, su reparto por perspectiva, el detalle por cargo y un asistente de IA que propone observadores."
       }
     },
     "stages": {
@@ -663,8 +663,8 @@
       "freeze": "Los cambios aplican a los procesos nuevos: cada proceso congela su flujo al generarse, así que los procesos históricos conservan la configuración con la que fueron creados.",
       "plate": {
         "fig": "FIG. 4.2",
-        "caption": "Etapas por defecto por perspectiva · Configuración central · Jefe-Subordinado",
-        "alt": "Configuración central de etapas: seis etapas de 0 a 5, con Siempre activa en tres de ellas y un interruptor en las demás."
+        "caption": "Proceso · configuración · estilo de respuesta e incentivos",
+        "alt": "Configuración de un proceso de evaluación: planes de mejora, estilo de respuesta (Clásico, Una pregunta a la vez, Enfoque, Conversa) e incentivos por completar evaluaciones."
       }
     }
   },
@@ -719,8 +719,8 @@
     },
     "plate": {
       "fig": "FIG. 5.1",
-      "caption": "Evaluación · Autoevaluación · 32 de 32 · Logro 3.83 /5 · Ejemplo",
-      "alt": "Evaluación finalizada en Eleva: progreso 32 de 32 respondidas, logro 3.83 sobre 5, dominios y preguntas con escala Likert de 1 a 5."
+      "caption": "Consolidado 360° · evaluadores por perspectiva · total ponderado",
+      "alt": "Informe consolidado de una persona: evaluadores agrupados por perspectiva con su resultado y su peso, el total ponderado y la escala de desempeño de la pauta."
     }
   },
   "ia": {
@@ -783,8 +783,8 @@
     "never": "La IA no evalúa, no decide resultados y no redacta normativa.",
     "plate": {
       "fig": "FIG. 6.1",
-      "caption": "Recomendación de plantilla · 99 % · Elegir · Ejemplo",
-      "alt": "Opciones de match con su porcentaje de confianza (99 %, 40 %, 30 % y 10 %), cada una con su botón Elegir, y el razonamiento de la IA."
+      "caption": "Importar colaboradores · cargo propuesto · Exacto o IA %",
+      "alt": "Vista previa de la importación: el cargo escrito en el archivo junto al cargo propuesto, con la marca Exacto o el porcentaje de confianza de la IA."
     }
   },
   "normativa": {
@@ -921,8 +921,8 @@
     "footnote": "Vistas también en la pauta de Analista de Operaciones: jornada laboral · conciliación de la vida personal y laboral.",
     "plate": {
       "fig": "FIG. 7.1",
-      "caption": "Normativas y marcos que esta pauta evalúa · ejemplo",
-      "alt": "Lista de las normativas y marcos que evalúa una pauta generada por Eleva, agrupadas por emisor."
+      "caption": "Proceso · pestaña Cumplimientos · leyes cubiertas por las evaluaciones",
+      "alt": "Pantalla de un proceso de evaluación; en la grabación se abre la pestaña Cumplimientos, con las leyes que cubren las evaluaciones del proceso."
     }
   },
   "cierre": {

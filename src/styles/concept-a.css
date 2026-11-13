@@ -692,11 +692,11 @@ html[data-concept="a"] body {
   border-bottom-width: 1px;
   border-right-width: 1px;
 }
-/* the image window (native light UI on both themes) */
+/* the image window: a recording of the platform in the page's own theme */
 [data-concept="a"] .a-plate-window {
   position: relative;
   overflow: hidden;
-  background: #ffffff; /* the screenshots are white UI; never tint them */
+  background: var(--paper-3); /* behind the recording until its still arrives */
   box-shadow: var(--a-plate-ring);
 }
 [data-concept="a"] .a-plate-window > img,
@@ -1559,7 +1559,7 @@ html[data-concept="a"] body {
 /* The title and the lead moved out of this column into the full-width [data-hold] block
    above the spread (a hold pins a full-width block), so the issuer label heads it. */
 [data-concept="a"] .a-norm-side > .a-label { margin-bottom: 8px; }
-[data-concept="a"] .a-norm-side > .a-plate { margin-top: 40px; max-width: 300px; }
+[data-concept="a"] .a-norm-side > .a-plate { margin-top: 40px; max-width: 460px; }
 [data-concept="a"] .a-norm-main { position: relative; }
 [data-concept="a"] .a-question-row {
   border-top: 1px solid var(--line-2);
@@ -1890,7 +1890,7 @@ html[data-concept="a"] body {
 [data-concept="a"] .a-pb-norms > li > span { display: block; }
 /* The cover: the real rubric's question column, placed with A's crop vars inside a box
    that fills the frame by height (portrait frame) or by width (wide frame). */
-[data-concept="a"] .a-pb-cover { position: absolute; inset: 0; overflow: hidden; background: #ffffff; }
+[data-concept="a"] .a-pb-cover { position: absolute; inset: 0; overflow: hidden; background: var(--paper-3); }
 [data-concept="a"] .a-pb-cover-crop { position: absolute; top: 0; left: 0; height: 100%; min-width: 100%; aspect-ratio: var(--ratio); overflow: hidden; }
 [data-concept="a"] .a-pb-caption { margin: 0; }
 @media (max-width: 767.98px) {
@@ -2372,6 +2372,10 @@ html[data-concept="a"] body {
   max-width: calc(100vw - 48px);
   /* the viewport minus the dialog padding and the caption bar */
   max-height: calc(100vh - 48px - 40px);
+}
+/* A recording has one size (1200 × 750): the lightbox box is known before the file arrives. */
+[data-concept="a"] .a-lightbox-plate.a-lamina .a-lightbox-img {
+  width: min(1200px, calc(100vw - 48px), calc((100vh - 88px) * 1.6));
 }
 [data-concept="a"] .a-lightbox-caption {
   min-height: 40px;

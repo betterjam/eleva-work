@@ -4,9 +4,6 @@ import { useTranslations, useLocale } from 'next-intl';
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-// Cross-page link: plain next/link with an explicit locale prefix. The static
-// export has no i18n middleware, so a prefix-less `/platform/` would 404.
-import NextLink from 'next/link';
 import ScrollCue from '@/components/ScrollCue';
 import Testimonial from '@/components/Testimonial';
 import { goTo, prefersReducedMotion } from '@/lib/scrollNav';
@@ -344,18 +341,6 @@ export default function Hero() {
             >
               {t('hero.ctaPrimary')}
             </button>
-            {/* The detail page is the full product tour, so it gets the button: a
-                real navigation with an explicit locale prefix, never goTo. */}
-            <NextLink
-              data-hero-cta
-              href={`/${locale}/platform/`}
-              className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/15 px-5 py-3 text-sm text-white/85 transition-colors hover:bg-white/10"
-            >
-              {t('hero.ctaDetail')}
-              <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </NextLink>
           </div>
 
           {/* Quiet scroll link to the modules stage below */}

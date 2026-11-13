@@ -1,27 +1,31 @@
 'use client';
 
-import Image from 'next/image';
-import { useCallback, useState, type CSSProperties, type ReactNode } from 'react';
-import { useLocale, useTranslations } from 'next-intl';
+import { useCallback, useState, type CSSProperties } from 'react';
+import { useTranslations } from 'next-intl';
+import Grabacion from '@/components/media/Grabacion';
 import PlateLightbox from './PlateLightbox';
-import { appImage } from './appImage';
 
 export type PlateRegion = { x: number; y: number; w: number; h: number };
 
+/** Every recording on this page is a desktop capture of this size (files in `public/media/grabaciones/`). */
+export const RECORDING = { w: 1200, h: 750 };
+
 export type PlateProps = {
-  src: string;
+  /** The recorded scene (`<escena>-<dark|light>[-en][-fija].webp`). */
+  escena: string;
   alt: string;
-  naturalW: number;
-  naturalH: number;
   fig: string;
   caption: string;
-  /** Crop in natural pixels; the window takes the region's aspect ratio. */
+  /** Crop in the recording's pixels (1200 × 750); the window takes the region's aspect ratio. */
   region?: PlateRegion;
   /** Alternative crop applied under 768px (same file, usually a shorter cut). */
   mobileRegion?: PlateRegion;
-  /** Rendered size when there is no region (the image scales to 100% width). */
-  width?: number;
-  height?: number;
+  /**
+   * Whether the recording plays while the plate is in view. By default a whole recording
+   * plays and a cropped one keeps its still: the crop was chosen on the still, and a
+   * recording that scrolls would move something else into the window.
+   */
+  play?: boolean;
   /** Classes for the <figure> (layout, grid placement). */
   className?: string;
   /**
@@ -30,51 +34,38 @@ export type PlateProps = {
    * print develops inside. Wipe targets in choreography are `.a-plate-body`.
    */
   reveal?: string;
-  windowClassName?: string;
-  priority?: boolean;
-  sizes?: string;
-  onLoad?: () => void;
-  /** Absolutely positioned content over the image box (annotations, leaders). */
-  overlay?: ReactNode;
   style?: CSSProperties;
 };
 
 /**
  * Screenshot frame: 1px plate with crop marks, an image window and a FIG. caption bar.
+ * The print is a recording of the platform (`components/media/Grabacion`): the still and
+ * the animation of the page's theme and language, swapped live when the theme changes.
  * Region crops are pure CSS (`--crop-*` vars on the figure, read by `.a-crop`),
  * so the full-resolution file is positioned inside the window and stays sharp.
- * The window is also a button: it opens the whole file, uncropped, in a modal
- * lightbox (`PlateLightbox`). A wipe that still clips the body clips the button
+ * The window is also a button: it opens the whole recording, uncropped and playing, in a
+ * modal lightbox (`PlateLightbox`). A wipe that still clips the body clips the button
  * too, so a print cannot be opened before it has developed.
  */
 export default function Plate({
-  src: rawSrc,
+  escena,
   alt,
-  naturalW,
-  naturalH,
   fig,
   caption,
   region,
   mobileRegion,
-  width,
-  height,
+  play,
   className,
   reveal,
-  windowClassName,
-  priority,
-  sizes,
-  onLoad,
-  overlay,
   style,
 }: PlateProps) {
   const t = useTranslations('conceptA');
-  const src = appImage(rawSrc, useLocale());
   const [open, setOpen] = useState(false);
   const close = useCallback(() => setOpen(false), []);
 
   const vars: Record<string, string | number> = {};
   if (region) {
-    vars['--img-w'] = naturalW;
+    vars['--img-w'] = RECORDING.w;
     vars['--crop-x'] = region.x;
     vars['--crop-y'] = region.y;
     vars['--crop-w'] = region.w;
@@ -92,40 +83,22 @@ export default function Plate({
 
   return (
     <figure
-      className={`a-plate${className ? ` ${className}` : ''}`}
+      className={`a-plate a-lamina${className ? ` ${className}` : ''}`}
       style={figureStyle}
       data-region={region ? 'true' : undefined}
       data-mregion={mobileRegion ? 'true' : undefined}
     >
       <span className="a-crop-marks" aria-hidden="true" />
       <div className={`a-plate-body${reveal ? ` ${reveal}` : ''}`}>
-        <div className={`a-plate-window${windowClassName ? ` ${windowClassName}` : ''}`}>
-          {region ? (
-            <Image
-              className="a-crop"
-              src={src}
-              alt={alt}
-              width={naturalW}
-              height={naturalH}
-              sizes={sizes}
-              priority={priority}
-              onLoad={onLoad}
-              draggable={false}
-            />
-          ) : (
-            <Image
-              className="a-plate-full"
-              src={src}
-              alt={alt}
-              width={width ?? naturalW}
-              height={height ?? naturalH}
-              sizes={sizes}
-              priority={priority}
-              onLoad={onLoad}
-              draggable={false}
-            />
-          )}
-          {overlay}
+        <div className="a-plate-window">
+          <Grabacion
+            escena={escena}
+            alt={alt}
+            width={RECORDING.w}
+            height={RECORDING.h}
+            play={play ?? !region}
+            className={region ? 'a-crop' : 'a-plate-full'}
+          />
           <button
             type="button"
             className="a-plate-zoom"
@@ -144,17 +117,7 @@ export default function Plate({
           <span>{caption}</span>
         </figcaption>
       </div>
-      {open ? (
-        <PlateLightbox
-          src={src}
-          alt={alt}
-          naturalW={naturalW}
-          naturalH={naturalH}
-          fig={fig}
-          caption={caption}
-          onClose={close}
-        />
-      ) : null}
+      {open ? <PlateLightbox escena={escena} alt={alt} fig={fig} caption={caption} onClose={close} /> : null}
     </figure>
   );
 }

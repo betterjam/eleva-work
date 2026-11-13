@@ -11,13 +11,8 @@ import { useReveal } from './useReveal';
 type LikertItem = { num: string; name: string };
 type PlateMsg = { fig: string; caption: string; alt: string };
 
-const ANSWERING = {
-  src: '/images/app/evaluation-answering-360.png',
-  w: 1305,
-  h: 1104,
-  region: { x: 250, y: 0, w: 880, h: 733 },
-  mobile: { x: 250, y: 0, w: 880, h: 660 },
-};
+/** FIG. 5.1: the consolidated 360° report of one person, whole and playing. */
+const CONSOLIDATED = 'consolidado';
 
 /* Mini ring: r 20 → circumference 125.66; 3.83/5 = 76.6 % → offset 29.4 */
 const RING_LEN = 2 * Math.PI * 20;
@@ -25,7 +20,7 @@ const RING_OFFSET = RING_LEN * (1 - 0.766);
 
 /**
  * §05 Resultados. A HOLD section: the `[data-hold]` block (title + lead) pins under the
- * header for 55vh while its beat draws. The answering plate reveals through a double mask
+ * header for 55vh while its beat draws. The results plate reveals through a double mask
  * (container clip top→bottom + image slide). The typographic column is one BEAT handed to
  * the Section Director — scrubbed across its window at every width and locked at
  * completion: separators draw, the achievement ring fills to 3.83/5, the digits flip in
@@ -102,15 +97,10 @@ export default function ResultadosA() {
         <div className="a-cols" style={{ marginTop: 64, rowGap: 48 }}>
           <div className="col-span-4 md:col-span-12 lg:col-span-8" data-rv-group data-rv-start="top 75%">
             <Plate
-              src={ANSWERING.src}
-              naturalW={ANSWERING.w}
-              naturalH={ANSWERING.h}
-              region={ANSWERING.region}
-              mobileRegion={ANSWERING.mobile}
+              escena={CONSOLIDATED}
               fig={plate.fig}
               caption={plate.caption}
               alt={plate.alt}
-              sizes="(min-width: 768px) 62vw, 100vw"
               reveal="rv-wipe-down"
             />
           </div>

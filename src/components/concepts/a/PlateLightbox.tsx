@@ -1,31 +1,29 @@
 'use client';
 
-import Image from 'next/image';
 import { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { useTranslations } from 'next-intl';
 import { ScrollSmoother } from '@/components/concepts/shared/gsapSetup';
+import Grabacion from '@/components/media/Grabacion';
 
 type Props = {
-  src: string;
+  escena: string;
   alt: string;
-  naturalW: number;
-  naturalH: number;
   fig: string;
   caption: string;
   onClose: () => void;
 };
 
 /**
- * The whole file behind a plate, uncropped, at viewport size. A native modal <dialog>
- * (top layer, focus trap, Esc) portalled to <body>, so it sits outside the
+ * The whole recording behind a plate, uncropped and playing, at viewport size. A native
+ * modal <dialog> (top layer, focus trap, Esc) portalled to <body>, so it sits outside the
  * ScrollSmoother's transformed content and above the fixed header. The frame is the
- * plate itself scaled up: crop marks, white window, FIG. caption with the close control.
+ * plate itself scaled up: crop marks, window, FIG. caption with the close control.
  * While it is open the smoother is paused, so the wheel does not scroll the page behind
  * it; closing (button, Esc, a click on the backdrop) returns focus to the plate's own
  * button, which the dialog element does by itself.
  */
-export default function PlateLightbox({ src, alt, naturalW, naturalH, fig, caption, onClose }: Props) {
+export default function PlateLightbox({ escena, alt, fig, caption, onClose }: Props) {
   const t = useTranslations('conceptA');
   const ref = useRef<HTMLDialogElement>(null);
 
@@ -57,19 +55,10 @@ export default function PlateLightbox({ src, alt, naturalW, naturalH, fig, capti
         if (e.target === e.currentTarget) e.currentTarget.close();
       }}
     >
-      <figure className="a-plate a-lightbox-plate">
+      <figure className="a-plate a-lamina a-lightbox-plate">
         <span className="a-crop-marks" aria-hidden="true" />
         <div className="a-plate-window">
-          <Image
-            className="a-lightbox-img"
-            src={src}
-            alt={alt}
-            width={naturalW}
-            height={naturalH}
-            sizes="92vw"
-            priority
-            draggable={false}
-          />
+          <Grabacion escena={escena} alt={alt} eager threshold={0.1} className="a-lightbox-img" />
         </div>
         <figcaption className="a-plate-caption a-lightbox-caption">
           {fig ? <span className="a-fig">{fig}</span> : null}

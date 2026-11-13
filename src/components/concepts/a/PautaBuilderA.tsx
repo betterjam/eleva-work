@@ -1,12 +1,11 @@
 'use client';
 
-import Image from 'next/image';
 import { Fragment, useEffect, useRef, type CSSProperties } from 'react';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { gsap, ScrollTrigger, SplitText } from '@/components/concepts/shared/gsapSetup';
 import KeyValue, { type KeyValueRow } from './KeyValue';
-import Plate from './Plate';
-import { appImage } from './appImage';
+import Grabacion from '@/components/media/Grabacion';
+import Plate, { RECORDING } from './Plate';
 import SectionRule from './SectionRule';
 import { splitLinesInto } from './splitLines';
 import { useReveal } from './useReveal';
@@ -23,23 +22,15 @@ type Slip = {
 type PlateMsg = { fig: string; caption: string; alt: string };
 type LedgerHead = { code: string; text: string; dimension: string; perspectives: string; priority: string; laws: string };
 
-/* Crops in natural pixels. The bank window starts below the screenshot's own header row;
-   the rubric window is the question column (group header down), never the sidebar. */
-const BANK = {
-  src: '/images/app/question-bank-catalog.png',
-  w: 1578,
-  h: 990,
-  region: { x: 40, y: 300, w: 1500, h: 660 },
-  mobile: { x: 57, y: 305, w: 856, h: 642 },
-};
+/* The rubric list plays whole. The applied rubric is cropped (recording px, 1200 × 750) to the
+   evaluation's own column: its header card and the questions of one area with their answers. */
+const BANK = 'pautas';
 const RUBRIC = {
-  src: '/images/app/generated-evaluation-rubric.png',
-  w: 1390,
-  h: 951,
-  region: { x: 415, y: 170, w: 955, h: 764 },
-  mobile: { x: 415, y: 170, w: 955, h: 716 },
-  /** Cover crop: same column, down to the file's bottom edge (fills a portrait frame by height). */
-  cover: { x: 415, y: 170, w: 955, h: 781 },
+  escena: 'retroalimentacion',
+  region: { x: 280, y: 85, w: 730, h: 597 },
+  mobile: { x: 280, y: 85, w: 730, h: 547 },
+  /** Cover crop: the same column (fills a portrait frame by height). */
+  cover: { x: 280, y: 85, w: 730, h: 597 },
 };
 
 /** The pinned assembly is a full viewport: it needs width AND height. Everything else stacks. */
@@ -125,7 +116,6 @@ function Ladder({ criteria, vertical }: { criteria: string[]; vertical?: boolean
  */
 export default function PautaBuilderA() {
   const t = useTranslations('conceptA');
-  const locale = useLocale();
   const ref = useRef<HTMLElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const frameRef = useRef<HTMLDivElement>(null);
@@ -444,7 +434,7 @@ export default function PautaBuilderA() {
   }, []);
 
   const coverVars = {
-    '--img-w': RUBRIC.w,
+    '--img-w': RECORDING.w,
     '--crop-x': RUBRIC.cover.x,
     '--crop-y': RUBRIC.cover.y,
     '--crop-w': RUBRIC.cover.w,
@@ -465,18 +455,7 @@ export default function PautaBuilderA() {
 
         {/* FIG. 3.1 — the bank, with its facts */}
         <div className="a-cols a-pb-intro" data-rv-group style={{ marginTop: 56 }}>
-          <Plate
-            src={BANK.src}
-            naturalW={BANK.w}
-            naturalH={BANK.h}
-            region={BANK.region}
-            mobileRegion={BANK.mobile}
-            fig={bankPlate.fig}
-            caption={bankPlate.caption}
-            alt={bankPlate.alt}
-            sizes="(min-width: 1024px) 60vw, 100vw"
-            reveal="rv-wipe"
-          />
+          <Plate escena={BANK} fig={bankPlate.fig} caption={bankPlate.caption} alt={bankPlate.alt} reveal="rv-wipe" />
           <div className="a-pb-intro-side">
             <p className="a-label-2">{t('pauta.bank.label')}</p>
             <p className="a-code">{t('pauta.bank.sub')}</p>
@@ -576,15 +555,13 @@ export default function PautaBuilderA() {
                 </ul>
                 <div ref={coverRef} className="a-pb-cover a-pb-pin-only" style={coverVars}>
                   <div className="a-pb-cover-crop">
-                    <Image
+                    <Grabacion
                       className="a-crop"
-                      src={appImage(RUBRIC.src, locale)}
-                      width={RUBRIC.w}
-                      height={RUBRIC.h}
+                      escena={RUBRIC.escena}
+                      width={RECORDING.w}
+                      height={RECORDING.h}
                       alt={rubricPlate.alt}
-                      loading="lazy"
-                      sizes="(min-width: 1280px) 960px, 80vw"
-                      draggable={false}
+                      play={false}
                     />
                   </div>
                 </div>
@@ -599,15 +576,12 @@ export default function PautaBuilderA() {
           {/* Stacked: the real plate, static */}
           <div className="a-pb-mplate">
             <Plate
-              src={RUBRIC.src}
-              naturalW={RUBRIC.w}
-              naturalH={RUBRIC.h}
+              escena={RUBRIC.escena}
               region={RUBRIC.region}
               mobileRegion={RUBRIC.mobile}
               fig={rubricPlate.fig}
               caption={rubricPlate.caption}
               alt={rubricPlate.alt}
-              sizes="(min-width: 768px) 90vw, 100vw"
               reveal="rv-wipe-up"
             />
           </div>

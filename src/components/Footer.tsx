@@ -1,17 +1,13 @@
 'use client';
 
-import { useTranslations, useLocale } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
-// Cross-page link: plain next/link with an explicit locale prefix, since the
-// static export has no i18n middleware and a prefix-less URL would 404.
-import NextLink from 'next/link';
 import Image from 'next/image';
 import ScrollCue from '@/components/ScrollCue';
 import { navClick } from '@/lib/scrollNav';
 
 export default function Footer() {
   const t = useTranslations();
-  const locale = useLocale();
 
   const fundedText = t.raw('footer.funded') || 'Funded by';
 
@@ -62,7 +58,6 @@ export default function Footer() {
             </span>
           </div>
           <div className="flex flex-wrap gap-4 text-sm text-white/60">
-            <NextLink className="transition hover:text-white" href={`/${locale}/platform/`}>{t('footer.platform')}</NextLink>
             <a className="transition hover:text-white" href="#security" onClick={navClick('security')}>{t('footer.security')}</a>
             <a className="transition hover:text-white" href="#faq" onClick={navClick('faq')}>{t('footer.faq')}</a>
             <a className="transition hover:text-white" href="#demo" onClick={navClick('demo')}>{t('footer.contact')}</a>

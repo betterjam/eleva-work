@@ -13,7 +13,8 @@ import { useReveal } from './useReveal';
 type Row = { num: string; name: string; proposes: string; decides: string };
 type PlateMsg = { fig: string; caption: string; alt: string };
 
-const MATCH = { src: '/images/app/role-template-ai-match.png', w: 1505, h: 1010, region: { x: 20, y: 310, w: 660, h: 440 } };
+/** The import preview's dialog: the role written in the file next to the role the AI proposes. */
+const MATCH = { escena: 'importacion', region: { x: 232, y: 143, w: 736, h: 464 } };
 
 /**
  * §06 IA. A four-column ledger (# · intervention · "La IA propone" · "Tú decides"):
@@ -141,14 +142,11 @@ export default function IAA() {
           </div>
           <div className="col-span-4 md:col-start-8 md:col-span-5">
             <Plate
-              src={MATCH.src}
-              naturalW={MATCH.w}
-              naturalH={MATCH.h}
+              escena={MATCH.escena}
               region={MATCH.region}
               fig={plate.fig}
               caption={plate.caption}
               alt={plate.alt}
-              sizes="(min-width: 768px) 40vw, 100vw"
               reveal="rv-wipe-left"
             />
           </div>
