@@ -2,11 +2,11 @@
   "meta": {
     "product": "Eleva",
     "tagline": "360° feedback for companies",
-    "description": "360° feedback for everyone in your company: self, manager, peers and direct reports, with a rubric per role, clear results by domain and improvement suggestions."
+    "description": "Eleva solves your company's 360° feedback from start to finish: every job with its profile and evaluation form, an online process everyone answers, results people understand and discuss, improvement plans and workplace climate, aligned with labour regulation."
   },
   "nav": {
-    "features": "Modules",
-    "how": "How it works",
+    "features": "What we solve",
+    "how": "How to start",
     "security": "Security",
     "faq": "FAQ",
     "platform": "Methodology",
@@ -28,16 +28,16 @@
       "without flat forms",
       "without starting over",
       "with current regulations",
-      "with AI that guides you",
-      "with clear results"
+      "with results people discuss",
+      "with workplace climate"
     ],
-    "sub": "Eleva organises 360° feedback for your people by role, with a methodology created by psychologists and evaluation experts, and turns it into clear results.",
+    "sub": "Eleva organizes your people's 360° feedback by job, with the work of psychologists and evaluation experts, and turns it into clear results.",
     "ctaPrimary": "Request a demo",
-    "ctaSecondary": "See the modules",
+    "ctaSecondary": "See what we solve",
     "ctaDetail": "Our methodology",
     "pill1Title": "A rubric per role",
-    "pill1Sub": "Built from the curated bank, approved by you",
-    "pill2Title": "Weighted 360°",
+    "pill1Sub": "Ready to use, made by specialists",
+    "pill2Title": "Several views",
     "pill2Sub": "Manager, self, peers and direct reports",
     "pill3Title": "Clear results",
     "pill3Sub": "Achievement by domain and an improvement suggestion",
@@ -62,61 +62,71 @@
     ]
   },
   "features": {
-    "title": "The whole cycle, module by module",
-    "sub": "Six modules that cover the whole 360° cycle, from the org chart to results by domain, with the labour regulations that apply to you built into every step.",
+    "title": "The problems we solve",
+    "sub": "What a company needs to give its people good feedback, from start to finish and with labour regulation built in.",
     "ctaTitle": "Shall we walk through your org chart?",
     "ctaDesc": "We'll show you the full cycle using your company's real roles.",
     "detailCta": "See our methodology",
     "cards": [
       {
-        "title": "Org chart and roles",
-        "desc": "Map your company's structure and link each position to a catalog role.",
+        "title": "Knowing what each job is expected to do",
+        "desc": "Your company receives the profile and the evaluation form of every job, made by specialists and ready to use.",
         "image": "/images/illustrations/artboard-12.webp"
       },
       {
-        "title": "Methodology guided by AI",
-        "desc": "The methodology is ours; the AI walks you through each rubric and you decide.",
-        "image": "/images/illustrations/artboard-6.webp"
-      },
-      {
-        "title": "A curated question bank",
-        "desc": "Written by psychologists and evaluation experts, grouped by area and dimension.",
+        "title": "Meeting labour regulation",
+        "desc": "Each evaluation covers the rules that apply to your company, and you see how much of each one is covered.",
         "image": "/images/illustrations/artboard-17.webp"
       },
       {
-        "title": "360° feedback, four perspectives",
-        "desc": "Self, manager, peers and direct reports, weighted the way your company decides.",
+        "title": "Making answering easy",
+        "desc": "Each person answers their own way, from a computer or a phone, and picks up where they left off.",
+        "image": "/images/illustrations/artboard-6.webp"
+      },
+      {
+        "title": "A result every person understands",
+        "desc": "Several views of each person, and what each one contributed shown in their result.",
         "image": "/images/illustrations/artboard-10.webp"
       },
       {
-        "title": "Six process stages",
-        "desc": "Every cycle moves from preparation to close without anyone losing the thread.",
+        "title": "Feedback that ends in a conversation",
+        "desc": "The person sees their result and discusses it with their manager, with agreements that stay on record.",
         "image": "/images/illustrations/artboard-8.webp"
       },
       {
-        "title": "Results by domain",
-        "desc": "Each person gets an achievement score per domain and a suggestion to improve.",
+        "title": "Knowing what to improve, with evidence",
+        "desc": "Results by person, by team and by competency, which become improvement plans.",
         "image": "/images/illustrations/artboard-18.webp"
+      },
+      {
+        "title": "Recognizing those who do well",
+        "desc": "Each person's track record, recognitions and training, in one place.",
+        "image": "/images/illustrations/artboard-14.webp"
+      },
+      {
+        "title": "Knowing how your team is doing",
+        "desc": "An anonymous climate survey, with results by unit and their trend over time.",
+        "image": "/images/illustrations/artboard-15.webp"
       }
     ]
   },
   "how": {
-    "title": "How it works",
-    "sub": "First the structure, then the rubric, and finally the 360° cycle. At every step, the company reviews, adjusts and decides.",
+    "title": "How to start",
+    "sub": "Three steps, with our team alongside in each. In all of them, the company reviews and decides.",
     "steps": [
       {
-        "title": "Set up the org chart and roles",
-        "desc": "Load your company's structure and link each position to a catalog role. The AI suggests the best fit and explains why, and you confirm it or pick another.",
+        "title": "You tell us what your company is like",
+        "desc": "You give us your structure and your people. Our specialists prepare the profile and the evaluation form of every job.",
         "image": "/images/illustrations/artboard-13.webp"
       },
       {
-        "title": "Build each role's rubric and approve it",
-        "desc": "Every role gets a rubric with curated questions, organised by framework and area and tied to the labour regulations that apply where you operate. The AI accompanies you through the selection and helps with any doubts along the way; adjust whatever you want before publishing.",
+        "title": "You review and approve",
+        "desc": "Every job arrives with its form, aligned with the labour regulation that applies to your company. You adjust whatever you want before starting.",
         "image": "/images/illustrations/artboard-7.webp"
       },
       {
-        "title": "Launch the 360° cycle and read the results",
-        "desc": "Decide how much each perspective weighs and which stages the process goes through, launch it and, at the close, get achievement by domain with an improvement suggestion for each person.",
+        "title": "You evaluate and read the results",
+        "desc": "Your team answers online, managers discuss the results, and at the end you have the report of each person, each team and the company.",
         "image": "/images/illustrations/artboard-11.webp"
       }
     ],
@@ -136,15 +146,15 @@
         "v": "3.83 /5"
       },
       {
-        "k": "Manager weighting",
-        "v": "25 %"
+        "k": "Improvement plans",
+        "v": "12"
       }
     ],
     "nextActionLabel": "Next action",
     "nextActionTitle": "Send the evaluation to feedback",
     "send": "Send",
     "preview": "Preview",
-    "illustrationAlt": "Diagram of the three steps: the org chart with the matched role, the role's rubric, and the 360° cycle with its achievement by domain."
+    "illustrationAlt": "Diagram of the three steps: the company's structure, the form of each job and the process with its results."
   },
   "security": {
     "title": "Security & compliance",
@@ -191,31 +201,31 @@
     "items": [
       {
         "q": "Does it work for every role in the company?",
-        "a": "Yes. Eleva evaluates all your people, from leadership and managers to operations, sales and administrative teams. Each position in the org chart is linked to a catalog role, with its name, aliases and gender variants."
+        "a": "Yes. Eleva evaluates all your people, from senior management and managers to the operations, sales and administration teams. Each with a form specific to its job."
       },
       {
         "q": "Can we adjust the rubric?",
-        "a": "The rubric follows Eleva's methodology and is always a proposal, never an imposition: you review the questions, adjust dimensions and weights, and approve it before launching the process. Every process freezes its configuration when it is generated, so past cycles stay untouched."
+        "a": "The form is always a proposal, never an imposition: you review the questions, adjust what you need and approve it before launching the process. Each process keeps its configuration, so past results stay intact."
       },
       {
-        "q": "What does the AI do, and what does the company decide?",
-        "a": "The AI does not invent content: it guides your team through Eleva's methodology. It points you to the catalog role that matches each position and explains why, walks you through assembling the rubric from the curated bank, clears up doubts during the process and, at the end, organises the improvement suggestions by domain. The decisions — the role, the rubric, the weights and the result — always belong to the company."
+        "q": "Do you also measure workplace climate?",
+        "a": "Yes. The climate survey is anonymous: answers are stored without a name and results are shown only for groups of a minimum size the company sets. The report shows each dimension, each unit and how they changed since earlier measurements."
       },
       {
         "q": "How does it align with labour regulations?",
-        "a": "Every question in the bank declares the regulations and frameworks it evaluates: labour law, workplace and sexual harassment, equal pay, non-discrimination, health and safety at work and personal data protection, the same ground that well-known laws such as the GDPR or equal pay and anti-harassment legislation cover. Each role's rubric shows exactly what it aligns to."
+        "a": "The form of each job shows which rules it is aligned with: labour law, workplace and sexual harassment, equal pay, non-discrimination, occupational health and safety and personal data protection."
       },
       {
         "q": "Which perspectives and stages does the 360° have?",
-        "a": "The 360° looks at each person from four perspectives: their self-assessment, their manager's view, their direct reports' and their peers', with the weights you define (together they add up to 100). The process goes through six stages: in preparation, started, in feedback, feedback answered, finalized and closed."
+        "a": "A 360° evaluation looks at each person from four views: their own, their manager's, their team's and their peers'. The company decides which take part and how much each one counts, and can start with the manager's view and the self-evaluation only. The process goes through six stages: in preparation, started, in feedback, feedback answered, finished and closed."
       },
       {
         "q": "Does it work for a group with several companies?",
-        "a": "Yes. Central configuration sets the default stages and values for the whole group, and each company can override them on its own stages page."
+        "a": "Yes. The group sees the progress and the results of all its companies, and each company runs its own process."
       }
     ],
     "finalTitle": "Ready for your next evaluation cycle?",
-    "finalSub": "Request a demo and we'll build the rubric for a real role in your company.",
+    "finalSub": "Request a demo and we will show you the process with real jobs from your company.",
     "requestDemo": "Request a demo"
   },
   "demo": {
