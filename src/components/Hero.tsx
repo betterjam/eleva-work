@@ -10,6 +10,9 @@ import { goTo, prefersReducedMotion } from '@/lib/scrollNav';
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Width of the rotating line per character, in ems of its own size, with room to spare.
+const ROTATING_EM_PER_CHARACTER = 0.56;
+
 export default function Hero() {
   const t = useTranslations();
   const locale = useLocale();
@@ -28,6 +31,12 @@ export default function Hero() {
 
   const rotatingItems = t.raw('hero.titleRotating') as string[];
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  // The rotating line stays on one line at any column width: it takes the headline's size, capped by what
+  // its longest phrase needs to fit the column (a phrase in this typeface averages a little over half an em
+  // per character). Without the cap a long phrase runs past the column and is cut off.
+  const longestPhrase = Math.max(...rotatingItems.map((item) => item.length));
+  const rotatingFontSize = `min(1em, ${(100 / (longestPhrase * ROTATING_EM_PER_CHARACTER)).toFixed(2)}cqi)`;
 
   // Entrance ------------------------------------------------------------------
   // Reveals, not fades: the kicker and the rotating line wipe open, the CTAs
@@ -284,7 +293,7 @@ export default function Hero() {
 
       <div className="mx-auto grid w-full max-w-6xl flex-1 content-center items-center gap-[2vh] px-5 pt-[4vh] pb-[4vh] md:grid-cols-2">
         {/* Content */}
-        <div className="min-w-0">
+        <div className="min-w-0 [container-type:inline-size]">
           <p ref={kickerRef} className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs text-white/80">
             <span className="h-1.5 w-1.5 rounded-full bg-white/70" />
             {t('meta.tagline')}
@@ -296,10 +305,14 @@ export default function Hero() {
             <span key={locale} ref={titleLineRef} className="block">
               {t('hero.titleStart')}
             </span>
-            {/* The sizer below keeps every phrase on one line, so on phones the rotating
-                line is set a notch smaller than the headline: the longest phrase must fit
-                the viewport, or it widens the whole column past the screen edge. */}
-            <span ref={rotatingLineRef} className="relative mt-1 inline-flex max-w-full items-center text-[0.8em] sm:text-[1em]">
+            {/* The sizer below keeps every phrase on one line, so the rotating line is set
+                as large as the headline only where its longest phrase fits the column, and
+                smaller where it does not (see rotatingFontSize): a phrase is never cut. */}
+            <span
+              ref={rotatingLineRef}
+              className="relative mt-1 inline-flex max-w-full items-center"
+              style={{ fontSize: rotatingFontSize }}
+            >
               {/* Rotating text container. The invisible sizer below holds every
                   entry, so the box is already as wide as the longest one and
                   the visible word - taken out of flow - can be swapped without
@@ -392,14 +405,17 @@ export default function Hero() {
 
       {/* Social proof */}
       <section ref={socialRef} className="border-t border-white/10">
-        <div className="mx-auto max-w-6xl px-5 py-[3vh]">
+        {/* From tablets up to the width where the floating WhatsApp button falls outside the page column, the
+            strip leaves the button's corner free: its last tags were being covered. */}
+        <div className="mx-auto max-w-6xl px-5 py-[3vh] md:pr-24 min-[1340px]:pr-5">
           {/* On desktop the strip closes the first screen and its middle stays
               empty on purpose: the page's one fixed cue (FloatingCue) sits there
               at the top of the page and stays put while the strip scrolls away. */}
           <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between md:gap-6">
             {/* Capped so the line wraps before the tags do and the middle stays clear. */}
             <p data-social-line className="text-sm text-white/70 md:max-w-xs">{t('social.line')}</p>
-            <div className="flex flex-wrap gap-2 md:justify-end">
+            {/* Capped to the right half minus the cue's half width: the tags wrap instead of reaching under it. */}
+            <div className="flex flex-wrap gap-2 md:max-w-[calc(50%-5.5rem)] md:justify-end">
               {(t.raw('social.tags') as string[]).map((tag: string) => (
                 <span
                   key={tag}

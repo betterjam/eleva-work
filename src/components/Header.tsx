@@ -107,7 +107,7 @@ export default function Header() {
       }`}
     >
       {/* Desktop Header */}
-      <div className="mx-auto hidden max-w-6xl items-center justify-between px-5 py-4 md:flex">
+      <div className="mx-auto hidden max-w-6xl items-center justify-between px-5 py-4 lg:flex">
         {/* Logo */}
         {/* 40px tall keeps the horizontal logo at its 140px minimum width. */}
         <Link href="/" className="flex items-center gap-2" aria-label="eleva 360°">
@@ -177,7 +177,7 @@ export default function Header() {
       </div>
 
       {/* Mobile Header */}
-      <div className="flex items-center justify-between px-4 py-3 md:hidden">
+      <div className="flex items-center justify-between px-4 py-3 lg:hidden">
         {/* Left: Menu + Theme */}
         <div className="flex items-center gap-2">
           <button
@@ -247,7 +247,7 @@ export default function Header() {
       <div
         id="mobile-menu"
         inert={!isMobileMenuOpen}
-        className={`overflow-hidden transition-all duration-300 md:hidden ${isMobileMenuOpen ? 'max-h-[480px]' : 'max-h-0'}`}
+        className={`overflow-hidden transition-all duration-300 lg:hidden ${isMobileMenuOpen ? 'max-h-[480px]' : 'max-h-0'}`}
       >
         <div className="border-t border-white/10 px-4 pb-4 pt-3">
           <nav className="flex flex-col gap-1">
