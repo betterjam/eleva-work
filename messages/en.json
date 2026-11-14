@@ -71,42 +71,50 @@
       {
         "title": "Knowing what each job is expected to do",
         "desc": "Your company receives the profile and the evaluation form of every job, made by specialists and ready to use.",
-        "image": "/images/illustrations/artboard-12.webp"
+        "escena": "organigrama",
+        "alt": "The org chart of a test organization in Eleva: branches open and a job's detail shows."
       },
       {
         "title": "Meeting labour regulation",
         "desc": "Each evaluation covers the rules that apply to your company, and you see how much of each one is covered.",
-        "image": "/images/illustrations/artboard-17.webp"
+        "escena": "normativa",
+        "alt": "The regulatory coverage of a process: each rule with the share of evaluations that observe it."
       },
       {
         "title": "Making answering easy",
         "desc": "Each person answers their own way, from a computer or a phone, and picks up where they left off.",
-        "image": "/images/illustrations/artboard-6.webp"
+        "escena": "enfoque",
+        "alt": "An evaluation answered question by question, each one alone on the screen."
       },
       {
         "title": "A result every person understands",
         "desc": "Several views of each person, and what each one contributed shown in their result.",
-        "image": "/images/illustrations/artboard-10.webp"
+        "escena": "consolidado",
+        "alt": "A person's result, with what each view contributed."
       },
       {
         "title": "Feedback that ends in a conversation",
         "desc": "The person sees their result and discusses it with their manager, with agreements that stay on record.",
-        "image": "/images/illustrations/artboard-8.webp"
+        "escena": "retroalimentacion",
+        "alt": "The feedback of an evaluation, as seen by the person evaluated and by their manager."
       },
       {
         "title": "Knowing what to improve, with evidence",
         "desc": "Results by person, by team and by competency, which become improvement plans.",
-        "image": "/images/illustrations/artboard-18.webp"
+        "escena": "informe",
+        "alt": "The results report of a process: the achievement of each person and of each form."
       },
       {
         "title": "Recognizing those who do well",
         "desc": "Each person's track record, recognitions and training, in one place.",
-        "image": "/images/illustrations/artboard-14.webp"
+        "escena": "perfil",
+        "alt": "A person's track record over three periods."
       },
       {
         "title": "Knowing how your team is doing",
         "desc": "An anonymous climate survey, with results by unit and their trend over time.",
-        "image": "/images/illustrations/artboard-15.webp"
+        "escena": "clima",
+        "alt": "The report of a climate survey: participation, the result by dimension, its trend and the detail by unit."
       }
     ]
   },

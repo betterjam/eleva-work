@@ -71,42 +71,50 @@
       {
         "title": "Saber qué se espera de cada cargo",
         "desc": "Tu empresa recibe el perfil y la pauta de cada cargo, hechos por especialistas y listos para usar.",
-        "image": "/images/illustrations/artboard-12.webp"
+        "escena": "organigrama",
+        "alt": "El organigrama de una organización de prueba en Eleva: se abren las ramas y el detalle de un cargo."
       },
       {
         "title": "Cumplir la normativa laboral",
         "desc": "Cada evaluación cubre las normas que aplican a tu empresa, y ves cuánto cubre de cada una.",
-        "image": "/images/illustrations/artboard-17.webp"
+        "escena": "normativa",
+        "alt": "La cobertura normativa de un proceso: cada norma con la parte de las evaluaciones que la observa."
       },
       {
         "title": "Que responder no sea una carga",
         "desc": "Cada persona responde a su manera, desde el computador o el teléfono, y retoma donde quedó.",
-        "image": "/images/illustrations/artboard-6.webp"
+        "escena": "enfoque",
+        "alt": "Una evaluación respondida pregunta por pregunta, cada una sola en la pantalla."
       },
       {
         "title": "Un resultado que cada persona entiende",
         "desc": "Varias miradas sobre cada persona, y el aporte de cada una a la vista en su resultado.",
-        "image": "/images/illustrations/artboard-10.webp"
+        "escena": "consolidado",
+        "alt": "El resultado de una persona, con lo que aportó cada mirada."
       },
       {
         "title": "Que el feedback termine en una conversación",
         "desc": "La persona ve su resultado y lo conversa con su jefatura, con acuerdos que quedan registrados.",
-        "image": "/images/illustrations/artboard-8.webp"
+        "escena": "retroalimentacion",
+        "alt": "El feedback de una evaluación, visto por la persona evaluada y por su jefatura."
       },
       {
         "title": "Saber qué mejorar, con evidencia",
         "desc": "Resultados por persona, por equipo y por competencia, que se convierten en planes de mejora.",
-        "image": "/images/illustrations/artboard-18.webp"
+        "escena": "informe",
+        "alt": "El informe de resultados de un proceso: el logro de cada persona y de cada pauta."
       },
       {
         "title": "Reconocer a quienes lo hacen bien",
         "desc": "La trayectoria de cada persona, sus reconocimientos y su formación, en un solo lugar.",
-        "image": "/images/illustrations/artboard-14.webp"
+        "escena": "perfil",
+        "alt": "La trayectoria de una persona a lo largo de tres períodos."
       },
       {
         "title": "Saber cómo está tu equipo",
         "desc": "Una encuesta de clima anónima, con resultados por unidad y su evolución en el tiempo.",
-        "image": "/images/illustrations/artboard-15.webp"
+        "escena": "clima",
+        "alt": "El informe de una encuesta de clima: participación, resultado por dimensión, su evolución y el detalle por unidad."
       }
     ]
   },

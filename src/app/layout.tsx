@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Atkinson_Hyperlegible, Lexend } from "next/font/google";
+import localFont from "next/font/local";
 // The brand token sheet (a copy of public/brand/web/eleva-tokens.css) is bundled
 // into the site's own stylesheet rather than linked: one request fewer before the
 // first paint. Its font variables are pointed at the self-hosted fonts below in
@@ -8,14 +8,25 @@ import "@/styles/eleva-tokens.css";
 import "./globals.css";
 import WebAnalytics from "@/components/WebAnalytics";
 
-// The two brand fonts, self-hosted by next/font: served from this domain and
-// preloaded, instead of a render-blocking stylesheet on fonts.googleapis.com
-// plus font files on fonts.gstatic.com (two extra connections on a slow phone).
-const lexend = Lexend({ subsets: ["latin"], weight: ["500", "600"], display: "swap", variable: "--font-lexend" });
-const atkinson = Atkinson_Hyperlegible({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  style: ["normal", "italic"],
+// The two brand fonts, self-hosted by next/font from the files in src/fonts:
+// served from this domain and preloaded, instead of a render-blocking stylesheet
+// on fonts.googleapis.com plus font files on fonts.gstatic.com (two extra
+// connections on a slow phone). The files live in the repo (see
+// src/fonts/README.md) rather than being fetched from Google at build time:
+// that download failed the production build of 2026-11-14 (it passed on a retry).
+const lexend = localFont({
+  src: "../fonts/lexend-latin.woff2",
+  weight: "500 600",
+  display: "swap",
+  variable: "--font-lexend",
+});
+const atkinson = localFont({
+  src: [
+    { path: "../fonts/atkinson-hyperlegible-latin-400.woff2", weight: "400", style: "normal" },
+    { path: "../fonts/atkinson-hyperlegible-latin-700.woff2", weight: "700", style: "normal" },
+    { path: "../fonts/atkinson-hyperlegible-latin-400-italic.woff2", weight: "400", style: "italic" },
+    { path: "../fonts/atkinson-hyperlegible-latin-700-italic.woff2", weight: "700", style: "italic" },
+  ],
   display: "swap",
   variable: "--font-atkinson",
 });

@@ -34,8 +34,9 @@ npm run lint         # Run ESLint
 - Brand: **eleva 360°** (October 2026). The asset pack lives in `public/brand/` (served at
   `/brand/`: `logo/`, `symbol/`, `icons/`, `web/`), copied from the brand repo at
   `C:\Users\bette\source\repos\eleva-360-brand` whose `eleva-360-website-handoff.md` is the spec.
-  The root layout links the fonts (Lexend for headings, labels, buttons and nav; Atkinson
-  Hyperlegible for text), the token sheet `/brand/web/eleva-tokens.css` (light and dark
+  The root layout loads the fonts (Lexend for headings, labels, buttons and nav; Atkinson
+  Hyperlegible for text) with `next/font/local` from the woff2 files in `src/fonts/` (never from
+  Google at build time, see its README), the token sheet `/brand/web/eleva-tokens.css` (light and dark
   values), the favicon, app icons and manifest.
 - In components keep using `brand-*` utilities: `src/app/globals.css` resolves them to the
   tokens (`brand-600` = `--accent-fill`, `brand-400` = `--accent`). Primary buttons pair
@@ -175,6 +176,9 @@ switcher were removed from this fork.
   or `id="demo"` in concept code: legacy light-mode overrides in `globals.css` hijack them.
 - Product screens: recordings of the platform in `public/media/grabaciones/`
   (`<escena>-<dark|light>[-en][-fija].webp`, copied from the school landing), shown by
-  `src/components/media/Grabacion.tsx` in the page's theme and language and framed by `Plate.tsx`
-  (optional crop in recording pixels). They were recorded in a school's data (Colegio, Profesor,
-  MINEDUC are legible) and should be re-recorded with a company.
+  `src/components/media/Grabacion.tsx` in the page's theme and language. The home's problems
+  section (`Features.tsx`, the landing's turning cube on desktop and swipe carousel on phones)
+  names one per card in `messages/*.json` (`features.cards[].escena`). They were recorded in a
+  school's data (Colegio, Profesor, MINEDUC are legible): since 2026-11-14 the site keeps its
+  own texts for companies and shows the school landing's current recordings, so when the
+  landing re-records a scene, copy its eight files here too.

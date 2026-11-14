@@ -578,3 +578,290 @@ html[data-concept] body {
 
 /* Legacy light-mode overrides above target .text-white etc. with !important.
    Concept pages avoid those utilities entirely and use the semantic tokens. */
+
+/* =====================================================================
+   Modules (Features): on desktop the modules ride a turning cube of
+   screens; the title and the list of modules share a narrow left column
+   and the cube takes the rest of the screen. On phones they are a swipe
+   carousel of the same screens. The screens are recordings
+   (components/media/Grabacion).
+   ===================================================================== */
+.modulos {
+  --lista-w: clamp(18.5rem, 25vw, 25rem);
+  display: grid;
+  grid-template-columns: var(--lista-w) minmax(0, 1fr);
+  align-items: center;
+  column-gap: clamp(2rem, 4vw, 4.5rem);
+  height: 100%;
+  padding: clamp(4.5rem, 10vh, 6rem) 3vw clamp(2rem, 5vh, 3.5rem) max(2rem, min(6vw, calc((100vw - 72rem) / 2 + 2rem)));
+}
+/* Above the cube: while it turns its edge may pass behind the list, never over it. */
+.modulos-columna {
+  position: relative;
+  z-index: 2;
+  min-width: 0;
+}
+.modulos-lista {
+  position: relative;
+  display: grid;
+  gap: 4px;
+  margin: clamp(1.25rem, 3.5vh, 2.25rem) 0 0;
+  padding: 0;
+  list-style: none;
+}
+/* The rail the numbers sit on. */
+.modulos-lista::before {
+  content: "";
+  position: absolute;
+  left: calc(0.9rem + 0.85rem);
+  top: 1.3rem;
+  bottom: 1.3rem;
+  width: 1px;
+  background: var(--line);
+}
+.modulos-fila {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.7rem minmax(0, 1fr);
+  gap: 0.9rem;
+  width: 100%;
+  padding: 0.6rem 1rem 0.6rem 0.9rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  background: none;
+  color: var(--ink-muted);
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease, color 0.35s ease;
+}
+.modulos-fila:hover {
+  color: var(--ink);
+}
+/* The module in front: tinted card, an accent edge, the number filled, the title larger. */
+.modulos-fila[data-activo] {
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  background: color-mix(in srgb, var(--accent) 9%, var(--surface-raised));
+  box-shadow: inset 3px 0 0 var(--accent), var(--shadow-raised);
+  color: var(--ink);
+}
+.modulos-num {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 1.7rem;
+  height: 1.7rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  background: var(--surface);
+  font: 500 0.68rem/1 var(--font-display);
+  letter-spacing: 0.04em;
+  color: var(--ink-muted);
+  transition: background-color 0.35s ease, border-color 0.35s ease, color 0.35s ease, transform 0.35s ease;
+}
+.modulos-fila[data-activo] .modulos-num {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--on-accent);
+  transform: scale(1.12);
+}
+.modulos-titulo {
+  display: block;
+  padding-top: 0.2rem;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(0.92rem, 1.85vh, 1rem);
+  line-height: 1.35;
+  transition: margin-bottom 0.45s cubic-bezier(0.2, 0, 0.1, 1);
+}
+.modulos-fila[data-activo] .modulos-titulo {
+  margin-bottom: 0.35rem;
+  font-weight: 600;
+}
+/* Only the module in front shows its sentence; the list keeps its height (one row open at a time). */
+.modulos-desc {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.45s cubic-bezier(0.2, 0, 0.1, 1);
+}
+.modulos-desc > span {
+  overflow: hidden;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--ink-muted);
+}
+.modulos-fila[data-activo] .modulos-desc {
+  grid-template-rows: 1fr;
+}
+
+/* The cube's column is a size container: the cube is as wide as the column allows, as tall as the screen allows. */
+.cubo-columna {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  container-type: inline-size;
+}
+.cubo-escena {
+  --cubo-w: min(calc(100cqw - 2rem), calc((100vh - 250px) * 1.6), 1240px);
+  --cubo-h: calc(var(--cubo-w) / 1.6);
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: calc(var(--cubo-h) + 5.5rem);
+  /* Seen from a little above, so the lid tells it is a box. */
+  perspective: calc(var(--cubo-w) * 3.2);
+  perspective-origin: 50% 8%;
+}
+/* Scaled and tipped by the stage while the cube turns (Features.tsx showCube). */
+.cubo-zoom {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.cubo-pivote {
+  width: var(--cubo-w);
+  height: var(--cubo-h);
+  transform-style: preserve-3d;
+  transform: translateZ(calc(var(--cubo-w) / -2));
+}
+.cubo {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.cubo-cara {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  border-radius: 12px;
+  background: var(--surface-sunken);
+  backface-visibility: hidden;
+  transform: rotateY(calc(var(--cara) * 90deg)) translateZ(calc(var(--cubo-w) / 2));
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+/* The face of the module in front carries the accent and a glow of it. */
+.cubo-cara[data-activa] {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent), 0 40px 90px -40px color-mix(in srgb, var(--accent) 55%, transparent);
+}
+.cubo-cara > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top left;
+}
+.cubo-sombra-cara {
+  position: absolute;
+  inset: 0;
+  background: #020b12;
+  opacity: 0;
+  pointer-events: none;
+}
+.cubo-tapa {
+  position: absolute;
+  left: 0;
+  top: calc((var(--cubo-h) - var(--cubo-w)) / 2);
+  width: var(--cubo-w);
+  height: var(--cubo-w);
+  border: 1px solid var(--line-strong);
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--surface-raised), var(--surface-sunken));
+  transform: translateY(calc(var(--cubo-h) / -2)) rotateX(90deg);
+}
+.cubo-suelo {
+  position: absolute;
+  left: 50%;
+  bottom: 2.4rem;
+  width: calc(var(--cubo-w) * 1.05);
+  height: 2.8rem;
+  transform: translateX(-50%);
+  background: radial-gradient(closest-side, rgba(0, 0, 0, 0.5), transparent);
+  filter: blur(6px);
+  pointer-events: none;
+}
+html[data-theme="light"] .cubo-suelo {
+  background: radial-gradient(closest-side, rgba(11, 58, 92, 0.22), transparent);
+}
+/* On paper the turned faces only cloud a little: the same shade at half strength. */
+html[data-theme="light"] .cubo-sombra-cara {
+  background: rgba(11, 58, 92, 0.5);
+}
+/* Under the cube: the number of the module in front, large, and its name. */
+.cubo-contador {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  width: var(--cubo-w);
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+.cubo-contador-actual {
+  font: 600 1.9rem/1 var(--font-display);
+  font-variant-numeric: tabular-nums;
+  color: var(--accent);
+}
+.cubo-contador-total {
+  font: var(--text-label);
+  letter-spacing: 0.14em;
+  color: var(--ink-muted);
+}
+.cubo-contador-titulo {
+  overflow: hidden;
+  margin-left: 0.4rem;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--ink);
+  text-overflow: ellipsis;
+}
+
+/* Phones: the same screens, one per swipe. The list scrolls inside itself, never the page. */
+.modulos-carrusel {
+  display: flex;
+  gap: 14px;
+  margin: 0;
+  padding: 0 20px 8px;
+  list-style: none;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 20px;
+  scrollbar-width: none;
+}
+.modulos-carrusel::-webkit-scrollbar {
+  display: none;
+}
+.modulos-carrusel-item {
+  flex: 0 0 84%;
+  scroll-snap-align: start;
+}
+.modulo-pantalla {
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--surface-sunken);
+}
+.modulo-pantalla > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top left;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .modulos-desc,
+  .modulos-titulo,
+  .modulos-fila,
+  .modulos-num,
+  .cubo-cara {
+    transition: none;
+  }
+}
