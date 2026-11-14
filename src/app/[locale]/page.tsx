@@ -1,4 +1,5 @@
 import Header from '@/components/Header';
+import TrialBanner from '@/components/TrialBanner';
 import Hero from '@/components/Hero';
 import Features from '@/components/Features';
 import DemoForm from '@/components/DemoForm';
@@ -35,6 +36,7 @@ export default async function Home({ params }: Props) {
   return (
     <main className="min-h-screen">
       <AnimatedBackground />
+      <TrialBanner />
       <Header />
       <Hero />
       <Features />

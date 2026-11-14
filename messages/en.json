@@ -10,7 +10,7 @@
     "security": "Security",
     "faq": "FAQ",
     "platform": "Methodology",
-    "requestDemo": "Request demo",
+    "requestDemo": "Free trial",
     "menu": "Menu",
     "toggleTheme": "Toggle theme",
     "toggleLanguage": "Toggle language"
@@ -32,7 +32,7 @@
       "with workplace climate"
     ],
     "sub": "Eleva organizes your people's 360° feedback by job, with the work of psychologists and evaluation experts, and turns it into clear results.",
-    "ctaPrimary": "Request a demo",
+    "ctaPrimary": "Try our free demo",
     "ctaSecondary": "See what we solve",
     "ctaDetail": "Our methodology",
     "pill1Title": "A rubric per role",
@@ -233,37 +233,22 @@
       }
     ],
     "finalTitle": "Ready for your next evaluation cycle?",
-    "finalSub": "Request a demo and we will show you the process with real jobs from your company.",
-    "requestDemo": "Request a demo"
+    "finalSub": "Start your free trial and build your first evaluation with your company's roles.",
+    "requestDemo": "Start your free trial"
   },
   "demo": {
-    "title": "Book a demo with your company's roles",
-    "sub": "In 30 minutes we build the rubric for a real role at your company together, set the 360° weights and walk through the whole cycle, right up to results by domain.",
-    "benefit1Title": "A demo with your roles",
-    "benefit1Sub": "We use your org chart, not a generic example",
-    "benefit2Title": "No commitment",
+    "title": "Try Eleva for free with your own team",
+    "sub": "Create your organization in minutes, load your staff list and build your first evaluation with the roles you have. No credit card needed.",
+    "benefit1Title": "With your team",
+    "benefit1Sub": "Load your staff list and try it with your real roles",
+    "benefit2Title": "No credit card",
     "benefit2Sub": "Explore the platform with no obligation",
-    "benefit3Title": "Reply within 24 hours",
-    "benefit3Sub": "We reach out to agree on a time",
-    "nameLabel": "Full name",
-    "namePlaceholder": "Your name",
-    "emailLabel": "Email address",
-    "emailPlaceholder": "email@company.com",
-    "schoolLabel": "Company name",
-    "schoolPlaceholder": "Example Ltd.",
-    "roleLabel": "Your role",
-    "rolePlaceholder": "Select your role",
-    "roleDirector": "CEO / General manager",
-    "roleHR": "HR Manager",
-    "roleUTP": "Team or area manager",
-    "roleOther": "Other",
-    "messageLabel": "Message (optional)",
-    "messagePlaceholder": "Tell us about your company, or which role you want to evaluate first...",
-    "submit": "Request demo",
-    "submitting": "Sending...",
-    "successTitle": "Request sent!",
-    "successSub": "We'll contact you within 24 hours to schedule your demo.",
-    "privacy": "By submitting, you agree to be contacted about Eleva."
+    "benefit3Title": "Ready in minutes",
+    "benefit3Sub": "Verify your email and get in right away",
+    "trialTitle": "Try our free demo",
+    "trialSub": "It takes a few minutes and there is nothing to install: verify your email, name your organization and get in.",
+    "trialCta": "Start now",
+    "trialNote": "No credit card needed"
   },
   "footer": {
     "line": "360° feedback for everyone in your company",
@@ -319,5 +304,9 @@
     "role": "Rector",
     "school": "Colegio Santa Cruz de Chicureo",
     "city": ""
+  },
+  "trial": {
+    "banner": "Start your free trial",
+    "noCard": "No credit card needed"
   }
 }

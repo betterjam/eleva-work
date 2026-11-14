@@ -865,3 +865,9 @@ html[data-theme="light"] .cubo-sombra-cara {
     transition: none;
   }
 }
+
+/* The free trial's call (TrialCta): a halo of its own colour, a little more of it on hover. And the drawing of the
+   closing card, on a soft glow of the accent so it reads on the dark and on the light page. */
+.trial-cta { box-shadow: 0 14px 34px -16px color-mix(in srgb, var(--accent-fill) 90%, transparent); }
+.trial-cta:hover { box-shadow: 0 18px 40px -14px var(--accent-fill); }
+.trial-art { background: radial-gradient(closest-side, color-mix(in srgb, var(--accent) 20%, transparent), transparent 78%); }

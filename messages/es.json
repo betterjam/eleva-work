@@ -10,7 +10,7 @@
     "security": "Seguridad",
     "faq": "Preguntas",
     "platform": "Metodología",
-    "requestDemo": "Solicitar demo",
+    "requestDemo": "Prueba gratis",
     "menu": "Menú",
     "toggleTheme": "Cambiar tema",
     "toggleLanguage": "Cambiar idioma"
@@ -32,7 +32,7 @@
       "con clima organizacional"
     ],
     "sub": "Eleva organiza el feedback 360° de tus colaboradores por cargo, con el trabajo de psicólogos y expertos en evaluación, y lo convierte en resultados claros.",
-    "ctaPrimary": "Solicitar demo",
+    "ctaPrimary": "Prueba nuestra demo gratis",
     "ctaSecondary": "Ver qué resolvemos",
     "ctaDetail": "Nuestra metodología",
     "pill1Title": "Pauta por cargo",
@@ -233,37 +233,22 @@
       }
     ],
     "finalTitle": "¿Listo para tu próximo ciclo de evaluación?",
-    "finalSub": "Solicita una demo y te mostramos el proceso con cargos reales de tu empresa.",
-    "requestDemo": "Solicitar demo"
+    "finalSub": "Haz tu prueba gratuita y arma tu primera evaluación con los cargos de tu empresa.",
+    "requestDemo": "Haz tu prueba gratuita"
   },
   "demo": {
-    "title": "Agenda una demo con los cargos de tu empresa",
-    "sub": "En 30 minutos armamos juntos la pauta de un cargo real de tu empresa, definimos las ponderaciones del 360° y recorremos el ciclo completo, hasta ver los resultados por dominio.",
-    "benefit1Title": "Demo con tus cargos",
-    "benefit1Sub": "Usamos tu organigrama, no un ejemplo genérico",
-    "benefit2Title": "Sin compromiso",
-    "benefit2Sub": "Conoce la plataforma sin obligación",
-    "benefit3Title": "Respuesta en 24 horas",
-    "benefit3Sub": "Te contactamos para coordinar la hora",
-    "nameLabel": "Nombre completo",
-    "namePlaceholder": "Tu nombre",
-    "emailLabel": "Correo electrónico",
-    "emailPlaceholder": "correo@empresa.cl",
-    "schoolLabel": "Nombre de la empresa",
-    "schoolPlaceholder": "Empresa Ejemplo SpA",
-    "roleLabel": "Tu cargo",
-    "rolePlaceholder": "Selecciona tu cargo",
-    "roleDirector": "Gerente/a general",
-    "roleHR": "Encargado/a RR.HH.",
-    "roleUTP": "Jefatura de área",
-    "roleOther": "Otro",
-    "messageLabel": "Mensaje (opcional)",
-    "messagePlaceholder": "Cuéntanos de tu empresa o del cargo que quieres evaluar primero...",
-    "submit": "Solicitar demo",
-    "submitting": "Enviando...",
-    "successTitle": "¡Solicitud enviada!",
-    "successSub": "Te contactamos dentro de 24 horas para coordinar la demo.",
-    "privacy": "Al enviar, aceptas que te contactemos sobre Eleva."
+    "title": "Prueba Eleva gratis con tu propio equipo",
+    "sub": "Creas tu organización en minutos, cargas tu nómina y armas tu primera evaluación con los cargos que tienes. Sin tarjeta de crédito.",
+    "benefit1Title": "Con tu equipo",
+    "benefit1Sub": "Cargas tu nómina y pruebas con tus cargos reales",
+    "benefit2Title": "Sin tarjeta de crédito",
+    "benefit2Sub": "Conoces la plataforma sin compromiso",
+    "benefit3Title": "Lista en minutos",
+    "benefit3Sub": "Verificas tu correo y entras de inmediato",
+    "trialTitle": "Prueba nuestra demo gratis",
+    "trialSub": "Toma unos minutos y no necesitas instalar nada: verificas tu correo, nombras tu organización y entras.",
+    "trialCta": "Empezar ahora",
+    "trialNote": "Sin tarjeta de crédito"
   },
   "footer": {
     "line": "Feedback 360° para cada colaborador de tu empresa",
@@ -319,5 +304,9 @@
     "role": "Rector",
     "school": "Colegio Santa Cruz de Chicureo",
     "city": ""
+  },
+  "trial": {
+    "banner": "Haz tu prueba gratuita",
+    "noCard": "Sin tarjeta de crédito"
   }
 }

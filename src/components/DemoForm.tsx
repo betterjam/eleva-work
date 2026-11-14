@@ -1,10 +1,12 @@
 'use client';
 
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { useState, useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { prefersReducedMotion, registerAnchor, unregisterAnchor } from '@/lib/scrollNav';
+import TrialCta from '@/components/TrialCta';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -41,8 +43,6 @@ function lockAtEnd(self: ScrollTrigger) {
 
 export default function DemoForm() {
   const t = useTranslations('demo');
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
   // `null` until the first client measurement: the reveal effect below picks
   // the mobile or the desktop tree from it, and a `false` default would build
   // the desktop reveals once against the `hidden md:block` section on a phone.
@@ -167,36 +167,9 @@ export default function DemoForm() {
     return () => ctx.revert();
   }, [isMobile]);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const formData = new FormData(e.currentTarget);
-
-    // Honeypot check - if filled, it's a bot
-    if (formData.get('website')) {
-      setIsSubmitted(true); // Fake success to not alert bots
-      return;
-    }
-
-    setIsSubmitting(true);
-
-    try {
-      // TODO: Replace with real API endpoint
-      // await fetch('/api/contact', {
-      //   method: 'POST',
-      //   body: JSON.stringify(Object.fromEntries(formData)),
-      // });
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      setIsSubmitted(true);
-    } catch (error) {
-      console.error('Error submitting form:', error);
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  // Benefits component
-  const Benefits = () => (
+  // Rendered as elements (called, not mounted as components): a component defined in here would be a new
+  // type on every render, and React would remount the form, wiping what was typed, on every state change.
+  const benefits = () => (
     <div className="space-y-4">
       {[
         { title: t('benefit1Title'), sub: t('benefit1Sub') },
@@ -218,116 +191,26 @@ export default function DemoForm() {
     </div>
   );
 
-  // Form component
-  const FormCard = () => (
-    <div className="w-full max-w-md rounded-2xl border border-white/10 bg-white/5 p-5 md:p-6">
-      {isSubmitted ? (
-        <div className="text-center py-6">
-          <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-brand-600/20">
-            <svg className="h-7 w-7 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-            </svg>
-          </div>
-          <h3 className="text-lg font-semibold text-white">{t('successTitle')}</h3>
-          <p className="mt-1.5 text-sm text-white/70">{t('successSub')}</p>
-        </div>
-      ) : (
-        <form onSubmit={handleSubmit} className="space-y-3 md:space-y-4">
-          {/* Honeypot field - hidden from users, bots will fill it */}
-          <input
-            type="text"
-            name="website"
-            autoComplete="off"
-            tabIndex={-1}
-            className="absolute -left-[9999px] opacity-0 h-0 w-0"
-            aria-hidden="true"
-          />
-          <div>
-            <label htmlFor="name" className="block text-sm font-medium text-white/80 mb-1.5">
-              {t('nameLabel')}
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              required
-              className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-white placeholder-white/40 outline-none transition focus:border-white/25 focus:bg-white/10"
-              placeholder={t('namePlaceholder')}
-            />
-          </div>
-
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium text-white/80 mb-1.5">
-              {t('emailLabel')}
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              required
-              className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-white placeholder-white/40 outline-none transition focus:border-white/25 focus:bg-white/10"
-              placeholder={t('emailPlaceholder')}
-            />
-          </div>
-
-          <div>
-            <label htmlFor="company" className="block text-sm font-medium text-white/80 mb-1.5">
-              {t('schoolLabel')}
-            </label>
-            <input
-              type="text"
-              id="company"
-              name="company"
-              required
-              className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-white placeholder-white/40 outline-none transition focus:border-white/25 focus:bg-white/10"
-              placeholder={t('schoolPlaceholder')}
-            />
-          </div>
-
-          <div>
-            <label htmlFor="role" className="block text-sm font-medium text-white/80 mb-1.5">
-              {t('roleLabel')}
-            </label>
-            <select
-              id="role"
-              name="role"
-              required
-              className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-white outline-none transition focus:border-white/25 focus:bg-white/10"
-            >
-              <option value="" className="bg-[#070A12]">{t('rolePlaceholder')}</option>
-              <option value="gerencia" className="bg-[#070A12]">{t('roleDirector')}</option>
-              <option value="rrhh" className="bg-[#070A12]">{t('roleHR')}</option>
-              <option value="jefatura" className="bg-[#070A12]">{t('roleUTP')}</option>
-              <option value="other" className="bg-[#070A12]">{t('roleOther')}</option>
-            </select>
-          </div>
-
-          <div>
-            <label htmlFor="message" className="block text-sm font-medium text-white/80 mb-1.5">
-              {t('messageLabel')}
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              rows={2}
-              className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-white placeholder-white/40 outline-none transition focus:border-white/25 focus:bg-white/10 resize-none"
-              placeholder={t('messagePlaceholder')}
-            />
-          </div>
-
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="w-full rounded-xl bg-brand-600 px-6 py-3 text-sm font-medium text-on-accent transition hover:bg-brand-700 disabled:opacity-50"
-          >
-            {isSubmitting ? t('submitting') : t('submit')}
-          </button>
-
-          <p className="text-center text-xs text-white/50">
-            {t('privacy')}
-          </p>
-        </form>
-      )}
+  // The card spans its column: the whole width on phones, the desktop column's max-w-md beside the copy. Where the
+  // request form was: the trial is taken in the app, and this is the way there.
+  const formCard = () => (
+    <div className="w-full overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+      {/* The brand's flying pair: the trial is where a team takes off. Decorative, so no alternative text. */}
+      <div className="trial-art flex justify-center px-6 pt-5">
+        <Image
+          src="/images/illustrations/artboard-3.webp"
+          alt=""
+          width={960}
+          height={593}
+          sizes="(min-width: 768px) 17rem, 70vw"
+          className="h-auto w-full max-w-[17rem]"
+        />
+      </div>
+      <div className="p-6 pt-4 md:p-8 md:pt-5">
+        <h3 className="text-xl font-semibold text-white">{t('trialTitle')}</h3>
+        <p className="mt-2 text-sm leading-relaxed text-white/70">{t('trialSub')}</p>
+        <TrialCta wide className="mt-6" label={t('trialCta')} note={t('trialNote')} />
+      </div>
     </div>
   );
 
@@ -344,11 +227,11 @@ export default function DemoForm() {
         <div data-fx="rule" className="mt-4 h-px w-16 bg-gradient-to-r from-brand-400/70 to-brand-400/0" />
 
         <div data-fx="card" className="mt-6">
-          <Benefits />
+          {benefits()}
         </div>
 
         <div data-fx="card" className="mt-8">
-          <FormCard />
+          {formCard()}
         </div>
       </section>
 
@@ -372,7 +255,7 @@ export default function DemoForm() {
               </p>
               <div data-fx="rule" className="mt-6 h-px w-24 bg-gradient-to-r from-brand-400/70 to-brand-400/0" />
               <div data-fx="card" className="mt-8">
-                <Benefits />
+                {benefits()}
               </div>
             </div>
           </div>
@@ -382,7 +265,7 @@ export default function DemoForm() {
             {/* The wrapper, not FormCard itself, carries the reveal: FormCard
                 is re-created on every render and would lose the inline styles. */}
             <div data-fx="card" className="w-full">
-              <FormCard />
+              {formCard()}
             </div>
           </div>
           </div>

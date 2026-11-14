@@ -1,5 +1,6 @@
 'use client';
 
+import TrialCta from '@/components/TrialCta';
 import { useTranslations, useLocale } from 'next-intl';
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
@@ -283,7 +284,7 @@ export default function Hero() {
     <section
       id="hero"
       ref={containerRef}
-      className="relative flex flex-col overflow-hidden bg-[#070A12] md:min-h-[calc(100vh-73px)]"
+      className="relative flex flex-col overflow-hidden bg-[#070A12] md:min-h-[calc(100vh-113px)]"
     >
       {/* Background Effects */}
       <div className="pointer-events-none absolute inset-0 opacity-70">
@@ -347,13 +348,7 @@ export default function Hero() {
           </p>
 
           <div className="mt-[3vh] flex flex-col gap-3 sm:flex-row sm:items-center">
-            <button
-              data-hero-cta
-              onClick={() => goTo('demo')}
-              className="inline-flex items-center justify-center rounded-2xl bg-brand-600 px-5 py-3 text-sm font-medium text-on-accent transition-colors hover:bg-brand-700"
-            >
-              {t('hero.ctaPrimary')}
-            </button>
+            <TrialCta data-hero-cta label={t('hero.ctaPrimary')} note={t('trial.noCard')} />
           </div>
 
           {/* Quiet scroll link to the modules stage below */}
