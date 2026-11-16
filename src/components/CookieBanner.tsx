@@ -1,11 +1,13 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
+import { legalPath } from '@/lib/paths';
 
 export default function CookieBanner() {
   const t = useTranslations('cookies');
+  const locale = useLocale();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -35,7 +37,7 @@ export default function CookieBanner() {
           <div className="flex-1">
             <p className="cookie-text text-xs leading-snug md:text-sm">
               {t('message')}{' '}
-              <Link href="/privacy" className="cookie-link underline">
+              <Link href={legalPath('privacy', locale)} className="cookie-link underline">
                 {t('privacyLink')}
               </Link>
             </p>

@@ -1,5 +1,6 @@
 import type { AnchorHTMLAttributes } from 'react';
-import { TRIAL_URL } from '@/lib/trial';
+import { useLocale } from 'next-intl';
+import { trialUrl } from '@/lib/trial';
 
 type Props = {
   /** What it invites to. */
@@ -16,9 +17,10 @@ type Props = {
  * globals.css (.trial-cta).
  */
 export default function TrialCta({ label, note, wide = false, className = '', ...rest }: Props) {
+  const locale = useLocale();
   return (
     <a
-      href={TRIAL_URL}
+      href={trialUrl(locale)}
       className={`trial-cta group ${wide ? 'flex w-full' : 'inline-flex'} items-center justify-center gap-3 rounded-2xl bg-brand-600 px-5 py-3 text-on-accent transition hover:bg-brand-700 ${className}`}
       {...rest}
     >

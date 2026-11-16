@@ -1,6 +1,6 @@
 'use client';
 
-import { TRIAL_URL } from '@/lib/trial';
+import { trialUrl } from '@/lib/trial';
 import { useTranslations, useLocale } from 'next-intl';
 import { Link, usePathname, useRouter } from '@/i18n/navigation';
 import { useState, useEffect, useRef } from 'react';
@@ -168,7 +168,7 @@ export default function Header() {
             <span className={`fi fi-${locale === 'es' ? 'gb' : 'es'} text-lg rounded-sm`} />
           </button>
           <a
-            href={TRIAL_URL}
+            href={trialUrl(locale)}
             className="header-cta rounded-2xl bg-brand-600 px-4 py-2 text-sm font-medium text-on-accent transition hover:bg-brand-700"
           >
             {t('nav.requestDemo')}
@@ -264,7 +264,7 @@ export default function Header() {
           </nav>
           <div className="mt-3 flex flex-col gap-2">
             <a
-              href={TRIAL_URL}
+              href={trialUrl(locale)}
               className="header-cta rounded-xl bg-brand-600 px-4 py-3 text-center text-sm font-medium text-on-accent transition hover:bg-brand-700"
             >
               {t('nav.requestDemo')}

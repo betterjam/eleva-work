@@ -1,13 +1,17 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
+// Cross-page link: plain next/link with an explicit locale prefix (the static export has no i18n middleware).
+import NextLink from 'next/link';
 import Image from 'next/image';
 import ScrollCue from '@/components/ScrollCue';
 import { navClick } from '@/lib/scrollNav';
+import { legalPath } from '@/lib/paths';
 
 export default function Footer() {
   const t = useTranslations();
+  const locale = useLocale();
 
   const fundedText = t.raw('footer.funded') || 'Funded by';
 
@@ -62,8 +66,8 @@ export default function Footer() {
             <a className="transition hover:text-white" href="#faq" onClick={navClick('faq')}>{t('footer.faq')}</a>
             <a className="transition hover:text-white" href="#demo" onClick={navClick('demo')}>{t('footer.contact')}</a>
             <span className="text-white/20">|</span>
-            <Link className="transition hover:text-white" href="/privacy">{t('legal.privacy')}</Link>
-            <Link className="transition hover:text-white" href="/terms">{t('legal.terms')}</Link>
+            <NextLink className="transition hover:text-white" href={legalPath('privacy', locale)}>{t('legal.privacy')}</NextLink>
+            <NextLink className="transition hover:text-white" href={legalPath('terms', locale)}>{t('legal.terms')}</NextLink>
           </div>
         </div>
 
