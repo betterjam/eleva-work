@@ -23,6 +23,11 @@ export type BlogPost = {
   publishedOn: string;
   updatedOn: string;
   readingMinutes: number;
+  /**
+   * Its original address, on the site it was written for. An article published on both sites is the same text on two
+   * domains: the copy points search engines to the original.
+   */
+  canonicalUrl?: string | null;
   translations: BlogTranslation[];
 };
 

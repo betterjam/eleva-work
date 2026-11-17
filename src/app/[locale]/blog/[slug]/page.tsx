@@ -35,14 +35,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!post) return { robots: { index: false, follow: false } };
 
   const url = `/${locale}/blog/${post.slug}/`;
-  const languages: Record<string, string> = { [locale]: url };
-  for (const other of post.translations) languages[other.language] = `/${other.language}/blog/${other.slug}/`;
+  // Published here and on the other site too: the original addresses are on the site it was written for.
+  const home = post.canonicalUrl ? new URL(post.canonicalUrl).origin : '';
+  const languages: Record<string, string> = { [locale]: home + url };
+  for (const other of post.translations) languages[other.language] = `${home}/${other.language}/blog/${other.slug}/`;
   const image = post.coverUrl ? { url: post.coverUrl, alt: post.coverAlt ?? post.title } : { url: CARD, width: 1200, height: 630, alt: 'eleva 360°' };
 
   return {
     title: post.title,
     description: post.summary,
-    alternates: { canonical: url, languages },
+    alternates: { canonical: post.canonicalUrl ?? url, languages },
     openGraph: {
       type: 'article',
       url,
