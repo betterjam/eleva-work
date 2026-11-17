@@ -62,6 +62,7 @@ export default function Footer() {
             </span>
           </div>
           <div className="flex flex-wrap gap-4 text-sm text-white/60">
+            <NextLink className="transition hover:text-white" href={`/${locale}/blog/`}>{t('footer.blog')}</NextLink>
             <a className="transition hover:text-white" href="#security" onClick={navClick('security')}>{t('footer.security')}</a>
             <a className="transition hover:text-white" href="#faq" onClick={navClick('faq')}>{t('footer.faq')}</a>
             <a className="transition hover:text-white" href="#demo" onClick={navClick('demo')}>{t('footer.contact')}</a>

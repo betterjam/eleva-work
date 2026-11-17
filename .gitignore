@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# blog images copied from the API at build time (scripts/blog-media.mjs)
+/public/blog-media/

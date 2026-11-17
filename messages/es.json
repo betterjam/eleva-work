@@ -10,6 +10,7 @@
     "security": "Seguridad",
     "faq": "Preguntas",
     "platform": "Metodología",
+    "blog": "Blog",
     "requestDemo": "Prueba gratis",
     "menu": "Menú",
     "toggleTheme": "Cambiar tema",
@@ -244,7 +245,29 @@
     "trialCta": "Empezar ahora",
     "trialNote": "Sin tarjeta de crédito"
   },
+  "blog": {
+    "meta": {
+      "title": "Blog de Eleva: evaluación de desempeño, cargos y personas",
+      "description": "Artículos sobre evaluación de desempeño, perfiles de cargo, clima y gestión de personas, escritos por el equipo de Eleva."
+    },
+    "title": "Blog",
+    "lead": "Evaluación de desempeño, perfiles de cargo y gestión de personas, explicados por quienes construimos Eleva.",
+    "empty": "Todavía no hay artículos.",
+    "back": "Blog",
+    "readingTime": "{minutes} min de lectura",
+    "cta": "¿Quieres probar Eleva con los cargos de tu organización?",
+    "home": "Inicio",
+    "kicker": "Blog de Eleva",
+    "latest": "Lo último",
+    "readMore": "Leer artículo",
+    "toc": "En este artículo",
+    "share": "Compartir",
+    "shareMail": "Correo",
+    "keepReading": "Sigue leyendo",
+    "authorLine": "Construimos Eleva y trabajamos con las organizaciones que la usan."
+  },
   "footer": {
+    "blog": "Blog",
     "line": "Feedback 360° para cada colaborador de tu empresa",
     "platform": "Metodología",
     "security": "Seguridad",

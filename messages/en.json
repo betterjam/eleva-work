@@ -10,6 +10,7 @@
     "security": "Security",
     "faq": "FAQ",
     "platform": "Methodology",
+    "blog": "Blog",
     "requestDemo": "Free trial",
     "menu": "Menu",
     "toggleTheme": "Toggle theme",
@@ -244,7 +245,29 @@
     "trialCta": "Start now",
     "trialNote": "No credit card needed"
   },
+  "blog": {
+    "meta": {
+      "title": "Eleva blog: performance evaluation, job profiles and people",
+      "description": "Articles on performance evaluation, job profiles, climate and people management, written by the Eleva team."
+    },
+    "title": "Blog",
+    "lead": "Performance evaluation, job profiles and people management, explained by the team that builds Eleva.",
+    "empty": "No articles yet.",
+    "back": "Blog",
+    "readingTime": "{minutes} min read",
+    "cta": "Want to try Eleva with your organization's jobs?",
+    "home": "Home",
+    "kicker": "Eleva blog",
+    "latest": "Latest",
+    "readMore": "Read article",
+    "toc": "In this article",
+    "share": "Share",
+    "shareMail": "Email",
+    "keepReading": "Keep reading",
+    "authorLine": "We build Eleva and work with the organizations that use it."
+  },
   "footer": {
+    "blog": "Blog",
     "line": "360° feedback for everyone in your company",
     "platform": "Methodology",
     "security": "Security",

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev -H ::",
-    "build": "next build && npm run postbuild",
+    "build": "node scripts/blog-media.mjs && next build && npm run postbuild",
     "postbuild": "cp out/es/index.html out/index.html",
     "start": "next start",
     "lint": "eslint"
