@@ -69,12 +69,6 @@
     "detailCta": "Conoce nuestra metodología",
     "cards": [
       {
-        "title": "Saber qué se espera de cada cargo",
-        "desc": "Tu empresa recibe el perfil y la pauta de cada cargo, hechos por especialistas y listos para usar.",
-        "escena": "organigrama",
-        "alt": "El organigrama de una organización de prueba en Eleva: se abren las ramas y el detalle de un cargo."
-      },
-      {
         "title": "Cumplir la normativa laboral",
         "desc": "Cada evaluación cubre las normas que aplican a tu empresa, y ves cuánto cubre de cada una.",
         "escena": "normativa",

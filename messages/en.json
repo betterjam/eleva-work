@@ -69,12 +69,6 @@
     "detailCta": "See our methodology",
     "cards": [
       {
-        "title": "Knowing what each job is expected to do",
-        "desc": "Your company receives the profile and the evaluation form of every job, made by specialists and ready to use.",
-        "escena": "organigrama",
-        "alt": "The org chart of a test organization in Eleva: branches open and a job's detail shows."
-      },
-      {
         "title": "Meeting labour regulation",
         "desc": "Each evaluation covers the rules that apply to your company, and you see how much of each one is covered.",
         "escena": "normativa",
